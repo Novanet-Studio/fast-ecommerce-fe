@@ -4,6 +4,7 @@
             form(action="blog-sidebar.html" class="ps-form--widget-search" @submit.prevent)
                 button: i.icon.feather.icon-search
                 input.form-control(type="text" placeholder="Search...")
+
         aside.widget.widget--blog.widget--categories
             h3.widget__title Categories
             ul.ps-list--plus.ps-list--line-effect

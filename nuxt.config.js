@@ -55,6 +55,7 @@ export default {
     i18n: {
         locales: [
             { code: 'en', file: 'en.json' },
+            { code: 'es', file: 'es.json' },
             { code: 'fr', file: 'fr.json' }
         ],
         lazy: true,
