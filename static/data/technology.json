@@ -1,0 +1,1306 @@
+{
+    "producDealOfDay": [
+        {
+            "id": "60",
+            "thumbnail": "/static/img/products/technology/1.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/1a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/1b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/1c.jpg"
+                }
+            ],
+            "title": "Apple iPhone X 256GB T-Mobile – Black",
+            "sale": true,
+            "price": "1389.99",
+            "salePrice": "1893.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "11%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "61",
+            "thumbnail": "/static/img/products/technology/2.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/1a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/1b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/1c.jpg"
+                }
+            ],
+            "title": "Apple iPhone 7 Plus 128 GB – Red Color",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "820.99",
+            "salePrice": "893.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "11%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "62",
+            "thumbnail": "/static/img/products/technology/3.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/technology/3.jpg"
+                }
+            ],
+            "title": "Apple MacBook Air Retina 13.3-Inch Laptop",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "1020.99",
+            "salePrice": "1120.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "21%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "63",
+            "thumbnail": "/static/img/products/technology/5.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/technology/5.jpg"
+                }
+            ],
+            "title": "Bose Bluetooth & Wireless Speaker 2.0 – Blue",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "42.99",
+            "salePrice": "52.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "18%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "64",
+            "thumbnail": "/static/img/products/technology/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/64a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/64b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/64c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/64d.jpg"
+                }
+            ],
+            "title": "Samsung Gallaxy A8 8GB Ram – Sliver Version",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "542.99",
+            "salePrice": "592.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "17%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "65",
+            "thumbnail": "/static/img/products/technology/7.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/65a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/65b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/65c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/65d.jpg"
+                }
+            ],
+            "title": "Samsung Gallaxy A8 10GB Ram – Sliver Version",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "642.99",
+            "salePrice": "592.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "17%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+                    "id": "66",
+                    "thumbnail": "/static/img/products/technology/7.jpg",
+                    "variants": [
+                        {
+                            "id": "1",
+                            "thumbnail": "/static/img/products/variants/66a.jpg"
+                        },
+                        {
+                            "id": "2",
+                            "thumbnail": "/static/img/products/variants/66b.jpg"
+                        },
+                        {
+                            "id": "3",
+                            "thumbnail": "/static/img/products/variants/66c.jpg"
+                        },
+                        {
+                            "id": "4",
+                            "thumbnail": "/static/img/products/variants/66d.jpg"
+                        }
+                    ],
+                    "title": "Yuntab K107 10.1 Inch Quad Core CPU MT6580",
+                    "vendor": "Global Office",
+                    "price": "99.99",
+                    "rating": true,
+                    "ratingCount": "01",
+                    "categories": [
+                        {
+                            "id": "4",
+                            "value": "technologies",
+                            "name": "Computers & Technologies"
+                        }
+                    ],
+                    "brand": [
+                        {
+                            "id": "9",
+                            "value": "samsung",
+                            "text": "Samsung"
+                        }
+                    ]
+                }
+    ],
+    "productPopular": [
+        {
+            "id": "61",
+            "thumbnail": "/static/img/products/technology/2.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/1a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/1b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/1c.jpg"
+                }
+            ],
+            "title": "Apple iPhone 7 Plus 128 GB – Red Color",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "820.99",
+            "salePrice": "893.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "11%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "64",
+            "thumbnail": "/static/img/products/technology/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/64a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/64b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/64c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/64d.jpg"
+                }
+            ],
+            "title": "Samsung Gallaxy A8 8GB Ram – Sliver Version",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "542.99",
+            "salePrice": "592.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "17%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "66",
+            "thumbnail": "/static/img/products/technology/7.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/66a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/66b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/66c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/66d.jpg"
+                }
+            ],
+            "title": "Yuntab K107 10.1 Inch Quad Core CPU MT6580",
+            "vendor": "Global Office",
+            "price": "99.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/1a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/1b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/1c.jpg"
+                }
+            ],
+            "thumbnail": "/static/img/products/shop/1.jpg",
+            "title": "Apple iPhone Retina 6s Plus 64GB",
+            "vendor": "Young Shop",
+            "price": "1150.00",
+            "sale": "false",
+            "categories": [
+                {
+                    "id": "1",
+                    "value": "phone",
+                    "name": "Phones & Accessories"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "67",
+            "thumbnail": "/static/img/products/technology/12.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/67a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/67b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/67c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/67d.jpg"
+                }
+            ],
+            "title": "Apple MacBook Air Retina 12-Inch Laptop",
+            "vendor": "Global Office",
+            "price": "942.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "68",
+            "thumbnail": "/static/img/products/technology/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/68a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/68b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/68c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/68d.jpg"
+                }
+            ],
+            "title": "Bose Ear-Phone Bluetooth & Wireless",
+            "vendor": "Young Shop",
+            "price": "392.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        }
+    ],
+    "productLaptopAndSound": [
+        {
+            "id": "62",
+            "thumbnail": "/static/img/products/technology/3.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/technology/3.jpg"
+                }
+            ],
+            "title": "Apple MacBook Air Retina 13.3-Inch Laptop",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "1020.99",
+            "salePrice": "1120.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "21%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "67",
+            "thumbnail": "/static/img/products/technology/12.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/67a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/67b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/67c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/67d.jpg"
+                }
+            ],
+            "title": "Apple MacBook Air Retina 12-Inch Laptop",
+            "vendor": "Global Office",
+            "price": "942.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "63",
+            "thumbnail": "/static/img/products/technology/5.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/technology/5.jpg"
+                }
+            ],
+            "title": "Bose Bluetooth & Wireless Speaker 2.0 – Blue",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "42.99",
+            "salePrice": "52.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "18%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "68",
+            "thumbnail": "/static/img/products/technology/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/68a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/68b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/68c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/68d.jpg"
+                }
+            ],
+            "title": "Bose Ear-Phone Bluetooth & Wireless",
+            "vendor": "Young Shop",
+            "price": "392.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "69",
+            "thumbnail": "/static/img/products/technology/13.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/69a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/69b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/69c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/69d.jpg"
+                }
+            ],
+            "title": "iQOS 2.4 Plus Kit, Holder & Chargers – White",
+            "vendor": "Global Office",
+            "price": "42.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        }
+    ],
+    "productToy": [
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "69",
+            "thumbnail": "/static/img/products/technology/13.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/69a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/69b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/69c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/69d.jpg"
+                }
+            ],
+            "title": "iQOS 2.4 Plus Kit, Holder & Chargers – White",
+            "vendor": "Global Office",
+            "price": "42.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "25",
+            "thumbnail": "/static/img/products/shop/23.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/25a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/25b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/25c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/25d.jpg"
+                }
+            ],
+            "title": "DJI Phantom 4 Quadcopter Camera",
+            "vendor": "Go Pro",
+            "sale": true,
+            "price": "945.90",
+            "salePrice": "1,207.15",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-22%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "72",
+            "thumbnail": "/static/img/products/technology/15.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/70a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/70b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/70c.jpg"
+                }
+            ],
+            "title": "Apple TV 4k – 32 GB (4th Generation)",
+            "vendor": "Young Shop",
+            "price": "92.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "71",
+            "thumbnail": "/static/img/products/technology/16.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/71a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/71b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/71c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/71d.jpg"
+                }
+            ],
+            "title": "GoPro Karman 4 Channels Quadcopter Drone",
+            "vendor": "Young Shop",
+            "price": "392.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        }
+    ],
+    "goodPrice": [
+        {
+            "id": "73",
+            "thumbnail": "/static/img/products/technology/18.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/73a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/73b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/73c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/73d.jpg"
+                }
+            ],
+            "title": "HP Chromebook CB 10014 Desktop",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "820.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "74",
+            "thumbnail": "/static/img/products/technology/19.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/74a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/74b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/74c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/74d.jpg"
+                }
+            ],
+            "title": "Acrylic Cover Case for iPhone X- (Clear)",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "49.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "75",
+            "thumbnail": "/static/img/products/technology/20.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/75a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/75b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/75c.jpg"
+                }
+            ],
+            "title": "B&O Play Mini Bluetooth Speaker",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "49.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "76",
+            "thumbnail": "/static/img/products/technology/21.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/76a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/76b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/76c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/76d.jpg"
+                }
+            ],
+            "title": "Beats Mini On Ear Bluetooth, Wireless Headphone",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "64.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "77",
+            "thumbnail": "/static/img/products/technology/22.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/77a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/77b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/77c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/77d.jpg"
+                }
+            ],
+            "title": "Package 2 iClever Bootscube Mini Chargers",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "12.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        },
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,378 @@
+{
+    "header": {
+        "shopByDepartment": "Shop by Department",
+        "wellcomeText": "Welcome to Martfury Online Shopping Store !",
+        "login": "Login",
+        "register": "Register",
+        "navigationExtra": {
+            "sellOnMartfury": "Sell on Martfury",
+            "trackYourOrder": "Track Your Order"
+        },
+        "miniCart": {
+            "subTotal": "Sub Total:",
+            "viewCart": "View Cart",
+            "checkout": "Checkout",
+            "noProduct": "No products in cart"
+        }
+    },
+    "footer": {
+        "copyright": "&copy; 2020 Martfury. All Rights Reserved",
+        "widgetHeading": {
+            "quickLink": "Quick links",
+            "company": "Company",
+            "bussiness": "Business",
+            "contactUs": "Contact us"
+        },
+        "widgetLinks": {
+            "policy": "Policy",
+            "termAndCondition": "Term & Condition",
+            "shipping": "Shipping",
+            "return": "Return",
+            "faqs": "FAQs",
+            "aboutUs": "About Us",
+            "affilate": "Affilate",
+            "career": "Career",
+            "contact": "Contact",
+            "ourPress": "Our Press",
+            "checkout": "Checkout",
+            "myAccount": "My account",
+            "shop": "Shop"
+        }
+    },
+    "menu": {
+        "navigationList": {
+            "menu": "Menu",
+            "categories": "Categories",
+            "search": "Search",
+            "cart": "Cart"
+        },
+        "mainMenu": {
+            "home": "Home",
+            "marketplaceFullWidth": "Marketplace Full Width",
+            "homeAutoParts": "Home Auto Parts",
+            "homeTechnology": "Home Technology",
+            "homeOrganic": "Home Organic",
+            "homeMarketplaceV1": "Home Marketplace V1",
+            "homeMarketplaceV2": "Home Marketplace V2",
+            "homeMarketplaceV3": "Home Marketplace V3",
+            "homeMarketplaceV4": "Home Marketplace V4",
+            "homeElectronic": "Home Electronic",
+            "homeFurniture": "Home Furniture",
+            "shop": "Shop",
+            "catalogPages": "Catalog Pages",
+            "shopDefault": "Shop Default",
+            "shopFullwidth": "Shop Fullwidth",
+            "shopCategories": "Shop Categories",
+            "shopSidebar": "Shop Sidebar",
+            "shopWithoutBanner": "Shop Without Banner",
+            "shopCarousel": "Shop Carousel",
+            "productLayout": "Product Layout",
+            "default": "Default",
+            "extended": "Extended",
+            "fullContent": "Full Content",
+            "boxed": "Boxed",
+            "sidebar": "Sidebar",
+            "fullwidth": "Fullwidth",
+            "productTypes": "Product Types",
+            "simple": "Simple",
+            "imagesSwatches": "Images Swatches",
+            "countdown": "Countdown",
+            "affiliate": "Affiliate",
+            "onSale": "On sale",
+            "videoFeatured": "Video Featured",
+            "grouped": "Grouped",
+            "outOfStock": "Out Of Stock",
+            "ecomercePages": "Ecomerce Pages",
+            "shoppingCart": "Shopping Cart",
+            "checkout": "Checkout",
+            "whishlist": "Whishlist",
+            "compare": "Compare",
+            "orderTracking": "Order Tracking",
+            "myAccount": "My Account",
+            "loginOrregister": "Login / Register",
+            "pages": "Pages",
+            "basicPage": "Basic Page",
+            "aboutUs": "About Us",
+            "contact": "Contact",
+            "faqs": "Faqs",
+            "404": "404 Page",
+            "vendorPages": "Vendor Pages",
+            "becomeAVendor": "Become a Vendor",
+            "vendorStore": "Vendor Store",
+            "storeList": "Store List",
+            "storeList2": "Store List2",
+            "blogs": "Blogs",
+            "blogLayout": "Blog Layout",
+            "grid": "Grid",
+            "list": "List",
+            "smallThumb": "Small Thumb",
+            "leftSidebar": "Left Sidebar",
+            "rightSidebar": "Right Sidebar",
+            "singleBlog": "Single Blog",
+            "single1": "Single 1",
+            "single2": "Single 2",
+            "single3": "Single 3",
+            "single4": "Single 4"
+        },
+        "menuCategories": {
+            "hotPromotions": "Hot Promotions",
+            "consumerElectronic": "Consumer Electronic",
+            "electronic": "Electronic",
+            "homeAudioAndTheathers": "Home Audio & Theathers",
+            "tvAndVideos": "TV & Videos",
+            "cameraphotosAndVideos": "Camera, Photos & Videos",
+            "cellphonesAndAccessories": "Cellphones & Accessories",
+            "headphone": "Headphone",
+            "videosgames": "Videosgames",
+            "wirelessSpeakers": "Wireless Speakers",
+            "officeElectronic": "Office Electronic",
+            "accessoriesAndParts": "Accessories & Parts",
+            "digitalCables": "Digital Cables",
+            "audioAndVideoCables": "Audio & Video Cables",
+            "batteries": "Batteries",
+            "clothingAndapparel": "Clothing & Apparel",
+            "HomeGardenAndKitchen": "Home, Garden & Kitchen",
+            "healthAndBeauty": "Health & Beauty",
+            "yewelryAndWatches": "Yewelry & Watches",
+            "computerAndTechnology": "Computer & Technology",
+            "computerAndTechnologies": "Computer & Technologies",
+            "computerAndTablets": "Computer & Tablets",
+            "laptop": "Laptop",
+            "monitors": "Monitors",
+            "networking": "Networking",
+            "driveAndStorages": "Drive & Storages",
+            "computerComponents": "Computer Components",
+            "securityAndProtection": "Security & Protection",
+            "gamingLaptop": "Gaming Laptop",
+            "accessories": "Accessories",
+            "babiesAndMoms": "Babies & Moms",
+            "sportAndutdoor": "Sport & Outdoor",
+            "phonesAndAccessories": "Phones & Accessories",
+            "booksAndOffice": "Books & Office",
+            "carsAndMotocycles": "Cars & Motocycles",
+            "homeImproments": "Home Improments",
+            "vouchersAndServices": "Vouchers & Services"
+        }
+    },
+    "common": {
+        "viewAll": "View all",
+        "subscribe": "Subscribe",
+        "categories": "Categories",
+        "siteFeatures": {
+            "freeDelivery": {
+                "key": "Free Delivery",
+                "value": "For all orders over $99"
+            },
+            "dateReturn": {
+                "key": "90 Days Return",
+                "value": "If goods have problems"
+            },
+            "securePayment": {
+                "key": "Secure Payment",
+                "value": "100% secure payment"
+            },
+            "support": {
+                "key": "24/7 Support",
+                "value": "Dedicated support"
+            },
+            "giftService": {
+                "key": "Gift Service",
+                "value": "Support gift service"
+            }
+        },
+        "downloadApp": {
+            "heading": "Download Martfury App Now!",
+            "content": "Shopping fastly and easily more with our  app. Get a link to download the app on your phone"
+        },
+        "newsLetter": {
+            "heading": "Newsletter",
+            "content": "Subcribe to get information about products and coupons"
+        }
+    },
+    "homeDefault": {
+        "consumerElectronics": {
+            "heading": "Consumer Electronics",
+            "links": {
+                "newArrivals": "New Arrivals",
+                "bestSeller": "Best seller",
+                "mustPopular": "Must Popular"
+            }
+        },
+        "clothing": {
+            "heading": "Clothing"
+        },
+        "gardenAndKitchen": {
+            "heading": "Home, Garden & Kitchen"
+        },
+        "newArrivals": {
+            "heading": "Hot New Arrivals",
+            "links": {
+                "technologies": "Technologies",
+                "electronic": "Electronic",
+                "furnitures": "Furnitures",
+                "clothingAndApprel": "Clothing & Apparel",
+                "healthAndBeauty": "Health & Beauty"
+            }
+        }
+    },
+    "autopart": {
+        "bestSellerBrands": "BEST SELLER BRANDS",
+        "topCategories": "top categories of the month",
+        "dealHotToday": "Deal of hot today",
+        "topBestSeller": "Top 20 Best Seller",
+        "recommendedForYou": "RECOMMENDED FOR YOU",
+        "bestSellers": "Best Sellers",
+        "newArrivals": "New Arrivals",
+        "topRated": "Top Rated",
+        "trendingProducts": "Trending Products"
+    },
+    "electronic": {
+        "bestSellerInTheLastMonth": "Best Seller In The Last Month",
+        "dealHotToday": "Deal of hot today",
+        "homeElectronics": "Home Electronics",
+        "link": {
+            "top20": "Top 20",
+            "tvTelevisions": "TV Televisions",
+            "speakers": "Speakers",
+            "airConditions": "Air Conditions",
+            "cameraAndVideos": "Cameras & Videos",
+            "videos": "Videos",
+            "projectors": "Projectors",
+            "digitalCameras": "Digital Cameras",
+            "printersAndScanners": "Printers & Scanners",
+            "accessories": "Accessories",
+            "computersAndTechnology": "Computers & Technology",
+            "laptop": "Laptop",
+            "desktopPC": "Desktop PC",
+            "smartphone": "Smartphone",
+            "mainboards": "Mainboards",
+            "pCGaming": "PC Gaming",
+            "smart": "Smart",
+            "tVLed": "TV LED",
+            "tVs": "TVs",
+            "airConditions": "Air Conditions",
+            "sonySpeakers": "Sony Speakers",
+            "panasonicRefrigerators": "Panasonic Refrigerators"
+        }
+    },
+    "furniture": {
+        "bestSellerBrands": "BEST SELLER BRANDS",
+        "bestSellerProduct": "BEST SELLER PRODUCTS",
+        "trendingProducts": "Trending Products"
+    },
+    "marketPlace": {
+        "dealHotToday": "Deal of hot today"
+    },
+    "shop": {
+        "productFound": "Products found",
+        "dealHot": "Top Deals Super Hot Today",
+        "bestSaleOfMonth": "Best Seller In The Last Months",
+        "newArrivals": "New Arrivals",
+        "bestSeller": "Best Seller Items",
+        "recommendedItems": "Recommended Items",
+        "shopAll": "Shop All",
+        "heading": {
+            "consumerElectrics": "Consumer Electrics",
+            "clothingAndApparel": "Clothing & Apparel",
+            "bestSellerItems": "Best Seller Items"
+        },
+        "breadCrumb": {
+            "home": "Home",
+            "shopDefault": "Shop Default",
+            "shopCarousel": "Shop Carousel"
+        },
+        "categories": {
+            "links": {
+                "clothingAndApparel": "Clothing & Apparel",
+                "gardenAndKitchen": "Garden & Kitchen",
+                "consumerElectrics": "Consumer Electrics",
+                "healthAndBeauty": "Health & Beauty",
+                "computersAndTechnologies": "Computers & Technologies",
+                "jewelryAndWatches": "Jewelry & Watches",
+                "phonesAndAccessories": "Phones & Accessories",
+                "sportAndOutdoor": "Sport & Outdoor",
+                "babiesAndMoms": "Babies & Moms",
+                "booksAndOffice": "Books & Office",
+                "carsAndMotocycles": "Cars & Motocycles",
+                "allProducts": "All Products",
+                "newArrivals": "New Arrivals",
+                "bestSellers": "Best Sellers"
+            }
+        },
+        "widget": {
+            "categories": "Categories",
+            "byBrands": "By Brands",
+            "byPrice": "By Price",
+            "price": "Price"
+        }
+    },
+    "product": {
+        "customerBought": "Customers who bought this item also bought",
+        "relatedProducts": "Related products",
+        "widget": {
+            "shippingWorldwide": "Shipping worldwide",
+            "freeReturn": "Free 7-day return if eligible, so easy",
+            "supplier": "Supplier give bills for this product.",
+            "payOnline": "Pay online or when receiving goods",
+            "sellOnMartfury": "Sell on Martfury",
+            "registerNow": "Register Now !"
+        }
+    },
+    "blog": {
+        "categories": {
+            "all": "All",
+            "lifeStyle": "Life Style",
+            "technology": "Technology",
+            "entertaiment": "Entertaiment",
+            "business": "Business",
+            "others": "Others",
+            "fashion": "Fashion"
+        }
+    },
+    "page": {
+        "about": {
+            "awardsAndRecognition": "Awards & Recognition",
+            "awardDesc": "Industry leaders and influencers recognize Overstock as one of the most trust worthy retail companies in the U.S., ranking high for both customer and employee satisfaction."
+        },
+        "contact": {
+            "getInTouch": "Get In Touch",
+            "contactUsForAnyQuestions": "Contact Us For Any Questions",
+            "contactDirectly": "Contact Directly",
+            "headQuater": "Head Quater",
+            "workWithUs": "Work With Us",
+            "sendCv": "Send your CV to our email",
+            "customerService": "Customer Service",
+            "mediaRelations": "Media Relations",
+            "vendorSupport": "Vendor Support",
+            "form": {
+                "name": "Name",
+                "email": "Email",
+                "subject": "Subject",
+                "message": "Message",
+                "sendMessage": "Send message"
+            }
+        }
+    },
+    "account": {
+        "checkoutInformation": "Checkout Information",
+        "compare": {
+            "compareProduct": "Compare Product",
+            "compareEmpty": "Compare list is empty!"
+        },
+        "orderTracking": {
+            "heading": "Order Tracking",
+            "desc": "To track your order please enter your Order ID in the box below and press the Track button. This was given to you on your receipt and in the confirmation email you should have received.",
+            "orderId": "Order ID",
+            "billingEmail": "Billing Email",
+            "trackYourOrder": "Track Your Order"
+        },
+        "quicklink": {
+            "accountInformation": "Account Information",
+            "notifications": "Notifications",
+            "invoices": "Invoices",
+            "address": "Address",
+            "recentViewedProduct": "Address",
+            "wishlist": "Address"
+        }
+    }
+}

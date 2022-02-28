@@ -1,0 +1,482 @@
+{
+    "recommendProducts": [
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "33",
+            "thumbnail": "/static/img/products/home-2/recommend/1.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/1.jpg"
+                }
+            ],
+            "title": "Anderson Composites – Custom Hood",
+            "price": "990.50",
+            "ratingCount": "02",
+            "rating": true,
+            "sale": false,
+            "price": "990.99",
+            "salePrice": "1050.50",
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "34",
+            "thumbnail": "/static/img/products/home-2/recommend/2.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/2.jpg"
+                }
+            ],
+            "title": "Evolution Sport Drilled and Slotted Brake Kit",
+            "vendor": "ROBERT’S STORE",
+            "rating": true,
+            "sale": true,
+            "price": "45.99",
+            "salePrice": "50.50",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "35",
+            "thumbnail": "/static/img/products/home-2/recommend/3.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/3.jpg"
+                }
+            ],
+            "title": "Depo Black Housing Tail Lights Frs Brz 86",
+            "vendor": "Young Shop",
+            "rating": true,
+            "sale": true,
+            "price": "100.99",
+            "salePrice": "120.50",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "10%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        },
+        {
+            "id": "36",
+            "thumbnail": "/static/img/products/home-2/recommend/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/36a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/36b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/36c.jpg"
+                }
+            ],
+            "title": "Anderson Composites – Custom Hood",
+            "vendor": "Go Pro",
+            "rating": true,
+            "ratingCount": "01",
+            "price": "442.99",
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        },
+        {
+            "id": "37",
+            "thumbnail": "/static/img/products/home-2/recommend/5.jpg",
+            "title": "Simpson Polymer White Racing Helmet",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/5.jpg"
+                }
+            ],
+            "vendor": "Go Pro",
+            "rating": true,
+            "ratingCount": "01",
+            "sale": true,
+            "price": "625.99",
+            "salePrice": "770.50",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "12%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "11",
+                    "value": "yamaha",
+                    "text": "Yamaha"
+                }
+            ]
+        }
+    ],
+    "productWidget": [
+        {
+            "id": "34",
+            "thumbnail": "/static/img/products/home-2/recommend/2.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/2.jpg"
+                }
+            ],
+            "title": "Evolution Sport Drilled and Slotted Brake Kit",
+            "vendor": "ROBERT’S STORE",
+            "rating": true,
+            "sale": true,
+            "price": "45.99",
+            "salePrice": "50.50",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "35",
+            "thumbnail": "/static/img/products/home-2/recommend/3.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/3.jpg"
+                }
+            ],
+            "title": "Depo Black Housing Tail Lights Frs Brz 86",
+            "vendor": "Young Shop",
+            "rating": true,
+            "sale": true,
+            "price": "100.99",
+            "salePrice": "120.50",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "10%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        },
+        {
+            "id": "36",
+            "thumbnail": "/static/img/products/home-2/recommend/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/36a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/36b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/36c.jpg"
+                }
+            ],
+            "title": "Anderson Composites – Custom Hood",
+            "vendor": "Go Pro",
+            "rating": true,
+            "ratingCount": "01",
+            "price": "442.99",
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        },
+        {
+            "id": "37",
+            "thumbnail": "/static/img/products/home-2/recommend/5.jpg",
+            "title": "Simpson Polymer White Racing Helmet",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/5.jpg"
+                }
+            ],
+            "vendor": "Go Pro",
+            "rating": true,
+            "ratingCount": "01",
+            "sale": true,
+            "price": "625.99",
+            "salePrice": "770.50",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "12%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "11",
+                    "value": "yamaha",
+                    "text": "Yamaha"
+                }
+            ]
+        }
+    ],
+    "dealHotProducts": [
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "33",
+            "thumbnail": "/static/img/products/home-2/recommend/1.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/1.jpg"
+                }
+            ],
+            "title": "Anderson Composites – Custom Hood",
+            "price": "990.50",
+            "ratingCount": "02",
+            "rating": true,
+            "sale": false,
+            "price": "990.99",
+            "salePrice": "1050.50",
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "34",
+            "thumbnail": "/static/img/products/home-2/recommend/2.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/2.jpg"
+                }
+            ],
+            "title": "Evolution Sport Drilled and Slotted Brake Kit",
+            "vendor": "ROBERT’S STORE",
+            "rating": true,
+            "sale": true,
+            "price": "45.99",
+            "salePrice": "50.50",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        }
+    ]
+}

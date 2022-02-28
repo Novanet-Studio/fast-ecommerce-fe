@@ -1,0 +1,50 @@
+html,
+body {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.ps-col-tiny {
+    @include media('<sm') {
+        .col-xs-12 {
+            width: 50%;
+        }
+    }
+    @include media('<xs') {
+        .col-xs-12 {
+            width: 100%;
+        }
+    }
+}
+
+.ps-container {
+    max-width: 1650px;
+    margin: 0 auto;
+    padding: 0 15px;
+    @media (max-width: 1680px) {
+        padding: 0 30px;
+        max-width: 100%;
+    }
+    @include media('<xs') {
+        padding: 0 15px;
+    }
+}
+
+.row {
+    > * {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
+
+.container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    @media (min-width: 1200px) {
+        max-width: 1230px !important;
+    }
+}

@@ -1,0 +1,579 @@
+{
+    "organicProduct": [
+        {
+            "id": "78",
+            "thumbnail": "/static/img/products/variants/78a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/78a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/78b.jpg"
+                }
+            ],
+            "title": "Locally Grown Strawberries, 1 Pint",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "26.95",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "79",
+            "thumbnail": "/static/img/products/variants/79a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/79a.jpg"
+                }
+            ],
+            "title": "Organic Oranges Valencia 1kg",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "1.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "80",
+            "thumbnail": "/static/img/products/variants/80a.jpeg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/80a.jpeg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/80b.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/80c.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/80d.jpg"
+                }
+            ],
+            "title": "Pineapple (Tropical Gold)",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "2.89",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "81",
+            "thumbnail": "/static/img/products/variants/81a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/81a.jpg"
+                }
+            ],
+            "title": "Tesco Eat Fresh Frozen Lamb Bone in Cube",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "21.89",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "82",
+            "thumbnail": "/static/img/products/variants/82a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/82a.jpg"
+                }
+            ],
+            "title": "MariGold 100% Juice Milk 350ml",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "3.95",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "83",
+            "thumbnail": "/static/img/products/variants/83a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/83a.jpg"
+                }
+            ],
+            "title": "HomeSoy Soya Milk Originall",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "9.85",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "84",
+            "thumbnail": "/static/img/products/variants/84a.jpeg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/84a.jpg"
+                }
+            ],
+            "title": "Australia Banana 16 Pack 2.5 kg",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "12.85",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "85",
+            "thumbnail": "/static/img/products/variants/85a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/85a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/85b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/85c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/85c.jpg"
+                }
+            ],
+            "title": "Augason Farms Freeze Dried Beef Chunks",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "67.85",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "86",
+            "thumbnail": "/static/img/products/variants/86a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/86a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/86b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/86c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/86c.jpg"
+                }
+            ],
+            "title": "Vita Coco Coconut Water (Pack of 12)",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "20.08",
+            "salePrice": "25.89",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "87",
+            "thumbnail": "/static/img/products/variants/86a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/86a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/86b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/86c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/86c.jpg"
+                }
+            ],
+            "title": "Vita Coco Coconut Water (Pack of 24)",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "22.08",
+            "salePrice": "24.97",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        }
+    ],
+    "organicWidget": [
+        {
+            "id": "79",
+            "thumbnail": "/static/img/products/variants/79a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/79a.jpg"
+                }
+            ],
+            "title": "Organic Oranges Valencia 1kg",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "1.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "80",
+            "thumbnail": "/static/img/products/variants/80a.jpeg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/80a.jpeg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/80b.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/80c.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/80d.jpg"
+                }
+            ],
+            "title": "Pineapple (Tropical Gold)",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "2.89",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "81",
+            "thumbnail": "/static/img/products/variants/81a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/81a.jpg"
+                }
+            ],
+            "title": "Tesco Eat Fresh Frozen Lamb Bone in Cube",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "21.89",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "82",
+            "thumbnail": "/static/img/products/variants/82a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/82a.jpg"
+                }
+            ],
+            "title": "MariGold 100% Juice Milk 350ml",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "3.95",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        }
+    ],
+    "organicDealHot": [
+        {
+            "id": "85",
+            "thumbnail": "/static/img/products/variants/85a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/85a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/85b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/85c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/85c.jpg"
+                }
+            ],
+            "title": "Augason Farms Freeze Dried Beef Chunks",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "67.85",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        },
+        {
+            "id": "86",
+            "thumbnail": "/static/img/products/variants/86a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/86a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/86b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/86c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/86c.jpg"
+                }
+            ],
+            "title": "Vita Coco Coconut Water (Pack of 12)",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "20.08",
+            "salePrice": "25.89",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "10",
+                    "value": "fruits",
+                    "name": "Fruits"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "99",
+                    "value": "fruits",
+                    "text": "Fruits"
+                }
+            ]
+        }
+    ]
+}

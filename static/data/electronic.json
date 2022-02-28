@@ -1,0 +1,1341 @@
+{
+    "homeBestSeller": [
+        {
+            "id": "16",
+            "thumbnail": "/static/img/products/shop/15.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/16a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/16b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/16c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/16d.jpg"
+                }
+            ],
+            "title": "ASUS Chromebook Flip – 10.2 Inch",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "332.38",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "8",
+                    "value": "asus",
+                    "text": "asus"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "thumbnail": "/static/img/products/variants/5a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/5a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/5b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/5c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/5d.jpg"
+                }
+            ],
+            "title": "Xbox One Wireless Controller Black Color",
+            "vendor": "Global Office",
+            "price": "55.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "hot",
+                    "value": "hot"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "4",
+                    "value": "microsoft",
+                    "text": "Microsoft"
+                }
+            ]
+        },
+        {
+            "id": "7",
+            "thumbnail": "/static/img/products/shop/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/7a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/7b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/7c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/7d.jpg"
+                }
+            ],
+            "title": "Sound Intone I65 Earphone White Version",
+            "vendor": "Youngshop",
+            "sale": true,
+            "price": "100.99",
+            "salePrice": "106.00",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "18",
+            "thumbnail": "/static/img/products/shop/18.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/18a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/18b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/18c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/18d.jpg"
+                }
+            ],
+            "title": "Samsung UHD TV 24inch",
+            "vendor": "Robert's Store",
+            "price": "599.00",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "19",
+            "thumbnail": "/static/img/products/shop/19.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/19a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/19b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/19c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/19d.jpg"
+                }
+            ],
+            "title": "EPSION Plaster Printer",
+            "vendor": "Robert's Store",
+            "price": "233.28",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "21",
+            "thumbnail": "/static/img/products/shop/20.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/dummy/1.png"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/dummy/2.png"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/dummy/3.png"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/dummy/4.png"
+                },
+                {
+                    "id": "5",
+                    "thumbnail": "/static/img/products/dummy/5.png"
+                }
+            ],
+            "title": "LG White Front Load Steam Washer",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "1,200.00",
+            "salePrice": "1362.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-28%"
+                }
+            ]
+        },
+        {
+            "id": "22",
+            "thumbnail": "/static/img/products/shop/21.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/22a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/22b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/22c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/22d.jpg"
+                }
+            ],
+            "title": "Edifier Powered Bookshelf Speakers",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "85.00",
+            "rating": true,
+            "ratingCount": "5",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "24",
+            "thumbnail": "/static/img/products/shop/22.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/24a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/24b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/24c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/24d.jpg"
+                }
+            ],
+            "title": "Amcrest Security Camera in White Color",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "45.90",
+            "salePrice": "62.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-27%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "25",
+            "thumbnail": "/static/img/products/shop/23.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/25a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/25b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/25c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/25d.jpg"
+                }
+            ],
+            "title": "DJI Phantom 4 Quadcopter Camera",
+            "vendor": "Go Pro",
+            "sale": true,
+            "price": "945.90",
+            "salePrice": "1,207.15",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-22%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        }
+    ],
+    "homeElectronic": [
+        {
+            "id": "39",
+            "thumbnail": "/static/img/products/electronic/12.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/electronic/12.jpg"
+                }
+            ],
+            "title": "TCL 47-inch 4K Ultra HD Smart TV",
+            "vendor": "Go Pro",
+            "sale": true,
+            "price": "567.99",
+            "rating": true,
+            "salePrice": "670.00",
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-16%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "10",
+                    "value": "lg",
+                    "text": "LG Electronics"
+                }
+            ]
+        },
+        {
+            "id": "40",
+            "thumbnail": "/static/img/products/electronic/14.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/electronic/14.jpg"
+                }
+            ],
+            "title": "Samsung 65-Inch 4K Ultra HD Smart LED TVr",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "1600.99",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "41",
+            "thumbnail": "/static/img/products/electronic/7.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/electronic/7.jpg"
+                }
+            ],
+            "title": "LG Electrolux 500L Inverte Washing Machine",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "342.00",
+            "salePrice": "360.00",
+            "rating": true,
+            "ratingCount": "02",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "42",
+            "thumbnail": "/static/img/products/electronic/15.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/electronic/15.jpg"
+                }
+            ],
+            "title": "Panasonic Invertr 900L Refrigerator",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "720.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "10",
+                    "value": "lg",
+                    "text": "LG Electronics"
+                }
+            ]
+        },
+        {
+            "id": "18",
+            "thumbnail": "/static/img/products/shop/18.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/18a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/18b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/18c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/18d.jpg"
+                }
+            ],
+            "title": "Samsung UHD TV 24inch",
+            "vendor": "Robert's Store",
+            "price": "599.00",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "19",
+            "thumbnail": "/static/img/products/shop/19.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/19a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/19b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/19c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/19d.jpg"
+                }
+            ],
+            "title": "EPSION Plaster Printer",
+            "vendor": "Robert's Store",
+            "price": "233.28",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "21",
+            "thumbnail": "/static/img/products/shop/20.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/21a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/21a.jpg"
+                }
+            ],
+            "title": "LG White Front Load Steam Washer",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "1025.50",
+            "salePrice": "1422.70",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-28%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "10",
+                    "value": "lg",
+                    "text": "LG Electronics"
+                }
+            ]
+        },
+        {
+            "id": "22",
+            "thumbnail": "/static/img/products/shop/21.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/22a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/22b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/22c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/22d.jpg"
+                }
+            ],
+            "title": "Edifier Powered Bookshelf Speakers",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "85.00",
+            "rating": true,
+            "ratingCount": "5",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "24",
+            "thumbnail": "/static/img/products/shop/22.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/24a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/24b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/24c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/24d.jpg"
+                }
+            ],
+            "title": "Amcrest Security Camera in White Color",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "45.90",
+            "salePrice": "62.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-27%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "25",
+            "thumbnail": "/static/img/products/shop/23.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/25a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/25b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/25c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/25d.jpg"
+                }
+            ],
+            "title": "DJI Phantom 4 Quadcopter Camera",
+            "vendor": "Go Pro",
+            "sale": true,
+            "price": "945.90",
+            "salePrice": "1,207.15",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-22%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        }
+    ],
+    "homeTechnology": [
+        {
+            "id": "7",
+            "thumbnail": "/static/img/products/shop/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/7a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/7b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/7c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/7d.jpg"
+                }
+            ],
+            "title": "Sound Intone I65 Earphone White Version",
+            "vendor": "Youngshop",
+            "sale": true,
+            "price": "100.99",
+            "salePrice": "106.00",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "16",
+            "thumbnail": "/static/img/products/shop/15.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/16a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/16b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/16c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/16d.jpg"
+                }
+            ],
+            "title": "ASUS Chromebook Flip – 10.2 Inch",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "332.38",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "8",
+                    "value": "asus",
+                    "text": "asus"
+                }
+            ]
+        },
+        {
+            "id": "17",
+            "thumbnail": "/static/img/products/shop/16.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/17a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/17b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/17c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/17d.jpg"
+                }
+            ],
+            "title": "Apple Macbook Retina Display 12",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "1200.00",
+            "salePrice": "1362.99",
+            "rating": true,
+            "ratingCount": "4",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-7%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "1",
+            "thumbnail": "/static/img/products/shop/1.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/1a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/1b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/1c.jpg"
+                }
+            ],
+            "title": "Apple iPhone Retina 6s Plus 32GB",
+            "vendor": "ROBERT’S STORE",
+            "price": "640.00",
+            "sale": "false",
+            "categories": [
+                {
+                    "id": "1",
+                    "value": "phone",
+                    "name": "Phones & Accessories"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        }
+    ],
+    "homeCamera": [
+        {
+            "id": "43",
+            "thumbnail": "/static/img/products/electronic/18.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/electronic/18.jpg"
+                }
+            ],
+            "title": "Gopro Hero 4 Sliver Wireless, 4k HD",
+            "vendor": "Go Pro",
+            "sale": true,
+            "price": "500.99",
+            "salePrice": "510.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "12",
+                    "value": "gopro",
+                    "text": "Gopro"
+                }
+            ]
+        },
+        {
+            "id": "44",
+            "thumbnail": "/static/img/products/electronic/19.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/44a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/44b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/44c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/44d.jpg"
+                }
+            ],
+            "title": "Nikon Coolpix 24 Megapixel Camera",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "393.38",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "45",
+            "thumbnail": "/static/img/products/electronic/20.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/45a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/45b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/45c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/45d.jpg"
+                }
+            ],
+            "title": "Sony HD 1080, 13.5MP, White Version",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "625.00",
+            "salePrice": "760.00",
+            "rating": true,
+            "ratingCount": "02",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-24%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "15",
+            "thumbnail": "/static/img/products/shop/14.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/dummy/1.png"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/dummy/2.png"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/dummy/3.png"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/dummy/4.png"
+                }
+            ],
+            "title": "Beat Spill 2.0 Wireless Speaker – White",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "57.99",
+            "salePrice": "62.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-7%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "24",
+            "thumbnail": "/static/img/products/shop/22.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/24a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/24b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/24c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/24d.jpg"
+                }
+            ],
+            "title": "Amcrest Security Camera in White Color",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "45.90",
+            "salePrice": "62.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-27%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "25",
+            "thumbnail": "/static/img/products/shop/23.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/25a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/25b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/25c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/25d.jpg"
+                }
+            ],
+            "title": "DJI Phantom 4 Quadcopter Camera",
+            "vendor": "Go Pro",
+            "sale": true,
+            "price": "945.90",
+            "salePrice": "1,207.15",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-22%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        }
+    ]
+}

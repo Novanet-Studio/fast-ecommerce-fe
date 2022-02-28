@@ -1,0 +1,180 @@
+.ps-carousel {
+    position: relative;
+    padding-left: 1px;
+
+    .ps-product {
+        &:hover {
+            border-bottom: 1px solid silver;
+            .ps-product__content {
+                @include show;
+                height: auto;
+                .ps-product__rating {
+                    display: none;
+                }
+            }
+            .ps-product__content.hover {
+                display: none;
+            }
+        }
+    }
+
+    .swiper-slide {
+        box-sizing: border-box;
+    }
+
+    .swiper-arrow {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        width: 46px;
+        height: 46px;
+        border: none;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0;
+        z-index: 100;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        outline: none;
+
+        i {
+            font-size: 20px;
+        }
+
+        &:hover {
+            background-color: $color-1st;
+        }
+
+        &.swiper-prev {
+            left: 0;
+        }
+
+        &.swiper-next {
+            right: 0;
+        }
+
+        &.simple {
+            color: #ccc;
+            background-color: transparent;
+
+            i {
+                font-size: 30px;
+            }
+
+            &:hover {
+                background-color: transparent;
+                color: $color-heading;
+            }
+        }
+    }
+
+    .swiper-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 99;
+        left: 0;
+        width: 100%;
+        height: 0;
+        @include vertical-align();
+    }
+
+    .swiper-dots {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        list-style-type: none;
+        text-align: center;
+
+        > li {
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: top;
+            button {
+                display: block;
+                vertical-align: top;
+                padding: 0;
+                font-size: 0;
+                border-radius: 0;
+                border: none;
+                width: 10px;
+                height: 10px;
+                background-color: rgba(#000, 0.3);
+                border-radius: 50%;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+            &.swiper-active {
+                button {
+                    background-color: $color-1st;
+                }
+            }
+        }
+    }
+
+    .swiper-pagination {
+        bottom: 0;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: $color-1st;
+    }
+
+    &.outside {
+        @media screen and (min-width: 1366px) {
+            .swiper-arrow {
+                &.swiper-prev {
+                    left: -30px;
+                }
+
+                &.swiper-next {
+                    right: -30px;
+                }
+            }
+        }
+
+        @media screen and (min-width: 1440px) {
+            .swiper-arrow {
+                &.swiper-prev {
+                    left: -70px;
+                }
+
+                &.swiper-next {
+                    right: -70px;
+                }
+            }
+        }
+    }
+
+    &.blur {
+        .swiper-arrow {
+            background-color: rgba(#ccc, 0.5);
+            &:hover {
+                background-color: $color-1st;
+            }
+        }
+    }
+
+    &.ps-carousel--boxed {
+        .swiper-nav {
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .swiper-pagination {
+            display: none;
+        }
+    }
+
+    @include media('<lg') {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+}

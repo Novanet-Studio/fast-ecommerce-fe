@@ -1,0 +1,47 @@
+.page-enter-active,
+.page-leave-active,
+.layout-enter-active,
+.layout-leave-active {
+    transition: opacity 0.5s;
+}
+
+.page-enter,
+.page-leave-active,
+.layout-enter,
+.layout-leave-active {
+    opacity: 0;
+}
+
+.zoom-enter-active {
+    animation: zoomIn 0.5s $ease-in-out-cubic;
+}
+
+.zoom-leave-active {
+    animation: zoomOut 0.5s $ease-in-out-cubic;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform-origin: 50% 50%;
+    }
+
+    to {
+        opacity: 1;
+        transform-origin: 50% 50%;
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        opacity: 1;
+
+        transform-origin: 50% 50%;
+    }
+
+    to {
+        opacity: 0;
+        transform-origin: 50% 50%;
+    }
+}
+

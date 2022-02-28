@@ -1,0 +1,1898 @@
+{
+    "home_3_clothing": [
+        {
+            "id": "4",
+            "thumbnail": "/static/img/products/variants/4a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/4a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/4b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/4c.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/4d.jpg"
+                }
+            ],
+            "title": "Herschel Leather Duffle Bag In Brown Color",
+            "vendor": "Go Pro",
+            "price": "125.30",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "3",
+                    "value": "clothing",
+                    "name": "Clothing & Apparel"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        },
+        {
+            "id": "9",
+            "thumbnail": "/static/img/products/shop/8.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/9a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/9b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/9c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/9d.jpg"
+                }
+            ],
+            "title": "Unero Military Classical Backpack",
+            "vendor": "Young shop",
+            "sale": true,
+            "price": "35.89",
+            "salePrice": "42.20",
+            "rating": true,
+            "ratingCount": "3",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-16%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "3",
+                    "value": "clothing",
+                    "name": "Clothing & Apparel"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        },
+        {
+            "id": "10",
+            "thumbnail": "/static/img/products/shop/9.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/10a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/10b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/10c.jpg"
+                }
+            ],
+            "title": "Rayban Rounded Sunglass Brown Color",
+            "vendor": "Young shop",
+            "price": "35.89",
+            "rating": true,
+            "ratingCount": "5",
+            "categories": [
+                {
+                    "id": "3",
+                    "value": "clothing",
+                    "name": "Clothing & Apparel"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        },
+        {
+            "id": "11",
+            "thumbnail": "/static/img/products/shop/10.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/11a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/11b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/11c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/11d.jpg"
+                }
+            ],
+            "title": "Sleeve Linen Blend Caro Pane Shirt",
+            "vendor": "Go Pro",
+            "price": "29.39 ",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "3",
+                    "value": "clothing",
+                    "name": "Clothing & Apparel"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "8",
+                    "value": "gucci",
+                    "text": "Gucci"
+                }
+            ]
+        },
+        {
+            "id": "12",
+            "thumbnail": "/static/img/products/shop/11.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/12a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/12b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/12c.jpg"
+                }
+            ],
+            "title": "Men’s Sports Runnning Swim Board Shorts",
+            "vendor": "Robert's Store",
+            "price": "13.43",
+            "rating": true,
+            "ratingCount": "5",
+            "categories": [
+                {
+                    "id": "3",
+                    "value": "clothing",
+                    "name": "Clothing & Apparel"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "8",
+                    "value": "gucci",
+                    "text": "Gucci"
+                }
+            ]
+        },
+        {
+            "id": "13",
+            "thumbnail": "/static/img/products/shop/12.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/13a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/13b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/13c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/13d.jpg"
+                }
+            ],
+            "title": "Paul’s Smith Sneaker InWhite Color",
+            "vendor": "Global Office",
+            "price": "75.44",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "3",
+                    "value": "clothing",
+                    "name": "Clothing & Apparel"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "8",
+                    "value": "gucci",
+                    "text": "Gucci"
+                }
+            ]
+        },
+        {
+            "id": "14",
+            "thumbnail": "/static/img/products/shop/13.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/14a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/14b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/14c.jpg"
+                }
+            ],
+            "title": "MVMTH Classical Leather Watch In Black",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "57.99",
+            "salePrice": "62.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-7%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "3",
+                    "value": "clothing",
+                    "name": "Clothing & Apparel"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "3",
+                    "value": "herschel",
+                    "text": "Herschel"
+                }
+            ]
+        }
+    ],
+    "home_3_technology": [
+        {
+            "id": "7",
+            "thumbnail": "/static/img/products/shop/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/7a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/7b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/7c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/7d.jpg"
+                }
+            ],
+            "title": "Sound Intone I65 Earphone White Version",
+            "vendor": "Youngshop",
+            "sale": true,
+            "price": "100.99",
+            "salePrice": "106.00",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "15",
+            "thumbnail": "/static/img/products/shop/14.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/dummy/1.png"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/dummy/2.png"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/dummy/3.png"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/dummy/4.png"
+                }
+            ],
+            "title": "Beat Spill 2.0 Wireless Speaker – White",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "57.99",
+            "salePrice": "62.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-7%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "16",
+            "thumbnail": "/static/img/products/shop/15.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/16a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/16b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/16c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/16d.jpg"
+                }
+            ],
+            "title": "ASUS Chromebook Flip – 10.2 Inch",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "332.38",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "8",
+                    "value": "asus",
+                    "text": "asus"
+                }
+            ]
+        },
+        {
+            "id": "17",
+            "thumbnail": "/static/img/products/shop/16.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/17a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/17b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/17c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/17d.jpg"
+                }
+            ],
+            "title": "Apple Macbook Retina Display 12",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "1200.00",
+            "salePrice": "1362.99",
+            "rating": true,
+            "ratingCount": "4",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-7%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        },
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "1",
+            "thumbnail": "/static/img/products/shop/1.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/1a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/1b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/1c.jpg"
+                }
+            ],
+            "title": "Apple iPhone Retina 6s Plus 32GB",
+            "vendor": "ROBERT’S STORE",
+            "price": "640.00",
+            "sale": "false",
+            "categories": [
+                {
+                    "id": "1",
+                    "value": "phone",
+                    "name": "Phones & Accessories"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "1",
+                    "value": "apple",
+                    "text": "Apple"
+                }
+            ]
+        }
+    ],
+    "home_3_electronic": [
+        {
+            "id": "3",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/detail/fullwidth/1.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/detail/fullwidth/2.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/detail/fullwidth/3.jpg"
+                }
+            ],
+            "thumbnail": "/static/img/products/shop/2.jpg",
+            "title": "Marshall Kilburn Portable Wireless Speaker",
+            "vendor": "Go Pro",
+            "price": "42.99",
+            "rating": true,
+            "ratingCount": "5",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "thumbnail": "/static/img/products/variants/5a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/5a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/5b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/5c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/5d.jpg"
+                }
+            ],
+            "title": "Xbox One Wireless Controller Black Color",
+            "vendor": "Global Office",
+            "price": "55.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "hot",
+                    "value": "hot"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "4",
+                    "value": "microsoft",
+                    "text": "Microsoft"
+                }
+            ]
+        },
+        {
+            "id": "7",
+            "thumbnail": "/static/img/products/shop/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/7a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/7b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/7c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/7d.jpg"
+                }
+            ],
+            "title": "Sound Intone I65 Earphone White Version",
+            "vendor": "Youngshop",
+            "sale": true,
+            "price": "100.99",
+            "salePrice": "106.00",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "32",
+            "thumbnail": "/static/img/products/electronic/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/32a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/32b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/32c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/32d.jpg"
+                }
+            ],
+            "title": "Samsung Gear VR Virtual Reality Headset",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "18",
+            "thumbnail": "/static/img/products/shop/18.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/18a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/18b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/18c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/18d.jpg"
+                }
+            ],
+            "title": "Samsung UHD TV 24inch",
+            "vendor": "Robert's Store",
+            "price": "599.00",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "19",
+            "thumbnail": "/static/img/products/shop/19.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/19a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/19b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/19c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/19d.jpg"
+                }
+            ],
+            "title": "EPSION Plaster Printer",
+            "vendor": "Robert's Store",
+            "price": "233.28",
+            "rating": true,
+            "ratingCount": "4",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "20",
+            "thumbnail": "/static/img/products/shop/19.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/19a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/19b.jpg"
+                }
+            ],
+            "title": "EPSION Plaster Printer 2",
+            "vendor": "Robert's Store",
+            "price": "299.28",
+            "rating": true,
+            "ratingCount": "5",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "9",
+                    "value": "samsung",
+                    "text": "Samsung"
+                }
+            ]
+        },
+        {
+            "id": "21",
+            "thumbnail": "/static/img/products/shop/20.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/21a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/21a.jpg"
+                }
+            ],
+            "title": "LG White Front Load Steam Washer",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "1025.50",
+            "salePrice": "1422.70",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-28%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "10",
+                    "value": "lg",
+                    "text": "LG Electronics"
+                }
+            ]
+        },
+        {
+            "id": "22",
+            "thumbnail": "/static/img/products/shop/21.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/22a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/22b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/22c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/22d.jpg"
+                }
+            ],
+            "title": "Edifier Powered Bookshelf Speakers",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "85.00",
+            "rating": true,
+            "ratingCount": "5",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "24",
+            "thumbnail": "/static/img/products/shop/22.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/24a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/24b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/24c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/24d.jpg"
+                }
+            ],
+            "title": "Amcrest Security Camera in White Color",
+            "vendor": "Global Office",
+            "sale": true,
+            "price": "45.90",
+            "salePrice": "62.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-27%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "25",
+            "thumbnail": "/static/img/products/shop/23.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/25a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/25b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/25c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/25d.jpg"
+                }
+            ],
+            "title": "DJI Phantom 4 Quadcopter Camera",
+            "vendor": "Go Pro",
+            "sale": true,
+            "price": "945.90",
+            "salePrice": "1,207.15",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-22%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        }
+    ],
+    "home_3_garden_kitchen": [
+        {
+            "id": "8",
+            "thumbnail": "/static/img/products/shop/7.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/8a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/8b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/8c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/8d.jpg"
+                }
+            ],
+            "title": "Korea Long Sofa Fabric In Blue Navy Color",
+            "vendor": "Youngshop",
+            "sale": true,
+            "price": "567.80",
+            "salePrice": "670.20",
+            "rating": true,
+            "ratingCount": "4",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-16%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "7",
+                    "value": "flatfuniture",
+                    "text": "Flat Funiture"
+                }
+            ]
+        },
+        {
+            "id": "26",
+            "thumbnail": "/static/img/products/home/2.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/26a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/26b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/26c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/26d.jpg"
+                }
+            ],
+            "title": "Aroma Rice Cooker",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "101.99",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "outStock",
+                    "value": "Out Of Stock"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "10",
+                    "value": "lg",
+                    "text": "LG Electronics"
+                }
+            ]
+        },
+        {
+            "id": "27",
+            "thumbnail": "/static/img/products/home/3.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/27a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/27b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/27c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/27d.jpg"
+                }
+            ],
+            "title": "Simple Plastice Chair In White Color",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "42.00",
+            "salePrice": "60.00",
+            "rating": true,
+            "ratingCount": "02",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-25%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "7",
+                    "value": "flatfuniture",
+                    "text": "Flat Funiture"
+                }
+            ]
+        },
+        {
+            "id": "28",
+            "thumbnail": "/static/img/products/home/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/28a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/28b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/28c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/28d.jpg"
+                }
+            ],
+            "title": "Korea Fabric Chair In Brown Colorr",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "320.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "outStock",
+                    "value": "Out Of Stock"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "7",
+                    "value": "flatfuniture",
+                    "text": "Flat Funiture"
+                }
+            ]
+        },
+        {
+            "id": "29",
+            "thumbnail": "/static/img/products/home/5.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/29a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/29b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/29c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/29d.jpg"
+                }
+            ],
+            "title": "Set 14-Piece Knife From KichiKit",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "85.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "outStock",
+                    "value": "Out Of Stock"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "7",
+                    "value": "flatfuniture",
+                    "text": "Flat Funiture"
+                }
+            ]
+        },
+        {
+            "id": "30",
+            "thumbnail": "/static/img/products/home/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/30a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/30b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/30c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/30d.jpg"
+                }
+            ],
+            "title": "Magic Bullet NutriBullet Pro 900 Series Blender",
+            "vendor": "Global Store",
+            "sale": false,
+            "price": "92.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "outStock",
+                    "value": "Out Of Stock"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "7",
+                    "value": "flatfuniture",
+                    "text": "Flat Funiture"
+                }
+            ]
+        },
+        {
+            "id": "51",
+            "thumbnail": "/static/img/products/furniture/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/furniture/4.jpg"
+                }
+            ],
+            "title": "Letter Printed Cushion Cover Cotton Throw Pillow",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "13.59",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "7",
+                    "value": "flatfuniture",
+                    "text": "Flat Funiture"
+                }
+            ]
+        }
+    ],
+    "home_3_healthy": [
+        {
+            "id": "55",
+            "thumbnail": "/static/img/products/home-3/healthy/1.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/55a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/55b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/55c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/55d.jpg"
+                }
+            ],
+            "title": "Aveeno Moisturizing Body Shower 450ml",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "47.99",
+            "salePrice": "59.00",
+            "rating": true,
+            "ratingCount": "01",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-16%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "8",
+                    "value": "beauty",
+                    "name": "Health & Beauty"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "13",
+                    "value": "unilever",
+                    "text": "Unilever"
+                }
+            ]
+        },
+        {
+            "id": "56",
+            "thumbnail": "/static/img/products/home-3/healthy/3.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/56a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/56b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/56c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/56d.jpg"
+                }
+            ],
+            "title": "Baxter Care Hair Kit For Bearded Mens",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "42.00",
+            "salePrice": "60.00",
+            "rating": true,
+            "ratingCount": "02",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-25%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "8",
+                    "value": "beauty",
+                    "name": "Health & Beauty"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "13",
+                    "value": "unilever",
+                    "text": "Unilever"
+                }
+            ]
+        },
+        {
+            "id": "57",
+            "thumbnail": "/static/img/products/home-3/healthy/4.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/57a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/57b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/57c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/57d.jpg"
+                }
+            ],
+            "title": "Anna Sui Putty Mask Perfection",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "25.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "8",
+                    "value": "beauty",
+                    "name": "Health & Beauty"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "13",
+                    "value": "unilever",
+                    "text": "Unilever"
+                }
+            ]
+        },
+        {
+            "id": "58",
+            "thumbnail": "/static/img/products/home-3/healthy/5.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/58a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/58b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/58c.jpg"
+                }
+            ],
+            "title": "Set 30 Piece Korea StartSkin Natural Mask",
+            "vendor": "Global Office",
+            "sale": false,
+            "price": "85.00",
+            "rating": true,
+            "ratingCount": "01",
+            "categories": [
+                {
+                    "id": "8",
+                    "value": "beauty",
+                    "name": "Health & Beauty"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "13",
+                    "value": "unilever",
+                    "text": "Unilever"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "thumbnail": "/static/img/products/variants/5a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/5a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/5b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/5c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/5d.jpg"
+                }
+            ],
+            "title": "Xbox One Wireless Controller Black Color",
+            "vendor": "Global Office",
+            "price": "55.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "hot",
+                    "value": "hot"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "4",
+                    "value": "microsoft",
+                    "text": "Microsoft"
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "thumbnail": "/static/img/products/shop/5.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/shop/5.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/6a.jpg"
+                }
+            ],
+            "title": "Grand Slam Indoor Of Show Jumping Novel",
+            "vendor": "Robert's Store",
+            "sale": true,
+            "price": "32.99",
+            "salePrice": "41.00",
+            "rating": true,
+            "ratingCount": "4",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-37%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "5",
+                    "value": "book",
+                    "name": "Books & Office"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "4",
+                    "value": "megasystem",
+                    "text": "Mega System"
+                }
+            ]
+        }
+    ],
+    "productWidget": [
+        {
+            "id": "3",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/detail/fullwidth/1.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/detail/fullwidth/2.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/detail/fullwidth/3.jpg"
+                }
+            ],
+            "thumbnail": "/static/img/products/shop/2.jpg",
+            "title": "Marshall Kilburn Portable Wireless Speaker",
+            "vendor": "Go Pro",
+            "price": "42.99",
+            "rating": true,
+            "ratingCount": "5",
+            "categories": [
+                {
+                    "id": "2",
+                    "value": "electronic",
+                    "name": "Consumer Electrics"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "thumbnail": "/static/img/products/variants/5a.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/5a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/5b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/5c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/5d.jpg"
+                }
+            ],
+            "title": "Xbox One Wireless Controller Black Color",
+            "vendor": "Global Office",
+            "price": "55.99",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "hot",
+                    "value": "hot"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "4",
+                    "value": "microsoft",
+                    "text": "Microsoft"
+                }
+            ]
+        },
+        {
+            "id": "7",
+            "thumbnail": "/static/img/products/shop/6.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/7a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/7b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/7c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/7d.jpg"
+                }
+            ],
+            "title": "Sound Intone I65 Earphone White Version",
+            "vendor": "Youngshop",
+            "sale": true,
+            "price": "100.99",
+            "salePrice": "106.00",
+            "rating": true,
+            "ratingCount": "5",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "4",
+                    "value": "technologies",
+                    "name": "Computers & Technologies"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "6",
+                    "value": "sony",
+                    "text": "Sony"
+                }
+            ]
+        },
+        {
+            "id": "27",
+            "thumbnail": "/static/img/products/home/3.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/27a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/27b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/27c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/27d.jpg"
+                }
+            ],
+            "title": "Simple Plastice Chair In White Color",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "42.00",
+            "salePrice": "60.00",
+            "rating": true,
+            "ratingCount": "02",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-25%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "7",
+                    "value": "flatfuniture",
+                    "text": "Flat Funiture"
+                }
+            ]
+        }
+    ],
+    "marketPlaceHotDeal": [
+        {
+            "id": "27",
+            "thumbnail": "/static/img/products/home/3.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/variants/27a.jpg"
+                },
+                {
+                    "id": "2",
+                    "thumbnail": "/static/img/products/variants/27b.jpg"
+                },
+                {
+                    "id": "3",
+                    "thumbnail": "/static/img/products/variants/27c.jpg"
+                },
+                {
+                    "id": "4",
+                    "thumbnail": "/static/img/products/variants/27d.jpg"
+                }
+            ],
+            "title": "Simple Plastice Chair In White Color",
+            "vendor": "Young Shop",
+            "sale": true,
+            "price": "42.00",
+            "salePrice": "60.00",
+            "rating": true,
+            "ratingCount": "02",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "-25%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "6",
+                    "value": "garden",
+                    "name": "Garden & Kitchen"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "7",
+                    "value": "flatfuniture",
+                    "text": "Flat Funiture"
+                }
+            ]
+        },
+        {
+            "id": "34",
+            "thumbnail": "/static/img/products/home-2/recommend/2.jpg",
+            "variants": [
+                {
+                    "id": "1",
+                    "thumbnail": "/static/img/products/home-2/recommend/2.jpg"
+                }
+            ],
+            "title": "Evolution Sport Drilled and Slotted Brake Kit",
+            "vendor": "ROBERT’S STORE",
+            "rating": true,
+            "sale": true,
+            "price": "45.99",
+            "salePrice": "50.50",
+            "badge": [
+                {
+                    "type": "sale",
+                    "value": "5%"
+                }
+            ],
+            "categories": [
+                {
+                    "id": "7",
+                    "value": "cars",
+                    "name": "Cars & Motocycless"
+                }
+            ],
+            "brand": [
+                {
+                    "id": "2",
+                    "value": "marshall",
+                    "text": "Marshall"
+                }
+            ]
+        }
+    ]
+}
