@@ -17,13 +17,13 @@
                 <span> Categories</span>
             </a>
 
-            <a
+            <!-- <a
                 class="navigation__item"
                 @click.prevent="handleOpenDrawer('search')"
             >
                 <i class="icon-magnifier"></i>
                 <span> Search</span>
-            </a>
+            </a> -->
 
             <a
                 class="navigation__item"

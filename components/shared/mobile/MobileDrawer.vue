@@ -3,7 +3,7 @@
         <panel-shopping-cart v-if="currentDrawerContent === 'cart'" />
         <panel-categories v-if="currentDrawerContent === 'categories'" />
         <panel-menu v-if="currentDrawerContent === 'menu'" />
-        <panel-search v-if="currentDrawerContent === 'search'" />
+        <!-- <panel-search v-if="currentDrawerContent === 'search'" /> -->
     </v-navigation-drawer>
 </template>
 

@@ -10,7 +10,8 @@
                 <i class="icon icon-cross"></i>
             </a>
         </div>
-        <div class="ps-panel__content">
+        <br>
+        <!-- <div class="ps-panel__content">
             <div class="ps-site-actions">
                 <div class="row">
                     <div class="col-6">
@@ -20,7 +21,7 @@
                         <mobile-languge-switcher />
                     </div>
                 </div>
-            </div>
+            </div> -->
             <v-list class="menu--mobile">
                 <template v-for="menuItem in menu">
                     <v-list-group v-if="menuItem.subMenu" no-action>

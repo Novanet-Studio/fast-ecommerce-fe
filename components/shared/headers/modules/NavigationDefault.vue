@@ -15,19 +15,19 @@
             <div class="navigation__right">
                 <menu-default />
                 <ul class="navigation__extra">
-                    <li>
+                    <!-- <li>
                         <nuxt-link to="/vendor/become-a-vendor">
                             {{ $t('header.navigationExtra.sellOnMartfury') }}
                         </nuxt-link>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <nuxt-link to="/account/order-tracking">
                             {{ $t('header.navigationExtra.trackYourOrder') }}
                         </nuxt-link>
-                    </li>
-                    <li>
+                    </li> -->
+                    <!-- <li>
                         <CurrencyDropdown />
-                    </li>
+                    </li> -->
                     <li>
                         <LanguageSwicher />
                     </li>

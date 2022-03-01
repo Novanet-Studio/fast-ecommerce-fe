@@ -32,58 +32,8 @@ export default {
                     url: '/',
                     extraClass: 'menu-item-has-children',
                     subClass: 'sub-menu',
-                    subMenu: [
-                        {
-                            text: this.$i18n.t(
-                                'menu.mainMenu.marketplaceFullWidth'
-                            ),
-                            url: '/'
-                        },
-                        /*{
-                            text: this.$i18n.t('menu.mainMenu.homeAutoParts'),
-                            url: '/home/auto-part'
-                        },*/
-                        /*{
-                            text: this.$i18n.t('menu.mainMenu.homeTechnology'),
-                            url: '/home/technology'
-                        },*/
-                        /*{
-                            text: this.$i18n.t('menu.mainMenu.homeOrganic'),
-                            url: '/home/organic'
-                        },*/
-                        {
-                            text: this.$i18n.t(
-                                'menu.mainMenu.homeMarketplaceV1'
-                            ),
-                            url: '/home/market-place'
-                        },
-                        {
-                            text: this.$i18n.t(
-                                'menu.mainMenu.homeMarketplaceV2'
-                            ),
-                            url: '/home/market-place-2'
-                        },
-                        {
-                            text: this.$i18n.t(
-                                'menu.mainMenu.homeMarketplaceV3'
-                            ),
-                            url: '/home/market-place-3'
-                        },
-                        {
-                            text: this.$i18n.t(
-                                'menu.mainMenu.homeMarketplaceV4'
-                            ),
-                            url: '/home/market-place-4'
-                        }
-                        /*{
-                            text: this.$i18n.t('menu.mainMenu.homeElectronic'),
-                            url: '/home/electronic'
-                        },*/
-                        /*{
-                            text: this.$i18n.t('menu.mainMenu.homeFurniture'),
-                            url: '/home/furniture'
-                        }*/
-                    ]
+                    // subMenu: [
+                    // ]
                 },
                 {
                     text: this.$i18n.t('menu.mainMenu.shop'),
@@ -320,68 +270,6 @@ export default {
                                         'menu.mainMenu.storeList2'
                                     ),
                                     url: '/vendor/store-list-2'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    text: this.$i18n.t('menu.mainMenu.blogs'),
-                    url: '/blog',
-                    current: 'shop',
-                    extraClass: 'menu-item-has-children has-mega-menu',
-                    subClass: 'sub-menu',
-                    mega: 'true',
-                    megaContent: [
-                        {
-                            heading: this.$i18n.t('menu.mainMenu.blogLayout'),
-                            megaItems: [
-                                {
-                                    text: this.$i18n.t('menu.mainMenu.grid'),
-                                    url: '/blog'
-                                },
-                                {
-                                    text: this.$i18n.t('menu.mainMenu.list'),
-                                    url: '/blog/blog-list'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.mainMenu.smallThumb'
-                                    ),
-                                    url: '/blog/blog-small-thumbnail'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.mainMenu.leftSidebar'
-                                    ),
-                                    url: '/blog/blog-left-sidebar'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.mainMenu.rightSidebar'
-                                    ),
-                                    url: '/blog/blog-right-sidebar'
-                                }
-                            ]
-                        },
-                        {
-                            heading: this.$i18n.t('menu.mainMenu.singleBlog'),
-                            megaItems: [
-                                {
-                                    text: this.$i18n.t('menu.mainMenu.single1'),
-                                    url: '/post/detail-2'
-                                },
-                                {
-                                    text: this.$i18n.t('menu.mainMenu.single2'),
-                                    url: '/post/detail-2'
-                                },
-                                {
-                                    text: this.$i18n.t('menu.mainMenu.single3'),
-                                    url: '/post/detail-3'
-                                },
-                                {
-                                    text: this.$i18n.t('menu.mainMenu.single4'),
-                                    url: '/post/1'
                                 }
                             ]
                         }

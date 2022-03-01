@@ -1,24 +1,24 @@
 <template lang="html">
     <main id="homepage-1">
         <home-banner/>
-        <site-feautures-fullwidth/>
-        <home-default-deal-of-day
+        <!-- <site-feautures-fullwidth/> -->
+        <!-- <home-default-deal-of-day
             v-if="collections !== null"
             collection-slug="deal-of-the-day"
-        />
-        <home-ads-columns/>
-        <home-default-top-categories/>
+        /> -->
+        <!-- <home-ads-columns/> -->
+        <!-- <home-default-top-categories/> -->
         <template v-if="collections !== null">
             <conumer-electronics collection-slug="consumer-electronics"/>
             <clothings collection-slug="clothings"/>
             <garden-and-kitchen collection-slug="garden-and-kitchen"/>
         </template>
-        <home-ads/>
-        <download-app/>
-        <new-arrivals
+        <!-- <home-ads/>
+        <download-app/> -->
+        <!-- <new-arrivals
             collection-slug="new-arrivals-products"
-        />
-        <newsletters layout="fullwidth"/>
+        /> -->
+        <!-- <newsletters layout="fullwidth"/> -->
     </main>
 </template>
 <script>

@@ -4,29 +4,10 @@
             "text": "Home",
             "url": "/",
             "extraClass": "menu-item-has-children",
-            "subClass": "sub-menu",
-            "subMenu": [
-                {
-                    "text": "Marketplace Full Width",
-                    "url": "/"
-                },
-                {
-                    "text": "Home Marketplace V1",
-                    "url": "/home/market-place"
-                },
-                {
-                    "text": "Home Marketplace V2",
-                    "url": "/home/market-place-2"
-                },
-
-                {
-                    "text": "Home Marketplace V3",
-                    "url": "/home/market-place-4"
-                }
-            ]
+            "subClass": "sub-menu"
         },
         {
-            "text": "Shop",
+            "text": "Categories",
             "url": "/shop",
             "extraClass": "menu-item-has-children has-mega-menu",
             "subClass": "sub-menu",
@@ -141,57 +122,6 @@
                         {
                             "text": "Login / Register",
                             "url": "/account/login"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "text": "Pages",
-            "url": "",
-            "extraClass": "menu-item-has-children has-mega-menu",
-            "subClass": "sub-menu",
-            "mega": "true",
-            "megaContent": [
-                {
-                    "heading": "Basic Page",
-                    "megaItems": [
-                        {
-                            "text": "About Us",
-                            "url": "/page/about-us"
-                        },
-                        {
-                            "text": "Contact",
-                            "url": "/page/contact-us"
-                        },
-                        {
-                            "text": "Faqs",
-                            "url": "/page/faqs"
-                        },
-                        {
-                            "text": "404 Page",
-                            "url": "/page/page-404"
-                        }
-                    ]
-                },
-                {
-                    "heading": "Vendor Pages",
-                    "megaItems": [
-                        {
-                            "text": "Become a Vendor",
-                            "url": "/vendor/become-a-vendor"
-                        },
-                        {
-                            "text": "Vendor Store",
-                            "url": "/vendor/vendor-store"
-                        },
-                        {
-                            "text": "Store List",
-                            "url": "/vendor/store-list"
-                        },
-                        {
-                            "text": "Store List 2",
-                            "url": "/vendor/store-list-2"
                         }
                     ]
                 }
