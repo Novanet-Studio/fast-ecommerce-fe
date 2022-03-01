@@ -30,6 +30,7 @@ import Loading from '~/components/elements/commons/Loading';
 
 export default {
     name: 'index',
+    layout: 'layout-default',
     components: {
         Loading,
         ShopCategories,

@@ -3,7 +3,7 @@
         <div class="ps-container">
             <div class="ps-section__header">
                 <h3>{{ $t('homeDefault.clothing.heading') }}</h3>
-                <ul class="ps-section__links">
+                <!-- <ul class="ps-section__links">
                     <li>
                         <nuxt-link :to="localePath('/shop')">
                             {{
@@ -36,7 +36,7 @@
                             {{ $t('common.viewAll') }}
                         </nuxt-link>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <div class="ps-section__content">
                 <carousel-arrows type="simple" />
