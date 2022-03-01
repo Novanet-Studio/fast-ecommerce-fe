@@ -1,6 +1,7 @@
 <template lang="html">
     <client-only>
         <v-app>
+            
             <v-main>
                 <header-default />
                 <header-mobile />
