@@ -8,7 +8,6 @@
                         v-if="categories !== null && brands !== null"
                     />
                 </div>
-
                 <div class="ps-layout__right">
                     <search-result />
                 </div>
