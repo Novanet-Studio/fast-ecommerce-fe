@@ -26,7 +26,6 @@
                 />
             </div>
         </div>
-        <newsletters layout="fullwidth"/>
     </div>
 </template>
 

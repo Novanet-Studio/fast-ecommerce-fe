@@ -24,7 +24,7 @@ export default {
             menuCategories: [
                 {
                     icon: 'icon-star',
-                    text: this.$i18n.t('menu.menuCategories.hotPromotions'),
+                    text: 'hola',
                     url: '/shop'
                 },
                 {
@@ -119,136 +119,6 @@ export default {
                         }
                     ]
                 },
-                {
-                    icon: 'icon-shirt',
-                    text: this.$i18n.t(
-                        'menu.menuCategories.clothingAndapparel'
-                    ),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-lampshade',
-                    text: this.$i18n.t(
-                        'menu.menuCategories.HomeGardenAndKitchen'
-                    ),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-heart-pulse',
-                    text: this.$i18n.t('menu.menuCategories.healthAndBeauty'),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-diamond2',
-                    text: this.$i18n.t('menu.menuCategories.yewelryAndWatches'),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-desktop',
-                    text: this.$i18n.t(
-                        'menu.menuCategories.computerAndTechnology'
-                    ),
-                    url: '/shop',
-                    extraClass: 'menu-item-has-children has-mega-menu',
-                    subClass: 'sub-menu',
-                    megaContent: [
-                        {
-                            heading: this.$i18n.t(
-                                'menu.menuCategories.computerAndTechnologies'
-                            ),
-                            megaItems: [
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.computerAndTablets'
-                                    ),
-                                    url: '/shop'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.laptop'
-                                    ),
-                                    url: '/shop'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.monitors'
-                                    ),
-                                    url: '/shop'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.networking'
-                                    ),
-                                    url: '/shop'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.driveAndStorages'
-                                    ),
-                                    url: '/shop'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.computerComponents'
-                                    ),
-                                    url: '/shop'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.securityAndProtection'
-                                    ),
-                                    url: '/shop'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.gamingLaptop'
-                                    ),
-                                    url: '/shop'
-                                },
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.menuCategories.accessories'
-                                    ),
-                                    url: '/shop'
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    icon: 'icon-baby-bottle',
-                    text: this.$i18n.t('menu.menuCategories.babiesAndMoms'),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-smartphone',
-                    text: this.$i18n.t(
-                        'menu.menuCategories.phonesAndAccessories'
-                    ),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-book2',
-                    text: this.$i18n.t('menu.menuCategories.booksAndOffice'),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-car-siren',
-                    text: this.$i18n.t('menu.menuCategories.carsAndMotocycles'),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-wrench',
-                    text: this.$i18n.t('menu.menuCategories.homeImproments'),
-                    url: '/shop'
-                },
-                {
-                    icon: 'icon-tag',
-                    text: this.$i18n.t(
-                        'menu.menuCategories.vouchersAndServices'
-                    ),
-                    url: '/shop'
-                }
             ]
         };
     }

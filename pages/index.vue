@@ -9,10 +9,11 @@
         <!-- <home-ads-columns/> -->
         <!-- <home-default-top-categories/> -->
         <template v-if="collections !== null">
-            <conumer-electronics collection-slug="consumer-electronics"/>
-            <clothings collection-slug="clothings"/>
-            <garden-and-kitchen collection-slug="garden-and-kitchen"/>
-        </template>
+            <productos-landing collection-slug="clothings"/>
+            <productos-landing collection-slug="clothings"/>
+            <productos-landing collection-slug="clothings"/>
+            <productos-landing collection-slug="clothings"/>
+        </template> 
         <!-- <home-ads/>
         <download-app/> -->
         <!-- <new-arrivals
@@ -22,6 +23,9 @@
     </main>
 </template>
 <script>
+//farine
+import ProductosLanding from '~/components/partials/homepage/farine/ProductosLanding';
+
 import { mapState } from 'vuex';
 import DownloadApp from '~/components/partials/commons/DownloadApp';
 import FooterFullwidth from '~/components/shared/footers/FooterFullwidth';
@@ -46,6 +50,7 @@ export default {
     transition: 'zoom',
     layout: 'layout-default',
     components: {
+        ProductosLanding,
         DemoPanel,
         HomeDefaultDealOfDay,
         MobileDrawer,
