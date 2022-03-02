@@ -2,15 +2,15 @@
     <div class="ps-page--shop">
         <bread-crumb :breadcrumb="breadCrumb" layout="fullwidth" />
         <div class="ps-container">
-            <shop-banner />
-            <shop-brands />
-            <shop-categories />
+            <!-- <shop-banner /> -->
+            <!-- <shop-brands /> -->
+            <!-- <shop-categories /> -->
             <div class="ps-layout--shop">
-                <div class="ps-layout__left">
+                <!-- <div class="ps-layout__left">
                     <shop-widget v-if="widgetLoading === false" />
                     <loading v-else />
-                </div>
-                <div class="ps-layout__right">
+                </div> -->
+                <div class="ps-layout__right mx-auto">
                     <layout-shop v-if="collections !== null" />
                 </div>
             </div>

@@ -3,19 +3,19 @@
         {
             "id": "1",
             "thumbnail": "/img/categories/shop/1.jpg",
-            "title": "Clothing & Apparel",
+            "title": "Sabores Básicos",
             "links": ["Accessories", "Bags", "Kid's Fashion", "Mens"]
         },
         {
             "id": "2",
             "thumbnail": "/img/categories/shop/2.jpg",
-            "title": "Garden & Kitchen",
+            "title": "Sabores Premium",
             "links": ["Cookware", "Decoration", "Furniture", "Garden Tools"]
         },
         {
             "id": "3",
             "thumbnail": "/img/categories/shop/3.jpg",
-            "title": "Consumer Electrics",
+            "title": "Sabores de Gourmet",
             "links": [
                 "Air Conditioners",
                 "Audios & Theaters",
@@ -26,37 +26,19 @@
         {
             "id": "4",
             "thumbnail": "/img/categories/shop/4.jpg",
-            "title": "Health & Beauty",
+            "title": "Sabores de Temporada",
             "links": ["Equipments", "Hair Care", "Perfumer", "Skin Care"]
         },
         {
             "id": "5",
             "thumbnail": "/img/categories/shop/5.jpg",
-            "title": "Computers",
+            "title": "Especiales",
             "links": ["Desktop PC", "Laptop", "Smartphones", "Accessories"]
-        },
-        {
-            "id": "6",
-            "thumbnail": "/img/categories/shop/6.jpg",
-            "title": "Jewelry & Watches",
-            "links": ["Gemstones Jewelry", "Men's Watches", "Women's Watches"]
-        },
-        {
-            "id": "7",
-            "thumbnail": "/img/categories/shop/7.jpg",
-            "title": "Phone & Accessories",
-            "links": ["Iphone 8", "Iphone X", "Samsung Note 8", "Samsung S8"]
-        },
-        {
-            "id": "8",
-            "thumbnail": "/img/categories/shop/8.jpg",
-            "title": "Sport & Outdoor",
-            "links": ["Freezer Burn", "Frigde Cooler", "Wine Cabinets"]
         }
     ],
     "shop_categories_catalog": [
         {
-            "text": "Clothing & Apparel",
+            "text": "Sabores Básicos",
             "url": "/shop",
             "extraClass": "menu-item-has-children",
             "subClass": "sub-menu",
@@ -88,7 +70,7 @@
             ]
         },
         {
-            "text": "Garden & Kitchen",
+            "text": "Sabores Premium",
             "url": "/shop",
             "extraClass": "menu-item-has-children",
             "subClass": "sub-menu",
@@ -124,7 +106,7 @@
             ]
         },
         {
-            "text": "Consumer Electrics",
+            "text": "Sabores de Gourmet",
             "url": "/shop",
             "extraClass": "menu-item-has-children",
             "subClass": "sub-menu",
@@ -264,7 +246,7 @@
             ]
         },
         {
-            "text": "Computers & Technologies",
+            "text": "Sabores de Temporada",
             "url": "/shop",
             "extraClass": "menu-item-has-children",
             "subClass": "sub-menu",
@@ -284,7 +266,7 @@
             ]
         },
         {
-            "text": "Jewelry & Watches",
+            "text": "Especiales",
             "url": "/shop",
             "extraClass": "menu-item-has-children",
             "subClass": "sub-menu",
@@ -299,30 +281,6 @@
                 },
                 {
                     "text": "Women's Watches",
-                    "url": "/shop"
-                }
-            ]
-        },
-        {
-            "text": "Phones & Accessories",
-            "url": "/shop",
-            "extraClass": "menu-item-has-children",
-            "subClass": "sub-menu",
-            "subMenu": [
-                {
-                    "text": "Iphone 8",
-                    "url": "/shop"
-                },
-                {
-                    "text": "Iphone X",
-                    "url": "/shop"
-                },
-                {
-                    "text": "Sam Sung Note 8",
-                    "url": "/shop"
-                },
-                {
-                    "text": "Sam Sung S8",
                     "url": "/shop"
                 }
             ]

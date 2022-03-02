@@ -1,8 +1,8 @@
 <template lang="html">
     <div class="ps-shopping">
-        <best-sale-items collectionSlug="shop-best-seller-items" />
-        <recommend-items collectionSlug="shop-recommend-items" />
-        <div class="ps-shopping__header">
+        <!-- <best-sale-items collectionSlug="shop-best-seller-items" />
+        <recommend-items collectionSlug="shop-recommend-items" /> -->
+        <!-- <div class="ps-shopping__header">
             <p>
                 <strong class="mr-2">{{ total }}</strong>
                 Products found
@@ -34,7 +34,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
+        <br>
         <div class="ps-shopping__content">
             <div v-if="queries" class="ps-shopping__queries">
                 <a v-for="query in queries" href="#" @click.prevent="">

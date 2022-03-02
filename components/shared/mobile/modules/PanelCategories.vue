@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="ps-panel--sidebar">
         <div class="ps-panel__header">
-            <h3>Categores</h3>
+            <h3>Categorias</h3>
             <a
                 href="#"
                 class="ps-panel__close"

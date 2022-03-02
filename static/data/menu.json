@@ -1,13 +1,13 @@
 {
     "mainMenu": [
         {
-            "text": "Home",
+            "text": "Inicio",
             "url": "/",
             "extraClass": "menu-item-has-children",
             "subClass": "sub-menu"
         },
         {
-            "text": "Categories",
+            "text": "Categorias",
             "url": "/shop",
             "extraClass": "menu-item-has-children has-mega-menu",
             "subClass": "sub-menu",

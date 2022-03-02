@@ -24,14 +24,282 @@ export default {
             menuCategories: [
                 {
                     icon: 'icon-star',
-                    text: 'hola',
+                    text: 'Sabores Básicos',
                     url: '/shop'
                 },
                 {
                     icon: 'icon-laundry',
-                    text: this.$i18n.t(
-                        'menu.menuCategories.consumerElectronic'
-                    ),
+                    text: 'Sabores premium',
+                    url: '/shop',
+                    extraClass: 'menu-item-has-children has-mega-menu',
+                    subClass: 'sub-menu',
+                    mega: true,
+                    megaContent: [
+                        {
+                            heading: this.$i18n.t(
+                                'menu.menuCategories.electronic'
+                            ),
+                            megaItems: [
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.homeAudioAndTheathers'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.tvAndVideos'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.cameraphotosAndVideos'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.cellphonesAndAccessories'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.headphone'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.videosgames'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.wirelessSpeakers'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.officeElectronic'
+                                    ),
+                                    url: '/shop'
+                                }
+                            ]
+                        },
+                        {
+                            heading: this.$i18n.t(
+                                'menu.menuCategories.accessoriesAndParts'
+                            ),
+                            megaItems: [
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.digitalCables'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.audioAndVideoCables'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.batteries'
+                                    ),
+                                    url: '/shop'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    icon: 'icon-laundry',
+                    text: 'Sabores de Gourmet',
+                    url: '/shop',
+                    extraClass: 'menu-item-has-children has-mega-menu',
+                    subClass: 'sub-menu',
+                    mega: true,
+                    megaContent: [
+                        {
+                            heading: this.$i18n.t(
+                                'menu.menuCategories.electronic'
+                            ),
+                            megaItems: [
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.homeAudioAndTheathers'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.tvAndVideos'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.cameraphotosAndVideos'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.cellphonesAndAccessories'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.headphone'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.videosgames'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.wirelessSpeakers'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.officeElectronic'
+                                    ),
+                                    url: '/shop'
+                                }
+                            ]
+                        },
+                        {
+                            heading: this.$i18n.t(
+                                'menu.menuCategories.accessoriesAndParts'
+                            ),
+                            megaItems: [
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.digitalCables'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.audioAndVideoCables'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.batteries'
+                                    ),
+                                    url: '/shop'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    icon: 'icon-laundry',
+                    text: 'Sabores de Temporada',
+                    url: '/shop',
+                    extraClass: 'menu-item-has-children has-mega-menu',
+                    subClass: 'sub-menu',
+                    mega: true,
+                    megaContent: [
+                        {
+                            heading: this.$i18n.t(
+                                'menu.menuCategories.electronic'
+                            ),
+                            megaItems: [
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.homeAudioAndTheathers'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.tvAndVideos'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.cameraphotosAndVideos'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.cellphonesAndAccessories'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.headphone'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.videosgames'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.wirelessSpeakers'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.officeElectronic'
+                                    ),
+                                    url: '/shop'
+                                }
+                            ]
+                        },
+                        {
+                            heading: this.$i18n.t(
+                                'menu.menuCategories.accessoriesAndParts'
+                            ),
+                            megaItems: [
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.digitalCables'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.audioAndVideoCables'
+                                    ),
+                                    url: '/shop'
+                                },
+                                {
+                                    text: this.$i18n.t(
+                                        'menu.menuCategories.batteries'
+                                    ),
+                                    url: '/shop'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    icon: 'icon-laundry',
+                    text: 'Especiales',
                     url: '/shop',
                     extraClass: 'menu-item-has-children has-mega-menu',
                     subClass: 'sub-menu',

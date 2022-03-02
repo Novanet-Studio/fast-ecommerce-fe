@@ -4,7 +4,7 @@
             <thumbnail-default />
             <information-default />
         </div>
-        <default-description />
+        <!-- <default-description /> -->
     </div>
 </template>
 
