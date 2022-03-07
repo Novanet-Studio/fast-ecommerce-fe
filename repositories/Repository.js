@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseDomain = 'https://beta.apinouthemes.com'; // Change your API here
+const baseDomain = 'http://localhost:1338'; // Change your API here
 
 export const customHeaders = {
     'Content-Type': 'application/json',

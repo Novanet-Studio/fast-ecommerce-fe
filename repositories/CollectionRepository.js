@@ -1,9 +1,10 @@
 import Repository, { baseUrl, serializeQuery } from './Repository';
 
-class CollectionRepository {
+export default class CollectionRepository {
     constructor(callback) {
         this.callback = callback;
     }
+
 
     async getCollections(payload) {
         let query = '';
@@ -19,6 +20,7 @@ class CollectionRepository {
                 return response.data;
             })
             .catch(error => ({ error: JSON.stringify(error) }));
+
         return reponse;
     }
 
@@ -55,12 +57,15 @@ class CollectionRepository {
                 return response.data;
             })
             .catch(error => ({ error: JSON.stringify(error) }));
+            return console.log(query)
+
         return reponse;
     }
 
     async getProductsBySlug(slug) {
         const reponse = await Repository.get(
-            `${baseUrl}/collections/slug?=${slug}`
+            // `${baseUrl}/collections/slug?=${slug}`
+            `${baseUrl}/collections/`
         )
             .then(response => {
                 return response.data;
@@ -70,4 +75,4 @@ class CollectionRepository {
     }
 }
 
-export default new CollectionRepository();
+// export default new CollectionRepository();

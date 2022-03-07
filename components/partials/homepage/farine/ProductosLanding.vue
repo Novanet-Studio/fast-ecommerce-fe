@@ -3,40 +3,6 @@
         <div class="ps-container">
             <div class="ps-section__header">
                 <h3>HOLAAA</h3>
-                <!-- <ul class="ps-section__links">
-                    <li>
-                        <nuxt-link :to="localePath('/shop')">
-                            {{
-                            $t(
-                            'homeDefault.consumerElectronics.links.newArrivals'
-                            )
-                            }}
-                        </nuxt-link>
-                    </li>
-                    <li>
-                        <nuxt-link :to="localePath('/shop')">
-                            {{
-                            $t(
-                            'homeDefault.consumerElectronics.links.bestSeller'
-                            )
-                            }}
-                        </nuxt-link>
-                    </li>
-                    <li>
-                        <nuxt-link :to="localePath('/shop')">
-                            {{
-                            $t(
-                            'homeDefault.consumerElectronics.links.bestSeller'
-                            )
-                            }}
-                        </nuxt-link>
-                    </li>
-                    <li>
-                        <nuxt-link :to="localePath('/shop')">
-                            {{ $t('common.viewAll') }}
-                        </nuxt-link>
-                    </li>
-                </ul> -->
             </div>
             <div class="ps-section__content">
                 <carousel-arrows type="simple" />
@@ -60,7 +26,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {mapState} from 'vuex';
 import { carouselFullwidth } from '~/utilities/carousel-helpers.js';
 import ProductDefault from '../../../elements/product/ProductDefault';
 import { getColletionBySlug } from '../../../../utilities/product-helper';

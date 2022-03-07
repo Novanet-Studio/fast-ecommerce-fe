@@ -6,8 +6,9 @@
     >
         <div class="ps-form__categories">
             <select class="form-control">
+                <option selected>Todos</option>
                 <option v-for="item in exampleCategories" :value="{ item }">
-                    {{ item }}
+                    {{ item.name }}
                 </option>
             </select>
         </div>
@@ -56,6 +57,8 @@
 </template>
 
 <script>
+import  CategoryRepository from '~/repositories/CategoryRepository';
+
 import { mapState } from 'vuex';
 import ProductResult from '~/components/elements/product/ProductResult';
 
@@ -69,18 +72,14 @@ export default {
     },
     data() {
         return {
-            exampleCategories: [
-                'Todos',
-                'Sabores Básicos',
-                'Sabores Premium',
-                'Sabores de Gourmet',
-                'Sabores de Temporada',
-                'Especiales'
-            ],
+            exampleCategories: [],
             isSearching: false,
             isLoading: false,
             searchText: ''
         };
+    },
+    mounted(){
+        this.categorias()
     },
     methods: {
         async handleSearchProduct(e) {
@@ -116,6 +115,10 @@ export default {
             if (this.searchText !== null || this.searchText !== '') {
                 this.$router.push(`/search?keyword=${this.searchText}`);
             }
+        },
+        async categorias(){
+            var categorias = new CategoryRepository();
+            return await categorias.GetCategories().then(val=>{this.exampleCategories = val})
         }
     }
 };

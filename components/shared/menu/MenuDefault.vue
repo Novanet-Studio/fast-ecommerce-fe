@@ -34,66 +34,6 @@ export default {
                     subClass: 'sub-menu',
                     // subMenu: [
                     // ]
-                },
-                {
-                    text: 'Sabores',
-                    url: '/shop',
-                    extraClass: 'menu-item-has-children has-mega-menu',
-                    subClass: 'sub-menu',
-                    mega: 'true',
-                    megaContent: [
-                        {
-                            heading: 'Sabores Básicos',
-                            megaItems: [
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.mainMenu.shopDefault'
-                                    ),
-                                    url: '/shop'
-                                }
-                            ]
-                        },
-                        {
-                            heading: 'Sabores Premium',
-                            megaItems: [
-                                {
-                                    text: this.$i18n.t('menu.mainMenu.default'),
-                                    url: '/product/1'
-                                }
-                            ]
-                        },
-                        {
-                            heading: 'Sabores de Gourmet',
-                            megaItems: [
-                                {
-                                    text: this.$i18n.t('menu.mainMenu.simple'),
-                                    url: '/product/1'
-                                }
-                            ]
-                        },
-                        {
-                            heading: 'Sabores de Temporada',
-                            megaItems: [
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.mainMenu.shoppingCart'
-                                    ),
-                                    url: '/account/shopping-cart'
-                                }
-                            ]
-                        },
-                        {
-                            heading: 'Especiales',
-                            megaItems: [
-                                {
-                                    text: this.$i18n.t(
-                                        'menu.mainMenu.shoppingCart'
-                                    ),
-                                    url: '/account/shopping-cart'
-                                }
-                            ]
-                        }
-                    ]
                 }
             ]
         };

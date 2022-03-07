@@ -21,20 +21,28 @@
 </template>
 
 <script>
-import categories from '~/static/data/static-categories.json';
+import  CategoryRepository from '~/repositories/CategoryRepository';
 
 export default {
     name: 'PanelCategories',
-    computed: {
-        categories() {
-            return categories;
+    data() {
+        return {
+            categories: ''
         }
+    },
+    mounted(){
+        this.categorias()
     },
     methods: {
         handleClosePanel() {
             this.$store.commit('app/setCurrentDrawerContent', null);
             this.$store.commit('app/setAppDrawer', false);
+        },
+        async categorias(){
+            var categorias = new CategoryRepository();
+            return await categorias.GetCategories().then(val=>{this.categories = val})
         }
+
     }
 };
 </script>
