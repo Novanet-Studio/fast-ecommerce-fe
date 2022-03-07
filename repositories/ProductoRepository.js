@@ -19,6 +19,14 @@ export default class ProductRepository {
         return response.data
     }
 
+    async GetProductById(id){
+        const response = await Repository.get(
+            `${baseUrl}/productos?id=${id}`
+        )
+        return response.data
+
+    }
+
 }
 
 // export default new ProductRepository();
