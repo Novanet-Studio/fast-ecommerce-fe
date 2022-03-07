@@ -8,11 +8,10 @@
         /> -->
         <!-- <home-ads-columns/> -->
         <!-- <home-default-top-categories/> -->
-        <template v-if="collections !== null">
-            <productos-landing collection-slug="clothings"/>
-            <productos-landing collection-slug="clothings"/>
-            <productos-landing collection-slug="clothings"/>
-            <productos-landing collection-slug="clothings"/>
+        <template v-if="categories !== null">
+            <div v-for="category in categories" :key="category.id">
+                <productos-landing :category="category"/>
+            </div>
         </template> 
         <!-- <home-ads/>
         <download-app/> -->
@@ -25,6 +24,7 @@
 <script>
 //farine
 import ProductosLanding from '~/components/partials/homepage/farine/ProductosLanding';
+import CategoryRepository from '~/repositories/CategoryRepository';
 
 import { mapState } from 'vuex';
 import DownloadApp from '~/components/partials/commons/DownloadApp';
@@ -70,22 +70,26 @@ export default {
         Clothings,
         ConumerElectronics
     },
-
-    computed: {
-        ...mapState({
-            collections: state => state.collection.collections
-        })
+    data(){
+        return {
+            categories: []
+        }
     },
-
-    async created() {
-        const queries = [
-            'deal-of-the-day',
-            'consumer-electronics',
-            'clothings',
-            'garden-and-kitchen',
-            'new-arrivals-products'
-        ];
-        await this.$store.dispatch('collection/getCollectionsBySlugs', queries);
+    mounted(){
+        this.categorias()
+    },
+    computed: {
+        // ...mapState({
+        //     collections: state => state.collection.collections
+        // })
+    },
+    methods: {
+        async categorias(){
+            const categorias = new CategoryRepository();
+            return await categorias.GetCategories().then(val => {return this.categories = val})
+        }
     }
+
+
 };
 </script>

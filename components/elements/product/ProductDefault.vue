@@ -7,13 +7,13 @@
         </div>
         <div class="ps-product__container">
             <nuxt-link to="/shop" class="ps-product__vendor">
-                {{ product.vendor }}
+                <!-- {{ product.vendor }} -->
             </nuxt-link>
             <div class="ps-product__content">
                 <module-product-title :product="product"/>
                 <div class="ps-product__rating">
                     <rating/>
-                    <span>{{ product.ratingCount }}</span>
+                    <!-- <span>{{ product.ratingCount }}</span> -->
                 </div>
                 <module-product-price :product="product"/>
             </div>
@@ -55,12 +55,7 @@ export default {
         Rating
     },
     props: {
-        product: {
-            type: Object,
-            require: true,
-            default: () => {
-            }
-        }
+        product: ''
     },
 
     computed: {

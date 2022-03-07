@@ -1,6 +1,6 @@
 import Repository, { baseUrl, serializeQuery } from './Repository';
 
-export default class ProductRepository {
+export default class CategoryRepository {
     constructor(callback) {
         this.callback = callback;
     }

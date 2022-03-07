@@ -6,7 +6,7 @@
                 Brand:
                 <nuxt-link to="/shop">
                     <a class="ml-2 text-capitalize">
-                        {{ product.vendor }}
+                        <!-- {{ product.vendor }} -->
                     </a>
                 </nuxt-link>
             </p>

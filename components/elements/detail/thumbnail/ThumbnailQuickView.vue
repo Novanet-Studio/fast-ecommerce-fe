@@ -12,7 +12,7 @@
                             class="swiper-slide"
                             v-for="image in product.images"
                         >
-                            <img :src="`${baseURL}${image.url}`" />
+                            <!-- <img :src="`${baseURL}${image.url}`" /> -->
                         </div>
                     </div>
                     <div class="swiper-nav">

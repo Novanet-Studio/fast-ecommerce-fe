@@ -1,8 +1,12 @@
 <template lang="html">
     <nuxt-link :to="`/product/${product.id}`">
-        <img
+        <!-- <img
             :src="`${baseUrl}${product.thumbnail.url}`"
             alt="martfury"
+        /> -->
+        <img
+            
+            :alt="`${ product.name }`"
         />
     </nuxt-link>
 </template>
