@@ -3,7 +3,7 @@
         :to="`/product/${product.id}`"
         class="ps-product__title"
     >
-        {{ product.title && product.title }}
+        {{ product.name && product.name }}
     </nuxt-link>
 </template>
 
@@ -11,11 +11,7 @@
 export default {
     name: 'ModuleProductTitle',
     props: {
-        product: {
-            type: Object,
-            default: () => {
-            }
-        }
+        product: ''
     }
 };
 </script>

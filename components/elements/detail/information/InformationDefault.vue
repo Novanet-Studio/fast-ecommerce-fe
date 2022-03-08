@@ -31,9 +31,12 @@ export default {
         ModuleProductDetailSpecification,
         ModuleProductDetailSharing
     },
+    props: {
+        product: '',
+    },
     computed: {
         ...mapState({
-            product: state => state.product.product
+            // product: state => state.product.product
         })
     }
 };

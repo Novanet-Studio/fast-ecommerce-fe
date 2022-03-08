@@ -3,7 +3,8 @@
         <p>
             Sold By:
             <nuxt-link to="/shop">
-                <strong> {{ product.vendor }}</strong>
+                <strong> vendedor</strong>
+                <!-- <strong> {{ product.vendor }}</strong> -->
             </nuxt-link>
         </p>
         <ul class="ps-list--dot">
@@ -22,10 +23,7 @@
 export default {
     name: 'ModuleProductDetailDesc',
     props: {
-        product: {
-            type: Object,
-            default: {}
-        }
+        product: []
     }
 };
 </script>

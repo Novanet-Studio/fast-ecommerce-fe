@@ -44,10 +44,7 @@ import { mapState } from 'vuex';
 export default {
     name: 'ModuleProductShopping',
     props: {
-        product: {
-            type: Object,
-            default: () => {}
-        }
+        product: '',
     },
     computed: {
         ...mapState({

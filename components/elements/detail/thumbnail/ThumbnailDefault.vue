@@ -13,8 +13,8 @@
                             <div class="swiper-wrapper">
                                 <div
                                     class="swiper-slide"
-                                    v-for="image in product.images"
-                                >
+                                    v-for="image in product.image"
+                                > 
                                     <img :src="`${baseURL}${image.url}`" />
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                 >
                     <div class="swiper-wrapper">
                         <div
-                            v-for="(image, index) in product.images"
+                            v-for="(image, index) in product.image"
                             :class="
                                 `swiper-slide ${
                                     activeSlide === index ? 'active' : ''
@@ -64,9 +64,12 @@ import { baseUrl } from '~/repositories/Repository';
 
 export default {
     name: 'ThumbnailDefault',
+    props: {
+        product: '',
+    },
     computed: {
         ...mapState({
-            product: state => state.product.product,
+            // product: state => state.product.product,
             baseURL() {
                 return baseUrl;
             }

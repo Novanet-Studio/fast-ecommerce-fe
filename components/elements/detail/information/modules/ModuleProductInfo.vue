@@ -1,13 +1,14 @@
 <template lang="html">
     <div>
-        <h1>{{ product.title }}</h1>
+        <!-- <h1>{{ product.title }}</h1> -->
+        <h1>{{ product.name }}</h1>
         <div class="ps-product__meta">
             <p>
                 Brand:
                 <nuxt-link to="/shop">
-                    <a class="ml-2 text-capitalize">
+                    <!-- <a class="ml-2 text-capitalize">
                         {{ product.vendor }}
-                    </a>
+                    </a> -->
                 </nuxt-link>
             </p>
             <div class="ps-product__rating">
@@ -20,7 +21,7 @@
             ${{ product.price.toFixed(2) }}
         </h4>
         <h4 v-else class="ps-product__price">
-            ${{ product.price.toFixed(2) }}
+            <!-- ${{ product.price.toFixed(2) }} -->
         </h4>
     </div>
 </template>
@@ -31,10 +32,7 @@ export default {
     name: 'ModuleProductInfo',
     components: { Rating },
     props: {
-        product: {
-            type: Object,
-            default: () => {}
-        }
+        product: ''
     }
 };
 </script>

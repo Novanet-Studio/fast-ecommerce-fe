@@ -5,13 +5,13 @@
             <div class="ps-container">
                 <div class="ps-page__container">
                     <div class="ps-page__left">
-                        <product-detail-fullwidth v-if="product !== null" />
+                        <product-detail-fullwidth v-if="product !== null"  :product="product"/>
                     </div>
                     <div class="ps-page__right">
-                        <product-widgets
+                        <!-- <product-widgets
                             v-if="collections !== null"
                             collection-slug="widget_same_brand"
-                        />
+                        /> -->
                     </div>
                 </div>
                 <!-- <customer-bought
@@ -19,11 +19,11 @@
                     layout="fullwidth"
                     collection-slug="customer_bought"
                 /> -->
-                <related-product
+                <!-- <related-product
                     v-if="collections !== null"
                     layout="fullwidth"
                     collection-slug="shop-recommend-items"
-                />
+                /> -->
             </div>
         </div>
     </div>
@@ -31,6 +31,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import ProductoRepository from '~/repositories/ProductoRepository';
 import ProductDetailFullwidth from '~/components/elements/detail/ProductDetailFullwidth';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import CustomerBought from '~/components/partials/product/CustomerBought';
@@ -50,19 +51,19 @@ export default {
         BreadCrumb,
         ProductDetailFullwidth
     },
-
+    data() {
+        return {
+            product: '',
+            productId: this.$route.params.id,
+            breadCrumb: null,
+            pageLoading: true,
+        }
+    },
     computed: {
         ...mapState({
             collections: state => state.collection.collections,
-            product: state => state.product.product
+            // product: state => state.product.product
         })
-    },
-    data() {
-        return {
-            productId: this.$route.params.id,
-            breadCrumb: null,
-            pageLoading: true
-        };
     },
     async created() {
         const queries = [
@@ -80,10 +81,7 @@ export default {
             'collection/getCollectionsBySlugs',
             queries
         );
-        const product = await this.$store.dispatch(
-            'product/getProductsById',
-            this.productId
-        );
+        const product = this.producto();
         this.breadCrumb = [
             {
                 text: 'Home',
@@ -94,12 +92,19 @@ export default {
                 url: '/shop'
             },
             {
-                text: product.title
+                text: this.product.name
             }
         ];
     },
     mounted() {
         this.$store.commit('app/setAppDrawer', false);
+    },
+    methods: {
+        async producto(){
+            const productoPorId = new ProductoRepository();
+            // return console.log(await productoPorId.GetProductById(this.productId).then(val=>{return this.product = val}));
+            return await productoPorId.GetProductById(this.productId).then(val=>{return this.product = val});
+        }
     }
 };
 </script>

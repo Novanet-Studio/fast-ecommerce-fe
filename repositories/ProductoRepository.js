@@ -21,9 +21,9 @@ export default class ProductRepository {
 
     async GetProductById(id){
         const response = await Repository.get(
-            `${baseUrl}/productos?id=${id}`
+            `${baseUrl}/productos?_where[id]=${id}`
         )
-        return response.data
+        return response.data[0]
 
     }
 
