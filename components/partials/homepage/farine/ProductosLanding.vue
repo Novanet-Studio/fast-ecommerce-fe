@@ -12,7 +12,7 @@
                 >
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="product in products">
-                            <p>HOLAAAAA {{ product.name }}</p>
+                            <p>{{ product.name }}</p>
                             <product-default :product="product" />
                         </div>
                     </div>

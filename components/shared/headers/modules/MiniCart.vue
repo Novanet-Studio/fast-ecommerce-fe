@@ -12,11 +12,9 @@
                     <loading />
                 </template>
                 <template v-else>
-                    <product-mini-cart
-                        v-for="product in cartProducts"
-                        :product="product"
-                        :key="product.id"
-                    />
+                    <div v-for="product in cartProducts" :key="product.id">
+                        <product-mini-cart :product="product"/>
+                    </div>
                 </template>
             </div>
             <div class="ps-cart__footer">
@@ -47,6 +45,7 @@
 </template>
 
 <script>
+import ProductoRepository from '~/repositories/ProductoRepository';
 import { mapState } from 'vuex';
 import { baseUrl } from '~/repositories/Repository';
 import ProductMiniCart from '~/components/elements/product/ProductMiniCart';
@@ -66,7 +65,8 @@ export default {
         baseUrl() {
             return baseUrl;
         }
-    }
+    },
+
 };
 </script>
 

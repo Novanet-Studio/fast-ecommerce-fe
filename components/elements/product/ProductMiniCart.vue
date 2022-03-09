@@ -32,10 +32,7 @@ export default {
     name: 'ProductMiniCart',
     components: { ModuleProductTitle, ModuleProductThumbnailImage },
     props: {
-        product: {
-            type: Object,
-            default: () => {}
-        }
+        product: ''
     },
     computed: {
         ...mapState({

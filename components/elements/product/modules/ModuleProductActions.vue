@@ -11,6 +11,7 @@
                 <i class="icon-bag2"></i>
             </a>
         </li>
+
         <li>
             <a
                 to="#"
@@ -50,15 +51,12 @@
 <script>
 
 import { mapState } from 'vuex';
+import HandlerActions from '~/repositories/HandlerActions';
 
 export default {
     name: 'ModuleProductActions',
     props: {
-        product: {
-            type: Object,
-            default: () => {
-            }
-        }
+        product: []
     },
     computed: {
         ...mapState({
@@ -75,11 +73,15 @@ export default {
             };
             this.$store.dispatch('cart/addProductToCart', item);
             this.getCartProduct(this.cartItems);
+            // this.getCartProduct(this.product);
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${this.product.title} has been added to your cart!`
+                text: `${this.product.name} has been added to your cart!`
             });
+            // const handler = new HandlerActions()
+            // handler.handleAddToCart(this.product)
+            console.log(this.$cookies.get('cart'))
         },
 
         handleAddItemToWishlist() {
@@ -91,7 +93,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Add to wishlist!',
-                text: `${this.product.title} has been added to your wishlist !`
+                text: `${this.product.name} has been added to your wishlist !`
             });
         },
 

@@ -1,7 +1,7 @@
 <template lang="html">
     <nuxt-link :to="`/product/${product.id}`">
         <img
-            :src="`${baseUrl}${product.image[0].formats.thumbnail.url}`"
+            <!-- :src="`${baseUrl}${product.image[0].formats.thumbnail.url}`" -->
             :alt="`${ product.name }`"
         />
     </nuxt-link>
@@ -12,15 +12,25 @@ import { baseUrl } from '~/repositories/Repository';
 export default {
     name: 'ModuleProductThumbnailImage',
     props: {
-        product: ''
+        product: []
+    },
+    mounted(){
+        this.src()
+        return this.product
     },
     computed: {
         baseUrl() {
             return baseUrl;
         },
+
+        // :src="`${baseUrl}${product.image[0].formats.thumbnail.url}`"
+
     },
-    mounted(){
-        console.log(this.product.image[0])
+    methods: {
+        src(){
+            let srcImg = this.baseUrl + this.product
+
+        }
     }
 
 

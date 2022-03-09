@@ -73,7 +73,6 @@ export default {
             return false;
         }
     },
-
     data: () => ({
         productRating: 5,
         productModal: false,
