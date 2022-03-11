@@ -59,21 +59,46 @@
 
 <script>
 import { mapState } from 'vuex';
+import { baseUrl } from '~/repositories/Repository';
+
 import ProductMiniCart from '~/components/elements/product/ProductMiniCart';
+import Loading from '~/components/elements/commons/Loading';
 
 export default {
     name: 'PanelShoppingCart',
     components: { ProductMiniCart },
+    data(){
+        return {
+            cartProducts: ''
+        }
+    },
     computed: {
         ...mapState({
             cart: state => state.cart,
-            cartProducts: state => state.product.cartProducts
-        })
+            loading: state => state.cart.loading,
+
+            cartItems: state => state.cart.cartItems,
+            // cartProducts: state => state.product.cartProducts,
+
+        }),
+        baseUrl() {
+            return baseUrl;
+        }
+
+    },
+    mounted(){
+        this.productos()
+        console.log(this.cartItems)
+        console.log(this.cartProducts)
     },
     methods: {
         handleClosePanel() {
             this.$store.commit('app/setCurrentDrawerContent', null);
             this.$store.commit('app/setAppDrawer', false);
+        },
+        async productos(){
+            this.cartProducts =  await this.$store.dispatch('product/getCartProducts', this.cartItems)
+           return this.cartProducts;
         }
     }
 };

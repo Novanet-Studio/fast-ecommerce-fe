@@ -43,7 +43,8 @@ export default {
     name: 'NavigationList',
     computed: {
         ...mapState({
-            appDrawer: state => state.app.appDrawer
+            appDrawer: state => state.app.appDrawer,
+            cartItems: state => state.cart.cartItems,
         })
     },
     data() {
