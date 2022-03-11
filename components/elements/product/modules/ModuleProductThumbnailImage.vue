@@ -3,6 +3,7 @@
         <img
             :src="`${baseUrl}${product.image[0].formats.thumbnail.url}`"
             :alt="`${ product.name }`"
+            class="img"
         />
     </nuxt-link>
 </template>
@@ -38,5 +39,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.img{
+    width: 180px;
+    height: 101px;
+}
 </style>

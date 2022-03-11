@@ -32,9 +32,26 @@ export default {
                     url: '/',
                     extraClass: 'menu-item-has-children',
                     subClass: 'sub-menu',
-                    // subMenu: [
-                    // ]
-                }
+                },
+                {
+                    text: 'Nosotros',
+                    url: '/page/about-us',
+                    extraClass: 'menu-item-has-children',
+                    subClass: 'sub-menu',
+                },
+                {
+                    text: 'Productos',
+                    url: '/shop',
+                    extraClass: 'menu-item-has-children',
+                    subClass: 'sub-menu',
+                },
+                {
+                    text: 'Contactanos',
+                    url: '/page/contact-us',
+                    extraClass: 'menu-item-has-children',
+                    subClass: 'sub-menu',
+                },
+
             ]
         };
     }

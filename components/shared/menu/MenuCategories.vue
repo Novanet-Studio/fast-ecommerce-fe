@@ -2,7 +2,7 @@
     <ul class="menu--dropdown">
         <template v-for="item in categories">
             <li :key="item.id">
-                <nuxt-link to="/product">
+                <nuxt-link :to="`/shop/${item.id}`">
                     {{ item.name }}
                 </nuxt-link>
             </li>

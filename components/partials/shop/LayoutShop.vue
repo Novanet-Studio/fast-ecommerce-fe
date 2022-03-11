@@ -84,6 +84,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import ProductRepository from '~/repositories/ProductoRepository';
 import ProductDefault from '~/components/elements/product/ProductDefault';
 import RecommendItems from '~/components/partials/shop/sections/RecommendItems';
 import BestSaleItems from '~/components/partials/shop/sections/BestSaleItems';
@@ -94,7 +95,7 @@ export default {
     components: { ProductWide, BestSaleItems, RecommendItems, ProductDefault },
     computed: {
         ...mapState({
-            products: state => state.product.products,
+            // products: state => state.product.products,
             total: state => state.product.total,
             queries: state => state.collection.queries
         }),
@@ -104,15 +105,20 @@ export default {
             } else {
                 return parseInt(this.total / 12 + 1);
             }
-        }
+        },
     },
     data() {
         return {
             listView: false,
             page: 1,
-            pageSize: 12
+            pageSize: 12, 
+            products: ''
         };
     },
+    mounted(){
+        this.productos();
+        console.log(this.queries)
+    }, 
     methods: {
         async handleChangePagination(value) {
             const params = {
@@ -123,7 +129,12 @@ export default {
         },
         handleChangeViewMode() {
             this.listView = !this.listView;
+        },
+        async productos(){
+            const productos = new ProductRepository();
+           return await productos.GetProducts().then(val => {return this.products = val});
         }
+
     }
 };
 </script>
