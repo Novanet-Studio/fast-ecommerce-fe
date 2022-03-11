@@ -27,7 +27,7 @@ export default {
     name: 'PanelCategories',
     data() {
         return {
-            categories: ''
+            categories: '',
         }
     },
     mounted(){
@@ -41,7 +41,8 @@ export default {
         async categorias(){
             var categorias = new CategoryRepository();
             return await categorias.GetCategories().then(val=>{this.categories = val})
-        }
+        },
+
 
     }
 };

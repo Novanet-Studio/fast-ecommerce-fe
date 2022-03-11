@@ -14,7 +14,7 @@
                 @click.prevent="handleOpenDrawer('categories')"
             >
                 <i class="icon-list4"></i>
-                <span> Categories</span>
+                <span> Categorias</span>
             </a>
 
             <!-- <a

@@ -23,7 +23,48 @@
                 </div>
             </div> -->
             <v-list class="menu--mobile">
-                <template v-for="menuItem in menu">
+                <v-list-item>
+                    <v-list-item-content>
+                        <nuxt-link
+                            to="/"
+                            @click="handleClosePanel"
+                        >
+                            Inicio
+                        </nuxt-link>
+                    </v-list-item-content>
+                </v-list-item>
+                <template v-for="categoria in categories">
+                    <v-list-group v-if="categoria.name != 'Inicio' " no-action>
+                        <template v-slot:activator>
+                            <v-list-item-content>
+                                <nuxt-link
+                                    to="/"
+                                    @click="handleClosePanel"
+                                >
+                                    {{ categoria.name }}
+                                </nuxt-link>
+                            </v-list-item-content>
+                        </template>
+                        <v-list>
+                            <template v-for="producto in products">
+                                <div v-if="categoria.id == producto.category.id">
+                                    <template>
+                                        <v-list-item-content>
+                                            <nuxt-link
+                                                :to="`/product/${producto.id}`"
+                                                @click="handleClosePanel"
+                                                class="productoCat"
+                                            >
+                                                {{ producto.name }}
+                                            </nuxt-link>
+                                        </v-list-item-content>
+                                    </template>
+                                </div>
+                            </template>
+                        </v-list>
+                    </v-list-group>
+                </template>
+                <!-- <template v-for="menuItem in menu">
                     <v-list-group v-if="menuItem.subMenu" no-action>
                         <template v-slot:activator>
                             <v-list-item-content>
@@ -44,7 +85,7 @@
                                     :to="menuItem.url"
                                     @click="handleClosePanel"
                                 >
-                                    {{ menuItem.text }}
+                                    {{ menuItem.text }} hola
                                 </nuxt-link>
                             </v-list-item-content>
                         </template>
@@ -57,7 +98,7 @@
                                                 :to="menuItem.url"
                                                 @click="handleClosePanel"
                                             >
-                                                {{ megaItem.heading }}
+                                                {{ megaItem.heading }} hola2
                                             </nuxt-link>
                                         </v-list-item-content>
                                     </template>
@@ -74,18 +115,21 @@
                                 :to="menuItem.url"
                                 @click="handleClosePanel"
                             >
-                                {{ menuItem.text }}
+                                {{ menuItem.text }} holaaa
                             </nuxt-link>
                         </v-list-item-content>
                     </v-list-item>
-                </template>
+                </template> -->
             </v-list>
         </div>
     </div>
 </template>
 
 <script>
-import { mainMenu } from '~/static/data/menu.json';
+import  CategoryRepository from '~/repositories/CategoryRepository';
+import  ProductoRepository from '~/repositories/ProductoRepository';
+
+// import { mainMenu } from '~/static/data/menu.json';
 import MobileSubmenu from '~/components/shared/mobile/modules/MobileSubmenu';
 import MobileCurrencySwitcher from '~/components/shared/mobile/modules/MobileCurrencySwitcher';
 import MobileLangugeSwitcher from '~/components/shared/mobile/modules/MobileLangugeSwitcher';
@@ -96,19 +140,44 @@ export default {
         MobileCurrencySwitcher,
         MobileSubmenu
     },
-    computed: {
-        menu() {
-            return mainMenu;
+    data() {
+        return {
+            categories: '',
+            products: ''
         }
     },
+    mounted(){
+        this.categorias()
+        this.productos()
+    },
+
+    // computed: {
+    //     menu() {
+    //         return mainMenu;
+    //     }
+    // },
     methods: {
         handleClosePanel() {
             console.log('test');
             this.$store.commit('app/setCurrentDrawerContent', null);
             this.$store.commit('app/setAppDrawer', false);
+        }, 
+        async categorias(){
+            var categorias = new CategoryRepository();
+            return await categorias.GetCategories().then(val=>{this.categories = val})
+        },
+        async productos(){
+            const productoPorId = new ProductoRepository();
+            // return console.log(await productoPorId.GetProductById(this.productId).then(val=>{return this.product = val}));
+            return await productoPorId.GetProducts().then(val=>{return this.products = val});
         }
+
     }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.productoCat{
+    margin-left: 35px!important;
+}
+</style>

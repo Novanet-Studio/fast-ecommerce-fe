@@ -7,7 +7,7 @@ export default class ProductRepository {
 
     async GetProducts(){
         const response = await Repository.get(
-            `${baseUrl}/products`
+            `${baseUrl}/productos`
         )
         return response.data;
     }
