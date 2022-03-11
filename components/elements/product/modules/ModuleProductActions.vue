@@ -65,15 +65,15 @@ export default {
         }),
     },
     methods: {
-        handleAddToCart() {
+        async handleAddToCart() {
             let item = {
                 id: this.product.id,
                 quantity: 1,
                 price: this.product.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
-            this.getCartProduct(this.cartItems);
-            // this.getCartProduct(this.product);
+            var respuesta = await this.$store.dispatch('product/getCartProducts', this.cartItems)
+            // this.getCartProduct(this.cartItems);
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
@@ -82,6 +82,8 @@ export default {
             // const handler = new HandlerActions()
             // handler.handleAddToCart(this.product)
             console.log(this.$cookies.get('cart'))
+            console.log(this.cartItems)
+            console.log(respuesta)
         },
 
         handleAddItemToWishlist() {

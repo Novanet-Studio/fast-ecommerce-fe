@@ -12,9 +12,7 @@
                     <loading />
                 </template>
                 <template v-else>
-                    <div v-for="product in cartProducts" :key="product.id">
-                        <product-mini-cart :product="product"/>
-                    </div>
+                    <product-mini-cart v-for="product in cartProducts" :key="product.id" :product="product"/>
                 </template>
             </div>
             <div class="ps-cart__footer">
