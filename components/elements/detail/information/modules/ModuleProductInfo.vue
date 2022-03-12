@@ -4,11 +4,11 @@
         <h1>{{ product.name }}</h1>
         <div class="ps-product__meta">
             <p>
-                Brand:
+                Tipo:
                 <nuxt-link to="/shop">
-                    <!-- <a class="ml-2 text-capitalize">
-                        {{ product.vendor }}
-                    </a> -->
+                    <a class="ml-2 text-capitalize">
+                        {{ product.category.name }}
+                    </a>
                 </nuxt-link>
             </p>
             <div class="ps-product__rating">

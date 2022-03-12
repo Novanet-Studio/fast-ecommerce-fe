@@ -2,15 +2,15 @@
     <div class="ps-section--shopping ps-shopping-cart">
         <div class="container">
             <div class="ps-section__header">
-                <h1>Shopping Cart</h1>
+                <h1>Carrito de compras</h1>
             </div>
             <div class="ps-section__content">
-                <table-shopping-cart v-if="cartProducts !== null" />
-                <p v-else>Cart empty</p>
+                <table-shopping-cart v-if="cartProducts !== '' " />
+                <p v-else>Carrito vacio</p>
                 <div class="ps-section__cart-actions">
                     <nuxt-link to="/shop" class="ps-btn">
                         <i class="icon-arrow-left mr-2"></i>
-                        Back to Shop
+                        Regresar
                     </nuxt-link>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 <div class="row justify-content-end">
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                         <figure>
-                            <figcaption>Coupon Discount</figcaption>
+                            <figcaption>Cupon de descuento</figcaption>
                             <div class="form-group">
                                 <input
                                     class="form-control"
@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <button class="ps-btn ps-btn--outline">
-                                    Apply
+                                    Aplicar
                                 </button>
                             </div>
                         </figure>
@@ -53,7 +53,7 @@
                                                 :to="`/product/${product.id}`"
                                                 class="ps-product__title"
                                             >
-                                                {{ product.title }}
+                                                {{ product.name }}
                                                 <br />
                                                 x
                                                 {{ cartItems[index].quantity }}
@@ -70,7 +70,7 @@
                             to="/account/checkout"
                             class="ps-btn ps-btn--fullwidth"
                         >
-                            Proceed to checkout
+                            Proceder a la compra
                         </nuxt-link>
                     </div>
                 </div>
@@ -87,13 +87,33 @@ import TableShoppingCart from '~/components/partials/account/modules/TableShoppi
 export default {
     name: 'ShoppingCart',
     components: { TableShoppingCart, ProductShoppingCart },
+    data(){
+        return {
+            cartProducts: ''
+        }
+    },
     computed: {
         ...mapState({
-            cartItems: state => state.cart.cartItems,
+            cart: state => state.cart,
             total: state => state.cart.total,
             amount: state => state.cart.amount,
-            cartProducts: state => state.product.cartProducts
+            cartItems: state => state.cart.cartItems,
+            // cartProducts: state => state.product.cartProducts
         })
+    },
+    mounted(){
+        // console.log(this.cart)
+        // console.log(this.cartItems)
+        console.log(this.cartProducts)
+        this.cartProductos()
+    },
+    methods: {
+        async cartProductos(){
+            if(this.cart.cartItems.length > 0){
+                this.cartProducts =  await this.$store.dispatch('product/getCartProducts', this.cartItems)
+               return this.cartProducts;
+            }        
+        }
     }
 };
 </script>

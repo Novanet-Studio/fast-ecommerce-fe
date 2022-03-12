@@ -44,6 +44,7 @@ export default {
     computed: {
         ...mapState({
             appDrawer: state => state.app.appDrawer,
+            cart: state => state.cart,
             cartItems: state => state.cart.cartItems,
         })
     },
@@ -52,15 +53,20 @@ export default {
             drawer: true
         };
     },
+    mounted(){
+        this.loadCartProducts()
+    },
     methods: {
         async loadCartProducts() {
-            const cookieCart = this.$cookies.get('cart', { parseJSON: true });
-            let queries = [];
-            cookieCart.cartItems.forEach(item => {
-                queries.push(item.id);
-            });
-            if (queries.length > 0) {
-                await this.$store.dispatch('product/getCartProducts', queries);
+            if(this.cart.cartItems.length > 0){
+                const cookieCart = this.$cookies.get('cart', { parseJSON: true });
+                let queries = [];
+                cookieCart.cartItems.forEach(item => {
+                    queries.push(item.id);
+                });
+                if (queries.length > 0) {
+                    await this.$store.dispatch('product/getCartProducts', queries);
+                }
             }
         },
         handleOpenDrawer(drawer) {

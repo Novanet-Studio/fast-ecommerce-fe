@@ -60,6 +60,10 @@ export default {
             cartProducts: state => state.product.cartProducts
         })
     },
+    mounted(){
+        this.loadCartProducts()
+        console.log(this.cartProducts)
+    },
     methods: {
         async loadCartProducts() {
             const cookieCart = this.$cookies.get('cart', { parseJSON: true });
@@ -67,6 +71,7 @@ export default {
             cookieCart.cartItems.forEach(item => {
                 queries.push(item.id);
             });
+            return console.log(queries);
             if (this.cartItems.length > 0) {
                 await this.$store.dispatch('product/getCartProducts', queries);
             } else {

@@ -16,18 +16,11 @@
                             <div
                                 class="ps-banner bg--cover"
                                 :style="{
-                                    backgroundImage: `url(/img/slider/home-1/slide-2.jpg)`
+                                    backgroundImage: `url(/img/slider/home-1/slide-1.jpeg)`
                                 }"
                             ></div>
                         </div>
-                        <div class="swiper-slide">
-                            <div
-                                class="ps-banner bg--cover"
-                                :style="{
-                                    backgroundImage: `url(/img/slider/home-1/slide-3.jpg)`
-                                }"
-                            ></div>
-                        </div>
+
                     </div>
                     <!--Carousel controls-->
                     <div class="swiper-nav">
@@ -46,13 +39,13 @@
             <div class="ps-section__right">
                 <nuxt-link to="/shop" class="ps-collection">
                     <img
-                        src="/img/slider/home-1/promotion-1.jpg"
+                        src="/img/slider/home-1/promotion-1.jpeg"
                         alt="martfury"
                     />
                 </nuxt-link>
                 <nuxt-link to="/shop" class="ps-collection">
                     <img
-                        src="/img/slider/home-1/promotion-2.jpg"
+                        src="/img/slider/home-1/promotion-2.jpeg"
                         alt="martfury"
                     />
                 </nuxt-link>

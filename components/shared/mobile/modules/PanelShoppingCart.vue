@@ -88,8 +88,6 @@ export default {
     },
     mounted(){
         this.productos()
-        console.log(this.cartItems)
-        console.log(this.cartProducts)
     },
     methods: {
         handleClosePanel() {
@@ -97,8 +95,10 @@ export default {
             this.$store.commit('app/setAppDrawer', false);
         },
         async productos(){
-            this.cartProducts =  await this.$store.dispatch('product/getCartProducts', this.cartItems)
-           return this.cartProducts;
+            if(this.cart.cartItems.length > 0){
+                this.cartProducts =  await this.$store.dispatch('product/getCartProducts', this.cartItems)
+               return this.cartProducts;
+            }
         }
     }
 };

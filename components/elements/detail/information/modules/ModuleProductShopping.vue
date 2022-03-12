@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="ps-product__shopping">
         <figure>
-            <figcaption>Quantity</figcaption>
+            <figcaption>Cantidad</figcaption>
             <div class="form-group--number">
                 <button class="up" @click.prevent="handleIncreaseQuantity">
                     <i class="fa fa-plus"></i>
@@ -22,10 +22,10 @@
             href="#"
             @click.prevent="handleAddToCart"
         >
-            Add to cart
+            Agregar al carrito
         </a>
         <a class="ps-btn" href="#" @click.prevent="">
-            Buy Now
+            Comprar
         </a>
         <div class="ps-product__actions">
             <a href="#">
