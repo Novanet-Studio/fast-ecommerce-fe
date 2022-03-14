@@ -67,18 +67,13 @@ import Loading from '~/components/elements/commons/Loading';
 export default {
     name: 'PanelShoppingCart',
     components: { ProductMiniCart },
-    data(){
-        return {
-            cartProducts: ''
-        }
-    },
     computed: {
         ...mapState({
             cart: state => state.cart,
             loading: state => state.cart.loading,
 
             cartItems: state => state.cart.cartItems,
-            // cartProducts: state => state.product.cartProducts,
+            cartProducts: state => state.product.cartProducts,
 
         }),
         baseUrl() {
@@ -87,19 +82,35 @@ export default {
 
     },
     mounted(){
-        this.productos()
+        this.loadCartProducts()
     },
     methods: {
         handleClosePanel() {
             this.$store.commit('app/setCurrentDrawerContent', null);
             this.$store.commit('app/setAppDrawer', false);
         },
-        async productos(){
-            if(this.cart.cartItems.length > 0){
-                this.cartProducts =  await this.$store.dispatch('product/getCartProducts', this.cartItems)
-               return this.cartProducts;
+        async loadCartProducts() {
+            console.log('di click')
+            const cookieCart = this.$cookies.get('cart', { parseJSON: true });
+            let queries = [];
+            cookieCart.cartItems.forEach(item => {
+                queries.push(item.id);
+            });
+            // return console.log(queries)
+            if (this.cartItems.length > 0) {
+                const response = await this.$store.dispatch(
+                    'product/getCartProducts',
+                    queries
+                );
+                // return console.log(response)
+                if (response) {
+                    this.$store.commit('cart/setLoading', false);
+                }
+            } else {
+                this.$store.commit('product/setCartProducts', null);
             }
-        }
+        },
+
     }
 };
 </script>
