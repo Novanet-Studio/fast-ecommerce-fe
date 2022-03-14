@@ -56,7 +56,7 @@
                                                 {{ product.name }}
                                                 <br />
                                                 x
-                                                {{ cartItems[index].quantity }}
+                                                {{ cartItems.quantity }}
                                             </nuxt-link>
                                         </span>
                                     </li>
@@ -99,20 +99,22 @@ export default {
             amount: state => state.cart.amount,
             cartItems: state => state.cart.cartItems,
             // cartProducts: state => state.product.cartProducts
-        })
+        }),
     },
-    mounted(){
-        // console.log(this.cart)
-        // console.log(this.cartItems)
-        console.log(this.cartProducts)
+    async mounted(){
         this.cartProductos()
+        // console.log(this.cart)
+        console.log(this.cartItems[0])
+        console.log(this.cartProducts)
+        // console.log(this.cartItems)
     },
     methods: {
         async cartProductos(){
             if(this.cart.cartItems.length > 0){
-                this.cartProducts =  await this.$store.dispatch('product/getCartProducts', this.cartItems)
-               return this.cartProducts;
-            }        
+                return await this.$store.dispatch('product/getCartProducts', this.cartItems).then(val => {
+                    return this.cartProducts = val
+                });
+            }
         }
     }
 };

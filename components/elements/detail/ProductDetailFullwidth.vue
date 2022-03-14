@@ -1,7 +1,6 @@
 <template lang="html">
     <div class="ps-product--detail ps-product--fullwidth">
         <div class="ps-product__header">
-            <!-- {{ product }} -->
             <thumbnail-default :product="product" />
             <information-default :product="product" />
         </div>
@@ -16,13 +15,9 @@ import ThumbnailDefault from '~/components/elements/detail/thumbnail/ThumbnailDe
 export default {
     name: 'ProductDetailFullwidth',
     components: { ThumbnailDefault, InformationDefault, DefaultDescription },
-    props:{
-        product: {
-
-        }
+    props: {
+        product: '',
     },
-
-
 
 };
 </script>

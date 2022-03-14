@@ -34,11 +34,6 @@ export default {
     props: {
         product: '',
     },
-    computed: {
-        ...mapState({
-            // product: state => state.product.product
-        })
-    }
 };
 </script>
 

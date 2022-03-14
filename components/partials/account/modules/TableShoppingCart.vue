@@ -29,7 +29,7 @@
                 </td>
                 <td data-label="Total">
                     ${{
-                        (cartItems[index].quantity * product.price).toFixed(2)
+                        (cartItems.quantity * product.price).toFixed(2)
                     }}
                 </td>
                 <td data-label="Action">
@@ -52,6 +52,11 @@ import ProductShoppingCart from '~/components/elements/product/ProductShoppingCa
 export default {
     name: 'TableShoppingCart',
     components: { ProductShoppingCart },
+    data(){
+        return {
+            // cartProducts: ''
+        }
+    },
     computed: {
         ...mapState({
             cartItems: state => state.cart.cartItems,
@@ -61,8 +66,8 @@ export default {
         })
     },
     mounted(){
-        this.loadCartProducts()
-        console.log(this.cartProducts)
+        // this.loadCartProducts()
+        // console.log(this.cartProducts)
     },
     methods: {
         async loadCartProducts() {
@@ -71,8 +76,9 @@ export default {
             cookieCart.cartItems.forEach(item => {
                 queries.push(item.id);
             });
-            return console.log(queries);
+            // return console.log(queries);
             if (this.cartItems.length > 0) {
+                // await this.$store.dispatch('product/getCartProducts', queries);
                 await this.$store.dispatch('product/getCartProducts', queries);
             } else {
                 this.$store.commit('product/setCartProducts', null);

@@ -1,12 +1,12 @@
 <template lang="html">
     <div class="ps-product__desc">
-        <p>
+        <!-- <p>
             Sold By:
             <nuxt-link to="/shop">
                 <strong> vendedor</strong>
-                <!-- <strong> {{ product.vendor }}</strong> -->
+                <strong> {{ product.vendor }}</strong>
             </nuxt-link>
-        </p>
+        </p> -->
         <ul class="">
             <li class="lista-des">{{ product.descripcion }}</li>
         </ul>

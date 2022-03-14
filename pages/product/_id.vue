@@ -5,7 +5,9 @@
             <div class="ps-container">
                 <div class="ps-page__container">
                     <div class="ps-page__left">
+                        <!-- {{ product }} -->
                         <product-detail-fullwidth v-if="product !== null"  :product="product"/>
+                        <!-- <product-detail-fullwidth  :product="product"/> -->
                     </div>
                     <div class="ps-page__right">
                         <!-- <product-widgets
@@ -53,18 +55,21 @@ export default {
     },
     data() {
         return {
-            product: '',
             productId: this.$route.params.id,
             breadCrumb: null,
             pageLoading: true,
+            product: {
+                Type: Object,
+                default: {}
+            },
         }
     },
     computed: {
         ...mapState({
             collections: state => state.collection.collections,
             // product: state => state.product.product
-        })
-    },
+        }),
+    }, 
     async created() {
         const queries = [
             'customer_bought',
@@ -81,7 +86,6 @@ export default {
             'collection/getCollectionsBySlugs',
             queries
         );
-        const product = this.producto();
         this.breadCrumb = [
             {
                 text: 'Home',
@@ -92,18 +96,22 @@ export default {
                 url: '/shop'
             },
             {
-                text: this.product.name
+                // text: this.product.name
             }
         ];
     },
-    mounted() {
+    async mounted() {
         this.$store.commit('app/setAppDrawer', false);
+        this.product =  await this.producto();
+
+        // console.log(this.product)
     },
     methods: {
         async producto(){
             const productoPorId = new ProductoRepository();
             // return console.log(await productoPorId.GetProductById(this.productId).then(val=>{return this.product = val}));
-            return await productoPorId.GetProductById(this.productId).then(val=>{return this.product = val});
+            // return await productoPorId.GetProductById(this.productId);
+            return await productoPorId.GetProductById(this.productId).then(val=>{return val});
         }
     }
 };

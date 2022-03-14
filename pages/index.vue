@@ -78,11 +78,6 @@ export default {
     mounted(){
         this.categorias()
     },
-    computed: {
-        // ...mapState({
-        //     collections: state => state.collection.collections
-        // })
-    },
     methods: {
         async categorias(){
             const categorias = new CategoryRepository();
