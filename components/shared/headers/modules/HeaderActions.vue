@@ -34,7 +34,8 @@ export default {
             wishlistTotal: state => state.wishlist.total,
             compareTotal: state => state.compare.total
         })
-    }
+    },
+
 };
 </script>
 

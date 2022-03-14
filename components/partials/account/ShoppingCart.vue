@@ -87,35 +87,46 @@ import TableShoppingCart from '~/components/partials/account/modules/TableShoppi
 export default {
     name: 'ShoppingCart',
     components: { TableShoppingCart, ProductShoppingCart },
-    data(){
-        return {
-            cartProducts: ''
-        }
-    },
+    // data(){
+    //     return {
+    //         cartProducts: ''
+    //     }
+    // },
     computed: {
         ...mapState({
             cart: state => state.cart,
             total: state => state.cart.total,
             amount: state => state.cart.amount,
             cartItems: state => state.cart.cartItems,
-            // cartProducts: state => state.product.cartProducts
+            cartProducts: state => state.product.cartProducts
         }),
     },
     async mounted(){
-        this.cartProductos()
-        // console.log(this.cart)
-        console.log(this.cartItems[0])
-        console.log(this.cartProducts)
-        // console.log(this.cartItems)
+        this.loadCartProducts()
     },
     methods: {
-        async cartProductos(){
-            if(this.cart.cartItems.length > 0){
-                return await this.$store.dispatch('product/getCartProducts', this.cartItems).then(val => {
-                    return this.cartProducts = val
-                });
+        async loadCartProducts() {
+            console.log('di click')
+            const cookieCart = this.$cookies.get('cart', { parseJSON: true });
+            let queries = [];
+            cookieCart.cartItems.forEach(item => {
+                queries.push(item.id);
+            });
+            // return console.log(queries)
+            if (this.cartItems.length > 0) {
+                const response = await this.$store.dispatch(
+                    'product/getCartProducts',
+                    queries
+                );
+                // return console.log(response)
+                if (response) {
+                    this.$store.commit('cart/setLoading', false);
+                }
+            } else {
+                this.$store.commit('product/setCartProducts', null);
             }
-        }
+        },
+
     }
 };
 </script>

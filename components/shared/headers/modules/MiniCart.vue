@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="ps-cart--mini">
-        <a class="header__extra" href="#">
+        <a class="header__extra" href="#" @click="loadCartProducts">
             <i class="icon-bag2"></i>
             <span>
                 <i>{{ total }}</i>
@@ -52,6 +52,11 @@ import Loading from '~/components/elements/commons/Loading';
 export default {
     name: 'MiniCart',
     components: { Loading, ProductMiniCart },
+    // data(){
+    //     return {
+    //         cartProducts: ''
+    //     }
+    // },
     computed: {
         ...mapState({
             total: state => state.cart.total,
@@ -62,35 +67,57 @@ export default {
         }),
         baseUrl() {
             return baseUrl;
-        }
+        },
     },
+    methods: {
+        async loadCartProducts() {
+            console.log('di click')
+            const cookieCart = this.$cookies.get('cart', { parseJSON: true });
+            let queries = [];
+            cookieCart.cartItems.forEach(item => {
+                queries.push(item.id);
+            });
+            if (this.cartItems.length > 0) {
+                const response = await this.$store.dispatch(
+                    'product/getCartProducts',
+                    queries
+                );
+                // return console.log(response)
+                if (response) {
+                    this.$store.commit('cart/setLoading', false);
+                }
+            } else {
+                this.$store.commit('product/setCartProducts', null);
+            }
+        },
+    }
 
 };
 </script>
 
 <style lang="scss" scoped>
-.ps-cart__items {
-    min-height: 150px;
-    &.no-products {
-        min-height: 50px;
-    }
-}
-.ps-cart__footer {
-    figure {
-        display: flex;
-        flex-flow: row nowrap;
-        margin-right: 0 -5px;
-
-        > * {
-            flex-basis: 100%;
-            max-width: 50%;
-            padding: 0 5px;
-        }
-
-        .ps-btn {
-            width: 100%;
-            text-align: center;
+    .ps-cart__items {
+        min-height: 150px;
+        &.no-products {
+            min-height: 50px;
         }
     }
-}
+    .ps-cart__footer {
+        figure {
+            display: flex;
+            flex-flow: row nowrap;
+            margin-right: 0 -5px;
+
+            > * {
+                flex-basis: 100%;
+                max-width: 50%;
+                padding: 0 5px;
+            }
+
+            .ps-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
 </style>

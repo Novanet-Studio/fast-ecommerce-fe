@@ -99,11 +99,17 @@ export const actions = {
         let query = '';
         payload.forEach(item => {
             if (query === '') {
-                query = `id=${item.id}`;
+                query = `id=${item}`;
             } else {
-                query = query + `&id=${item.id}`;
+                query = query + `&id=${item}`;
             }
+            // if (query === '') {
+            //     query = `id=${item.id}`;
+            // } else {
+            //     query = query + `&id=${item.id}`;
+            // }
         });
+        // return console.log(query)
         const reponse = await Repository.get(`${baseUrl}/productos?${query}`)
             .then(response => {
                 commit('setCartProducts', response.data);
