@@ -128,7 +128,7 @@ export default {
                     this.$router.push('/');
                     alert('se ha registrado el ausuario')
                 }else{
-                    alert('hubo un error, intente de nuevo mas tarde!')
+                    alert(respuesta.alert)
                 }
                 console.log(respuesta);
 

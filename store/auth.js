@@ -75,7 +75,7 @@ export const actions = {
                 console.log('An error occurred:', error.response);
                 if(error){
                     var alerta = {
-                        alert: 'el username o clave son incorrectos',
+                        alert: 'el usuario o correo ya existe',
                         error: JSON.stringify(error.response)
                     }
                     return alerta;
