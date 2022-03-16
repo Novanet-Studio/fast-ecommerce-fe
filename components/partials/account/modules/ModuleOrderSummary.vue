@@ -16,7 +16,7 @@
                         :key="product.id"
                         class="ps-product__title"
                     >
-                        {{ product.title }}
+                        Cachitos {{ product.name }}
                         <br />
                         {{ cartItems[index].quantity }} x ${{
                             product.price.toFixed(2)

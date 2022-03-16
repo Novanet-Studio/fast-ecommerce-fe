@@ -4,9 +4,9 @@
             Contact information
         </h3>
         <div class="form-group">
-            <label>Email or phone number <sup>*</sup></label>
+            <label>Email or numero telefonico<sup>*</sup></label>
             <v-text-field
-                placeholder="Email or phone number"
+                placeholder="Email or numero telefonico"
                 outlined
                 height="50"
             />
@@ -14,18 +14,18 @@
         <div class="form-group">
             <v-checkbox
                 color="success"
-                label="Keep me up to date on news and exclusive offers?"
+                label="Quiero recibir más ofertas?"
             />
         </div>
         <h3 class="ps-form__heading">
-            Shipping address
+            Informacion de envio
         </h3>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>First Name </label>
+                    <label>Nombre</label>
                     <v-text-field
-                        placeholder="First Name"
+                        placeholder="Nombre"
                         outlined
                         height="50"
                     />
@@ -33,9 +33,9 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Last Name </label>
+                    <label>Apellido </label>
                     <v-text-field
-                        placeholder="Last Name"
+                        placeholder="Apellido"
                         outlined
                         height="50"
                     />
@@ -43,13 +43,13 @@
             </div>
         </div>
         <div class="form-group">
-            <label>Address</label>
-            <v-text-field placeholder="Address" outlined height="50" />
+            <label>Dirección</label>
+            <v-text-field placeholder="Dirección" outlined height="50" />
         </div>
         <div class="form-group">
-            <label>Apartment</label>
+            <label>Apartamento</label>
             <v-text-field
-                placeholder="Apartment, suite, etc. (optional)"
+                placeholder="Apartamento, casa, etc. (opcional)"
                 outlined
                 height="50"
             />
@@ -57,15 +57,15 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>City</label>
-                    <v-text-field placeholder="City" outlined height="50" />
+                    <label>Ciudad</label>
+                    <v-text-field placeholder="Ciudad" outlined height="50" />
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Postcode</label>
+                    <label>Codigo Postal</label>
                     <v-text-field
-                        placeholder="Postal Code"
+                        placeholder="Codigo Postal"
                         outlined
                         height="50"
                     />
@@ -75,17 +75,17 @@
         <div class="form-group">
             <v-checkbox
                 color="success"
-                label="Save this information for next time"
+                label="Guardar esta información"
             />
         </div>
         <div class="ps-form__submit">
             <nuxt-link to="/account/shopping-cart">
                 <i class="icon-arrow-left mr-1"></i>
-                Return to shopping cart
+                Regresar al carrito de compra
             </nuxt-link>
             <div class="ps-block__footer">
                 <button class="ps-btn" @click="handleToShipping">
-                    Continue to shipping
+                    Continuar comprando
                 </button>
             </div>
         </div>
