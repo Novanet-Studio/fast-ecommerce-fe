@@ -75,15 +75,19 @@ export default {
     computed: {
         usernameErrors() {
             const errors = [];
-            if (!this.$v.username.$dirty) return errors;
-            !this.$v.username.required && errors.push('This field is required');
-            return errors;
+            if(this.username){
+                if (!this.$v.username.$dirty) return errors;
+                !this.$v.username.required && errors.push('This field is required');
+                return errors;
+            }
         },
         passwordErrors() {
             const errors = [];
-            if (!this.$v.password.$dirty) return errors;
-            !this.$v.password.required && errors.push('This field is required');
-            return errors;
+            if(this.password){
+                if (!this.$v.password.$dirty) return errors;
+                !this.$v.password.required && errors.push('This field is required');
+                return errors;
+            }
         }
     },
     data() {
