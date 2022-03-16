@@ -14,6 +14,11 @@ export const mutations = {
     setUser(state, payload){
         state.username = payload.username;
         state.password = payload.password;
+    },
+    setNewUser(state, payload){
+        state.username = payload.username;
+        state.email = payload.email;
+        state.password = payload.password;
     }
 };
 
@@ -45,12 +50,39 @@ export const actions = {
                 if(error){
                     var alerta = {
                         alert: 'el username o clave son incorrectos',
-                        error: JSON.stringify(error)
+                        error: JSON.stringify(error.response)
                     }
                     return alerta;
                 }
             });
 
         return response;
+    },
+    setNewUser({commit, state}, payload){
+        commit('setNewUser', payload);
+        const respuesta = axios
+            .post(`${baseUrl}/auth/local/register`, {
+                username: state.username,
+                email: state.email,
+                password: state.password,
+            })
+              .then(response => {
+                // Handle success.
+                return response.data;
+              })
+              .catch(error => {
+                // Handle error.
+                console.log('An error occurred:', error.response);
+                if(error){
+                    var alerta = {
+                        alert: 'el username o clave son incorrectos',
+                        error: JSON.stringify(error.response)
+                    }
+                    return alerta;
+                }
+
+              });
+        return respuesta;
+
     }
 };

@@ -113,16 +113,26 @@ export default {
         password: { required }
     },
     methods: {
-        handleSubmit() {
-            const data = {
-                username: this.username,
-                email: this.email,
-                password: this.password
-            }
-            return console.log(data)
+        async handleSubmit() {
             this.$v.$touch();
             if (!this.$v.$invalid) {
-                this.$router.push('/account/login');
+                const data = {
+                    username: this.username,
+                    email: this.email,
+                    password: this.password
+                }
+                const respuesta = await this.$store.dispatch('auth/setNewUser', data);
+                if(respuesta.jwt){
+                    //status usuario loggeado true
+                    this.$store.dispatch('auth/setAuthStatus', true)
+                    this.$router.push('/');
+                    alert('se ha registrado el ausuario')
+                }else{
+                    alert('hubo un error, intente de nuevo mas tarde!')
+                }
+                console.log(respuesta);
+
+
             }
         }
     }
