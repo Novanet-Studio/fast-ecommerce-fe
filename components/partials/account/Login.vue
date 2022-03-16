@@ -97,11 +97,24 @@ export default {
         password: { required }
     },
     methods: {
-        handleSubmit() {
+        async handleSubmit() {
+            
             this.$v.$touch();
+            const user = {
+                username: this.username,
+                password: this.password
+            }
             if (!this.$v.$invalid) {
-                this.$store.dispatch('auth/setAuthStatus', true);
-                this.$router.push('/');
+                var respuesta = await this.$store.dispatch('auth/getUser', user);
+                if(respuesta.jwt){
+                    this.$store.dispatch('auth/setAuthStatus', true)
+                    this.$router.push('/');
+                    console.log('logeado')
+                }else{
+                    alert(respuesta.alert)
+                    console.log('no esta logeado')
+                }
+                console.log(respuesta)
             }
         }
     }
