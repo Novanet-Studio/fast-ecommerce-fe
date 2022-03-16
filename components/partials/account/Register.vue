@@ -7,6 +7,17 @@
                     v-model="username"
                     :error-messages="usernameErrors"
                     @input="$v.username.$touch()"
+                    placeholder="Usario"
+                    class="ps-text-field"
+                    outlined
+                    height="50"
+                />
+            </div>
+            <div class="form-group">
+                <v-text-field
+                    v-model="email"
+                    :error-messages="emailErrors"
+                    @input="$v.email.$touch()"
                     placeholder="Email Address"
                     class="ps-text-field"
                     outlined
@@ -76,6 +87,12 @@ export default {
             !this.$v.username.required && errors.push('This field is required');
             return errors;
         },
+        emailErrors() {
+            const errors = [];
+            if (!this.$v.email.$dirty) return errors;
+            !this.$v.email.required && errors.push('This field is required');
+            return errors;
+        },
         passwordErrors() {
             const errors = [];
             if (!this.$v.password.$dirty) return errors;
@@ -86,15 +103,23 @@ export default {
     data() {
         return {
             username: null,
-            password: null
+            email: null,
+            password: null,
         };
     },
     validations: {
         username: { required },
+        email: { required },
         password: { required }
     },
     methods: {
         handleSubmit() {
+            const data = {
+                username: this.username,
+                email: this.email,
+                password: this.password
+            }
+            return console.log(data)
             this.$v.$touch();
             if (!this.$v.$invalid) {
                 this.$router.push('/account/login');
