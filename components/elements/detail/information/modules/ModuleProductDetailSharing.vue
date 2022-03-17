@@ -6,9 +6,6 @@
         <a class="twitter" href="#">
             <i class="fa fa-twitter"></i>
         </a>
-        <a class="google" href="#">
-            <i class="fa fa-google-plus"></i>
-        </a>
         <a class="linkedin" href="#">
             <i class="fa fa-linkedin"></i>
         </a>
