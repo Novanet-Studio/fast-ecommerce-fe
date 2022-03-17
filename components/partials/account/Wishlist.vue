@@ -72,6 +72,9 @@ export default {
             wishlistItems: state => state.product.wishlistItems
         })
     },
+    mounted(){
+        this.loadWishlist()
+    },
     methods: {
         handleAddToCart(product) {
             let item = {
@@ -83,7 +86,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${product.title} has been added to your cart!`
+                text: `${product.name} has been added to your cart!`
             });
         },
         handleRemoveItemFromWishlist(product) {
@@ -92,14 +95,15 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Remove Item!',
-                text: `${product.title} has been removed from your wishlist!`
+                text: `${product.name} has been removed from your wishlist!`
             });
         },
         async loadWishlist() {
             const wishlistItemsOnCookie = this.$cookies.get('wishlist', {
                 parseJSON: true
             });
-            if (wishlistItemsOnCookie) {
+            // return console.log(wishlistItemsOnCookie)
+            if (wishlistItemsOnCookie.items.length > 0) {
                 const queries = getListOfProductId(wishlistItemsOnCookie.items);
                 if (queries.length >= 0) {
                     const response = await this.$store.dispatch(
@@ -107,7 +111,10 @@ export default {
                         queries
                     );
                 }
+            }else{
+                this.$store.commit('product/setWishlistItems', false)
             }
+            // console.log(this.wishlistItems)
         }
     }
 };

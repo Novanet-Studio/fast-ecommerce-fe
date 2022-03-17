@@ -53,10 +53,11 @@ export const actions = {
             items: state.items,
             total: state.total
         };
-
+        
         this.$cookies.set('wishlist', params, {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         });
+        // return console.log(this.$cookies.get('wishlist'))
     }
 };
