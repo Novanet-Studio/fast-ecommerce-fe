@@ -29,7 +29,7 @@
                         <small>$ {{ amount }}</small>
                     </figcaption>
                 </figure>
-                <figure v-if="shipping === true">
+                <!-- <figure v-if="shipping === true">
                     <figcaption>
                         <strong>Shipping</strong>
                         <small>$ 20.00</small>
@@ -38,7 +38,7 @@
                 <figure v-else class="ps-block__shipping">
                     <h3>Shipping</h3>
                     <p>Calculated at next step</p>
-                </figure>
+                </figure> -->
             </div>
         </div>
     </div>

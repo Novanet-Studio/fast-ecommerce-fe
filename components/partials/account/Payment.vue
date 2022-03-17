@@ -11,7 +11,7 @@
                             <div class="ps-block__panel">
                                 <figure>
                                     <small>Contact</small>
-                                    <p>test@gmail.com</p>
+                                    <p>{{email}}</p>
                                     <nuxt-link to="/account/checkout">
                                         <a>Change</a>
                                     </nuxt-link>
@@ -19,14 +19,14 @@
                                 <figure>
                                     <small>Ship to</small>
                                     <p>
-                                        2015 South Street, Midland, Texas
+                                        {{ fullAddress }}
                                     </p>
                                     <nuxt-link to="/account/checkout">
                                         <a>Change</a>
                                     </nuxt-link>
                                 </figure>
                             </div>
-                            <h4>Shipping Method</h4>
+                            <!-- <h4>Shipping Method</h4>
                             <div class="ps-block__panel">
                                 <figure>
                                     <small>
@@ -34,7 +34,7 @@
                                     </small>
                                     <strong>$20.00</strong>
                                 </figure>
-                            </div>
+                            </div> -->
                             <h4>Payment Methods</h4>
                             <payment-methods />
                             <div class="ps-block__footer">
@@ -59,7 +59,21 @@ import ModuleOrderSummary from '~/components/partials/account/modules/ModuleOrde
 import PaymentMethods from '~/components/partials/account/modules/PaymentMethods';
 export default {
     name: 'Payment',
-    components: { PaymentMethods, ModuleOrderSummary }
+    components: { PaymentMethods, ModuleOrderSummary },
+    computed: {
+        cookie(){
+            const cookieInfo = this.$cookies.get('shippingInfo', { parseJSON: true });
+            return cookieInfo;
+        },
+        email(){
+            return this.cookie.email
+        },
+        fullAddress(){
+            const direccion = `${this.cookie.address}, ${this.cookie.city}, ${this.cookie.zipCode}`
+            return direccion; 
+        }
+    },
+
 };
 </script>
 

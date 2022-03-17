@@ -11,7 +11,7 @@
                             <div class="ps-block__panel">
                                 <figure>
                                     <small>Contact</small>
-                                    <p>test@gmail.com</p>
+                                    <p>{{ email }}</p>
                                     <nuxt-link to="/account/checkout">
                                         <a>Change</a>
                                     </nuxt-link>
@@ -19,14 +19,14 @@
                                 <figure>
                                     <small>Ship to</small>
                                     <p>
-                                        2015 South Street, Midland, Texas
+                                        {{ fullAddress }}
                                     </p>
                                     <nuxt-link to="/account/checkout">
-                                        <a>Change</a>q
+                                        <a>Change</a>
                                     </nuxt-link>
                                 </figure>
                             </div>
-                            <h4>Shipping Method</h4>
+                            <!-- <h4>Shipping Method</h4>
                             <div class="ps-block__panel">
                                 <figure>
                                     <small>
@@ -34,16 +34,16 @@
                                     </small>
                                     <strong>$20.00</strong>
                                 </figure>
-                            </div>
+                            </div> -->
                             <div class="ps-block__footer">
                                 <nuxt-link to="/account/checkout">
                                     <a>
                                         <i class="icon-arrow-left mr-2"></i>
-                                        Return to information
+                                        Regresar
                                     </a>
                                 </nuxt-link>
                                 <nuxt-link to="/account/payment" class="ps-btn">
-                                    Continue to payment
+                                    Continuar para el pago
                                 </nuxt-link>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                     <div
                         class="col-xl-4 col-lg-4 col-md-12 col-sm-12  ps-block--checkout-order"
                     >
-                        <module-order-summary :shipping="true" />
+                        <module-order-summary :shipping="false" />
                     </div>
                 </div>
             </div>
@@ -63,7 +63,23 @@
 import ModuleOrderSummary from '~/components/partials/account/modules/ModuleOrderSummary';
 export default {
     name: 'Shipping',
-    components: { ModuleOrderSummary }
+    components: { ModuleOrderSummary },
+    computed: {
+        cookie(){
+            const cookieInfo = this.$cookies.get('shippingInfo', { parseJSON: true });
+            return cookieInfo;
+        },
+        email(){
+            return this.cookie.email
+        },
+        fullAddress(){
+            const direccion = `${this.cookie.address}, ${this.cookie.city}, ${this.cookie.zipCode}`
+            return direccion; 
+        }
+    },
+    mounted(){
+        
+    }
 };
 </script>
 
