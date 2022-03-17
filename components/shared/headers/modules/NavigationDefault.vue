@@ -14,24 +14,6 @@
             </div>
             <div class="navigation__right">
                 <menu-default />
-                <ul class="navigation__extra">
-                    <!-- <li>
-                        <nuxt-link to="/vendor/become-a-vendor">
-                            {{ $t('header.navigationExtra.sellOnMartfury') }}
-                        </nuxt-link>
-                    </li> -->
-                    <!-- <li>
-                        <nuxt-link to="/account/order-tracking">
-                            {{ $t('header.navigationExtra.trackYourOrder') }}
-                        </nuxt-link>
-                    </li> -->
-                    <!-- <li>
-                        <CurrencyDropdown />
-                    </li> -->
-                    <li>
-                        <LanguageSwicher />
-                    </li>
-                </ul>
             </div>
         </div>
     </nav>
