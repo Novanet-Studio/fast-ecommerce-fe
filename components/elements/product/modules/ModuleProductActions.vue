@@ -34,17 +34,6 @@
                 <i class="icon-heart"></i>
             </a>
         </li>
-        <li>
-            <a
-                to="#"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Compare"
-                @click.prevent="handleAddItemToCompare"
-            >
-                <i class="icon-chart-bars"></i>
-            </a>
-        </li>
     </ul>
 </template>
 
