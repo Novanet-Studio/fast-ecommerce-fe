@@ -27,7 +27,19 @@
             <figure>
                 <figcaption>Cantidad</figcaption>
                 <div class="form-group--number">
-                    <button class="up">
+                    <button class="up" @click.prevent="handleIncreaseQuantity">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <button class="down" @click.prevent="handleDescreaseQuantity">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <input
+                        v-model="quantity"
+                        class="form-control"
+                        type="text"
+                        disabled
+                    />
+                    <!-- <button class="up">
                         <i class="fa fa-plus"></i>
                     </button>
                     <button class="down">
@@ -38,7 +50,7 @@
                         type="text"
                         disabled
                         value="1"
-                    />
+                    /> -->
                 </div>
             </figure>
             <a
@@ -67,15 +79,30 @@ export default {
             default: {}
         }
     },
+    data(){
+        return {
+            quantity: 1
+        }
+    },
     methods: {
+        handleIncreaseQuantity() {
+            this.quantity++;
+        },
+
+        handleDescreaseQuantity() {
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
+        },
+
         handleAddToCart() {
             let item = {
                 id: this.product.id,
-                quantity: 1,
+                quantity: this.quantity,
                 price: this.product.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
-            this.getCartProduct(this.cartItems);
+            // this.getCartProduct(this.cartItems);
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
@@ -86,7 +113,7 @@ export default {
         handleBuyNow() {
             let item = {
                 id: this.product.id,
-                quantity: 1,
+                quantity: this.quantity,
                 price: this.product.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
