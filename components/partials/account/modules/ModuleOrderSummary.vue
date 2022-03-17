@@ -5,7 +5,7 @@
             <div class="ps-block__content">
                 <figure>
                     <figcaption>
-                        <strong>Product</strong>
+                        <strong>Producto</strong>
                         <strong>total</strong>
                     </figcaption>
                 </figure>

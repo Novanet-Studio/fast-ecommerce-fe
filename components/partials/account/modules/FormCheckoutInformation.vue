@@ -3,101 +3,236 @@
         <h3 class="ps-form__heading">
             Contact information
         </h3>
-        <div class="form-group">
-            <label>Email or numero telefonico<sup>*</sup></label>
-            <v-text-field
-                placeholder="Email or numero telefonico"
-                outlined
-                height="50"
-            />
-        </div>
-        <div class="form-group">
-            <v-checkbox
-                color="success"
-                label="Quiero recibir más ofertas?"
-            />
-        </div>
-        <h3 class="ps-form__heading">
-            Informacion de envio
-        </h3>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <v-text-field
-                        placeholder="Nombre"
-                        outlined
-                        height="50"
-                    />
+        <form action @click.prevent="handleToShipping">
+
+            <div class="form-group">
+                <label>Email<sup>*</sup></label>
+                <v-text-field
+                    v-model="email"
+                    placeholder="Email"
+                    :error-messages="emailErrors"
+                    @input="$v.email.$touch()"
+                    outlined
+                    height="50"
+                />
+            </div>
+            <div class="form-group">
+                <v-checkbox
+                    color="success"
+                    label="Quiero recibir más ofertas?"
+                />
+            </div>
+            <h3 class="ps-form__heading">
+                Informacion de envio
+            </h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <v-text-field
+                            v-model="name"
+                            placeholder="Nombre"
+                            :error-messages="nameErrors"
+                            @input="$v.name.$touch()"
+                            outlined
+                            height="50"
+                        />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        <v-text-field
+                            v-model="lastName"
+                            placeholder="Apellido"
+                            :error-messages="lastNameErrors"
+                            @input="$v.lastName.$touch()"
+                            outlined
+                            height="50"
+                        />
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Apellido </label>
-                    <v-text-field
-                        placeholder="Apellido"
-                        outlined
-                        height="50"
-                    />
+            <div class="form-group">
+                <label>Dirección</label>
+                <v-text-field
+                    v-model="address"
+                    placeholder="Dirección" 
+                    :error-messages="addressErrors"
+                    @input="$v.address.$touch()"
+                    outlined height="50" 
+                />
+            </div>
+            <div class="form-group">
+                <label>Apartamento</label>
+                <v-text-field
+                    v-model="home"
+                    placeholder="Apartamento, casa, etc."
+                    :error-messages="homeErrors"
+                    @input="$v.home.$touch()"
+                    outlined
+                    height="50"
+                />
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Ciudad</label>
+                        <v-text-field 
+                            v-model="city"
+                            placeholder="Ciudad" 
+                            :error-messages="cityErrors"
+                            @input="$v.city.$touch()"
+                            outlined 
+                            height="50" 
+                        />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Codigo Postal</label>
+                        <v-text-field
+                            v-model="zipCode"
+                            placeholder="Codigo Postal"
+                            :error-messages="zipCodeErrors"
+                            @input="$v.zipCode.$touch()"
+
+                            outlined
+                            height="50"
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label>Dirección</label>
-            <v-text-field placeholder="Dirección" outlined height="50" />
-        </div>
-        <div class="form-group">
-            <label>Apartamento</label>
-            <v-text-field
-                placeholder="Apartamento, casa, etc. (opcional)"
-                outlined
-                height="50"
-            />
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Ciudad</label>
-                    <v-text-field placeholder="Ciudad" outlined height="50" />
+            <div class="form-group">
+                <v-checkbox
+                    color="success"
+                    label="Guardar esta información"
+                />
+            </div>
+            <div class="ps-form__submit">
+                <nuxt-link to="/account/shopping-cart">
+                    <i class="icon-arrow-left mr-1"></i>
+                    Regresar al carrito de compra
+                </nuxt-link>
+                <div class="ps-block__footer">
+                    <button class="ps-btn">
+                        Continuar
+                    </button>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Codigo Postal</label>
-                    <v-text-field
-                        placeholder="Codigo Postal"
-                        outlined
-                        height="50"
-                    />
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <v-checkbox
-                color="success"
-                label="Guardar esta información"
-            />
-        </div>
-        <div class="ps-form__submit">
-            <nuxt-link to="/account/shopping-cart">
-                <i class="icon-arrow-left mr-1"></i>
-                Regresar al carrito de compra
-            </nuxt-link>
-            <div class="ps-block__footer">
-                <button class="ps-btn" @click="handleToShipping">
-                    Continuar comprando
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
 </template>
 
 <script>
+import { email, required } from 'vuelidate/lib/validators';
+import { validationMixin } from 'vuelidate';
+
 export default {
     name: 'FormCheckoutInformation',
+    computed: {
+        emailErrors(){
+            const errors = [];
+            if(this.email){
+                if (!this.$v.email.$dirty) return errors;
+                !this.$v.email.required && errors.push('This field is required');
+                return errors;
+            }
+        },
+        nameErrors(){
+            const errors = [];
+            if(this.name){
+                if (!this.$v.name.$dirty) return errors;
+                !this.$v.name.required && errors.push('This field is required');
+                return errors;
+            }
+        },
+        lastNameErrors(){
+            const errors = [];
+            if(this.lastName){
+                if (!this.$v.lastName.$dirty) return errors;
+                !this.$v.lastName.required && errors.push('This field is required');
+                return errors;
+            }
+        },
+        addressErrors(){
+            const errors = [];
+            if(this.address){
+                if (!this.$v.address.$dirty) return errors;
+                !this.$v.address.required && errors.push('This field is required');
+                return errors;
+            }
+        },
+        homeErrors(){
+            const errors = [];
+            if(this.home){
+                if (!this.$v.home.$dirty) return errors;
+                !this.$v.home.required && errors.push('This field is required');
+                return errors;
+            }
+        },
+        cityErrors(){
+            const errors = [];
+            if(this.city){
+                if (!this.$v.city.$dirty) return errors;
+                !this.$v.city.required && errors.push('This field is required');
+                return errors;
+            }
+        },
+        zipCodeErrors(){
+            const errors = [];
+            if(this.zipCode){
+                if (!this.$v.zipCode.$dirty) return errors;
+                !this.$v.zipCode.required && errors.push('This field is required');
+                return errors;
+            }
+        },
+
+    },
+    data() {
+        return{
+            name: null,
+            lastName: null,
+            email: null,
+            address: null,
+            home: null,
+            city: null,
+            zipCode: null
+        }
+    },
+    validations: {
+        email: { required },
+        lastName: { required },
+        name: { required },
+        address: { required },
+        home: { required },
+        city: { required },
+        zipCode: { required },
+    },
+
     methods: {
-        handleToShipping() {
-            this.$router.push('/account/shipping');
+        async handleToShipping() {
+            this.$v.$touch();
+            if (!this.$v.$invalid) {
+                const data = {
+                    email: this.email,
+                    name: this.name,
+                    lastName: this.lastName,
+                    address: this.address,
+                    home: this.home,
+                    city: this.city,
+                    zipCode: this.zipCode,
+                }
+                this.$store.dispatch('checkout/shippingInfo', data)
+
+                // console.log(this.$cookies.get('shippingInfo'))
+                this.$router.push('/account/shipping');
+
+            }else{
+                alert('todos los campos son obligatorios')
+            }
+
+
         }
     }
 };
