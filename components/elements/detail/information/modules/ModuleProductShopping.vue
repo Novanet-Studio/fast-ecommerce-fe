@@ -24,7 +24,7 @@
         >
             Agregar al carrito
         </a>
-        <a class="ps-btn" href="#" @click.prevent="">
+        <a class="ps-btn" href="#" @click.prevent="handleAddToCart(true)">
             Comprar
         </a>
         <div class="ps-product__actions">
@@ -90,6 +90,8 @@ export default {
                         title: 'Waring!',
                         text: `Can't add more than 10 items`
                     });
+                } else {
+                    this.addItemToCart(item);
                     if (isBuyNow && isBuyNow === true) {
                         setTimeout(
                             function() {
@@ -98,11 +100,19 @@ export default {
                             500
                         );
                     }
-                } else {
-                    this.addItemToCart(item);
+                  
                 }
             } else {
                 this.addItemToCart(item);
+                if (isBuyNow && isBuyNow === true) {
+                    setTimeout(
+                        function() {
+                            this.$router.push('/account/checkout');
+                        }.bind(this),
+                        500
+                    );
+                }
+
             }
         },
 

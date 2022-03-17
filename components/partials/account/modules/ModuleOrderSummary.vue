@@ -62,6 +62,32 @@ export default {
             amount: state => state.cart.amount,
             cartProducts: state => state.product.cartProducts
         })
+    },
+    mounted(){
+        this.loadCartProducts()
+    },
+    methods: {
+        async loadCartProducts() {
+            console.log('di click')
+            const cookieCart = this.$cookies.get('cart', { parseJSON: true });
+            let queries = [];
+            cookieCart.cartItems.forEach(item => {
+                queries.push(item.id);
+            });
+            if (this.cartItems.length > 0) {
+                const response = await this.$store.dispatch(
+                    'product/getCartProducts',
+                    queries
+                );
+                // return console.log(response)
+                if (response) {
+                    this.$store.commit('cart/setLoading', false);
+                }
+            } else {
+                this.$store.commit('product/setCartProducts', null);
+            }
+        },
+
     }
 };
 </script>

@@ -60,7 +60,7 @@
             >
                 Agregar al carrito
             </a>
-            <a class="ps-btn" href="#" @click.prevent="handleBuyNow">
+            <a class="ps-btn" href="#" @click.prevent="handleBuyNow(true)">
                 Comprar
             </a>
         </div>
@@ -68,6 +68,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import Rating from '~/components/elements/Rating';
 import ModuleProductDetailDesc from '~/components/elements/detail/information/modules/ModuleProductDetailDesc';
 export default {
@@ -79,6 +81,12 @@ export default {
             default: {}
         }
     },
+    computed: {
+        ...mapState({
+            cartItems: state => state.cart.cartItems
+        })
+    },
+
     data(){
         return {
             quantity: 1
@@ -110,26 +118,79 @@ export default {
             });
         },
 
-        handleBuyNow() {
+        handleBuyNow(isBuyNow) {
+            const cartItemsOnCookie = this.$cookies.get('cart', {
+                parseJSON: true
+            });
+            let existItem;
+            if (cartItemsOnCookie) {
+                existItem = cartItemsOnCookie.cartItems.find(
+                    item => item.id === this.product.id
+                );
+            }
             let item = {
                 id: this.product.id,
                 quantity: this.quantity,
                 price: this.product.price
             };
-            this.$store.dispatch('cart/addProductToCart', item);
-            this.getCartProduct(this.cartItems);
+            if (existItem !== undefined) {
+                if (this.quantity + existItem.quantity > 10) {
+                    this.$notify({
+                        group: 'addCartSuccess',
+                        title: 'Waring!',
+                        text: `Can't add more than 10 items`
+                    });
+                } else {
+                    this.addItemToCart(item);
+                    if (isBuyNow && isBuyNow == true) {
+                        setTimeout(
+                            function() {
+                                this.$router.push('/account/checkout');
+                            }.bind(this),
+                            500
+                        );
+                    }
+
+                }
+            } else {
+                this.addItemToCart(item);
+                if (isBuyNow && isBuyNow == true) {
+                    setTimeout(
+                        function() {
+                            this.$router.push('/account/checkout');
+                        }.bind(this),
+                        500
+                    );
+                }
+
+            }
+
+            // this.$store.dispatch('cart/addProductToCart', item);
+            // this.getCartProduct(this.cartItems);
+            // this.$notify({
+            //     group: 'addCartSuccess',
+            //     title: 'Success!',
+            //     text: `${this.product.name} has been added to your cart!`
+            // });
+            // setTimeout(
+            //     function() {
+            //         this.$router.push('/account/checkout');
+            //     }.bind(this),
+            //     500
+            // );
+        },
+        async addItemToCart(payload) {
+            this.$store.dispatch('cart/addProductToCart', payload);
+            // this.getCartProduct(this.cartItems);
+             var respuesta = await this.$store.dispatch('product/getCartProducts', this.cartItems)
+
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${this.product.title} has been added to your cart!`
+                text: `${this.product.name} has been added to your cart!`
             });
-            setTimeout(
-                function() {
-                    this.$router.push('/account/checkout');
-                }.bind(this),
-                500
-            );
         },
+
         async getCartProduct(products) {
             let listOfIds = [];
             products.forEach(item => {
