@@ -130,7 +130,7 @@ export const actions = {
                 query = query + `&id=${item}`;
             }
         });
-        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
+        const reponse = await Repository.get(`${baseUrl}/productos?${query}`)
             .then(response => {
                 commit('setWishlistItems', response.data);
                 return response.data;
