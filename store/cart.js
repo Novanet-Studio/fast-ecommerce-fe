@@ -101,6 +101,7 @@ export const actions = {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         });
+
     },
 
     increaseCartItemQuantity({ commit, state }, payload) {
@@ -115,6 +116,8 @@ export const actions = {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         });
+
+        return this.$cookies.get('cart')
     },
 
     decreaseCartItemQuantity({ commit, state }, payload) {
@@ -129,6 +132,8 @@ export const actions = {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         });
+        return this.$cookies.get('cart')
+
     },
 
     clearCart({ commit }) {

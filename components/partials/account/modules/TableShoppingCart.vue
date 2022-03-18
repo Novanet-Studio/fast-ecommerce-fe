@@ -2,11 +2,11 @@
     <table class="table ps-table--responsive ps-table--shopping-cart">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
+                <th>Product0</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
                 <th>Total</th>
-                <th>Action</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -16,20 +16,11 @@
                 </td>
                 <td data-label="Price" class="price">$ {{ product.price }}</td>
                 <td data-label="Quantity">
-                    <div class="form-group--number">
-                        <button class="up">+</button>
-                        <button class="down">-</button>
-                        <input
-                            class="form-control"
-                            type="text"
-                            placeholder="1"
-                            value="1"
-                        />
-                    </div>
+                    <quantity :product="product" :quantity="cartItems[index].quantity" />
                 </td>
                 <td data-label="Total">
                     ${{
-                        (cartItems.quantity * product.price).toFixed(2)
+                        (cartItems[index].quantity * product.price).toFixed(2)
                     }}
                 </td>
                 <td data-label="Action">
@@ -48,10 +39,11 @@
 <script>
 import { mapState } from 'vuex';
 import ProductShoppingCart from '~/components/elements/product/ProductShoppingCart';
+import Quantity from '~/components/partials/account/modules/Quantity';
 
 export default {
     name: 'TableShoppingCart',
-    components: { ProductShoppingCart },
+    components: { ProductShoppingCart, Quantity },
     data(){
         return {
             // cartProducts: ''
@@ -64,10 +56,6 @@ export default {
             amount: state => state.cart.amount,
             cartProducts: state => state.product.cartProducts
         })
-    },
-    mounted(){
-        // this.loadCartProducts()
-        // console.log(this.cartProducts)
     },
     methods: {
         async loadCartProducts() {

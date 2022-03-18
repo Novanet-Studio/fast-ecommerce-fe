@@ -39,18 +39,6 @@
                         type="text"
                         disabled
                     />
-                    <!-- <button class="up">
-                        <i class="fa fa-plus"></i>
-                    </button>
-                    <button class="down">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                    <input
-                        class="form-control"
-                        type="text"
-                        disabled
-                        value="1"
-                    /> -->
                 </div>
             </figure>
             <a
@@ -114,7 +102,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${this.product.title} has been added to your cart!`
+                text: `${this.product.name} has been added to your cart!`
             });
         },
 
