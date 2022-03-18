@@ -16,13 +16,9 @@
                 </td>
                 <td data-label="Price" class="price">$ {{ product.price }}</td>
                 <td data-label="Quantity">
-                    <quantity :product="product" :quantity="cartItems[index].quantity" />
+                    <quantity :product="product"/>
                 </td>
-                <td data-label="Total">
-                    ${{
-                        (cartItems[index].quantity * product.price).toFixed(2)
-                    }}
-                </td>
+                <total-quantity :product="product" />
                 <td data-label="Action">
                     <a
                         href="#"
@@ -40,10 +36,11 @@
 import { mapState } from 'vuex';
 import ProductShoppingCart from '~/components/elements/product/ProductShoppingCart';
 import Quantity from '~/components/partials/account/modules/Quantity';
+import TotalQuantity from '~/components/partials/account/modules/TotalQuantity';
 
 export default {
     name: 'TableShoppingCart',
-    components: { ProductShoppingCart, Quantity },
+    components: { ProductShoppingCart, Quantity, TotalQuantity },
     data(){
         return {
             // cartProducts: ''
@@ -78,7 +75,9 @@ export default {
             );
             this.$store.dispatch('cart/removeProductFromCart', cartItem);
             this.loadCartProducts();
-        }
+            return console.log(this.cartItems)
+        },
+
     }
 };
 </script>

@@ -15,6 +15,10 @@
     </div>
 
 
+
+
+
+
 </template>
 
 <script>
@@ -27,12 +31,28 @@ export default {
             Type: Object,
             default: {}
         },
-        quantity: '',
+        // quantity: '',
     },
+
     computed: {
         ...mapState({
             cartItems: state => state.cart.cartItems
         }),
+        quantity() {
+            if (this.cartItems !== null) {
+                const cartItem = this.cartItems.find(
+                    item => item.id === this.product.id
+                );
+                if (cartItem !== undefined) {
+                    return cartItem.quantity;
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        },
+
     },
     methods: {
         async handleIncreaseQuantity() {

@@ -102,6 +102,7 @@ export const actions = {
             maxAge: 60 * 60 * 24 * 7
         });
 
+        return true;
     },
 
     increaseCartItemQuantity({ commit, state }, payload) {
