@@ -228,9 +228,10 @@ export default {
                 // console.log(this.$cookies.get('shippingInfo'))
                 this.$router.push('/account/shipping');
 
-            }else{
-                alert('todos los campos son obligatorios')
             }
+            // else{
+            //     alert('todos los campos son obligatorios')
+            // }
 
 
         }

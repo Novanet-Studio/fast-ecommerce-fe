@@ -5,7 +5,7 @@
                 <h1>Carrito de compras</h1>
             </div>
             <div class="ps-section__content">
-                <table-shopping-cart v-if="cartProducts !== '' " />
+                <table-shopping-cart v-if="cartProducts !== null " />
                 <p v-else>Carrito vacio</p>
                 <div class="ps-section__cart-actions">
                     <nuxt-link to="/shop" class="ps-btn">
@@ -141,7 +141,7 @@ export default {
             } else {
                 this.$store.commit('product/setCartProducts', null);
             }
-            console.log(this.total)
+            console.log(this.cartProducts)
         },
 
     }
