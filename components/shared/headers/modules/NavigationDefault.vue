@@ -3,13 +3,13 @@
         <div class="ps-container">
             <div class="navigation__left">
                 <div class="menu--product-categories">
-                    <div class="menu__toggle">
+                    <!-- <div class="menu__toggle">
                         <i class="icon-menu"></i>
                         <span>Compra por Sabores</span>
                     </div>
                     <div class="menu__content">
                         <menu-categories />
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="navigation__right">
