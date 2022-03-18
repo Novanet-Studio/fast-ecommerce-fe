@@ -40,12 +40,6 @@ export default {
                     subClass: 'sub-menu',
                 },
                 {
-                    text: 'Productos',
-                    url: '/shop',
-                    extraClass: 'menu-item-has-children',
-                    subClass: 'sub-menu',
-                },
-                {
                     text: 'Contactanos',
                     url: '/page/contact-us',
                     extraClass: 'menu-item-has-children',
