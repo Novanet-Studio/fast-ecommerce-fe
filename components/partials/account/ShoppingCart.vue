@@ -40,7 +40,7 @@
                         <div class="ps-block--shopping-total">
                             <div class="ps-block__header">
                                 <p>
-                                    Subtotal <span> ${{ total }}</span>
+                                    Subtotal <span> ${{ amount }} </span>
                                 </p>
                             </div>
                             <div class="ps-block__content">
@@ -56,7 +56,7 @@
                                                 {{ product.name }}
                                                 <br />
                                                 x
-                                                {{ cartItems.quantity }}
+                                                <module-quantity :product="product"/>
                                             </nuxt-link>
                                         </span>
                                     </li>
@@ -83,10 +83,11 @@
 import { mapState } from 'vuex';
 import ProductShoppingCart from '~/components/elements/product/ProductShoppingCart';
 import TableShoppingCart from '~/components/partials/account/modules/TableShoppingCart';
+import ModuleQuantity from '~/components/partials/account/modules/ModuleQuantity';
 
 export default {
     name: 'ShoppingCart',
-    components: { TableShoppingCart, ProductShoppingCart },
+    components: { TableShoppingCart, ProductShoppingCart, ModuleQuantity },
     // data(){
     //     return {
     //         cartProducts: ''
@@ -100,6 +101,21 @@ export default {
             cartItems: state => state.cart.cartItems,
             cartProducts: state => state.product.cartProducts
         }),
+        quantity() {
+            if (this.cartItems !== null) {
+                const cartItem = this.cartItems.find(
+                    item => item.id === this.product.id
+                );
+                if (cartItem !== undefined) {
+                    return cartItem.quantity;
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        },
+
     },
     async mounted(){
         this.loadCartProducts()
@@ -125,6 +141,7 @@ export default {
             } else {
                 this.$store.commit('product/setCartProducts', null);
             }
+            console.log(this.total)
         },
 
     }
