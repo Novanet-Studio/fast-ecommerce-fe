@@ -40,7 +40,7 @@ export default {
                     subClass: 'sub-menu',
                 },
                 {
-                    text: 'Contactanos',
+                    text: 'Contáctanos',
                     url: '/page/contact-us',
                     extraClass: 'menu-item-has-children',
                     subClass: 'sub-menu',

@@ -7,7 +7,7 @@ export const actions = {
         const compareItems = this.$cookies.get('compare', { parseJSON: true });
         const auth = this.$cookies.get('auth', { parseJSON: true });
         const currency = this.$cookies.get('currency', { parseJSON: true });
-        if (cartItems && cartItems.cartItems.length > 0) {
+  /*       if (cartItems && cartItems.cartItems.length > 0) {
             commit('cart/initCart', {
                 cartItems: cartItems.cartItems,
                 total: cartItems.total,
@@ -18,7 +18,7 @@ export const actions = {
                 query.push(item.id);
             });
             await dispatch('product/getCartProducts', query);
-        }
+        } */
         if (wishlistItems) {
             commit('wishlist/initWishlist', {
                 items: wishlistItems.items,

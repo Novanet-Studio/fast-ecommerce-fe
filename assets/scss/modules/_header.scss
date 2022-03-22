@@ -88,7 +88,7 @@
             width: 20px;
             height: 20px;
             color: #ffffff;
-            background-color: #000000;
+            background-color: #e36d65;
             border-radius: 50%;
 
             i {
@@ -101,7 +101,7 @@
 
         &:hover {
             i {
-                color: #ffffff;
+                color: #404041;
             }
         }
     }
@@ -130,6 +130,9 @@
     }
 
     .header__right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         max-width: 370px;
     }
 
@@ -142,7 +145,6 @@
         .container {
             display: flex;
             flex-flow: row nowrap;
-
             > * {
                 width: 100%;
             }

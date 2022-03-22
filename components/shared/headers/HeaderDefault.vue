@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="header__center">
-                    <search-header />
+                   <!--  <search-header /> -->
                 </div>
                 <div class="header__right">
                     <header-actions />

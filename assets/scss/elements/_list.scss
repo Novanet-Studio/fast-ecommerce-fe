@@ -17,6 +17,10 @@
                 color: $color-1st;
             }
 
+            &.general {
+                color: $color-heading
+            }
+
             &.facebook {
                 i {
                     color: #3b5998;

@@ -13,24 +13,23 @@
                 </p>
                 <ul class="ps-list--social">
                     <li>
-                        <a class="facebook" href="#">
-                            <i class="fa fa-facebook"></i>
+                        <a class="general" href="https://www.instagram.com/farinebyvane/?hl=es">
+                            <i class="fab fa-instagram"></i>
                         </a>
+                        @farinebyvane
                     </li>
                     <li>
-                        <a class="twitter" href="#">
-                            <i class="fa fa-twitter"></i>
+                        <a class="general" href="#">
+                            <i class="fa fa-phone"></i>
                         </a>
-                    </li>
+                        412.319.48.27
+                    </li>              
                     <li>
-                        <a class="google-plus" href="#">
-                            <i class="fa fa-google-plus"></i>
+                        <a class="general" href="#">
+                            <i class="far fa-envelope
+                        </a>"></i>
                         </a>
-                    </li>
-                    <li>
-                        <a class="instagram" href="#">
-                            <i class="fa fa-instagram"></i>
-                        </a>
+                        vanessa@farinebyvane.com - farinebyvane@gmail.com
                     </li>
                 </ul>
             </div>
@@ -40,7 +39,7 @@
 
 <script>
 export default {
-    name: 'FooterWidgets'
+  name: "FooterWidgets",
 };
 </script>
 
