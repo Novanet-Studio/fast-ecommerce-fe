@@ -23,6 +23,12 @@ export default {
             }
         ]
     },
+    env: {
+        //Must match the values found in the corresponding production or sandbox environment
+        SQUARE_APPLICATION_ID: process.env.SQUARE_APPLICATION_ID,
+        SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
+        SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
+    },
 
     css: [
         'swiper/dist/css/swiper.css',

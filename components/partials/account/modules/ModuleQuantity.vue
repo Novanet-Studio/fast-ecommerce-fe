@@ -1,6 +1,7 @@
 <template>
     <div>
-        {{ quantity }}
+        {{ quantity }} x ${{ product.price }}
+
     </div>
 </template>
 

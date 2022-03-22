@@ -54,7 +54,10 @@
                 By making this purchase you agree to
                 <a href="#" class="highlight">our terms and conditions</a>.
             </p>
-            <button class="ps-btn ps-btn--fullwidth">
+            <button class="ps-btn ps-btn--fullwidth"
+                @click.prevent="payment"
+
+            >
                 Submit
             </button>
         </div>
@@ -62,6 +65,7 @@
 </template>
 
 <script>
+import SquarePayment from '~/plugins/Square'
 export default {
     name: 'VisaMethod',
     computed: {
@@ -85,6 +89,14 @@ export default {
                 year.push(i);
             }
             return year;
+        }
+    },
+    methods: {
+        async payment(){
+            const pay = new SquarePayment()
+
+            pay.MakePayment()
+            console.log('pagando')
         }
     }
 };

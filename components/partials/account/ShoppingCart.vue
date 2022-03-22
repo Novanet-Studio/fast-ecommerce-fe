@@ -53,10 +53,9 @@
                                                 :to="`/product/${product.id}`"
                                                 class="ps-product__title"
                                             >
-                                                {{ product.name }}
+                                               Cachitos {{ product.name }}
                                                 <br />
-                                                x
-                                                <module-quantity :product="product"/>
+                                                <module-quantity :product="product"/>                                                
                                             </nuxt-link>
                                         </span>
                                     </li>

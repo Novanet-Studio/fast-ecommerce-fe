@@ -112,6 +112,11 @@ export default {
                 var respuesta = await this.$store.dispatch('auth/getUser', user);
                 if(respuesta.jwt){
                     this.$store.dispatch('auth/setAuthStatus', true)
+                    
+                    this.$cookies.set('auth', respuesta, {
+                        path: '/',
+                        maxAge: 60 * 60 * 24 * 7
+                    });
                     this.$router.push('/');
                     console.log('logeado')
                 }else{
@@ -121,6 +126,8 @@ export default {
                 console.log(respuesta)
             }
         }
+
+
     }
 };
 </script>

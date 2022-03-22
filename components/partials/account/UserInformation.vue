@@ -8,8 +8,8 @@
                             <div class="ps-widget__header">
                                 <img src="/img/users/3.jpg" />
                                 <figure>
-                                    <figcaption>Hello</figcaption>
-                                    <p>username@gmail.com</p>
+                                    <figcaption>Hola</figcaption>
+                                    <p>{{ user.user.username }}</p>
                                 </figure>
                             </div>
                             <div class="ps-widget__content">
@@ -71,6 +71,11 @@ export default {
                 }
             ]
         };
+    },
+    computed: {
+        user(){
+            return this.$cookies.get('auth')
+        }
     }
 };
 </script>

@@ -42,7 +42,7 @@ export const actions = {
                 password: state.password,
             })
             .then(response => {
-                // Handle success.
+                // Handle success.        
                return response.data;
             })
             .catch(error => {
