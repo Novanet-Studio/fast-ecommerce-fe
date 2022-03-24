@@ -1,6 +1,9 @@
 <template lang="html">
-    <form>
-        <div class="form-group">
+<div>
+
+    <form action>
+            <div id="card-container"></div>
+        <!-- <div class="form-group">
             <label>
                 Card Number
             </label>
@@ -48,26 +51,31 @@
                     <input type="text" class="form-control" />
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="form-group">
             <p>
                 By making this purchase you agree to
                 <a href="#" class="highlight">our terms and conditions</a>.
             </p>
             <button class="ps-btn ps-btn--fullwidth"
-                @click.prevent="payment"
+                @click.prevent="sendOrder"
 
             >
                 Submit
             </button>
         </div>
     </form>
+    </div>
+
 </template>
 
 <script>
-import SquarePayment from '~/plugins/Square'
+
 export default {
     name: 'VisaMethod',
+    data: () => ({
+        card: null,
+    }),
     computed: {
         days() {
             let days = [];
@@ -91,15 +99,16 @@ export default {
             return year;
         }
     },
+    mounted: async function() {
+        const payments = Square.payments(process.env.SQUARE_APPLICATION_ID, process.env.SQUARE_LOCATION_ID);
+        const card = await payments.card();
+        await card.attach('#card-container');
+        this.card = card
+    },
     methods: {
-        async payment(){
-            const pay = new SquarePayment()
-
-            pay.MakePayment()
-            console.log('pagando')
-        }
     }
-};
+}
+
 </script>
 
 <style lang="scss" scoped>
