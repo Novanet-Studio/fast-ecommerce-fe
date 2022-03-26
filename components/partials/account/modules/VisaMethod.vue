@@ -1,103 +1,36 @@
 <template lang="html">
 <div>
-
-    <form action>
-            <div id="card-container"></div>
-        <!-- <div class="form-group">
-            <label>
-                Card Number
-            </label>
-            <input type="text" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>
-                Card Holders
-            </label>
-            <input type="text" class="form-control" />
-        </div>
-        <div class="row">
-            <div class="col-8">
-                <div class="form-group">
-                    <label>
-                        Expiration Date
-                    </label>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <select class="form-control">
-                                    <option v-for="month in months">
-                                        {{ month }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <select class="form-control">
-                                    <option v-for="year in years">
-                                        {{ year }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label>
-                        CVV
-                    </label>
-                    <input type="text" class="form-control" />
-                </div>
-            </div>
-        </div> -->
+    <form id="payment-form">
+        <div id="card-container"></div>
         <div class="form-group">
             <p>
                 By making this purchase you agree to
                 <a href="#" class="highlight">our terms and conditions</a>.
             </p>
             <button class="ps-btn ps-btn--fullwidth"
-                @click.prevent="sendOrder"
-
+                @click.prevent="handlePayment"
+                id="card-button"
+                type="button"
             >
-                Submit
+                Pagar
             </button>
+
         </div>
     </form>
-    </div>
+    <div id="payment-status-container"></div>
 
+</div>
 </template>
 
 <script>
-
+import { v4 as uuidv4 } from 'uuid'
 export default {
     name: 'VisaMethod',
     data: () => ({
         card: null,
     }),
     computed: {
-        days() {
-            let days = [];
-            for (let i = 1; i <= 31; i++) {
-                days.push(i);
-            }
-            return days;
-        },
-        months() {
-            let month = [];
-            for (let i = 1; i <= 12; i++) {
-                month.push(i);
-            }
-            return month;
-        },
-        years() {
-            let year = [];
-            for (let i = 1; i <= 12; i++) {
-                year.push(i);
-            }
-            return year;
-        }
+
     },
     mounted: async function() {
         const payments = Square.payments(process.env.SQUARE_APPLICATION_ID, process.env.SQUARE_LOCATION_ID);
@@ -106,6 +39,45 @@ export default {
         this.card = card
     },
     methods: {
+        async handlePayment(){
+            const cardButton = document.getElementById('card-button');
+            // cardButton.disabled = true;
+            //creando token para la tarjeta
+            this.card.tokenize().then(res => {
+                if(res.token) {
+                    var token = res.token;
+                    var idempotencyKeyGen = uuidv4();
+                    var payment = {
+                        idempotencyKey: idempotencyKeyGen,
+                        locationId: process.env.SQUARE_LOCATION_ID,
+                        sourceId: token,
+                        amountMoney: {
+                            amount: "2000",
+                            currency: "USD",
+                        },
+                    };
+                    this.createPayment(payment)                    
+                }
+            }).catch(error => {
+                return console.log(error)
+            });
+        },
+
+        async createPayment(paymentBody){
+
+            const respuesta = await this.$store.dispatch('server/createPayment', paymentBody).then(res=>{
+                return console.log(res)
+            }).catch(error=>{
+                return console.log(error)
+            })
+
+            if(respuesta){
+
+                console.log(respuesta)
+            }
+
+        }
+        
     }
 }
 

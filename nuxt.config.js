@@ -53,7 +53,10 @@ export default {
     { src: "~/plugins/vue-notification.js", ssr: false },
     { src: "~/plugins/axios.js", ssr: false },
     { src: "~/plugins/lazyLoad.js", ssr: false },
+    {src: "~/plugins/http.js", ssr: false},
   ],
+
+
 
   buildModules: [
     "@nuxtjs/vuetify",
@@ -65,7 +68,7 @@ export default {
     scss: "./assets/scss/env.scss",
   },
 
-  modules: ["@nuxtjs/axios", "nuxt-i18n", "@nuxtjs/proxy"],
+  modules: ["@nuxtjs/axios", "nuxt-i18n", "@nuxtjs/proxy", '@nuxt/http',],
 
   i18n: {
     locales: [
@@ -87,4 +90,11 @@ export default {
     port: 4002,
     host: "localhost",
   },
+
+  axios: {
+    credentials: false,
+    proxyheaders: false,
+  },
+
+
 };

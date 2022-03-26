@@ -13,11 +13,9 @@
                 Paypal
             </v-tab>
             <v-tab-item>
-                <form>
-                    <div class="ps-block__content">
-                        <visa-method />
-                    </div>
-                </form>
+                <div class="ps-block__content">
+                    <visa-method />
+                </div>
             </v-tab-item>
             <v-tab-item>
                 <div class="ps-block__content">

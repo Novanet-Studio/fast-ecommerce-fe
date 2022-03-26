@@ -11,6 +11,7 @@
         "generate": "nuxt generate"
     },
     "dependencies": {
+        "@nuxt/http": "^0.6.4",
         "@nuxtjs/axios": "^5.3.6",
         "@nuxtjs/proxy": "^2.1.0",
         "@nuxtjs/vuetify": "^1.11.2",
@@ -19,6 +20,7 @@
         "cookieparser": "^0.1.0",
         "imagesloaded": "^4.1.4",
         "js-cookie": "^2.2.1",
+        "ky-universal": "^0.10.1",
         "moment": "^2.26.0",
         "nuxt": "^2.14.7",
         "nuxt-i18n": "^6.3.0",
