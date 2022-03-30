@@ -5,10 +5,10 @@
         </div>
         <div class="ps-block__right">
             <nuxt-link to="/account/login">
-                {{ $t('header.login') }}
+                Iniciar Sesión
             </nuxt-link>
             <nuxt-link to="/account/register">
-                {{ $t('header.register') }}
+                Registro
             </nuxt-link>
         </div>
     </div>
@@ -23,7 +23,7 @@
                 </li>
                 <li class="ps-block__footer">
                     <a href="#" @click.prevent="handleLogout">
-                        Logout
+                        Cerrar Sesión
                     </a>
                 </li>
             </ul>
@@ -32,45 +32,19 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
     name: 'HeaderUserArea',
     computed: {
         ...mapState({
             isLoggedIn: state => state.auth.isLoggedIn
+        }), 
+        ...mapGetters({
+            accountLinks: 'app/getLinks'
         })
     },
-    data() {
-        return {
-            accountLinks: [
-                {
-                    text: 'Account Information',
-                    url: '/account/user-information'
-                },
-                {
-                    text: 'Notifications',
-                    url: '/account/notifications'
-                },
-                {
-                    text: 'Invoices',
-                    url: '/account/invoices'
-                },
-                {
-                    text: 'Address',
-                    url: '/account/addresses'
-                },
-                {
-                    text: 'Recent Viewed Product',
-                    url: '/account/recent-viewed-product'
-                },
-                {
-                    text: 'Wishlist',
-                    url: '/account/wishlist'
-                }
-            ]
-        };
-    },
+
     methods: {
         handleLogout() {
             this.$store.dispatch('auth/setAuthStatus', false);

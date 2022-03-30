@@ -4,18 +4,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="ps-section__left">
-                        <aside class="ps-widget--account-dashboard">
-                            <div class="ps-widget__header">
-                                <img src="/img/users/3.jpg" />
-                                <figure>
-                                    <figcaption>Hello</figcaption>
-                                    <p>username@gmail.com</p>
-                                </figure>
-                            </div>
-                            <div class="ps-widget__content">
-                                <AccountLinks :links="accountLinks" />
-                            </div>
-                        </aside>
+                        <aside-account/>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -69,9 +58,10 @@
 
 <script>
 import AccountLinks from './modules/AccountLinks';
+import AsideAccount from './modules/AsideAccount';
 export default {
     name: 'Addresses',
-    components: { AccountLinks },
+    components: { AsideAccount },
     data() {
         return {
             accountLinks: [
