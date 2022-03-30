@@ -63,7 +63,6 @@ export default {
         //text del breadcrumb dinamico
         nombreBread(data){
             this.breadCrumb[1].text = data;
-            console.log(this.breadCrumb[1].text)
         }
     }
 

@@ -10,9 +10,8 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Product name</th>
-                                <th>Unit Price</th>
-                                <th>Vendor</th>
+                                <th>Nombre</th>
+                                <th>Precio por unidad</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -39,7 +38,6 @@
                                 <td class="price">
                                     $ {{ product.price.toFixed(2) }}
                                 </td>
-                                <td>{{ product.vendor }}</td>
                                 <td>
                                     <a
                                         class="ps-btn"
@@ -90,6 +88,7 @@ export default {
             });
         },
         handleRemoveItemFromWishlist(product) {
+            // return console.log(product)
             this.$store.dispatch('wishlist/removeItemFromWishlist', product);
             this.loadWishlist();
             this.$notify({
@@ -105,6 +104,7 @@ export default {
             // return console.log(wishlistItemsOnCookie)
             if (wishlistItemsOnCookie.items.length > 0) {
                 const queries = getListOfProductId(wishlistItemsOnCookie.items);
+                // return queries
                 if (queries.length >= 0) {
                     const response = await this.$store.dispatch(
                         'product/getWishlishtProducts',
