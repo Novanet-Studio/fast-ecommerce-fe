@@ -1,34 +1,19 @@
 <template lang="html">
-    <section class="ps-page--my-account">
-        <bread-crumb :breadcrumb="breadCrumb" />
+    <div>
         <addresses />
-    </section>
+    </div>
 </template>
 
 <script>
-import BreadCrumb from '~/components/elements/BreadCrumb';
 import Addresses from '~/components/partials/account/Addresses';
 
 export default {
     components: {
         Addresses,
-        BreadCrumb
     },
+    layout: 'layout-account',
     transition: 'zoom',
     middleware: 'authentication',
-    data: () => {
-        return {
-            breadCrumb: [
-                {
-                    text: 'Home',
-                    url: '/'
-                },
-                {
-                    text: 'Addresses'
-                }
-            ]
-        };
-    }
 };
 </script>
 

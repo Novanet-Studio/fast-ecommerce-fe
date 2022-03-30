@@ -1,8 +1,8 @@
 <template lang="html">
-    <section class="ps-page--my-account">
+    <div>
         <bread-crumb :breadcrumb="breadCrumb" />
         <user-information />
-    </section>
+    </div>
 </template>
 <script>
 import BreadCrumb from '~/components/elements/BreadCrumb';
@@ -12,6 +12,7 @@ import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
 export default {
     middleware: 'authentication',
     transition: 'zoom',
+    layout: 'layout-account',
     components: {
         HeaderMobile,
         UserInformation,

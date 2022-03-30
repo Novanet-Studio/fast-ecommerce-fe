@@ -1,35 +1,20 @@
 <template lang="html">
-    <section class="ps-page--my-account">
-        <bread-crumb :breadcrumb="breadCrumb" />
+    <div>
         <recent-viewed-products />
-    </section>
+    </div>
 </template>
 <script>
-import BreadCrumb from '~/components/elements/BreadCrumb';
 import RecentViewedProducts from '~/components/partials/account/RecentViewedProducts';
 import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
 
 export default {
     transition: 'zoom',
     middleware: 'authentication',
+    layout: 'layout-account',
     components: {
         HeaderMobile,
         RecentViewedProducts,
-        BreadCrumb
     },
-    data: () => {
-        return {
-            breadCrumb: [
-                {
-                    text: 'Home',
-                    url: '/'
-                },
-                {
-                    text: 'Recent Viewed Products'
-                }
-            ]
-        };
-    }
 };
 </script>
 
