@@ -1,14 +1,11 @@
 <template lang="html">
     <div>
-        <bread-crumb :breadcrumb="breadCrumb" />
         <user-information />
     </div>
 </template>
 <script>
-import BreadCrumb from '~/components/elements/BreadCrumb';
-import UserInformation from '~/components/partials/account/UserInformation';
 import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
-
+import UserInformation from '~/components/partials/account/UserInformation'
 export default {
     middleware: 'authentication',
     transition: 'zoom',
@@ -16,21 +13,7 @@ export default {
     components: {
         HeaderMobile,
         UserInformation,
-        BreadCrumb
     },
-    data: () => {
-        return {
-            breadCrumb: [
-                {
-                    text: 'Home',
-                    url: '/'
-                },
-                {
-                    text: 'User Information'
-                }
-            ]
-        };
-    }
 };
 </script>
 

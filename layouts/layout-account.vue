@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="ps-section__left">
-                                    <aside-account/>
+                                    <aside-account :bread="nombreBread"/>
                                 </div>
                             </div>
                             <div class="col-lg-8">
@@ -26,7 +26,8 @@
 <script>
 import Notify from '~/components/elements/commons/notify';
 import BreadCrumb from '~/components/elements/BreadCrumb';
-import AsideAccount from '~/components/partials/account/modules/AsideAccount.vue';
+import AsideAccount from '~/components/partials/account/modules/AsideAccount';
+import {mapGetters} from 'vuex';
 
 export default {
     name: 'layout-default',
@@ -43,11 +44,29 @@ export default {
                     url: '/'
                 },
                 {
-                    text: 'idk'
+                    text: ''
                 }
             ]
-        };
+        }
+    },
+    computed: {
+        ...mapGetters({
+            links: 'app/getLinks'
+        })
+    },
+    mounted(){
+        //mostrando el nombre del enlace que dio click en el home page
+        const firstClick = this.links.find(item => item.url == this.$route.path )
+        this.breadCrumb[1].text = firstClick.text
+    },
+    methods: {
+        //text del breadcrumb dinamico
+        nombreBread(data){
+            this.breadCrumb[1].text = data;
+            console.log(this.breadCrumb[1].text)
+        }
     }
+
 
 };
 </script>

@@ -1,7 +1,7 @@
 <template lang="html">
     <ul>
         <template v-for="link in links">
-            <li :key="link.text" :class="link.active ? 'active' : ''">
+            <li :key="link.text" :class="link.active ? 'active' : '' " @click="idk(link.text)" >
                 <nuxt-link :to="link.url">
                     <i :class="link.icon"></i>
                     {{ link.text }}
@@ -23,13 +23,19 @@
 import {mapGetters} from 'vuex';
 export default {
     name: 'AccountLinks',
+    props: [
+        'breadinfo'
+    ],
     computed: {
         ...mapGetters({
             links: 'app/getLinks'
         })
     },
-    mounted(){
-        console.log(this.links)
+    methods: {
+        idk(name){
+            const nameLink = name;
+            this.breadinfo(nameLink)
+        }
     }
 
 };
