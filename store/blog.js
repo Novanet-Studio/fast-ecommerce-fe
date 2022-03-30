@@ -1,7 +1,6 @@
-import data from '~/static/data/blog-grid.json';
 
 export const state = () => ({
-    blog: data
+    blog: null
 });
 
 export const getters = {

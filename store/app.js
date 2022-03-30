@@ -1,8 +1,17 @@
+import data from '~/static/data/account-links.json';
+
 export const state = () => ({
     appDrawer: false,
     currentDrawerContent: null,
-    currency: '$'
+    currency: '$',
+    links: data.data
 });
+
+export const getters = {
+    getLinks: (state) => {
+        return state.links;
+    },
+}
 
 export const mutations = {
     setAppDrawer(state, payload) {
@@ -29,5 +38,8 @@ export const actions = {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         });
+    },
+    getLinks(){
+        return data.data;
     }
 };

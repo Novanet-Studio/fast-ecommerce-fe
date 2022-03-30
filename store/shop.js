@@ -1,7 +1,6 @@
-import data from '~/static/data/products.json';
 
 export const state = () => ({
-    products: data.data
+    products: null
 });
 
 export const getters = {

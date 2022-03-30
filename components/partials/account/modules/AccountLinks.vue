@@ -12,7 +12,7 @@
             <nuxt-link to="/account/my-account">
                 <a>
                     <i class="icon-power-switch"></i>
-                    Logout
+                    Cerrar Sesión
                 </a>
             </nuxt-link>
         </li>
@@ -20,14 +20,18 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
     name: 'AccountLinks',
-    props: {
-        links: {
-            type: Array,
-            default: () => []
-        }
+    computed: {
+        ...mapGetters({
+            links: 'app/getLinks'
+        })
+    },
+    mounted(){
+        console.log(this.links)
     }
+
 };
 </script>
 
