@@ -10,6 +10,7 @@
 </template>
 
 <script>
+
 export default {
   name: "paymentForm",
   computed: {
@@ -49,6 +50,10 @@ export default {
             }).catch(error => {
                 return console.log(error)
             });
+    },
+
+    async createPayment(paymentBody){
+        await this.$fire.functions.payment()
     }
   }
 

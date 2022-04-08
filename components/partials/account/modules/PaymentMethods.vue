@@ -11,7 +11,7 @@
             </v-tab>
             <v-tab-item>
                 <div class="ps-block__content">
-                    <payment-form />
+                    <VisaMethod />
                 </div>
             </v-tab-item>
 

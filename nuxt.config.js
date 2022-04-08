@@ -54,8 +54,8 @@ export default {
     { src: "~/plugins/axios.js", ssr: false },
     { src: "~/plugins/lazyLoad.js", ssr: false },
     {src: "~/plugins/http.js", ssr: false},
+    {src: "~/plugins/firebase.js", ssr: false},
   ],
-
 
 
   buildModules: [
@@ -68,7 +68,24 @@ export default {
     scss: "./assets/scss/env.scss",
   },
 
-  modules: ["@nuxtjs/axios", "nuxt-i18n", "@nuxtjs/proxy", '@nuxt/http',],
+  modules: ["@nuxtjs/axios", "nuxt-i18n", "@nuxtjs/proxy", '@nuxt/http', ['@nuxtjs/firebase', {
+    config: {
+      apiKey: "AIzaSyB3pU_zCM7DaYkmZq2_9_TNUnRCTqPgRxs",
+      authDomain: "farine-square-service.firebaseapp.com",
+      projectId: "farine-square-service",
+      storageBucket: "farine-square-service.appspot.com",
+      messagingSenderId: "191699462649",
+      appId: "1:191699462649:web:172b66bef6401b24d1b528"
+    },
+    services: {
+      functions: true,
+    },
+    functions: {
+      location: 'us-central1',
+      emulatorPort: 12345,
+      emulatorHost: 'http://10.10.10.3',
+    }
+  }], ],
 
   i18n: {
     locales: [
@@ -95,6 +112,7 @@ export default {
     credentials: false,
     proxyheaders: false,
   },
+
 
 
 };

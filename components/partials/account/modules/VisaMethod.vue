@@ -65,17 +65,23 @@ export default {
 
         async createPayment(paymentBody){
 
-            const respuesta = await this.$store.dispatch('server/createPayment', paymentBody).then(res=>{
-                return console.log(res)
-            }).catch(error=>{
-                return console.log(error)
+        
+            // const res = await this.$fire.functions.httpsCallable('payment')(paymentBody).then(res => {
+            //     alert('la respuesta', res)
+            // }).catch(err=>{
+            //     alert('es un error', err)
+            // })
+
+            // console.log(res)
+
+            const respuesta = this.$fire.functions.httpsCallable('payment');
+            respuesta(paymentBody).then(res => {
+                console.log(res, 'desde el componente')
             })
 
-            if(respuesta){
 
-                console.log(respuesta)
-            }
-
+            // const res = await this.$fire.functions.httpsCallable('testFunction')();
+            // console.log(res)
         }
         
     }
