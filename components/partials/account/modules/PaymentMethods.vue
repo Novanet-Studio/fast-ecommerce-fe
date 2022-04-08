@@ -52,7 +52,7 @@ export default {
     computed:{
         user(){
             return this.$cookies.get('auth').user
-        }
+        },
     },
 
 };

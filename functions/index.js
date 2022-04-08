@@ -1,7 +1,8 @@
 const functions = require("firebase-functions");
 const admin = require('firebase-admin')
 const cors = require('cors')({ origin: true });
-const { Client, Environment } = require('square')
+const { Client, Environment } = require('square');
+const { parse } = require("uuid");
 admin.initializeApp()
 
 const client = new Client({
@@ -10,16 +11,29 @@ const client = new Client({
 })
 
 const paymentsApi = client.paymentsApi;
+const customersApi = client.customersApi;
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
+exports.createCustomer = functions.https.onCall(async (data)=>{
+  const body = {
+    idempotencyKey: data.idempotencyKey,
+    givenName: data.givenName,
+    emailAddress: data.emailAddress,
+  }
+  try {
+
+    const response = await customersApi.createCustomer(
+      body
+    ).then(res => {
+      console.log(response.result)
+      return {respuesta: response.result, stat: 'ok'}
+    })
+    
+  } catch (error) {
+    console.log(error)
+  }
 });
 
-exports.testFunction = functions.https.onCall(() => {
-  console.info('Test Function triggered')
-  return { message: "Yeaaahh it's working!" }
-});
+
 
 exports.payment = functions.https.onCall(async (data)=>{
 
@@ -31,16 +45,26 @@ exports.payment = functions.https.onCall(async (data)=>{
         amount: data.amountMoney.amount,
         currency: data.amountMoney.currency,
     },
+    buyerEmailAddress: data.buyerEmailAddress,
+    shippingAddress: {
+        addressLine1: data.addressLine1,
+        locality: data.locality,
+        postalCode: data.postalCode,
+        country: data.country
+    }
   }
   try {
     const response = await paymentsApi.createPayment(
       body
-    );
-  
-    console.log(response.result);
+    ).then(res => {
+      console.log(response.result);
+      return  {respuesta: response.result, stat: 'ok'};
+    }).catch(err=>{
+      return err
+    });
+ 
   } catch(error) {
     console.log(error);
   }
-  return  {response: response, mensaje: 'desde las funciones'}
 
 });

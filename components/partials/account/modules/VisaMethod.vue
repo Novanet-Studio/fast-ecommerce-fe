@@ -30,7 +30,16 @@ export default {
         card: null,
     }),
     computed: {
-
+        cart(){
+            return this.$cookies.get('cart')
+        },
+        cookie(){
+            const cookieInfo = this.$cookies.get('shippingInfo', { parseJSON: true });
+            return cookieInfo;
+        },
+        email(){
+            return this.cookie.email
+        },
     },
     mounted: async function() {
         const payments = Square.payments(process.env.SQUARE_APPLICATION_ID, process.env.SQUARE_LOCATION_ID);
@@ -41,7 +50,7 @@ export default {
     methods: {
         async handlePayment(){
             const cardButton = document.getElementById('card-button');
-            // cardButton.disabled = true;
+            cardButton.disabled = true;
             //creando token para la tarjeta
             this.card.tokenize().then(res => {
                 if(res.token) {
@@ -52,9 +61,16 @@ export default {
                         locationId: process.env.SQUARE_LOCATION_ID,
                         sourceId: token,
                         amountMoney: {
-                            amount: "2000",
+                            amount: (parseInt(this.cart.amount) * 100),
                             currency: "USD",
                         },
+                        buyerEmailAddress: this.email,
+                        shippingAddress: {
+                            addressLine1: this.cookie.address,
+                            locality: this.cookie.city,
+                            postalCode: this.cookie.zipCode,
+                            country: 'VE'
+                        }
                     };
                     this.createPayment(payment)                    
                 }
@@ -65,23 +81,13 @@ export default {
 
         async createPayment(paymentBody){
 
-        
-            // const res = await this.$fire.functions.httpsCallable('payment')(paymentBody).then(res => {
-            //     alert('la respuesta', res)
-            // }).catch(err=>{
-            //     alert('es un error', err)
-            // })
-
-            // console.log(res)
-
-            const respuesta = this.$fire.functions.httpsCallable('payment');
+            const respuesta = await this.$fire.functions.httpsCallable('payment');
             respuesta(paymentBody).then(res => {
                 console.log(res, 'desde el componente')
+            }).catch(error=>{
+                console.log(error)
             })
 
-
-            // const res = await this.$fire.functions.httpsCallable('testFunction')();
-            // console.log(res)
         }
         
     }
