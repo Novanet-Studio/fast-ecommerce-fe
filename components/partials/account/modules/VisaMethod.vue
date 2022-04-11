@@ -12,7 +12,8 @@
                 id="card-button"
                 type="button"
             >
-                Pagar
+                <p v-if="!loading" class="btn-pagar">Pagar</p>
+                <p v-else>...</p>
             </button>
 
         </div>
@@ -28,6 +29,7 @@ export default {
     name: 'VisaMethod',
     data: () => ({
         card: null,
+        loading: false, 
     }),
     computed: {
         cart(){
@@ -45,7 +47,8 @@ export default {
         const payments = Square.payments(process.env.SQUARE_APPLICATION_ID, process.env.SQUARE_LOCATION_ID);
         const card = await payments.card();
         await card.attach('#card-container');
-        this.card = card
+        this.card = card;
+
     },
     methods: {
         async handlePayment(){
@@ -53,7 +56,9 @@ export default {
             cardButton.disabled = true;
             //creando token para la tarjeta
             this.card.tokenize().then(res => {
+
                 if(res.token) {
+                    this.loading = true;
                     var token = res.token;
                     var idempotencyKeyGen = uuidv4();
                     var payment = {
@@ -83,8 +88,16 @@ export default {
 
             const respuesta = await this.$fire.functions.httpsCallable('payment');
             respuesta(paymentBody).then(res => {
-                const idk = JSON.parse(res.data);
-                console.log(idk, 'desde el componente')
+                const squareResponse = JSON.parse(res.data);
+                const paymentInfo = squareResponse.payment;
+                if(paymentInfo.status === 'COMPLETED'){
+                    this.loading = false;
+                    this.card.clear()
+                    this.$router.push('/')
+                    this.$store.dispatch('cart/clearCart');
+                    alert('PAGO REALIZADO')
+                }
+                console.log(squareResponse)
             }).catch(error=>{
                 console.log(error)
             })
@@ -99,5 +112,12 @@ export default {
 <style lang="scss" scoped>
 .highlight {
     color: $color-1st;
+}
+.btn-pagar{
+    font-weight: 500;
+    font-size: 20px;
+    padding: 0;
+    color: black;
+    margin: 0;
 }
 </style>
