@@ -13,58 +13,102 @@ const client = new Client({
 const paymentsApi = client.paymentsApi;
 const customersApi = client.customersApi;
 
-exports.createCustomer = functions.https.onCall(async (data)=>{
-  const body = {
-    idempotencyKey: data.idempotencyKey,
-    givenName: data.givenName,
-    emailAddress: data.emailAddress,
-  }
-  try {
+// exports.createCustomer = functions.https.onCall(async (data)=>{
+//   const body = {
+//     idempotencyKey: data.idempotencyKey,
+//     givenName: data.givenName,
+//     emailAddress: data.emailAddress,
+//   }
+//   try {
 
-    const response = await customersApi.createCustomer(
-      body
-    ).then(res => {
-      console.log(response.result)
-      return {respuesta: response.result, stat: 'ok'}
-    })
+//     const response = await customersApi.createCustomer(
+//       body
+//     ).then(res => {
+//       console.log(response.result)
+//       return {respuesta: response.result, stat: 'ok'}
+//     })
     
-  } catch (error) {
-    console.log(error)
-  }
-});
+//   } catch (error) {
+//     console.log(error)
+//   }
+// });
 
 
-
-exports.payment = functions.https.onCall(async (data)=>{
-
-  const body = {
-    idempotencyKey: data.idempotencyKey,
-    locationId: data.locationId,
-    sourceId: data.sourceId,
-    amountMoney: {
-        amount: data.amountMoney.amount,
-        currency: data.amountMoney.currency,
-    },
-    buyerEmailAddress: data.buyerEmailAddress,
-    shippingAddress: {
-        addressLine1: data.addressLine1,
-        locality: data.locality,
-        postalCode: data.postalCode,
-        country: data.country
+exports.payment = functions.https.onRequest((req, res)=>{
+  cors(req, res, async ()=>{
+    // return console.log(req.body)
+    const data = req.body.data;
+    const body = {
+      idempotencyKey: data.idempotencyKey,
+      locationId: data.locationId,
+      sourceId: data.sourceId,
+      amountMoney: {
+          amount: data.amountMoney.amount,
+          currency: data.amountMoney.currency,
+      },
+      buyerEmailAddress: data.buyerEmailAddress,
+      shippingAddress: {
+          addressLine1: data.addressLine1,
+          locality: data.locality,
+          postalCode: data.postalCode,
+          country: data.country
+      }
     }
-  }
-  try {
-    const response = await paymentsApi.createPayment(
-      body
-    ).then(res => {
-      console.log(response.result);
-      return  {respuesta: response.result, stat: 'ok'};
-    }).catch(err=>{
-      return err
-    });
- 
-  } catch(error) {
-    console.log(error);
-  }
+    try {
+      paymentsApi.createPayment(
+        body
+      ).then(ress=> {
+        const respuesta = JSON.stringify(ress.result, (key, value) =>
+        typeof value === 'bigint'
+            ? value.toString()
+            : value // return everything else unchanged
+        )
+        console.log(respuesta, 'desde el cloud');
+        res.status(200).send({data: respuesta})
+      }).catch(err=>{
+        console.log(err, 'error 400 pupusito')
+        res.status(400).send({error: err})
+      });
+   
+    } catch(error) {
+      console.log(error);
+      res.status(400).send({error: error})
+    }
+  })
 
 });
+
+// exports.payment = functions.https.onCall(async (data)=>{
+
+//   const body = {
+//     idempotencyKey: data.idempotencyKey,
+//     locationId: data.locationId,
+//     sourceId: data.sourceId,
+//     amountMoney: {
+//         amount: data.amountMoney.amount,
+//         currency: data.amountMoney.currency,
+//     },
+//     buyerEmailAddress: data.buyerEmailAddress,
+//     shippingAddress: {
+//         addressLine1: data.addressLine1,
+//         locality: data.locality,
+//         postalCode: data.postalCode,
+//         country: data.country
+//     }
+//   }
+//   try {
+//     const response = await paymentsApi.createPayment(
+//       body
+//     ).then(res => {
+//       console.log(response.result);
+//       res.send({respuesta: response.result, stat: 'ok'})
+//       // return  {respuesta: response.result, stat: 'ok'};
+//     }).catch(err=>{
+//       return err
+//     });
+ 
+//   } catch(error) {
+//     console.log(error);
+//   }
+
+// });

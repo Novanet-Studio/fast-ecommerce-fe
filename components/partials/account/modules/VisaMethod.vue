@@ -83,7 +83,8 @@ export default {
 
             const respuesta = await this.$fire.functions.httpsCallable('payment');
             respuesta(paymentBody).then(res => {
-                console.log(res, 'desde el componente')
+                const idk = JSON.parse(res.data);
+                console.log(idk, 'desde el componente')
             }).catch(error=>{
                 console.log(error)
             })
