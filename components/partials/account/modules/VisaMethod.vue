@@ -101,20 +101,19 @@ export default {
                 const squareResponse = JSON.parse(res.data);
                 const paymentInfo = squareResponse.payment;
                 if(paymentInfo.status === 'COMPLETED'){
-                    this.$notify({
-                        group: 'paymentSeccess',
-                        title: 'Exito',
-                        text: 'Pago Realizado con exito'
-                    })
+                    alert('PAGO REALIZADO')
                     this.loading = false;
                     const itemInvoices = this.cart.cartItems;
                     await this.createInvoice(paymentInfo, itemInvoices).then(respuesta => {
                         console.log(respuesta)
+                        if(respuesta.status === 200 && respuesta.statusText == "OK"){
+                            alert('INVOICE CREADO')
+                            this.$router.push('/')
+                            this.$store.dispatch('cart/clearCart');
+                            this.card.clear()
+
+                        }
                     })
-                    // this.card.clear()
-                    // this.$router.push('/')
-                    // this.$store.dispatch('cart/clearCart');
-                    // alert('PAGO REALIZADO')
                 }
                 console.log(squareResponse)
             }).catch(error=>{

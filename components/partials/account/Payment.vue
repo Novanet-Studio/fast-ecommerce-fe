@@ -3,7 +3,6 @@
         <notify/>
 
         <div class="container">
-
             <div class="ps-section__header">
                 <h1>Payment</h1>
             </div>

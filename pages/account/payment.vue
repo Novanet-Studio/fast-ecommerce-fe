@@ -2,6 +2,7 @@
     <section class="ps-page--my-account">
         <bread-crumb :breadcrumb="breadCrumb" />
         <payment />
+        
     </section>
 </template>
 
@@ -12,6 +13,7 @@ import Checkout from '~/components/partials/account/Checkout';
 import Shipping from '~/components/partials/account/Shipping';
 import Payment from '~/components/partials/account/Payment';
 import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
+import Notify from '~/components/elements/commons/notify';
 
 export default {
     transition: 'zoom',
@@ -22,7 +24,8 @@ export default {
         Shipping,
         Checkout,
         EditAddress,
-        BreadCrumb
+        BreadCrumb,
+        Notify
     },
 
     data: () => {

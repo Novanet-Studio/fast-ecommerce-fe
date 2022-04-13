@@ -1,5 +1,5 @@
 <template lang="html">
-    <client-only>
+    <!-- <client-only> -->
         <notifications
             group="addCartSuccess"
             :duration="2000"
@@ -21,7 +21,7 @@
                 </div>
             </template>
         </notifications>
-    </client-only>
+    <!-- </client-only> -->
 </template>
 <script>
 export default {
