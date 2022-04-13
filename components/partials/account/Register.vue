@@ -138,23 +138,21 @@ export default {
                     this.loading = true
                     await this.createCustomer(this.username, this.email).then(async (res) => {
                         const respuesta = res; 
-                        setTimeout(() => {
-                            const customerid = respuesta[1].id;
-                            if(customerid){
+                        if(respuesta.length > 0){
+                            const customerid = respuesta[0].id;
+                            if(customerid && respuesta[1] == 'success'){
                                 this.registerUser(customerid);
+                                btn.disabled = false; 
                             }
-                            
-                        },2000);
+                        }else{
+                            alert('hubo un error')
+                        }
 
-                        btn.disabled = false; 
                     })
                     
                 } catch (error) {
                     console.log(error, 'error al registrar')
                 }
-
-                
-
 
             }
         },
@@ -166,20 +164,19 @@ export default {
                 givenName: username,
                 emailAddress: email
             }
-            var datos = [
-                'idk'
-            ]
-
-            const customerId = await this.$fire.functions.httpsCallable('createCustomer');
-            customerId(data).then(res => {
+            var datos = [];
+            
+            const customerId = this.$fire.functions.httpsCallable('createCustomer');
+            await customerId(data).then(async (res) => {
 
                 const squareResponse = JSON.parse(res.data);
-                const customerinfo = squareResponse.customer;
+                const customerinfo = await squareResponse.customer;
                 if(customerinfo){
                     datos.push(customerinfo);
+                    datos.push('success')
                 }
                 console.log(squareResponse.customer)
-                return datos
+                // return datos
             }).catch(error=>{
                 console.log(error)
             })
