@@ -26,8 +26,13 @@ export const mutations = {
 export const actions = {
     setAuthStatus({ commit, state }, payload) {
         commit('setIsLoggedIn', payload);
+        commit('setUser', payload)
         const cookieParams = {
-            isLoggedIn: state.isLoggedIn
+            isLoggedIn: state.isLoggedIn,
+            user: {
+                username: state.username,
+                email: state.email
+            }
         };
 
         this.$cookies.set('auth', cookieParams, {

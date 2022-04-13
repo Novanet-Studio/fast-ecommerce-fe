@@ -49,6 +49,8 @@ export default {
         await card.attach('#card-container');
         this.card = card;
 
+        console.log(this.$cookies.get('auth'))
+
     },
     methods: {
         async handlePayment(){
