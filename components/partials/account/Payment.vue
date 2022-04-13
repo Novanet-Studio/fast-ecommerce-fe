@@ -1,6 +1,9 @@
 <template lang="html">
     <div class="ps-checkout ps-section--shopping">
+        <notify/>
+
         <div class="container">
+
             <div class="ps-section__header">
                 <h1>Payment</h1>
             </div>
@@ -48,6 +51,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 ">
                         <module-order-summary :shipping="true" />
                     </div>
+
                 </div>
             </div>
         </div>
@@ -55,11 +59,12 @@
 </template>
 
 <script>
+import Notify from '~/components/elements/commons/notify';
 import ModuleOrderSummary from '~/components/partials/account/modules/ModuleOrderSummary';
 import PaymentMethods from '~/components/partials/account/modules/PaymentMethods';
 export default {
     name: 'Payment',
-    components: { PaymentMethods, ModuleOrderSummary },
+    components: {Notify, PaymentMethods, ModuleOrderSummary },
     computed: {
         cookie(){
             const cookieInfo = this.$cookies.get('shippingInfo', { parseJSON: true });

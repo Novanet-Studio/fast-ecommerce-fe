@@ -18,6 +18,8 @@
                         </div>
                     </div>
                 </section>
+                <notify />
+
             </v-main>
         </v-app>
     </client-only>
@@ -65,8 +67,6 @@ export default {
             this.breadCrumb[1].text = data;
         }
     }
-
-
 };
 </script>
 

@@ -48,7 +48,6 @@ export const actions = {
     },
 
     async createInvoice({commit}, payload){
-        const idk = payload
         const data = {
             amount: 4,
             order_id: 'hfbjdhb',
@@ -68,7 +67,7 @@ export const actions = {
             ],
             user_id: 8
         }
-        const response = await Repository.post(`${baseUrl}/invoices`, data)
+        const response = await Repository.post(`${baseUrl}/invoices`, payload)
             .then(response => {
                 return response
             })

@@ -14,24 +14,6 @@
                     <VisaMethod />
                 </div>
             </v-tab-item>
-
-            <!-- <v-tab tag="li" class="tab-label">
-                Visa / Master Card
-            </v-tab>
-            <v-tab tag="li" class="tab-label">
-                Paypal
-            </v-tab>
-            <v-tab-item>
-                <div class="ps-block__content">
-                    <visa-method />
-                </div>
-            </v-tab-item>
-            <v-tab-item>
-                <div class="ps-block__content">
-                    <paypal-method />
-                </div>
-            </v-tab-item> -->
-
         </v-tabs>
     </div>
 </template>

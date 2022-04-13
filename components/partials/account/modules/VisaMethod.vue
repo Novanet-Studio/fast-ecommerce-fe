@@ -46,6 +46,9 @@ export default {
         },
         customerId(){
             return this.$cookies.get('auth').user.customer_id;
+        },
+        user(){
+            return this.$cookies.get('auth').user;
         }
     },
     mounted: async function() {
@@ -53,7 +56,8 @@ export default {
         const card = await payments.card();
         await card.attach('#card-container');
         this.card = card;
-        // this.createInvoice()
+        console.log(this.cart)
+        // this.createInvoice('hola', this.cart.cartItems)
     },
     methods: {
         async handlePayment(){
@@ -93,15 +97,24 @@ export default {
         async createPayment(paymentBody){
 
             const respuesta = await this.$fire.functions.httpsCallable('payment');
-            respuesta(paymentBody).then(res => {
+            respuesta(paymentBody).then(async (res) => {
                 const squareResponse = JSON.parse(res.data);
                 const paymentInfo = squareResponse.payment;
                 if(paymentInfo.status === 'COMPLETED'){
+                    this.$notify({
+                        group: 'paymentSeccess',
+                        title: 'Exito',
+                        text: 'Pago Realizado con exito'
+                    })
                     this.loading = false;
-                    this.card.clear()
-                    this.$router.push('/')
-                    this.$store.dispatch('cart/clearCart');
-                    alert('PAGO REALIZADO')
+                    const itemInvoices = this.cart.cartItems;
+                    await this.createInvoice(paymentInfo, itemInvoices).then(respuesta => {
+                        console.log(respuesta)
+                    })
+                    // this.card.clear()
+                    // this.$router.push('/')
+                    // this.$store.dispatch('cart/clearCart');
+                    // alert('PAGO REALIZADO')
                 }
                 console.log(squareResponse)
             }).catch(error=>{
@@ -110,15 +123,34 @@ export default {
 
         },
 
-        async generateInvoice(){
-            this.$store.dispatch('checkout/invoiceInfo', 1).then(res => {
-                return console.log(res)
+        // async generateInvoice(){
+        //     this.$store.dispatch('checkout/invoiceInfo', 1).then(res => {
+        //         return console.log(res)
+        //     }).catch(err => {console.log(err)})
+        // },
+        async createInvoice(payment, products){
+            var setItems = [];
+           products.map(function(products){
+               setItems.push({
+                   id_product: products.id,
+                   quantity: products.quantity
+               })
+           })
+
+            const data = {
+                amount: (payment.totalMoney.amount)/100, 
+                order_id: payment.orderId,
+                paid: true, 
+                payment_id: payment.id,
+                products: setItems,
+                user_id: this.user.id
+            }
+            // return console.log(data)
+           const res = await this.$store.dispatch('checkout/createInvoice', data).then(res => {
+                return res
             }).catch(err => {console.log(err)})
-        },
-        async createInvoice(){
-            this.$store.dispatch('checkout/createInvoice', 'funciona?').then(res => {
-                return console.log(res)
-            }).catch(err => {console.log(err)})
+
+            return res;
         }
         
     }
