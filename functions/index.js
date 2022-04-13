@@ -13,25 +13,39 @@ const client = new Client({
 const paymentsApi = client.paymentsApi;
 const customersApi = client.customersApi;
 
-// exports.createCustomer = functions.https.onCall(async (data)=>{
-//   const body = {
-//     idempotencyKey: data.idempotencyKey,
-//     givenName: data.givenName,
-//     emailAddress: data.emailAddress,
-//   }
-//   try {
+exports.createCustomer = functions.https.onRequest( (req, res) => {
+    cors( req, res, async ()=> {
+      const data = req.body.data;
 
-//     const response = await customersApi.createCustomer(
-//       body
-//     ).then(res => {
-//       console.log(response.result)
-//       return {respuesta: response.result, stat: 'ok'}
-//     })
-    
-//   } catch (error) {
-//     console.log(error)
-//   }
-// });
+      const body = {
+        idempotencyKey: data.idempotencyKey,
+        givenName: data.givenName,
+        emailAddress: data.emailAddress,
+      }
+      try {
+        customersApi.createCustomer(
+          body
+        ).then(ress => {
+          const respuesta = JSON.stringify(ress.result, (key, value) =>
+          typeof value === 'bigint'
+              ? value.toString()
+              : value // return everything else unchanged
+          )
+          console.log(respuesta, 'desde el cloud')
+          res.status(200).send({data: respuesta})
+        }).catch(err=>{
+          console.log(err, 'error 400 pupusito')
+          res.status(400).send({error: err})
+        });
+        
+      } catch (error) {
+        console.log(error);
+        res.status(400).send({error: error})
+      }
+    })
+  }
+  
+);
 
 
 exports.payment = functions.https.onRequest((req, res)=>{

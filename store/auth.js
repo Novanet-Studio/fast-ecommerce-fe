@@ -19,6 +19,7 @@ export const mutations = {
         state.username = payload.username;
         state.email = payload.email;
         state.password = payload.password;
+        state.customer_id = payload.customer_id;
     }
 };
 
@@ -65,6 +66,7 @@ export const actions = {
                 username: state.username,
                 email: state.email,
                 password: state.password,
+                customer_id: state.customer_id
             })
               .then(response => {
                 // Handle success.

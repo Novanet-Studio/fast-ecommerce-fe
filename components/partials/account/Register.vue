@@ -40,9 +40,13 @@
                     type="submit"
                     class="ps-btn ps-btn--fullwidth"
                     @click.prevent="handleSubmit"
+                    id="botonRegistro"
                 >
                     Register
                 </button>
+                <template v-if="loading === true">
+                    <loading />
+                </template>
             </div>
         </div>
         <div class="ps-form__footer">
@@ -77,9 +81,13 @@
 <script>
 import { email, required } from 'vuelidate/lib/validators';
 import { validationMixin } from 'vuelidate';
+import { v4 as uuidv4 } from 'uuid'
+import Loading from '~/components/elements/commons/Loading';
 
 export default {
     name: 'Register',
+        components: { Loading},
+
     computed: {
         usernameErrors() {
             const errors = [];
@@ -111,6 +119,7 @@ export default {
             username: null,
             email: null,
             password: null,
+            loading: false,
         };
     },
     validations: {
@@ -122,24 +131,81 @@ export default {
         async handleSubmit() {
             this.$v.$touch();
             if (!this.$v.$invalid) {
-                const data = {
-                    username: this.username,
-                    email: this.email,
-                    password: this.password
+                // creating customerId in square and passing it to strapi to save that reference
+                try {
+                    const btn = document.getElementById('botonRegistro');
+                    btn.disabled = true; 
+                    this.loading = true
+                    await this.createCustomer(this.username, this.email).then(async (res) => {
+                        const respuesta = res; 
+                        setTimeout(() => {
+                            const customerid = respuesta[1].id;
+                            if(customerid){
+                                this.registerUser(customerid);
+                            }
+                            
+                        },2000);
+
+                        btn.disabled = false; 
+                    })
+                    
+                } catch (error) {
+                    console.log(error, 'error al registrar')
                 }
-                const respuesta = await this.$store.dispatch('auth/setNewUser', data);
-                if(respuesta.jwt){
-                    //status usuario loggeado true
-                    this.$store.dispatch('auth/setAuthStatus', true)
-                    this.$router.push('/');
-                    alert('se ha registrado el ausuario')
-                }else{
-                    alert(respuesta.alert)
-                }
-                console.log(respuesta);
+
+                
 
 
             }
+        },
+
+        async createCustomer(username, email){
+            var idempotencyKeyGen = uuidv4();
+            const data = {
+                idempotencyKey: idempotencyKeyGen,
+                givenName: username,
+                emailAddress: email
+            }
+            var datos = [
+                'idk'
+            ]
+
+            const customerId = await this.$fire.functions.httpsCallable('createCustomer');
+            customerId(data).then(res => {
+
+                const squareResponse = JSON.parse(res.data);
+                const customerinfo = squareResponse.customer;
+                if(customerinfo){
+                    datos.push(customerinfo);
+                }
+                console.log(squareResponse.customer)
+                return datos
+            }).catch(error=>{
+                console.log(error)
+            })
+            return datos;
+        },
+
+        async registerUser(customerId){
+            const data = {
+                username: this.username,
+                email: this.email,
+                password: this.password,
+                customer_id: customerId
+            }
+            const respuesta = await this.$store.dispatch('auth/setNewUser', data);
+            if(respuesta.jwt){
+                this.loading = false;
+                //status usuario loggeado true
+                this.$store.dispatch('auth/setAuthStatus', true)
+                this.$router.push('/');
+                alert('se ha registrado el ausuario')
+            }else{
+                alert(respuesta.alert)
+            }
+
+            console.log(respuesta);
+
         }
     }
 };
