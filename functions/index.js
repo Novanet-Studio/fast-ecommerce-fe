@@ -56,6 +56,7 @@ exports.payment = functions.https.onRequest((req, res)=>{
       idempotencyKey: data.idempotencyKey,
       locationId: data.locationId,
       sourceId: data.sourceId,
+      customerId: data.customerId,
       amountMoney: {
           amount: data.amountMoney.amount,
           currency: data.amountMoney.currency,

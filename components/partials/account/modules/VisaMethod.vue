@@ -42,15 +42,15 @@ export default {
         email(){
             return this.cookie.email
         },
+        customerId(){
+            return this.$cookies.get('auth').user.customer_id;
+        }
     },
     mounted: async function() {
         const payments = Square.payments(process.env.SQUARE_APPLICATION_ID, process.env.SQUARE_LOCATION_ID);
         const card = await payments.card();
         await card.attach('#card-container');
         this.card = card;
-
-        console.log(this.$cookies.get('auth'))
-
     },
     methods: {
         async handlePayment(){
@@ -67,6 +67,7 @@ export default {
                         idempotencyKey: idempotencyKeyGen,
                         locationId: process.env.SQUARE_LOCATION_ID,
                         sourceId: token,
+                        customerId: this.customerId,
                         amountMoney: {
                             amount: (parseInt(this.cart.amount) * 100),
                             currency: "USD",

@@ -10,6 +10,9 @@ export const state = () => ({
 export const mutations = {
     setIsLoggedIn(state, payload) {
         state.isLoggedIn = payload;
+        state.username = payload.username;
+        state.password = payload.password;
+
     },
     setUser(state, payload){
         state.username = payload.username;
@@ -26,7 +29,6 @@ export const mutations = {
 export const actions = {
     setAuthStatus({ commit, state }, payload) {
         commit('setIsLoggedIn', payload);
-        commit('setUser', payload)
         const cookieParams = {
             isLoggedIn: state.isLoggedIn,
             user: {
