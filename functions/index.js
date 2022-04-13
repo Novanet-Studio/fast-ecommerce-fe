@@ -92,38 +92,3 @@ exports.payment = functions.https.onRequest((req, res)=>{
   })
 
 });
-
-// exports.payment = functions.https.onCall(async (data)=>{
-
-//   const body = {
-//     idempotencyKey: data.idempotencyKey,
-//     locationId: data.locationId,
-//     sourceId: data.sourceId,
-//     amountMoney: {
-//         amount: data.amountMoney.amount,
-//         currency: data.amountMoney.currency,
-//     },
-//     buyerEmailAddress: data.buyerEmailAddress,
-//     shippingAddress: {
-//         addressLine1: data.addressLine1,
-//         locality: data.locality,
-//         postalCode: data.postalCode,
-//         country: data.country
-//     }
-//   }
-//   try {
-//     const response = await paymentsApi.createPayment(
-//       body
-//     ).then(res => {
-//       console.log(response.result);
-//       res.send({respuesta: response.result, stat: 'ok'})
-//       // return  {respuesta: response.result, stat: 'ok'};
-//     }).catch(err=>{
-//       return err
-//     });
- 
-//   } catch(error) {
-//     console.log(error);
-//   }
-
-// });

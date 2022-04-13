@@ -25,6 +25,8 @@
 
 <script>
 import { v4 as uuidv4 } from 'uuid'
+import { mapState } from 'vuex';
+
 export default {
     name: 'VisaMethod',
     data: () => ({
@@ -51,6 +53,7 @@ export default {
         const card = await payments.card();
         await card.attach('#card-container');
         this.card = card;
+        // this.createInvoice()
     },
     methods: {
         async handlePayment(){
@@ -105,6 +108,17 @@ export default {
                 console.log(error)
             })
 
+        },
+
+        async generateInvoice(){
+            this.$store.dispatch('checkout/invoiceInfo', 1).then(res => {
+                return console.log(res)
+            }).catch(err => {console.log(err)})
+        },
+        async createInvoice(){
+            this.$store.dispatch('checkout/createInvoice', 'funciona?').then(res => {
+                return console.log(res)
+            }).catch(err => {console.log(err)})
         }
         
     }

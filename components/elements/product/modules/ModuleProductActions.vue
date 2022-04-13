@@ -72,7 +72,7 @@ export default {
             // handler.handleAddToCart(this.product)
             console.log(this.$cookies.get('cart'))
             console.log(this.cartItems)
-            console.log(respuesta)
+            console.log(respuesta, 'desdeaqui')
         },
 
         handleAddItemToWishlist() {

@@ -67,6 +67,11 @@ export default {
                 }
             ]
         };
+    },
+    methods: {
+        async getPayments(){
+            
+        }
     }
 };
 </script>

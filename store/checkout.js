@@ -14,6 +14,7 @@ export const mutations = {
         state.zipCode = payload.zipCode;
     },
 
+
 }
 
 export const actions = {
@@ -33,5 +34,48 @@ export const actions = {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         });
+    },
+
+    async invoiceInfo({commit}, payload){
+        const id = payload
+        const response = await Repository.get(`${baseUrl}/invoices/${id}`)
+            .then(response => {
+                return response.data
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
+
+        return response;
+    },
+
+    async createInvoice({commit}, payload){
+        const idk = payload
+        const data = {
+            amount: 4,
+            order_id: 'hfbjdhb',
+            paid: true,
+            payment_id: '23567hduben',
+            products: [
+                {
+                    id_product: 3,
+                    name_product: 'asereje',
+                    quantity: 2
+                },
+                {
+                    id_product: 1,
+                    name_product: 'desde farine',
+                    quantity: 4
+                },
+            ],
+            user_id: 8
+        }
+        const response = await Repository.post(`${baseUrl}/invoices`, data)
+            .then(response => {
+                return response
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
+
+        return response;
     }
+   
+
 }

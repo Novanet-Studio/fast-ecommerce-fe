@@ -1,3 +1,7 @@
+import Repository, { serializeQuery } from '~/repositories/Repository.js';
+import { baseUrl } from '~/repositories/Repository';
+
+
 const calculateAmount = obj =>
     Object.values(obj)
         .reduce((acc, { quantity, price }) => acc + quantity * price, 0)
@@ -7,7 +11,7 @@ export const state = () => ({
     total: 0,
     amount: 0,
     cartItems: [],
-    loading: false
+    loading: false,
 });
 
 export const mutations = {
@@ -148,5 +152,5 @@ export const actions = {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
         });
-    }
+    },
 };
