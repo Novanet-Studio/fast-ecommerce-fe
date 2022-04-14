@@ -50,50 +50,50 @@ export const mutations = {
 };
 
 export const actions = {
-    async getProducts({ commit }, payload) {
-        const reponse = await Repository.get(
-            `${baseUrl}/products?${serializeQuery(payload)}`
-        )
-            .then(response => {
-                commit('setProducts', response.data);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
-        return reponse;
-    },
+    // async getProducts({ commit }, payload) {
+    //     const reponse = await Repository.get(
+    //         `${baseUrl}/products?${serializeQuery(payload)}`
+    //     )
+    //         .then(response => {
+    //             commit('setProducts', response.data);
+    //             return response.data;
+    //         })
+    //         .catch(error => ({ error: JSON.stringify(error) }));
+    //     return reponse;
+    // },
 
-    async getTotalRecords({ commit }, payload) {
-        const reponse = await Repository.get(`${baseUrl}/products/count`)
-            .then(response => {
-                commit('setTotal', response.data);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
-        return reponse;
-    },
+    // async getTotalRecords({ commit }, payload) {
+    //     const reponse = await Repository.get(`${baseUrl}/products/count`)
+    //         .then(response => {
+    //             commit('setTotal', response.data);
+    //             return response.data;
+    //         })
+    //         .catch(error => ({ error: JSON.stringify(error) }));
+    //     return reponse;
+    // },
 
-    async getProductsById({ commit }, payload) {
-        const reponse = await Repository.get(`${baseUrl}/products/${payload}`)
-            .then(response => {
-                commit('setProduct', response.data);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
-        return reponse;
-    },
+    // async getProductsById({ commit }, payload) {
+    //     const reponse = await Repository.get(`${baseUrl}/products/${payload}`)
+    //         .then(response => {
+    //             commit('setProduct', response.data);
+    //             return response.data;
+    //         })
+    //         .catch(error => ({ error: JSON.stringify(error) }));
+    //     return reponse;
+    // },
 
-    async getProductByKeyword({ commit }, payload) {
-        const reponse = await Repository.get(
-            `${baseUrl}/products?${serializeQuery(payload)}`
-        )
-            .then(response => {
-                commit('setSearchResults', response.data);
-                commit('setTotal', response.data.length);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
-        return reponse;
-    },
+    // async getProductByKeyword({ commit }, payload) {
+    //     const reponse = await Repository.get(
+    //         `${baseUrl}/products?${serializeQuery(payload)}`
+    //     )
+    //         .then(response => {
+    //             commit('setSearchResults', response.data);
+    //             commit('setTotal', response.data.length);
+    //             return response.data;
+    //         })
+    //         .catch(error => ({ error: JSON.stringify(error) }));
+    //     return reponse;
+    // },
 
     async getCartProducts({ commit }, payload) {
         let query = '';
@@ -138,24 +138,43 @@ export const actions = {
             .catch(error => ({ error: JSON.stringify(error) }));
         return reponse;
     },
-
-    async getCompareProducts({ commit }, payload) {
+    
+    async getProductbyId({commit}, payload){
         let query = '';
-        payload.forEach(item => {
-            if (query === '') {
+        payload.foreach(item => {
+            if(query === ''){
                 query = `id=${item}`;
-            } else {
+            }else{
                 query = query + `&id=${item}`;
             }
         });
-        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
-            .then(response => {
-                commit('setCompareItems', response.data);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
-        return reponse;
+        const reponse = await Repository.get(`${baseUrl}/productos?${query}`)
+        .then(response => {
+            // commit('setProducts', response.data);
+            return response.data;
+        })
+        .catch(error => ({ error: JSON.stringify(error) }));
+    return reponse;
+
     },
+
+    // async getCompareProducts({ commit }, payload) {
+    //     let query = '';
+    //     payload.forEach(item => {
+    //         if (query === '') {
+    //             query = `id=${item}`;
+    //         } else {
+    //             query = query + `&id=${item}`;
+    //         }
+    //     });
+    //     const reponse = await Repository.get(`${baseUrl}/products?${query}`)
+    //         .then(response => {
+    //             commit('setCompareItems', response.data);
+    //             return response.data;
+    //         })
+    //         .catch(error => ({ error: JSON.stringify(error) }));
+    //     return reponse;
+    // },
 
     async getProductBrands({ commit }) {
         const reponse = await Repository.get(`${baseUrl}/brands`)

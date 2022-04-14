@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="table-repsonsive">
-        <table class="table table-bordered">
+        <table v-if="invoiceExist === true" class="table table-bordered">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -11,19 +11,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in tableData" :key="item.id">
+                <tr v-for="item in tableInvoices" :key="item.id">
                     <td>
                         <nuxt-link to="/account/invoice-detail">{{
-                            item.invoiceId
+                            item.id_invoice_user
                         }}</nuxt-link>
                     </td>
-                    <td>{{ item.title }}</td>
-                    <td>{{ item.dateCreate }}</td>
+                    <td>CACHITO</td>
+                    <td>{{ item.date }}</td>
                     <td>${{ item.amount }}</td>
-                    <td>{{ item.status }}</td>
+                    <td v-if="item.paid === true" class="status-color">{{ item.status }}</td>
+                    <td v-else>{{ item.status }}</td>
                 </tr>
             </tbody>
         </table>
+        <h4 v-else>No posees ninguna factura aun!</h4>
     </div>
 </template>
 
@@ -65,15 +67,51 @@ export default {
                     amount: '41.00',
                     status: 'Cancel'
                 }
-            ]
+            ],
+            invoiceExist: false, 
+            tableInvoices: null
         };
+    },
+    computed: {
+        user(){
+            return this.$cookies.get('auth').user;
+        },
+    },
+    mounted(){
+        this.getPayments()
     },
     methods: {
         async getPayments(){
-            
+            const respuesta = await this.$store.dispatch('checkout/getAllInvoices', this.user.id).then( res=> {
+                if(res.length > 0){
+                    this.invoiceExist = true;
+                    for (let i = 0; i < res.length; i++) {
+                        res[i].id_invoice_user = i+1;
+                        res[i].date = new Date(res[i].created_at).toLocaleDateString()
+                        if(res[i].paid === true){
+                            res[i].status = 'Pagado'
+                        }else{
+                            res[i].status = 'Cancelado'
+                        }
+                    }
+                    this.tableInvoices = res
+                }else{
+                    this.invoiceExist = false;
+                }
+            })
+
+            console.log(this.invoiceExist)
+        },
+        async getProductInvoices(data){
+            const productos = await this.$store.dispatch('product/getProductById', data )
         }
+
     }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.status-color{
+    background-color: rgba(216, 255, 154, 0.603);
+}
+</style>

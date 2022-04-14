@@ -46,27 +46,19 @@ export const actions = {
 
         return response;
     },
+    async getAllInvoices({commit}, payload){
+        const userId = payload
+        const response = await Repository.get(`${baseUrl}/invoices?user_id=${userId}`)
+            .then(response => {
+                return response.data
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
 
-    async createInvoice({commit}, payload){
-        const data = {
-            amount: 4,
-            order_id: 'hfbjdhb',
-            paid: true,
-            payment_id: '23567hduben',
-            products: [
-                {
-                    id_product: 3,
-                    name_product: 'asereje',
-                    quantity: 2
-                },
-                {
-                    id_product: 1,
-                    name_product: 'desde farine',
-                    quantity: 4
-                },
-            ],
-            user_id: 8
-        }
+        return response;
+    },
+
+    async createInvoice(payload){
+
         const response = await Repository.post(`${baseUrl}/invoices`, payload)
             .then(response => {
                 return response
