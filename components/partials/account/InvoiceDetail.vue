@@ -16,10 +16,10 @@
                         </figcaption>
                         <div class="ps-block__content">
                             <strong>
-                                {{ user.username }}
+                                {{ invoice.fullName }}
                             </strong>
                             <p>
-                                Address: {{ invoice.shippingAddress.addressLine1 }},
+                                Dirección: {{ invoice.shippingAddress.addressLine1 }},
                                 {{ invoice.shippingAddress.locality }}, {{ invoice.shippingAddress.country }}
                             </p>
                             <p>
