@@ -3,21 +3,17 @@
         <table v-if="invoiceExist === true" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Amount</th>
+                    <th>Nº</th>
+                    <th>Factura</th>
+                    <th>Fecha</th>
+                    <th>Monto</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in tableInvoices" :key="item.id">
-                    <td>
-                        <nuxt-link to="/account/invoice-detail">{{
-                            item.id_invoice_user
-                        }}</nuxt-link>
-                    </td>
-                    <td>CACHITO</td>
+                <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.id)">
+                    <td class="invoice-hover">{{item.id_invoice_user}}</td>
+                    <td>{{item.payment_id}}</td>
                     <td>{{ item.date }}</td>
                     <td>${{ item.amount }}</td>
                     <td v-if="item.paid === true" class="status-color">{{ item.status }}</td>
@@ -34,40 +30,6 @@ export default {
     name: 'TableInvoices',
     data() {
         return {
-            tableData: [
-                {
-                    id: '1',
-                    invoiceId: '500884010',
-                    title: 'Marshall Kilburn Portable Wireless Speaker',
-                    dateCreate: '20-1-2020',
-                    amount: '42.99',
-                    status: 'Successful delivery'
-                },
-                {
-                    id: '2',
-                    invoiceId: '593347935',
-                    title: 'Herschel Leather Duffle Bag In Brown Color',
-                    dateCreate: '20-1-2020',
-                    amount: '199.99',
-                    status: 'Cancel'
-                },
-                {
-                    id: '3',
-                    invoiceId: '593347935',
-                    title: 'Xbox One Wireless Controller Black Color',
-                    dateCreate: '20-1-2020',
-                    amount: '199.99',
-                    status: 'Cancel'
-                },
-                {
-                    id: '4',
-                    invoiceId: '615397400',
-                    title: 'Grand Slam Indoor Of Show Jumping Novel',
-                    dateCreate: '20-1-2020',
-                    amount: '41.00',
-                    status: 'Cancel'
-                }
-            ],
             invoiceExist: false, 
             tableInvoices: null
         };
@@ -100,10 +62,9 @@ export default {
                 }
             })
 
-            console.log(this.invoiceExist)
         },
-        async getProductInvoices(data){
-            const productos = await this.$store.dispatch('product/getProductById', data )
+        goToInvoice(id){
+            this.$router.push(`/account/invoices/${id}`)
         }
 
     }
@@ -113,5 +74,9 @@ export default {
 <style lang="scss" scoped>
 .status-color{
     background-color: rgba(216, 255, 154, 0.603);
+}
+.invoice-hover:hover{
+    background-color: #feeed7;
+    color: #dd2400;
 }
 </style>
