@@ -67,7 +67,8 @@ exports.payment = functions.https.onRequest((req, res)=>{
           locality: data.shippingAddress.locality,
           postalCode: data.shippingAddress.postalCode,
           country: data.shippingAddress.country
-      }
+      },
+      note: data.note
     }
     try {
       paymentsApi.createPayment(

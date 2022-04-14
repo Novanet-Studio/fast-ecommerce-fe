@@ -49,6 +49,10 @@ export default {
         },
         user(){
             return this.$cookies.get('auth').user;
+        },
+        fullName(){
+            const name = this.cookie.name + " " + this.cookie.lastName;
+            return name;
         }
     },
     mounted: async function() {
@@ -57,7 +61,7 @@ export default {
         await card.attach('#card-container');
         this.card = card;
         console.log(this.cart)
-        // this.createInvoice('hola', this.cart.cartItems)
+        console.log(this.fullName)
     },
     methods: {
         async handlePayment(){
@@ -85,7 +89,8 @@ export default {
                             locality: this.cookie.city,
                             postalCode: this.cookie.zipCode,
                             country: 'VE'
-                        }
+                        },
+                        note: this.fullName,
                     };
                     this.createPayment(payment)                    
                 }
@@ -143,7 +148,8 @@ export default {
                 payment_id: payment.id,
                 products: setItems,
                 user_id: this.user.id,
-                shippingAddress: payment.shippingAddress
+                shippingAddress: payment.shippingAddress,
+                fullName: payment.note,
             }
             // return console.log(data)
            const res = await this.$store.dispatch('checkout/createInvoice', data).then(res => {

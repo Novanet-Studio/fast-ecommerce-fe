@@ -16,11 +16,11 @@
                         </figcaption>
                         <div class="ps-block__content">
                             <strong>
-                                John Walker
+                                {{ user.username }}
                             </strong>
                             <p>
-                                Address: 3481 Poe Lane,
-                                Westphalia, Kansas
+                                Address: {{ invoice.shippingAddress.addressLine1 }},
+                                {{ invoice.shippingAddress.locality }}, {{ invoice.shippingAddress.country }}
                             </p>
                             <p>
                                 Phone: 913-489-1853
@@ -98,6 +98,9 @@ export default {
     computed: {
         invoice(){
             return this.$cookies.get('invoice').invoice
+        },
+        user(){
+            return this.$cookies.get('auth').user
         }
     },
     mounted(){
