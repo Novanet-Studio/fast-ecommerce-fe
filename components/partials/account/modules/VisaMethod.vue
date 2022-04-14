@@ -142,7 +142,8 @@ export default {
                 paid: true, 
                 payment_id: payment.id,
                 products: setItems,
-                user_id: this.user.id
+                user_id: this.user.id,
+                shippingAddress: payment.shippingAddress
             }
             // return console.log(data)
            const res = await this.$store.dispatch('checkout/createInvoice', data).then(res => {

@@ -57,7 +57,7 @@ export const actions = {
         return response;
     },
 
-    async createInvoice(payload){
+    async createInvoice({commit},payload){
 
         const response = await Repository.post(`${baseUrl}/invoices`, payload)
             .then(response => {

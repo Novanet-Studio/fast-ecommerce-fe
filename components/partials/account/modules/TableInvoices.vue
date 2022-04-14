@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.id)">
+                <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.id_invoice_user, item)">
                     <td class="invoice-hover">{{item.id_invoice_user}}</td>
                     <td>{{item.payment_id}}</td>
                     <td>{{ item.date }}</td>
@@ -63,8 +63,15 @@ export default {
             })
 
         },
-        goToInvoice(id){
-            this.$router.push(`/account/invoices/${id}`)
+        goToInvoice(idInvUser, invoice){
+            const cookieParams = {
+                invoice: invoice
+            }
+            this.$cookies.set('invoice', cookieParams, {
+                path: '/',
+                maxAge: 60 * 60 * 24 * 7
+            });
+            this.$router.push(`/invoice/${idInvUser}`)
         }
 
     }

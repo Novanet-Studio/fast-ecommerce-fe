@@ -63,10 +63,10 @@ exports.payment = functions.https.onRequest((req, res)=>{
       },
       buyerEmailAddress: data.buyerEmailAddress,
       shippingAddress: {
-          addressLine1: data.addressLine1,
-          locality: data.locality,
-          postalCode: data.postalCode,
-          country: data.country
+          addressLine1: data.shippingAddress.addressLine1,
+          locality: data.shippingAddress.locality,
+          postalCode: data.shippingAddress.postalCode,
+          country: data.shippingAddress.country
       }
     }
     try {
