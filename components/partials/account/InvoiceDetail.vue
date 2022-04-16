@@ -22,9 +22,7 @@
                                 Dirección: {{ invoice.shippingAddress.addressLine1 }},
                                 {{ invoice.shippingAddress.locality }}, {{ invoice.shippingAddress.country }}
                             </p>
-                            <p>
-                                {{ invoice.date }}
-                            </p>
+
                         </div>
                     </figure>
                 </div>
@@ -38,6 +36,9 @@
                                 Pagado
                             </p>
                             <p v-else>No pagado</p>
+                            <p>
+                                {{ invoice.date }}
+                            </p>
                         </div>
                     </figure>
                 </div>
@@ -48,8 +49,9 @@
                         </figcaption>
                         <div class="ps-block__content">
                             <p>
-                                Payment Method: Visa
+                                Pago: {{ invoice.cardKind }} {{ invoice.cardType }},
                             </p>
+                            <p>Ultimos Cuatro digitos: {{invoice.cardLast}}</p>
                         </div>
                     </figure>
                 </div>
