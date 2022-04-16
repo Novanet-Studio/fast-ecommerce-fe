@@ -139,15 +139,17 @@ export const actions = {
         return reponse;
     },
     
-    async getProductbyId({commit}, payload){
+    async getProductById({commit}, payload){
         let query = '';
-        payload.foreach(item => {
+        for (let i = 0; i < payload.length; i++) {
             if(query === ''){
-                query = `id=${item}`;
+                query = `id=${payload[i]}`;
             }else{
-                query = query + `&id=${item}`;
+                query = query + `&id=${payload[i]}`;
             }
-        });
+            
+        }
+        // return query; 
         const reponse = await Repository.get(`${baseUrl}/productos?${query}`)
         .then(response => {
             // commit('setProducts', response.data);

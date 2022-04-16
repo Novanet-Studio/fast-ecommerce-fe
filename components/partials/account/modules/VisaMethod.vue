@@ -150,6 +150,10 @@ export default {
                 user_id: this.user.id,
                 shippingAddress: payment.shippingAddress,
                 fullName: payment.note,
+                cardType: payment.cardDetails.card.cardBrand,
+                cardKind: payment.cardDetails.card.cardType,
+                cardLast: payment.cardDetails.card.last4,
+
             }
             // return console.log(data)
            const res = await this.$store.dispatch('checkout/createInvoice', data).then(res => {

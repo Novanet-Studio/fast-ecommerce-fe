@@ -9,14 +9,15 @@
             </tr>
         </thead>
         <tbody>
-            <!-- <tr v-for="product in products" :key="product.id">
+            <tr v-for="product in products" :key="product.id">
                 <td>
-                    <ProductCart :product="product" />
+                    <!-- <ProductCart :product="product" /> -->
                 </td>
-                <td class="price">$ {{ product.price }}</td>
+                <td>HOLA</td>
+                <!-- <td class="price">$ {{ product.price }}</td>
                 <td>1</td>
-                <td class="price">$ {{ product.price }}</td>
-            </tr> -->
+                <td class="price">$ {{ product.price }}</td> -->
+            </tr>
         </tbody>
     </table>
 </template>
@@ -27,10 +28,10 @@ export default {
     name: 'TableInvoice',
     components: { ProductCart },
     props: {
-        // products: {
-        //     type: Array,
-        //     default: []
-        // }
+        products: {
+            type: Array,
+            default: []
+        }
     }
 };
 </script>
