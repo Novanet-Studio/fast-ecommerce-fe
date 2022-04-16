@@ -55,6 +55,7 @@ export default {
     { src: "~/plugins/lazyLoad.js", ssr: false },
     {src: "~/plugins/http.js", ssr: false},
     {src: "~/plugins/firebase.js", ssr: false},
+    { src: '~/plugins/vue-html2pdf', mode: 'client' }
   ],
 
 

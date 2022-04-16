@@ -1,100 +1,107 @@
 <template lang="html">
 <div class="ps-section__content">
-    <div class="ps-section--account-setting">
-        <div class="ps-section__header">
-            <h3>
-                Factura #{{ invoice.id_invoice_user }} -
-                <strong>Successful delivery PPU</strong>
-            </h3>
+    <div class="ps-section--account-setting" >
+        <div id="pdf-content">
+            <div class="ps-section__header">
+                <h3>
+                    Factura #{{ invoice.id_invoice_user }} -
+                    <strong>Successful delivery PPU</strong>
+                </h3>
+            </div>
+            <div class="ps-section__content">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <figure class="ps-block--invoice">
+                            <figcaption>
+                                Address
+                            </figcaption>
+                            <div class="ps-block__content">
+                                <strong>
+                                    {{ invoice.fullName }}
+                                </strong>
+                                <p v-if="invoice.shippingAddress">
+                                    Dirección: {{ invoice.shippingAddress.addressLine1 }},
+                                    {{ invoice.shippingAddress.locality }}, {{ invoice.shippingAddress.country }}
+                                </p>
+
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <figure class="ps-block--invoice">
+                            <figcaption>
+                                Estado
+                            </figcaption>
+                            <div class="ps-block__content">
+                                <p v-if="invoice.paid === true">
+                                    Pagado
+                                </p>
+                                <p v-else>No pagado</p>
+                                <p>
+                                    {{ invoice.date }}
+                                </p>
+                            </div>
+                        </figure>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <figure class="ps-block--invoice">
+                            <figcaption>
+                                Payment
+                            </figcaption>
+                            <div class="ps-block__content">
+                                <p>
+                                    Pago: {{ invoice.cardKind }} {{ invoice.cardType }},
+                                </p>
+                                <p>Ultimos Cuatro digitos: {{invoice.cardLast}}</p>
+                            </div>
+                        </figure>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                        <table class="table ps-table--shopping-cart">
+                            <thead>
+                                <tr>
+                                    <th>Productos</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="product, index in products" :key="product.id">
+                                    <td>{{product.name}}</td>
+                                    <td class="price">$ {{ product.price }}</td>
+                                    <td>{{invoice.products[index].quantity}}</td>
+                                    <td class="price">$ {{ product.price }}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>MONTO TOTAL</td>
+                                    <td>${{invoice.amount}}</td>
+    
+                                </tr>
+                            </tbody>
+                        </table>
+
+                </div>
+            </div>
         </div>
-        <div class="ps-section__content">
-            <div class="row">
-                <div class="col-md-4 col-12">
-                    <figure class="ps-block--invoice">
-                        <figcaption>
-                            Address
-                        </figcaption>
-                        <div class="ps-block__content">
-                            <strong>
-                                {{ invoice.fullName }}
-                            </strong>
-                            <p v-if="invoice.shippingAddress">
-                                Dirección: {{ invoice.shippingAddress.addressLine1 }},
-                                {{ invoice.shippingAddress.locality }}, {{ invoice.shippingAddress.country }}
-                            </p>
-
-                        </div>
-                    </figure>
-                </div>
-                <div class="col-md-4 col-12">
-                    <figure class="ps-block--invoice">
-                        <figcaption>
-                            Estado
-                        </figcaption>
-                        <div class="ps-block__content">
-                            <p v-if="invoice.paid === true">
-                                Pagado
-                            </p>
-                            <p v-else>No pagado</p>
-                            <p>
-                                {{ invoice.date }}
-                            </p>
-                        </div>
-                    </figure>
-                </div>
-                <div class="col-md-4 col-12">
-                    <figure class="ps-block--invoice">
-                        <figcaption>
-                            Payment
-                        </figcaption>
-                        <div class="ps-block__content">
-                            <p>
-                                Pago: {{ invoice.cardKind }} {{ invoice.cardType }},
-                            </p>
-                            <p>Ultimos Cuatro digitos: {{invoice.cardLast}}</p>
-                        </div>
-                    </figure>
-                </div>
-            </div>
-            <div class="table-responsive">
-                    <table class="table ps-table--shopping-cart">
-                        <thead>
-                            <tr>
-                                <th>Productos</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="product, index in products" :key="product.id">
-                                <td>{{product.name}}</td>
-                                <td class="price">$ {{ product.price }}</td>
-                                <td>{{invoice.products[index].quantity}}</td>
-                                <td class="price">$ {{ product.price }}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>MONTO TOTAL</td>
-                                <td>${{invoice.amount}}</td>
-   
-                            </tr>
-                        </tbody>
-                    </table>
-
-            </div>
             <nuxt-link to="/account/invoices">
                 <a class="ps-btn ps-btn--sm ">
-                    Back to invoices
+                    regresar
                 </a>
             </nuxt-link>
-        </div>
+            <button @click="pdf()" class="ps-btn ps-btn--sm ">PDF</button>
     </div>
+
 </div>
 </template>
 
 <script>
+import jsPDF from 'jspdf';
+import html2PDF from 'jspdf-html2canvas';
+
 export default {
     name: 'InvoiceDetail',
     data(){
@@ -140,7 +147,25 @@ export default {
             } catch (error) {
                 console.log(error)
             }
+        },
+        pdf(){
+            var elementHTML = document.getElementById('pdf-content')
+            var name = this.invoice.id_invoice_user;
+            html2PDF(elementHTML, {
+                jsPDF: {
+                format: 'a4',
+                },
+                imageType: 'image/jpeg',
+                output: `factura-${name}`,
+                margin: {
+                    top: 20,
+                    right: 10,
+                    bottom: 20,
+                    left: 10,
+                } 
+            });
         }
+
     }
 };
 </script>
