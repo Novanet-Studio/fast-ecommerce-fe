@@ -4,7 +4,12 @@
             <div class="ps-section__header">
                 <h1>Wishlist</h1>
             </div>
-            <div class="ps-section__content">
+            <div v-if="!wishlistItems" class="ps-section__content"> 
+                <div  class="table-responsive container" >
+                    <h3>No tienes articulos en tu lista de deseos</h3>
+                </div>
+            </div>
+            <div v-else class="ps-section__content">
                 <div class="table-responsive">
                     <table class="table ps-table--whishlist">
                         <thead>

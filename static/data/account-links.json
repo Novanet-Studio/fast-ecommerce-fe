@@ -1,29 +1,19 @@
 {
     "data": [
     {
-        "text": "Informacion de la cuenta",
+        "text": "Información de la cuenta",
         "url": "/account/user-information",
        "icon": "icon-user"
     },
     {
-        "text": "Notifications",
-        "url": "/account/notifications",
-       "icon": "icon-alarm-ringing"
-    },
-    {
-        "text": "Invoices",
+        "text": "Ordenes",
         "url": "/account/invoices",
        "icon": "icon-papers"
     },
     {
-        "text": "Address",
+        "text": "Dirección",
         "url": "/account/addresses",
        "icon": "icon-map-marker"
-    },
-    {
-        "text": "Recent Viewed Product",
-        "url": "/account/recent-viewed-product",
-       "icon": "icon-store"
     },
     {
         "text": "Wishlist",
