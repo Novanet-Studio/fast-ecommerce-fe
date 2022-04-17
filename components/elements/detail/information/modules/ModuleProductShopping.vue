@@ -28,11 +28,11 @@
             Comprar
         </a>
         <div class="ps-product__actions">
-            <a href="#">
+            <a href="#"
+                title="Add to wishlist"
+                @click.prevent="handleAddItemToWishlist()"
+            >
                 <i class="icon-heart"></i>
-            </a>
-            <a href="#">
-                <i class="icon-chart-bars"></i>
             </a>
         </div>
     </div>
@@ -149,7 +149,20 @@ export default {
             } else {
                 this.$store.commit('product/setCartProducts', null);
             }
-        }
+        },
+        handleAddItemToWishlist() {
+
+            let item = {
+                id: this.product.id
+            };
+
+            this.$store.dispatch('wishlist/addItemToWishlist', item);
+            this.$notify({
+                group: 'addCartSuccess',
+                title: 'Add to wishlist!',
+                text: `${this.product.name} has been added to your wishlist !`
+            });
+        },
     }
 };
 </script>

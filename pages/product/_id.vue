@@ -5,15 +5,9 @@
             <div class="ps-container">
                 <div class="ps-page__container">
                     <div class="ps-page__left">
-                        <!-- {{ product }} -->
                         <product-detail-fullwidth v-if="product !== null"  :product="product"/>
-                        <!-- <product-detail-fullwidth  :product="product"/> -->
                     </div>
                     <div class="ps-page__right">
-                        <!-- <product-widgets
-                            v-if="collections !== null"
-                            collection-slug="widget_same_brand"
-                        /> -->
                     </div>
                 </div>
             </div>
