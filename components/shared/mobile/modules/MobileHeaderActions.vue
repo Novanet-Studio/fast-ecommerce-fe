@@ -6,18 +6,25 @@
                 <i>{{ total }}</i>
             </span>
         </nuxt-link>
-        <nuxt-link to="/account/login" class="header__extra">
+        <!-- <nuxt-link to="/account/login" class="header__extra">
             <i class="icon-user"></i>
-        </nuxt-link>
+        </nuxt-link> -->
+        <div class="header__extra">
+
+        <header-user-area />
+        </div>
+
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import { baseUrl } from '~/repositories/Repository';
+import HeaderUserArea from '~/components/shared/headers/modules/HeaderUserArea';
 
 export default {
     name: 'MobileHeaderActions',
+    components:{ HeaderUserArea},
     computed: {
         ...mapState({
             total: state => state.cart.total,
