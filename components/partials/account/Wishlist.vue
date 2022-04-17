@@ -67,9 +67,11 @@
 import { mapState } from 'vuex';
 import ProductShoppingCart from '~/components/elements/product/ProductShoppingCart';
 import { getListOfProductId } from '~/utilities/product-helper';
+import Notify from '~/components/elements/commons/notify';
+
 export default {
     name: 'Wishlist',
-    components: { ProductShoppingCart },
+    components: { ProductShoppingCart, Notify },
     computed: {
         ...mapState({
             wishlistItems: state => state.product.wishlistItems
@@ -86,11 +88,13 @@ export default {
                 price: product.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
+            alert('se ha agregado el item al carrito')
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
                 text: `${product.name} has been added to your cart!`
             });
+            this.handleRemoveItemFromWishlist(product)
         },
         handleRemoveItemFromWishlist(product) {
             // return console.log(product)
@@ -125,4 +129,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.price{
+    text-align: center;
+    margin: 0 auto;
+}
+</style>
