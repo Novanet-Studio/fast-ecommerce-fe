@@ -66,6 +66,16 @@ export const actions = {
             .catch(error => ({ error: JSON.stringify(error) }));
 
         return response;
+    },
+
+    async setAddress({commit}, payload){
+        const response = await Repository.post(`${baseUrl}/addresses`, payload)
+            .then(response => {
+                return response
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
+
+        return response;
     }
    
 

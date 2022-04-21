@@ -144,10 +144,21 @@ export default {
                         type: addressType,
                         address: address
                     }
-                    console.log(data)
+
+                    this.sendToStrapi(data); 
+                    
                 }
             }
 
+        },
+        async sendToStrapi(data){
+            const respuesta = await this.$store.dispatch('checkout/setAddress', data). then(res => {
+                if(res.status == 200){
+                    this.$router.push('/account/addresses');
+                }
+            }).catch(error => {
+                alert('hubo un error')
+            })
         }
     }
 }
