@@ -10,7 +10,17 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody v-if="page = false">
+                <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.id_invoice_user, item)">
+                    <td class="invoice-hover">{{item.id_invoice_user}}</td>
+                    <td>{{item.payment_id}}</td>
+                    <td>{{ item.date }}</td>
+                    <td>${{ item.amount }}</td>
+                    <td v-if="item.paid === true" class="status-color">{{ item.status }}</td>
+                    <td v-else>{{ item.status }}</td>
+                </tr>
+            </tbody>
+            <tbody v-else>
                 <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.id_invoice_user, item)">
                     <td class="invoice-hover">{{item.id_invoice_user}}</td>
                     <td>{{item.payment_id}}</td>
@@ -22,16 +32,35 @@
             </tbody>
         </table>
         <h4 v-else>No posees ninguna factura aun!</h4>
+        <div class="ps-pagination" v-if="page !== false">
+            hola
+            <ul class="pagination">
+                <li class="active" v-for="link in pages" @click="setPageInvoice(link)">
+                    <a href="#">{{ link }}</a>
+                </li>
+                <li>
+                    <a href="#">
+                        Next Page
+                        <i class="icon-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'TableInvoices',
     data() {
         return {
             invoiceExist: false, 
-            tableInvoices: null
+            tableInvoices: null,
+            page: false,
+            pages: [],
+            number: null,
+            allInvoices: null,
         };
     },
     computed: {
@@ -40,7 +69,7 @@ export default {
         },
     },
     mounted(){
-        this.getPayments()
+        this.getPayments();
     },
     methods: {
         async getPayments(){
@@ -57,6 +86,7 @@ export default {
                         }
                     }
                     this.tableInvoices = res
+                    this.pagination()
                 }else{
                     this.invoiceExist = false;
                 }
@@ -72,6 +102,30 @@ export default {
                 maxAge: 60 * 60 * 24 * 7
             });
             this.$router.push(`/invoice/${idInvUser}`)
+        },
+        pagination(){
+            if(this.invoiceExist !== false ){
+                if(this.tableInvoices.length > 10){
+                    this.page = true;
+                    this.number = (this.tableInvoices.length/10).toFixed(0)
+                    var pages = []
+                    for (let i = 1; i <= (this.number); i++) {
+                        pages.push(i)
+                    }
+                    // for (let i = i; i < pages.length; i++) {
+                    //     console.log(this.tableInvoices.splice(0, 10))
+                        
+                    // }
+                    
+                    this.pages = pages; 
+
+
+
+                }
+            }
+        },
+        setPageInvoice(number){
+            console.log('===> number', number)
         }
 
     }

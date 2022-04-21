@@ -1,11 +1,6 @@
 {
     "data": [
     {
-        "text": "Información de la cuenta",
-        "url": "/account/user-information",
-       "icon": "icon-user"
-    },
-    {
         "text": "Ordenes",
         "url": "/account/invoices",
        "icon": "icon-papers"

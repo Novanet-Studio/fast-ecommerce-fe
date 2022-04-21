@@ -2,7 +2,7 @@
 
     <section class="ps-section--account-setting">
         <div class="ps-section__content">
-            <p>No product here.</p>
+            <p>{{}}</p>
         </div>
     </section>
 
@@ -11,6 +11,14 @@
 <script>
 export default {
     name: 'UserInformation',
+    computed: {
+        user(){
+            return this.$cookies.get('auth').user;
+        }
+    },
+    mounted(){
+    },
+
 };
 </script>
 

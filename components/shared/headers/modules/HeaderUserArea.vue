@@ -1,8 +1,12 @@
 <template lang="html">
     <div v-if="!isLoggedIn" class="ps-block--user-header">
         <div class="ps-block__left">
-            <i class="icon-user"></i>
+                <nuxt-link to="/account/login">
+                    <i class="icon-user">
+                    </i>
+                </nuxt-link>
         </div>
+
         <div class="ps-block__right">
             <nuxt-link to="/account/login">
                 Iniciar Sesión
@@ -53,4 +57,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>
