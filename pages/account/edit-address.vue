@@ -1,7 +1,6 @@
 <template lang="html">
-    <section class="ps-page--my-account">
-        <bread-crumb :breadcrumb="breadCrumb" />
-        <edit-address />
+    <section v-if="type" class="ps-page--my-account">
+        <edit-address :tipo="type" />
     </section>
 </template>
 
@@ -13,6 +12,7 @@ import EditAddress from '~/components/partials/account/EditAddress';
 export default {
     transition: 'zoom',
     middleware: 'authentication',
+    layout: 'layout-account',
     components: {
         EditAddress,
         Newsletters,
@@ -30,6 +30,19 @@ export default {
                 }
             ]
         };
+    },
+    computed: {
+        type(){
+            var type = this.$route.fullPath.split('?')[1];
+            if(type === 'add=bill' || type === 'add=shipp'){
+                return type;
+            }else{
+                this.$router.push('/')
+            }
+        }
+    },
+    mounted(){
+        console.log(this.$route.fullPath.split('?')[1])
     }
 };
 </script>

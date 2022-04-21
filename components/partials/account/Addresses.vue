@@ -14,7 +14,7 @@
                                 Address Yet.
                             </p>
                             <nuxt-link
-                                to="/account/edit-address"
+                                to="/account/edit-address?add=bill"
                             >
                                 <a>Edit</a>
                             </nuxt-link>
@@ -32,7 +32,7 @@
                                 Address Yet.
                             </p>
                             <nuxt-link
-                                to="/account/edit-address"
+                                to="/account/edit-address?add=shipp"
                             >
                                 <a>Edit</a>
                             </nuxt-link>
