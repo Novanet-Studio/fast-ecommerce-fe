@@ -1,5 +1,5 @@
 <template lang="html">
-    <form class="ps-form--edit-address" @click.prevent="saveAddress">
+    <form class="ps-form--edit-address" >
         <div class="ps-form__header">
             <h3 v-if="tipo === 'add=bill'">Billing address</h3>
             <h3 v-else>Shipping address</h3>
@@ -50,7 +50,7 @@
                 />
             </div>
             <div class="form-group submit">
-                <button class="ps-btn" >Guardar</button>
+                <button class="ps-btn" @click.prevent="saveAddress" >Guardar</button>
             </div>
         </div>
     </form>
@@ -67,7 +67,9 @@ export default {
             country: null,
             strAdd: null,
             state: null,
-            postcode: null
+            postcode: null,
+            lastAddress: false,
+            addId: false
         }
     },
     computed: {
@@ -115,20 +117,25 @@ export default {
     },
     mounted(){
         console.log(this.country);
+        this.getLastAddress();
     },
 
     methods: {
+        setType(){
+            var addressType = ''
+            if(this.tipo === 'add=bill'){
+                return addressType = 'billing';
+            }else if(this.tipo === 'add=shipp'){
+                return addressType = 'shipping';
+            }else{
+                return addressType = false;
+            }
+        },
         saveAddress(){
             this.$v.$touch();
             if (!this.$v.$invalid) {
-                var addressType = ''
-                if(this.tipo === 'add=bill'){
-                    addressType = 'billing';
-                }else if(this.tipo === 'add=shipp'){
-                    addressType = 'shipping';
-                }else{
-                    addressType = false;
-                }
+
+                const addressType = this.setType();
 
                 if(addressType !== false){
                     const address = {
@@ -137,21 +144,50 @@ export default {
                         estado: this.state,
                         zipcode: this.postcode
                     }
-    
-    
+
                     const data = {
                         user_id: this.user.id,
                         type: addressType,
                         address: address
                     }
-
+                    console.log(data)
                     this.sendToStrapi(data); 
                     
                 }
             }
 
         },
-        async sendToStrapi(data){
+        async getLastAddress(){
+            const userId = this.user.id;
+            const type = this.setType();
+            if(type !== false){
+                const data = {
+                    userId: userId,
+                    type: type
+                }
+                const respuesta = await this.$store.dispatch('checkout/getAddress', data ).then(res=> {
+                    if(res.length > 0){
+                        const address = res[0].address;
+                        this.lastAddress = true; 
+                        this.addId = res[0].id;
+                        this.country = address.pais;
+                        this.state = address.estado;
+                        this.strAdd = address.direccion;
+                        this.postcode = address.zipcode;
+                    }
+                }).catch(err=>{
+                    console.log(err)
+                })
+            }
+        },
+        sendToStrapi(data){
+            if(this.lastAddress === true){
+                this.updateStrapi(data);
+            }else if(this.lastAddress === false){
+                this.postStrapi(data);
+            }
+        },
+        async postStrapi(data){
             const respuesta = await this.$store.dispatch('checkout/setAddress', data). then(res => {
                 if(res.status == 200){
                     this.$router.push('/account/addresses');
@@ -159,7 +195,25 @@ export default {
             }).catch(error => {
                 alert('hubo un error')
             })
-        }
+        },
+        async updateStrapi(data){
+            if(this.addId !== false){
+                const setData = {
+                    addId: this.addId,
+                    data: data
+                }
+                const respuesta = await this.$store.dispatch('checkout/updateAddress', setData). then(res => {
+                    if(res.status == 200){
+                        this.$router.push('/account/addresses');
+                    }
+                }).catch(error => {
+                    alert('hubo un error')
+                })
+            }else{
+                alert('hubo un error')
+            }
+        },
+
     }
 }
 </script>

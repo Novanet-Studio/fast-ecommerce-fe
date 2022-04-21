@@ -76,6 +76,31 @@ export const actions = {
             .catch(error => ({ error: JSON.stringify(error) }));
 
         return response;
+    },
+    async updateAddress({commit}, payload){
+        const addId = payload.addId; 
+        const data = payload.data; 
+        const response = await Repository.put(`${baseUrl}/addresses/${addId}`, data)
+            .then(response => {
+                return response
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
+
+        return response;
+    },
+
+    async getAddress({commit}, payload){
+
+        const userId = payload.userId;
+        const type = payload.type
+
+        const response = await Repository.get(`${baseUrl}/addresses?user_id=${userId}&type=${type}`)
+            .then(response => {
+                return response.data
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
+
+        return response;       
     }
    
 
