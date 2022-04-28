@@ -16,12 +16,12 @@
                     height="50"
                 />
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <v-checkbox
                     color="success"
                     label="Quiero recibir más ofertas?"
                 />
-            </div>
+            </div> -->
             <h3 class="ps-form__heading">
                 Informacion de envio
             </h3>
@@ -103,12 +103,12 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <v-checkbox
                     color="success"
                     label="Guardar esta información"
                 />
-            </div>
+            </div> -->
             <div class="ps-form__submit">
                 <nuxt-link to="/account/shopping-cart">
                     <i class="icon-arrow-left mr-1"></i>
