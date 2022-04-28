@@ -3,7 +3,7 @@
         <h3 class="ps-form__heading">
             Contact information
         </h3>
-        <form action @click.prevent="handleToShipping">
+        <form action >
 
             <div class="form-group">
                 <label>Email<sup>*</sup></label>
@@ -96,7 +96,6 @@
                             placeholder="Codigo Postal"
                             :error-messages="zipCodeErrors"
                             @input="$v.zipCode.$touch()"
-
                             outlined
                             height="50"
                         />
@@ -110,12 +109,12 @@
                 />
             </div> -->
             <div class="ps-form__submit">
-                <nuxt-link to="/account/shopping-cart">
+                <!-- <nuxt-link to="/account/shopping-cart">
                     <i class="icon-arrow-left mr-1"></i>
                     Regresar al carrito de compra
-                </nuxt-link>
+                </nuxt-link> -->
                 <div class="ps-block__footer">
-                    <button class="ps-btn">
+                    <button class="ps-btn" @click.prevent="handleToShipping">
                         Continuar
                     </button>
                 </div>
@@ -209,10 +208,13 @@ export default {
         city: { required },
         zipCode: { required },
     },
+    mounted(){
+        this.formInfoCookie()
+    },
 
     methods: {
         async handleToShipping() {
-            this.$v.$touch();
+            // this.$v.$touch();
             if (!this.$v.$invalid) {
                 const data = {
                     email: this.email,
@@ -232,8 +234,20 @@ export default {
             // else{
             //     alert('todos los campos son obligatorios')
             // }
+        },
 
-
+        async formInfoCookie(){
+            const data = this.$cookies.get('shippingInfo');
+            if(data.hasOwnProperty('email')){
+                this.address = data.address;
+                this.city = data.city;
+                this.email = data.email;
+                this.home = data.home;
+                this.lastName = data.lastName;
+                this.name = data.name;
+                this.zipCode = data.zipCode;
+            }
+            console.log('==> ship', data)
         }
     }
 };
