@@ -7,7 +7,7 @@ admin.initializeApp()
 
 const client = new Client({
   environment: Environment.Sandbox,
-  accessToken: 'EAAAEEny2OgXH3WFBXDqWhY1OIiknyh5iqk41zZz1-VIVB1zf8KZseakFwUlRNQq',
+  accessToken: 'EAAAEKScbCMyVmYFsKIwOXOmRnyPQmECrnB5c66w0JpuecCySptyVoSXASIE15df',
 })
 
 const paymentsApi = client.paymentsApi;

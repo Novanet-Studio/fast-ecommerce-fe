@@ -78,7 +78,7 @@ export default {
         }
     },
     mounted(){
-        
+        console.log(this.cookie)
     }
 };
 </script>
