@@ -42,10 +42,8 @@ export default {
             productId: this.$route.params.id,
             breadCrumb: null,
             pageLoading: true,
-            product: {
-                Type: Object,
-                default: {}
-            },
+            product: null,
+            getProduct: new ProductoRepository(), 
         }
     },
     computed: {
@@ -66,10 +64,6 @@ export default {
             }.bind(this),
             2000
         );
-        const collections = await this.$store.dispatch(
-            'collection/getCollectionsBySlugs',
-            queries
-        );
         this.breadCrumb = [
             {
                 text: 'Home',
@@ -86,17 +80,13 @@ export default {
     },
     async mounted() {
         this.$store.commit('app/setAppDrawer', false);
-        this.product =  await this.producto();
-
-        // console.log(this.product)
+        var product = this.producto();
+        await product.then(data => {return this.product = data})
     },
     methods: {
         async producto(){
-            const productoPorId = new ProductoRepository();
-            // return console.log(await productoPorId.GetProductById(this.productId).then(val=>{return this.product = val}));
-            // return await productoPorId.GetProductById(this.productId);
-            return await productoPorId.GetProductById(this.productId).then(val=>{return val});
-        }
+            return this.getProduct.GetProductById(this.productId).then(val => {return val}); 
+        },
     }
 };
 </script>

@@ -81,7 +81,7 @@ export default {
             let item = {
                 id: this.product.id,
                 quantity: this.quantity,
-                price: this.product.price
+                price: this.product.attributes.price
             };
             if (existItem !== undefined) {
                 if (this.quantity + existItem.quantity > 10) {
@@ -124,7 +124,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${this.product.name} has been added to your cart!`
+                text: `${this.product.attributes.name} has been added to your cart!`
             });
         },
 
@@ -160,7 +160,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Add to wishlist!',
-                text: `${this.product.name} has been added to your wishlist !`
+                text: `${this.product.attributes.name} has been added to your wishlist !`
             });
         },
     }

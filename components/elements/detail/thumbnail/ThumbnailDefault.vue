@@ -13,9 +13,9 @@
                             <div class="swiper-wrapper">
                                 <div
                                     class="swiper-slide"
-                                    v-for="image in product.image"
+                                    v-for="image in product.attributes.images.data"
                                 > 
-                                    <img :src="`${baseURL}${image.url}`" />
+                                    <img :src="`${image.attributes.url}`" />
                                 </div>
                             </div>
                             <div class="swiper-nav">
@@ -41,7 +41,7 @@
                 >
                     <div class="swiper-wrapper">
                         <div
-                            v-for="(image, index) in product.image"
+                            v-for="(image, index) in product.attributes.images.data"
                             :class="
                                 `swiper-slide ${
                                     activeSlide === index ? 'active' : ''
@@ -49,7 +49,7 @@
                             "
                             @click="handleClickSlide(index)"
                         >
-                            <img :src="`${baseURL}${image.url}`" />
+                            <img :src="`${image.attributes.url}`" />
                         </div>
                     </div>
                 </div>
@@ -102,6 +102,9 @@ export default {
             this.swiperVariants.activeIndex = index;
             this.swiperGallery.slideTo(index, 500, false);
         }
+    },
+    mounted(){
+        console.log(this.product)
     }
 };
 </script>

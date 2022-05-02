@@ -23,6 +23,7 @@ export default class ProductRepository {
         const response = await Repository.get(
             `${baseUrl}/products?populate=*&filters[id]=${id}`
         )
+        return response.data.data[0];
         return response.data[0]
 
     }

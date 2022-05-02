@@ -68,7 +68,7 @@ export default {
             return baseUrl;
         },
         isSale() {
-            if (this.product.is_sale) {
+            if (this.product.attributes.is_sale) {
                 return true;
             }
             return false;
