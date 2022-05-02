@@ -47,7 +47,9 @@ export default {
     methods: {
         async categorias(){
             const categorias = new CategoryRepository();
-            return await categorias.GetCategories().then(val => {return this.categories = val})
+            // return await categorias.GetCategories().then(val => {return console.log(val.data)})
+            return await categorias.GetCategories().then(val => {return this.categories = val.data})
+            
         }
     }
 

@@ -58,7 +58,7 @@ export default {
             let item = {
                 id: this.product.id,
                 quantity: 1,
-                price: this.product.price
+                price: this.product.attributes.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
             var respuesta = await this.$store.dispatch('product/getCartProducts', this.cartItems)
@@ -66,7 +66,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${this.product.name} has been added to your cart!`
+                text: `${this.product.attributes.name} has been added to your cart!`
             });
             // const handler = new HandlerActions()
             // handler.handleAddToCart(this.product)
@@ -96,7 +96,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Add to compare!',
-                text: `${this.product.title} has been added to your compare !`
+                text: `${this.product.attribues.title} has been added to your compare !`
             });
         },
 

@@ -1,8 +1,8 @@
 <template lang="html">
     <nuxt-link :to="`/product/${product.id}`">
         <img
-            :src="`${baseUrl}${product.image[0].formats.thumbnail.url}`"
-            :alt="`${ product.name }`"
+            :src="`${product.attributes.images.data[0].attributes.formats.thumbnail.url}`"
+            :alt="`${ product.attributes.name }`"
             class="img"
         />
     </nuxt-link>

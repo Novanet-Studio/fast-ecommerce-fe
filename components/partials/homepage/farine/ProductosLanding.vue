@@ -2,7 +2,7 @@
     <div class="ps-product-list ps-clothings ps-section--carousel-outside">
         <div class="ps-container">
             <div class="ps-section__header">
-                <h3>{{ category.name }}</h3>
+                <h3>{{ category.attributes.name }}</h3>
             </div>
             <div class="ps-section__content">
                 <carousel-arrows type="simple" />
@@ -12,7 +12,7 @@
                 >
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="product in products">
-                            <p>{{ product.name }}</p>
+                            <p>{{ product.attributes.name }}</p>
                             <product-default :product="product" />
                         </div>
                     </div>
@@ -66,11 +66,13 @@ export default {
     },
     mounted(){
         this.productosByCategoria()
+        console.log(this.category)
     },
     methods: {
         async productosByCategoria(){
             const productos = new ProductoRepository();
-            return await productos.GetProductsByCategory(this.category['id']).then(val => {return this.products = val})
+            //return await productos.GetProductsByCategory(this.category['id']).then(val => {return console.log(val)})
+            return await productos.GetProductsByCategory(this.category['id']).then(val => {return this.products = val.data})
         }
     }
 };

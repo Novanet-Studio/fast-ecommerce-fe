@@ -110,7 +110,7 @@ export const actions = {
             // }
         });
         // return console.log(query)
-        const reponse = await Repository.get(`${baseUrl}/productos?${query}`)
+        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
             .then(response => {
                 commit('setCartProducts', response.data);
                 return response.data;
@@ -130,7 +130,7 @@ export const actions = {
                 query = query + `&id=${item}`;
             }
         });
-        const reponse = await Repository.get(`${baseUrl}/productos?${query}`)
+        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
             .then(response => {
                 commit('setWishlistItems', response.data);
                 return response.data;
@@ -150,7 +150,7 @@ export const actions = {
             
         }
         // return query; 
-        const reponse = await Repository.get(`${baseUrl}/productos?${query}`)
+        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
         .then(response => {
             // commit('setProducts', response.data);
             return response.data;

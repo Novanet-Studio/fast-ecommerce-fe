@@ -3,7 +3,7 @@
         :to="`/product/${product.id}`"
         class="ps-product__title"
     >
-        {{ product.name && product.name }}
+        {{ product.attributes.name && product.attributes.name }}
     </nuxt-link>
 </template>
 

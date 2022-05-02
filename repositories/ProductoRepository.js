@@ -7,21 +7,21 @@ export default class ProductRepository {
 
     async GetProducts(){
         const response = await Repository.get(
-            `${baseUrl}/productos`
+            `${baseUrl}/products?populate=*`
         )
         return response.data;
     }
 
     async GetProductsByCategory(category){
         const response = await Repository.get(
-            `${baseUrl}/productos?category.id=${category}`
+            `${baseUrl}/products?populate=*&filters[category][id]=${category}`
         )
         return response.data
     }
 
     async GetProductById(id){
         const response = await Repository.get(
-            `${baseUrl}/productos?_where[id]=${id}`
+            `${baseUrl}/products?populate=*&filters[id]=${id}`
         )
         return response.data[0]
 

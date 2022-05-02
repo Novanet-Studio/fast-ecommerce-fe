@@ -81,6 +81,9 @@ export default {
         isImageLoaded: false,
         quickviewDialog: false
     }),
+    mounted(){
+        console.log(this.product)
+    },
     methods: {
         listenEventFromChildren(payload) {
             if (payload.isQuickview === true) {

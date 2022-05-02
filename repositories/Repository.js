@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseDomain = 'http://localhost:1338'; // Change your API here
+const baseDomain = 'https://farine-be-test.herokuapp.com/api'; // Change your API here
 
 export const customHeaders = {
     'Content-Type': 'application/json',
