@@ -1,12 +1,12 @@
 <template lang="html">
     <div class="ps-product__info">
-        <h1>{{ product.name }}</h1>
+        <h1>{{ product.attributes.name }}</h1>
         <div class="ps-product__meta">
             <p>
                 Tipo:
                 <nuxt-link to="/shop">
                     <a class="ml-2 text-capitalize">
-                        {{ product.category.name }}
+                        {{ product.attributes.category.data.attributes.name }}
                     </a>
                 </nuxt-link>
             </p>
@@ -15,12 +15,12 @@
                 <span>(1 review)</span>
             </div>
         </div>
-        <h4 v-if="product.is_sale === true" class="ps-product__price sale">
-            <del class="mr-2"> $ {{ product.sale_price }}</del>
-            ${{ product.price }}
+        <h4 v-if="product.attributes.is_sale === true" class="ps-product__price sale">
+            <del class="mr-2"> $ {{ product.attributes.sale_price }}</del>
+            ${{ product.attributes.price }}
         </h4>
 
-        <h4 v-else class="ps-product__price">${{ product.price }}</h4>
+        <h4 v-else class="ps-product__price">${{ product.attributes.price }}</h4>
         <module-product-detail-desc :product="product" />
 
         <div class="ps-product__shopping">
@@ -95,14 +95,14 @@ export default {
             let item = {
                 id: this.product.id,
                 quantity: this.quantity,
-                price: this.product.price
+                price: this.product.attributes.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
             // this.getCartProduct(this.cartItems);
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${this.product.name} has been added to your cart!`
+                text: `${this.product.attributes.name} has been added to your cart!`
             });
         },
 
@@ -119,7 +119,7 @@ export default {
             let item = {
                 id: this.product.id,
                 quantity: this.quantity,
-                price: this.product.price
+                price: this.product.attributtes.price
             };
             if (existItem !== undefined) {
                 if (this.quantity + existItem.quantity > 10) {
@@ -175,7 +175,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${this.product.name} has been added to your cart!`
+                text: `${this.product.attributes.name} has been added to your cart!`
             });
         },
 

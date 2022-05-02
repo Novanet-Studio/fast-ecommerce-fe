@@ -10,9 +10,9 @@
                     <div class="swiper-wrapper">
                         <div
                             class="swiper-slide"
-                            v-for="image in product.image"
+                            v-for="image in product.attributes.images.data"
                         >
-                            <img :src="`${baseURL}${image.url}`" />
+                            <img :src="`${image.attributes.url}`" />
                         </div>
                     </div>
                     <div class="swiper-nav">
@@ -57,6 +57,9 @@ export default {
                 }
             }
         };
+    },
+    mounted(){
+        console.log(this.product)
     }
 };
 </script>

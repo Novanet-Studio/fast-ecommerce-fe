@@ -8,7 +8,7 @@
             </nuxt-link>
         </p> -->
         <ul class="">
-            <li class="lista-des">{{ product.descripcion }}</li>
+            <li class="lista-des">{{ product.attributes.descripcion }}</li>
         </ul>
     </div>
 </template>

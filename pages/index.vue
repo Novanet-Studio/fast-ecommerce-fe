@@ -43,6 +43,7 @@ export default {
     mounted(){
         this.categorias()
         console.log(this.$cookies.get('cart'))
+        console.log(this.categories)
     },
     methods: {
         async categorias(){
