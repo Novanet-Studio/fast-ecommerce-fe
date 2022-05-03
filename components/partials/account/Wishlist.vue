@@ -41,7 +41,7 @@
                                     <product-shopping-cart :product="product" />
                                 </td>
                                 <td class="price">
-                                    $ {{ product.price.toFixed(2) }}
+                                    $ {{ product.attributes.price.toFixed(2) }}
                                 </td>
                                 <td>
                                     <a
@@ -79,6 +79,7 @@ export default {
     },
     mounted(){
         this.loadWishlist()
+        console.log(this.wishlistItems)
     },
     methods: {
         handleAddToCart(product) {

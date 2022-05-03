@@ -88,7 +88,7 @@ export default {
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Add to wishlist!',
-                text: `${this.product.name} has been added to your wishlist !`
+                text: `${this.product.attributes.name} has been added to your wishlist !`
             });
         },
 

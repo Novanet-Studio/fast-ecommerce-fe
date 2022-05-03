@@ -136,6 +136,7 @@ export default {
                     const btn = document.getElementById('botonRegistro');
                     btn.disabled = true; 
                     this.loading = true
+                    // return console.log(this.username, this.email)
                     await this.createCustomer(this.username, this.email).then(async (res) => {
                         const respuesta = res; 
                         if(respuesta.length > 0){
