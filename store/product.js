@@ -99,26 +99,20 @@ export const actions = {
         let query = '';
         payload.forEach(item => {
             if (query === '') {
-                query = `id=${item}`;
+                query = `filters[id]=${item}`;
             } else {
-                query = query + `&id=${item}`;
+                query = query + `&filters[id]=${item}`;
             }
-            // if (query === '') {
-            //     query = `id=${item.id}`;
-            // } else {
-            //     query = query + `&id=${item.id}`;
-            // }
         });
-        // return console.log(query)
-        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
+        // return console.log(`${baseUrl}/products?populate=*&${query}`)
+        const reponse = await Repository.get(`${baseUrl}/products?populate=*&${query}`)
             .then(response => {
                 commit('setCartProducts', response.data);
                 return response.data;
             })
             .catch(error => ({ error: JSON.stringify(error) }));
-        // return console.log(query)
-        // return console.log(`${baseUrl}/products?_where${query}`)
-        return reponse;
+        // return console.log(reponse.data);
+         return reponse.data;
     },
 
     async getWishlishtProducts({ commit }, payload) {

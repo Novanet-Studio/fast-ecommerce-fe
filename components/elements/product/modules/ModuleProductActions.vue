@@ -61,7 +61,11 @@ export default {
                 price: this.product.attributes.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
-            var respuesta = await this.$store.dispatch('product/getCartProducts', this.cartItems)
+            let queries = [];
+            this.cartItems.forEach(item => {
+                queries.push(item.id);
+            });
+            var respuesta = await this.$store.dispatch('product/getCartProducts', queries)
             // this.getCartProduct(this.cartItems);
             this.$notify({
                 group: 'addCartSuccess',
@@ -88,17 +92,17 @@ export default {
             });
         },
 
-        handleAddItemToCompare() {
-            let item = {
-                id: this.product.id
-            };
-            this.$store.dispatch('compare/addItemToCompare', item);
-            this.$notify({
-                group: 'addCartSuccess',
-                title: 'Add to compare!',
-                text: `${this.product.attribues.title} has been added to your compare !`
-            });
-        },
+        // handleAddItemToCompare() {
+        //     let item = {
+        //         id: this.product.id
+        //     };
+        //     this.$store.dispatch('compare/addItemToCompare', item);
+        //     this.$notify({
+        //         group: 'addCartSuccess',
+        //         title: 'Add to compare!',
+        //         text: `${this.product.attribues.title} has been added to your compare !`
+        //     });
+        // },
 
         async getCartProduct(products) {
             let listOfIds = [];

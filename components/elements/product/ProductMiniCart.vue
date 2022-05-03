@@ -17,7 +17,7 @@
                 {{ product.vendor }}
             </p>
             <small v-if="quantity !== null">
-                {{ quantity }} x {{ currency }} {{ product.price }}
+                {{ quantity }} x {{ currency }} {{ product.attributes.price }}
             </small>
         </div>
     </div>
@@ -59,6 +59,9 @@ export default {
             return baseUrl;
         }
     },
+    mounted(){
+        console.log(this.product[0])
+    },
     methods: {
         async loadCartProducts() {
             const cookieCart = this.$cookies.get('cart', { parseJSON: true });
@@ -67,6 +70,7 @@ export default {
                 queries.push(item.id);
             });
             if (this.cartItems.length > 0) {
+                // return console.log('==> desde product minicart',queries)
                 const response = await this.$store.dispatch(
                     'product/getCartProducts',
                     queries

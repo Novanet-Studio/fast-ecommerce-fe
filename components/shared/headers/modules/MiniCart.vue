@@ -12,7 +12,7 @@
                     <loading />
                 </template>
                 <template v-else>
-                    <product-mini-cart v-for="product in cartProducts" :key="product.id" :product="product"/>
+                    <ProductMiniCart v-for="product in cartProducts.data" :key="product.id" :product="product"/>
                 </template>
             </div>
             <div class="ps-cart__footer">
@@ -69,28 +69,34 @@ export default {
             return baseUrl;
         },
     },
+    mounted(){
+        console.log('desde mini cart', this.cartProducts)
+    },
     methods: {
         async loadCartProducts() {
-            console.log('di click')
+            console.log('di click', this.cartProducts)
             const cookieCart = this.$cookies.get('cart', { parseJSON: true });
             let queries = [];
             cookieCart.cartItems.forEach(item => {
                 queries.push(item.id);
             });
             if (this.cartItems.length > 0) {
+                // return console.log('==> desde minicart',queries)
                 const response = await this.$store.dispatch(
                     'product/getCartProducts',
                     queries
                 );
-                // return console.log(response)
+                // console.log(response)
                 if (response) {
                     this.$store.commit('cart/setLoading', false);
+                    // this.cartProducts = response;
                 }
             } else {
                 this.$store.commit('product/setCartProducts', null);
+
             }
         },
-    }
+    },
 
 };
 </script>
