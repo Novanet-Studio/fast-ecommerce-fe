@@ -11,7 +11,7 @@
                 <template v-if="loading === true">
                     <loading />
                 </template>
-                <template v-else>
+                <template v-else-if="cartProducts !== null">
                     <ProductMiniCart v-for="product in cartProducts.data" :key="product.id" :product="product"/>
                 </template>
             </div>
@@ -74,7 +74,7 @@ export default {
     },
     methods: {
         async loadCartProducts() {
-            console.log('di click', this.cartProducts)
+            // console.log('di click', this.cartProducts)
             const cookieCart = this.$cookies.get('cart', { parseJSON: true });
             let queries = [];
             cookieCart.cartItems.forEach(item => {

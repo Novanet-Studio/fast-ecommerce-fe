@@ -119,7 +119,13 @@ export default {
         async addItemToCart(payload) {
             this.$store.dispatch('cart/addProductToCart', payload);
             // this.getCartProduct(this.cartItems);
-             var respuesta = await this.$store.dispatch('product/getCartProducts', this.cartItems)
+            let queries = [];
+            if(this.cartItems.length > 0){
+                this.cartItems.forEach(item => {
+                    queries.push(item.id)
+                })
+            }
+             var respuesta = await this.$store.dispatch('product/getCartProducts', queries)
 
             this.$notify({
                 group: 'addCartSuccess',
