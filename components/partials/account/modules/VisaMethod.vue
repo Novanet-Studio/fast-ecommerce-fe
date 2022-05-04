@@ -53,6 +53,10 @@ export default {
         fullName(){
             const name = this.cookie.name + " " + this.cookie.lastName;
             return name;
+        }, 
+        token(){
+            const token = this.$cookies.get('auth').jwt;
+            return token
         }
     },
     mounted: async function() {
@@ -61,7 +65,7 @@ export default {
         await card.attach('#card-container');
         this.card = card;
         console.log(this.cart)
-        console.log(this.fullName)
+        console.log(this.token)
     },
     methods: {
         async handlePayment(){
@@ -127,11 +131,6 @@ export default {
 
         },
 
-        // async generateInvoice(){
-        //     this.$store.dispatch('checkout/invoiceInfo', 1).then(res => {
-        //         return console.log(res)
-        //     }).catch(err => {console.log(err)})
-        // },
         async createInvoice(payment, products){
             var setItems = [];
            products.map(function(products){
@@ -155,8 +154,13 @@ export default {
                 cardLast: payment.cardDetails.card.last4,
 
             }
+
+            const payload = {
+                token: this.token,
+                data: data,
+            }
             // return console.log(data)
-           const res = await this.$store.dispatch('checkout/createInvoice', data).then(res => {
+           const res = await this.$store.dispatch('checkout/createInvoice', payload).then(res => {
                 return res
             }).catch(err => {console.log(err)})
 

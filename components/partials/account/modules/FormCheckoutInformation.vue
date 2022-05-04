@@ -238,16 +238,18 @@ export default {
 
         async formInfoCookie(){
             const data = this.$cookies.get('shippingInfo');
-            if(data.hasOwnProperty('email')){
-                this.address = data.address;
-                this.city = data.city;
-                this.email = data.email;
-                this.home = data.home;
-                this.lastName = data.lastName;
-                this.name = data.name;
-                this.zipCode = data.zipCode;
+            if(typeof data !== 'undefined'){
+                if(data.hasOwnProperty('email')){
+                    this.address = data.address;
+                    this.city = data.city;
+                    this.email = data.email;
+                    this.home = data.home;
+                    this.lastName = data.lastName;
+                    this.name = data.name;
+                    this.zipCode = data.zipCode;
+                }
+                console.log('==> ship', data)
             }
-            console.log('==> ship', data)
         }
     }
 };

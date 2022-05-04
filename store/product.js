@@ -138,14 +138,14 @@ export const actions = {
         let query = '';
         for (let i = 0; i < payload.length; i++) {
             if(query === ''){
-                query = `id=${payload[i]}`;
+                query = `filters[id]=${payload[i]}`;
             }else{
-                query = query + `&id=${payload[i]}`;
+                query = query + `&filters[id]=${payload[i]}`;
             }
             
         }
         // return query; 
-        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
+        const reponse = await Repository.get(`${baseUrl}/products?populate=*&${query}`)
         .then(response => {
             // commit('setProducts', response.data);
             return response.data;

@@ -11,23 +11,23 @@
                 </tr>
             </thead>
             <tbody v-if="page = false">
-                <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.id_invoice_user, item)">
-                    <td class="invoice-hover">{{item.id_invoice_user}}</td>
-                    <td>{{item.payment_id}}</td>
-                    <td>{{ item.date }}</td>
-                    <td>${{ item.amount }}</td>
-                    <td v-if="item.paid === true" class="status-color">{{ item.status }}</td>
-                    <td v-else>{{ item.status }}</td>
+                <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.attributes.id_invoice_user, item)">
+                    <td class="invoice-hover">{{item.attributes.id_invoice_user}}</td>
+                    <td>{{item.attributes.payment_id}}</td>
+                    <td>{{ item.attributes.date }}</td>
+                    <td>${{ item.attributes.amount }}</td>
+                    <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
+                    <td v-else>{{ item.attributes.status }}</td>
                 </tr>
             </tbody>
             <tbody v-else>
-                <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.id_invoice_user, item)">
-                    <td class="invoice-hover">{{item.id_invoice_user}}</td>
-                    <td>{{item.payment_id}}</td>
-                    <td>{{ item.date }}</td>
-                    <td>${{ item.amount }}</td>
-                    <td v-if="item.paid === true" class="status-color">{{ item.status }}</td>
-                    <td v-else>{{ item.status }}</td>
+                <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.attributes.id_invoice_user, item)">
+                    <td class="invoice-hover">{{item.attributes.id_invoice_user}}</td>
+                    <td>{{item.attributes.payment_id}}</td>
+                    <td>{{ item.attributes.date }}</td>
+                    <td>${{ item.attributes.amount }}</td>
+                    <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
+                    <td v-else>{{ item.attributes.status }}</td>
                 </tr>
             </tbody>
         </table>
@@ -73,16 +73,18 @@ export default {
     },
     methods: {
         async getPayments(){
-            const respuesta = await this.$store.dispatch('checkout/getAllInvoices', this.user.id).then( res=> {
-                if(res.length > 0){
+            const respuesta = await this.$store.dispatch('checkout/getAllInvoices', this.user.id).then( ress => {
+                console.log('===? los invoices',ress.data)
+                if(ress.data.length > 0){
+                    var res = ress.data
                     this.invoiceExist = true;
                     for (let i = 0; i < res.length; i++) {
-                        res[i].id_invoice_user = i+1;
-                        res[i].date = new Date(res[i].created_at).toLocaleDateString()
-                        if(res[i].paid === true){
-                            res[i].status = 'Pagado'
+                        res[i].attributes.id_invoice_user = i+1;
+                        res[i].attributes.date = new Date(res[i].attributes.createdAt).toLocaleDateString()
+                        if(res[i].attributes.paid === true){
+                            res[i].attributes.status = 'Pagado'
                         }else{
-                            res[i].status = 'Cancelado'
+                            res[i].attributes.status = 'Cancelado'
                         }
                     }
                     this.tableInvoices = res
@@ -91,6 +93,8 @@ export default {
                     this.invoiceExist = false;
                 }
             })
+                    console.log('===> todo creo', this.tableInvoices)
+
 
         },
         goToInvoice(idInvUser, invoice){

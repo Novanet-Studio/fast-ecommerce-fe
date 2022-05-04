@@ -48,7 +48,7 @@ export const actions = {
     },
     async getAllInvoices({commit}, payload){
         const userId = payload
-        const response = await Repository.get(`${baseUrl}/invoices?user_id=${userId}`)
+        const response = await Repository.get(`${baseUrl}/invoices?populate=*&filters[user_id]=${userId}`)
             .then(response => {
                 return response.data
             })
@@ -59,7 +59,12 @@ export const actions = {
 
     async createInvoice({commit},payload){
 
-        const response = await Repository.post(`${baseUrl}/invoices`, payload)
+        var headers = {
+            Authorization: `Bearer ${payload.token} `,
+        }
+        const data = payload.data
+
+        const response = await Repository.post(`${baseUrl}/invoices`, data)
             .then(response => {
                 return response
             })

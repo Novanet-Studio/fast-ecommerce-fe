@@ -4,7 +4,7 @@
         <div id="pdf-content">
             <div class="ps-section__header">
                 <h3>
-                    Factura #{{ invoice.id_invoice_user }} -
+                    Factura #{{ invoice.attributes.id_invoice_user }} -
                     <strong>Successful delivery PPU</strong>
                 </h3>
             </div>
@@ -17,11 +17,11 @@
                             </figcaption>
                             <div class="ps-block__content">
                                 <strong>
-                                    {{ invoice.fullName }}
+                                    {{ invoice.attributes.fullName }}
                                 </strong>
                                 <p v-if="invoice.shippingAddress">
-                                    Dirección: {{ invoice.shippingAddress.addressLine1 }},
-                                    {{ invoice.shippingAddress.locality }}, {{ invoice.shippingAddress.country }}
+                                    Dirección: {{ invoice.attributes.shippingAddress.addressLine1 }},
+                                    {{ invoice.attributes.shippingAddress.locality }}, {{ invoice.attributes.shippingAddress.country }}
                                 </p>
 
                             </div>
@@ -33,12 +33,12 @@
                                 Estado
                             </figcaption>
                             <div class="ps-block__content">
-                                <p v-if="invoice.paid === true">
+                                <p v-if="invoice.attributes.paid === true">
                                     Pagado
                                 </p>
                                 <p v-else>No pagado</p>
                                 <p>
-                                    {{ invoice.date }}
+                                    {{ invoice.attributes.date }}
                                 </p>
                             </div>
                         </figure>
@@ -50,9 +50,9 @@
                             </figcaption>
                             <div class="ps-block__content">
                                 <p>
-                                    Pago: {{ invoice.cardKind }} {{ invoice.cardType }},
+                                    Pago: {{ invoice.attributes.cardKind }} {{ invoice.attributes.cardType }},
                                 </p>
-                                <p>Ultimos Cuatro digitos: {{invoice.cardLast}}</p>
+                                <p>Ultimos Cuatro digitos: {{invoice.attributes.cardLast}}</p>
                             </div>
                         </figure>
                     </div>
@@ -69,16 +69,16 @@
                             </thead>
                             <tbody>
                                 <tr v-for="product, index in products" :key="product.id">
-                                    <td>{{product.name}}</td>
-                                    <td class="price">$ {{ product.price }}</td>
-                                    <td>{{invoice.products[index].quantity}}</td>
-                                    <td class="price">$ {{ product.price }}</td>
+                                    <td>{{product.attributes.name}}</td>
+                                    <td class="price">$ {{ product.attributes.price }}</td>
+                                    <td>{{invoice.attributes.products[index].quantity}}</td>
+                                    <td class="price">$ {{ product.attributes.price }}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td></td>
                                     <td>MONTO TOTAL</td>
-                                    <td>${{invoice.amount}}</td>
+                                    <td>${{invoice.attributes.amount}}</td>
     
                                 </tr>
                             </tbody>
@@ -120,7 +120,7 @@ export default {
     mounted(){
         console.log(this.invoice)
         console.log('hola')
-        this.getIdProducts(this.invoice.products)
+        this.getIdProducts(this.invoice.attributes.products)
         console.log(this.products)
     },
     methods: {
@@ -136,9 +136,11 @@ export default {
 
         },
         async getProductsInvoice(ids_p){
+            // return console.log(ids_p)
             try {
                 var respuesta = await this.$store.dispatch('product/getProductById', ids_p ).then(res => {
-                    return respuesta =  res;
+                    // return console.log('esta es la respuesta',res.data)
+                    return respuesta =  res.data;
                 }).catch(err=>{
                     return err; 
                 })
@@ -150,7 +152,7 @@ export default {
         },
         pdf(){
             var elementHTML = document.getElementById('pdf-content')
-            var name = this.invoice.id_invoice_user;
+            var name = this.invoice.attributes.id_invoice_user;
             html2PDF(elementHTML, {
                 jsPDF: {
                 format: 'a4',
