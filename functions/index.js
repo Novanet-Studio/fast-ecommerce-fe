@@ -14,7 +14,8 @@ const paymentsApi = client.paymentsApi;
 const customersApi = client.customersApi;
 
 exports.createCustomer = functions.https.onRequest( (req, res) => {
-    cors( req, res, async ()=> {
+    console.log('esta es la funcion')
+    return cors( req, res, async ()=> {
       const data = req.body.data;
 
       const body = {

@@ -139,6 +139,7 @@ export default {
                     // return console.log(this.username, this.email)
                     await this.createCustomer(this.username, this.email).then(async (res) => {
                         const respuesta = res; 
+                        // return console.log(res)
                         if(respuesta.length > 0){
                             const customerid = respuesta[0].id;
                             if(customerid && respuesta[1] == 'success'){
@@ -148,13 +149,10 @@ export default {
                         }else{
                             alert('hubo un error')
                         }
-
                     })
-                    
                 } catch (error) {
                     console.log(error, 'error al registrar')
                 }
-
             }
         },
 
@@ -166,7 +164,6 @@ export default {
                 emailAddress: email
             }
             var datos = [];
-            
             const customerId = this.$fire.functions.httpsCallable('createCustomer');
             await customerId(data).then(async (res) => {
 
@@ -176,7 +173,7 @@ export default {
                     datos.push(customerinfo);
                     datos.push('success')
                 }
-                console.log(squareResponse.customer)
+                console.log('===> respuesta square',squareResponse.customer)
                 // return datos
             }).catch(error=>{
                 console.log(error)
