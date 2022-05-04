@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import EditAddress from '~/components/partials/account/EditAddress';
 import Checkout from '~/components/partials/account/Checkout';
@@ -31,6 +32,9 @@ export default {
                 }
             ]
         };
+    },
+    mounted(){
+        this.loadCartProducts()
     },
     methods: {
         async loadCartProducts() {

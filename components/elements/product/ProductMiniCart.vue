@@ -14,7 +14,7 @@
             <module-product-title :product="product" />
             <p>
                 <strong>Sold by:</strong>
-                {{ product.vendor }}
+                {{ product.attributes.vendor }}
             </p>
             <small v-if="quantity !== null">
                 {{ quantity }} x {{ currency }} {{ product.attributes.price }}
@@ -60,7 +60,7 @@ export default {
         }
     },
     mounted(){
-        console.log(this.product[0])
+        console.log(this.product)
     },
     methods: {
         async loadCartProducts() {

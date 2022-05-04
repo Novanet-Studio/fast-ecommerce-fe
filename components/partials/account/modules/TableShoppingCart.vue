@@ -10,11 +10,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(product, index) in cartProducts" :key="product.id">
+            <tr v-for="(product, index) in cartProducts.data" :key="product.id">
                 <td data-label="Product">
                     <product-shopping-cart :product="product" />
                 </td>
-                <td data-label="Price" class="price">$ {{ product.price }}</td>
+                <td data-label="Price" class="price">$ {{ product.attributes.price }}</td>
                 <td data-label="Quantity">
                     <quantity :product="product"/>
                 </td>
@@ -41,6 +41,9 @@ import TotalQuantity from '~/components/partials/account/modules/TotalQuantity';
 export default {
     name: 'TableShoppingCart',
     components: { ProductShoppingCart, Quantity, TotalQuantity },
+    props: {
+        item: '',
+    },
     data(){
         return {
             // cartProducts: ''
@@ -53,6 +56,10 @@ export default {
             amount: state => state.cart.amount,
             cartProducts: state => state.product.cartProducts
         })
+    },
+    mounted(){
+        console.log(this.cartProducts)
+        console.log(this.item)
     },
     methods: {
         async loadCartProducts() {

@@ -16,11 +16,8 @@ export default {
     name: 'ProductShoppingCart',
     components: { ModuleProductTitle, ModuleProductThumbnailImage },
     props: {
-        product: {
-            type: Object,
-            default: () => {}
-        }
-    }
+        product: ''
+    },
 };
 </script>
 

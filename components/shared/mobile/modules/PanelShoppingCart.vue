@@ -102,7 +102,7 @@ export default {
                     'product/getCartProducts',
                     queries
                 );
-                // return console.log(response)
+                return console.log(response)
                 if (response) {
                     this.$store.commit('cart/setLoading', false);
                 }

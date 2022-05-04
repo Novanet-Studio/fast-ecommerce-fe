@@ -5,7 +5,7 @@
                 <h1>Carrito de compras</h1>
             </div>
             <div class="ps-section__content">
-                <table-shopping-cart v-if="cartProducts !== null " />
+                <table-shopping-cart v-if="cartProducts !== null " :item="cartProducts" />
                 <p v-else>Carrito vacio</p>
                 <div class="ps-section__cart-actions">
                     <nuxt-link to="/shop" class="ps-btn">
@@ -46,14 +46,14 @@
                             <div class="ps-block__content">
                                 <ul class="ps-block__product">
                                     <li
-                                        v-for="(product, index) in cartProducts"
+                                        v-for="(product, index) in cartProducts.data"
                                     >
                                         <span class="ps-block__estimate">
                                             <nuxt-link
                                                 :to="`/product/${product.id}`"
                                                 class="ps-product__title"
                                             >
-                                               Cachitos {{ product.name }}
+                                               Cachitos {{ product.attributes.name }}
                                                 <br />
                                                 <module-quantity :product="product"/>                                                
                                             </nuxt-link>
@@ -87,11 +87,11 @@ import ModuleQuantity from '~/components/partials/account/modules/ModuleQuantity
 export default {
     name: 'ShoppingCart',
     components: { TableShoppingCart, ProductShoppingCart, ModuleQuantity },
-    // data(){
-    //     return {
-    //         cartProducts: ''
-    //     }
-    // },
+    data(){
+        return {
+            products: false
+        }
+    },
     computed: {
         ...mapState({
             cart: state => state.cart,
@@ -117,7 +117,9 @@ export default {
 
     },
     async mounted(){
-        this.loadCartProducts()
+        this.loadCartProducts();
+        console.log(this.cartProducts);
+
     },
     methods: {
         async loadCartProducts() {
@@ -133,14 +135,14 @@ export default {
                     'product/getCartProducts',
                     queries
                 );
-                // return console.log(response)
+                //  console.log(response)
                 if (response) {
                     this.$store.commit('cart/setLoading', false);
+                    // this.cartProducts = response;
                 }
             } else {
                 this.$store.commit('product/setCartProducts', null);
             }
-            console.log(this.cartProducts)
         },
 
     }

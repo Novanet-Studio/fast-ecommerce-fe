@@ -1,7 +1,7 @@
 <template>
     <td data-label="Total">
         ${{
-            (quantity* product.price).toFixed(2)
+            (quantity* product.attributes.price).toFixed(2)
         }}
     </td>
 

@@ -46,7 +46,6 @@ export default {
             return await categorias.GetCategories().then(val=>{this.categories = val.data})
         },
 
-
     }
 };
 </script>
