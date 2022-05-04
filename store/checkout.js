@@ -62,7 +62,9 @@ export const actions = {
         var headers = {
             Authorization: `Bearer ${payload.token} `,
         }
-        const data = payload.data
+        const data = {
+            data: payload.data
+        }
 
         const response = await Repository.post(`${baseUrl}/invoices`, data)
             .then(response => {
