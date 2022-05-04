@@ -96,7 +96,7 @@ export default {
         }, 
         async categorias(){
             var categorias = new CategoryRepository();
-            return await categorias.GetCategories().then(val=>{ return this.categories = val})
+            return await categorias.GetCategories().then(val=>{ return this.categories = val.data})
         },
         async productos(){
             const productoPorId = new ProductoRepository();

@@ -9,7 +9,7 @@ export default class CategoryRepository {
         const response = await Repository.get(
             `${baseUrl}/categories/?populate=*`
         )
-        return response.data.data;
+        return response.data;
         
     }
 

@@ -43,7 +43,7 @@ export default {
         async categorias(){
             var categorias = new CategoryRepository();
             // return await categorias.GetCategories().then(val=>{return console.log(val)})
-            return await categorias.GetCategories().then(val=>{this.categories = val})
+            return await categorias.GetCategories().then(val=>{this.categories = val.data})
         },
 
 
