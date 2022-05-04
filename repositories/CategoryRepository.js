@@ -7,9 +7,9 @@ export default class CategoryRepository {
 
     async GetCategories(){
         const response = await Repository.get(
-            `${baseUrl}/categories/`
+            `${baseUrl}/categories/?populate=*`
         )
-        return response.data;
+        return response.data.data;
         
     }
 

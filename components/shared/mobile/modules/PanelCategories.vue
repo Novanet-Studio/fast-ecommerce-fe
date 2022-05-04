@@ -13,7 +13,9 @@
         <div class="navigation__content">
             <ul class="menu--mobile">
                 <li v-for="category in categories">
-                    <nuxt-link to="/shop">{{ category.name }}</nuxt-link>
+                    <!-- <nuxt-link to="/shop">{{ category.attributes.name }}</nuxt-link> -->
+                    <p>{{ category.attributes.name }}</p>
+                
                 </li>
             </ul>
         </div>
@@ -40,6 +42,7 @@ export default {
         },
         async categorias(){
             var categorias = new CategoryRepository();
+            // return await categorias.GetCategories().then(val=>{return console.log(val)})
             return await categorias.GetCategories().then(val=>{this.categories = val})
         },
 
@@ -48,4 +51,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.menu--mobile{
+    li{
+        p{
+            padding: 10px 10px;
+            margin-bottom: 0px;
+            font-size: 17px;
+        }
+    }
+}
+</style>
