@@ -82,7 +82,7 @@ export default {
         quickviewDialog: false
     }),
     mounted(){
-        console.log(this.product)
+        // console.log(this.product)
     },
     methods: {
         listenEventFromChildren(payload) {

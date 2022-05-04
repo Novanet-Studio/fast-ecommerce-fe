@@ -58,8 +58,8 @@ export default {
         })
     },
     mounted(){
-        console.log(this.cartProducts)
-        console.log(this.item)
+        // console.log(this.cartProducts)
+        // console.log(this.item)
     },
     methods: {
         async loadCartProducts() {

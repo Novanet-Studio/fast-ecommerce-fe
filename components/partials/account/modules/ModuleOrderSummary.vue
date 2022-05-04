@@ -11,15 +11,15 @@
                 </figure>
                 <figure class="ps-block__items">
                     <nuxt-link
-                        v-for="(product, index) in cartProducts"
+                        v-for="(product, index) in cartProducts.data"
                         :to="`/product/${product.id}`"
                         :key="product.id"
                         class="ps-product__title"
                     >
-                        Cachitos {{ product.name }}
+                        Cachitos {{ product.attributes.name }}
                         <br />
                         {{ cartItems[index].quantity }} x ${{
-                            product.price.toFixed(2)
+                            product.attributes.price.toFixed(2)
                         }}
                     </nuxt-link>
                 </figure>
@@ -55,6 +55,7 @@ export default {
     },
     mounted(){
         this.loadCartProducts()
+        console.log(this.cartItems)
     },
     methods: {
         async loadCartProducts() {
