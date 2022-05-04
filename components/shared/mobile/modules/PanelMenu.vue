@@ -11,117 +11,49 @@
             </a>
         </div>
         <br>
-        <!-- <div class="ps-panel__content">
-            <div class="ps-site-actions">
-                <div class="row">
-                    <div class="col-6">
-                        <mobile-currency-switcher />
-                    </div>
-                    <div class="col-6">
-                        <mobile-languge-switcher />
-                    </div>
-                </div>
-            </div> -->
-            <v-list class="menu--mobile">
-                <v-list-item>
-                    <v-list-item-content>
-                        <nuxt-link
-                            to="/"
-                            @click="handleClosePanel"
-                        >
-                            Inicio
-                        </nuxt-link>
-                    </v-list-item-content>
-                </v-list-item>
-                <template v-for="categoria in categories">
-                    <v-list-group v-if="categoria.name != 'Inicio' " no-action>
-                        <template v-slot:activator>
-                            <v-list-item-content>
-                                <nuxt-link
-                                    to="/"
-                                    @click="handleClosePanel"
-                                >
-                                    {{ categoria.name }}
-                                </nuxt-link>
-                            </v-list-item-content>
-                        </template>
-                        <v-list>
-                            <template v-for="producto in products">
-                                <div v-if="categoria.id == producto.category.id">
-                                    <template>
-                                        <v-list-item-content>
-                                            <nuxt-link
-                                                :to="`/product/${producto.id}`"
-                                                @click="handleClosePanel"
-                                                class="productoCat"
-                                            >
-                                                {{ producto.name }}
-                                            </nuxt-link>
-                                        </v-list-item-content>
-                                    </template>
-                                </div>
-                            </template>
-                        </v-list>
-                    </v-list-group>
-                </template>
-                <!-- <template v-for="menuItem in menu">
-                    <v-list-group v-if="menuItem.subMenu" no-action>
-                        <template v-slot:activator>
-                            <v-list-item-content>
-                                <nuxt-link
-                                    :to="menuItem.url"
-                                    @click="handleClosePanel"
-                                >
-                                    {{ menuItem.text }}
-                                </nuxt-link>
-                            </v-list-item-content>
-                        </template>
-                        <mobile-submenu :menu="menuItem.subMenu" />
-                    </v-list-group>
-                    <v-list-group v-else-if="menuItem.mega" no-action>
-                        <template v-slot:activator>
-                            <v-list-item-content>
-                                <nuxt-link
-                                    :to="menuItem.url"
-                                    @click="handleClosePanel"
-                                >
-                                    {{ menuItem.text }} hola
-                                </nuxt-link>
-                            </v-list-item-content>
-                        </template>
-                        <v-list>
-                            <template v-for="megaItem in menuItem.megaContent">
-                                <v-list-group no-action>
-                                    <template v-slot:activator>
-                                        <v-list-item-content>
-                                            <nuxt-link
-                                                :to="menuItem.url"
-                                                @click="handleClosePanel"
-                                            >
-                                                {{ megaItem.heading }} hola2
-                                            </nuxt-link>
-                                        </v-list-item-content>
-                                    </template>
-                                    <mobile-submenu
-                                        :menu="megaItem.megaItems"
-                                    />
-                                </v-list-group>
-                            </template>
-                        </v-list>
-                    </v-list-group>
-                    <v-list-item v-else>
+        <v-list class="menu--mobile">
+            <v-list-item>
+                <v-list-item-content>
+                    <nuxt-link
+                        to="/"
+                        @click="handleClosePanel"
+                    >
+                        Inicio
+                    </nuxt-link>
+                </v-list-item-content>
+            </v-list-item>
+            <template v-for="categoria in categories">
+                <v-list-group v-if="categoria.attributes.name != 'Inicio' " no-action>
+                    <template v-slot:activator>
                         <v-list-item-content>
                             <nuxt-link
-                                :to="menuItem.url"
+                                to="/"
                                 @click="handleClosePanel"
                             >
-                                {{ menuItem.text }} holaaa
+                                {{ categoria.attributes.name }}
                             </nuxt-link>
                         </v-list-item-content>
-                    </v-list-item>
-                </template> -->
-            </v-list>
-        </div>
+                    </template>
+                    <v-list>
+                        <template v-for="producto in products">
+                            <div v-if="categoria.id == producto.attributes.category.data.id">
+                                <template>
+                                    <v-list-item-content>
+                                        <nuxt-link
+                                            :to="`/product/${producto.id}`"
+                                            @click="handleClosePanel"
+                                            class="productoCat"
+                                        >
+                                            {{ producto.attributes.name }}
+                                        </nuxt-link>
+                                    </v-list-item-content>
+                                </template>
+                            </div>
+                        </template>
+                    </v-list>
+                </v-list-group>
+            </template>
+        </v-list>
     </div>
 </template>
 
@@ -164,12 +96,13 @@ export default {
         }, 
         async categorias(){
             var categorias = new CategoryRepository();
-            return await categorias.GetCategories().then(val=>{this.categories = val})
+            return await categorias.GetCategories().then(val=>{ return this.categories = val})
         },
         async productos(){
             const productoPorId = new ProductoRepository();
-            // return console.log(await productoPorId.GetProductById(this.productId).then(val=>{return this.product = val}));
+            // return await productoPorId.GetProducts().then(val=>{return console.log(val)});
             return await productoPorId.GetProducts().then(val=>{return this.products = val});
+            
         }
 
     }

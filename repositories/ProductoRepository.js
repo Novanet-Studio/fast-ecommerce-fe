@@ -9,7 +9,7 @@ export default class ProductRepository {
         const response = await Repository.get(
             `${baseUrl}/products?populate=*`
         )
-        return response.data;
+        return response.data.data;
     }
 
     async GetProductsByCategory(category){
