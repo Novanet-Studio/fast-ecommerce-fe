@@ -146,9 +146,11 @@ export default {
                     }
 
                     const data = {
-                        user_id: this.user.id,
-                        type: addressType,
-                        address: address
+                        data:{
+                            user_id: this.user.id,
+                            type: addressType,
+                            address: address
+                        }
                     }
                     console.log(data)
                     this.sendToStrapi(data); 
@@ -167,7 +169,7 @@ export default {
                 }
                 const respuesta = await this.$store.dispatch('checkout/getAddress', data ).then(res=> {
                     if(res.length > 0){
-                        const address = res[0].address;
+                        const address = res[0].attributes.address;
                         this.lastAddress = true; 
                         this.addId = res[0].id;
                         this.country = address.pais;

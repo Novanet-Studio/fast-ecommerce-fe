@@ -101,9 +101,9 @@ export const actions = {
         const userId = payload.userId;
         const type = payload.type
 
-        const response = await Repository.get(`${baseUrl}/addresses?user_id=${userId}&type=${type}`)
+        const response = await Repository.get(`${baseUrl}/addresses?populate=*&filters[user_id]=${userId}&filters[type]=${type}`)
             .then(response => {
-                return response.data
+                return response.data.data
             })
             .catch(error => ({ error: JSON.stringify(error) }));
 
