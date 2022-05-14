@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="ps-product-list ps-clothings ps-section--carousel-outside">
+    <div v-if="category.attributes.products.data.length > 0" class="ps-product-list ps-clothings ps-section--carousel-outside">
         <div class="ps-container">
             <div class="ps-section__header">
                 <h3>{{ category.attributes.name }}</h3>
@@ -11,7 +11,7 @@
                     v-swiper:carousel="carouselSetting"
                 >
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="product in products">
+                        <div class="swiper-slide" v-for="product in idk">
                             <p>{{ product.attributes.name }}</p>
                             <product-default :product="product" />
                         </div>
@@ -54,25 +54,28 @@ export default {
     // },
     data() {
         return {
-            products: [],
+            products: this.category.attributes.products,
             carouselSetting: {
                 ...carouselFullwidth,
                 navigation: {
                     nextEl: '.ps-clothings .swiper-next',
                     prevEl: '.ps-clothings .swiper-prev'
                 }
-            }
+            },
+            idk: []
         };
     },
     mounted(){
         this.productosByCategoria()
-        console.log(this.category)
+        // console.log(this.category.attributes.products.data)
+        // console.log(this.products)
+        // console.log(this.idk)
     },
     methods: {
         async productosByCategoria(){
             const productos = new ProductoRepository();
-            //return await productos.GetProductsByCategory(this.category['id']).then(val => {return console.log(val)})
-            return await productos.GetProductsByCategory(this.category['id']).then(val => {return this.products = val.data})
+            // return await productos.GetProductsByCategory(this.category['id']).then(val => {return console.log(val)})
+            return await productos.GetProductsByCategory(this.category['id']).then(val => {return this.idk = val.data})
         }
     }
 };

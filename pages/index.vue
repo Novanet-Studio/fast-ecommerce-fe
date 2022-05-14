@@ -43,13 +43,12 @@ export default {
     mounted(){
         this.categorias()
         console.log(this.$cookies.get('cart'))
-        console.log(this.categories)
     },
     methods: {
         async categorias(){
             const categorias = new CategoryRepository();
             // return await categorias.GetCategories().then(val => {return console.log(val.data)})
-            return await categorias.GetCategories().then(val => {return this.categories = val.data})
+             return await categorias.GetCategories().then(val => {return this.categories = val.data})
             
         }
     }
