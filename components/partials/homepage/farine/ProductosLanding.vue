@@ -11,7 +11,7 @@
                     v-swiper:carousel="carouselSetting"
                 >
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="product in idk">
+                        <div class="swiper-slide" v-for="product in products">
                             <p>{{ product.attributes.name }}</p>
                             <product-default :product="product" />
                         </div>
@@ -54,7 +54,7 @@ export default {
     // },
     data() {
         return {
-            products: this.category.attributes.products,
+            products: [],
             carouselSetting: {
                 ...carouselFullwidth,
                 navigation: {
@@ -62,20 +62,19 @@ export default {
                     prevEl: '.ps-clothings .swiper-prev'
                 }
             },
-            idk: []
         };
     },
     mounted(){
         this.productosByCategoria()
         // console.log(this.category.attributes.products.data)
-        // console.log(this.products)
+        console.log(this.products)
         // console.log(this.idk)
     },
     methods: {
         async productosByCategoria(){
             const productos = new ProductoRepository();
             // return await productos.GetProductsByCategory(this.category['id']).then(val => {return console.log(val)})
-            return await productos.GetProductsByCategory(this.category['id']).then(val => {return this.idk = val.data})
+            return await productos.GetProductsByCategory(this.category['id']).then(val => {return this.products = val.data})
         }
     }
 };
