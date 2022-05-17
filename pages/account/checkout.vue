@@ -21,15 +21,15 @@ export default {
         return {
             breadCrumb: [
                 {
-                    text: 'Home',
+                    text: 'Inicio',
                     url: '/'
                 },
                 {
-                    text: 'Shopping Cart',
+                    text: 'Carrito de compra',
                     url: '/account/shopping-cart'
                 },
                 {
-                    text: 'Checkout Information'
+                    text: 'Información de compra'
                 }
             ]
         };

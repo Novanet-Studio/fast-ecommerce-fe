@@ -11,8 +11,8 @@
                     v-swiper:carousel="carouselSetting"
                 >
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="product in products">
-                            <p>{{ product.attributes.name }}</p>
+                        <div class="swiper-slide" v-for="product in products">                  
+                         
                             <product-default :product="product" />
                         </div>
                     </div>
@@ -28,54 +28,58 @@
 
 <script>
 // import {mapState} from 'vuex';
-import CategoryRepository from '~/repositories/CategoryRepository';
-import ProductoRepository from '~/repositories/ProductoRepository';
-import { carouselFullwidth } from '~/utilities/carousel-helpers.js';
-import ProductDefault from '../../../elements/product/ProductDefault';
-import { getColletionBySlug } from '../../../../utilities/product-helper';
-import CarouselArrows from '~/components/elements/commons/CarouselArrows';
+import CategoryRepository from "~/repositories/CategoryRepository";
+import ProductoRepository from "~/repositories/ProductoRepository";
+import { carouselFullwidth } from "~/utilities/carousel-helpers.js";
+import ProductDefault from "../../../elements/product/ProductDefault";
+import { getColletionBySlug } from "../../../../utilities/product-helper";
+import CarouselArrows from "~/components/elements/commons/CarouselArrows";
 
 export default {
-    components: { CarouselArrows, ProductDefault },
-    props: {
-        category: [],
-        // collectionSlug: {
-        //     type: String,
-        //     default: ''
-        // }
+  components: { CarouselArrows, ProductDefault },
+  props: {
+    category: [],
+    // collectionSlug: {
+    //     type: String,
+    //     default: ''
+    // }
+  },
+  // computed: {
+  //     ...mapState({
+  //         collections: state => state.collection.collections
+  //     }),
+  //     products() {
+  //         return getColletionBySlug(this.collections, this.collectionSlug);
+  //     }
+  // },
+  data() {
+    return {
+      products: [],
+      carouselSetting: {
+        ...carouselFullwidth,
+        navigation: {
+          nextEl: ".ps-clothings .swiper-next",
+          prevEl: ".ps-clothings .swiper-prev",
+        },
+      },
+    };
+  },
+  mounted() {
+    this.productosByCategoria();
+    // console.log(this.category.attributes.products.data)
+    
+    // console.log(this.idk)
+  },
+  methods: {
+    async productosByCategoria() {
+      const productos = new ProductoRepository();
+      // return await productos.GetProductsByCategory(this.category['id']).then(val => {return console.log(val)})
+      return await productos
+        .GetProductsByCategory(this.category["id"])
+        .then((val) => {
+          return (this.products = val.data);
+        });
     },
-    // computed: {
-    //     ...mapState({
-    //         collections: state => state.collection.collections
-    //     }),
-    //     products() {
-    //         return getColletionBySlug(this.collections, this.collectionSlug);
-    //     }
-    // },
-    data() {
-        return {
-            products: [],
-            carouselSetting: {
-                ...carouselFullwidth,
-                navigation: {
-                    nextEl: '.ps-clothings .swiper-next',
-                    prevEl: '.ps-clothings .swiper-prev'
-                }
-            },
-        };
-    },
-    mounted(){
-        this.productosByCategoria()
-        // console.log(this.category.attributes.products.data)
-        console.log(this.products)
-        // console.log(this.idk)
-    },
-    methods: {
-        async productosByCategoria(){
-            const productos = new ProductoRepository();
-            // return await productos.GetProductsByCategory(this.category['id']).then(val => {return console.log(val)})
-            return await productos.GetProductsByCategory(this.category['id']).then(val => {return this.products = val.data})
-        }
-    }
+  },
 };
 </script>

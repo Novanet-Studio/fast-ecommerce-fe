@@ -2,7 +2,6 @@
     <div class="ps-page--single">
         <img src="~/static/img/bg/about-us.jpg" alt="" />
         <bread-crumb :breadcrumb="breadCrumb" />
-        <our-team />
         <about-awards />
     </div>
 </template>
@@ -23,11 +22,11 @@ export default {
         return {
             breadCrumb: [
                 {
-                    text: 'Home',
+                    text: 'Inicio',
                     url: '/'
                 },
                 {
-                    text: 'About Us'
+                    text: 'Nosotros'
                 }
             ]
         };

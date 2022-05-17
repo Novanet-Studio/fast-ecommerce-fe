@@ -23,11 +23,11 @@ export default {
         return {
             breadCrumb: [
                 {
-                    text: 'Home',
+                    text: 'Inicio',
                     url: '/'
                 },
                 {
-                    text: 'Wishlist'
+                    text: 'Lista de deseos'
                 }
             ]
         };

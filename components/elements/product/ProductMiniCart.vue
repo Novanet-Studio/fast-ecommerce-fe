@@ -11,11 +11,7 @@
             >
                 <i class="icon-cross"></i>
             </a>
-            <module-product-title :product="product" />
-            <p>
-                <strong>Sold by:</strong>
-                {{ product.attributes.vendor }}
-            </p>
+            <module-product-title :product="product" />          
             <small v-if="quantity !== null">
                 {{ quantity }} x {{ currency }} {{ product.attributes.price }}
             </small>

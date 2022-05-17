@@ -2,14 +2,14 @@
     <div class="ps-contact-form">
         <div class="container">
             <form class="ps-form--contact-us" action="/" method="get">
-                <h3>Get In Touch</h3>
+                <h3>Envíanos un mensaje</h3>
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
                         <div class="form-group">
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="Name *"
+                                placeholder="Nombre *"
                             />
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="Subject *"
+                                placeholder="Asunto *"
                             />
                         </div>
                     </div>
@@ -40,13 +40,13 @@
                             <textarea
                                 class="form-control"
                                 rows="5"
-                                placeholder="Message"
+                                placeholder="Mensaje"
                             ></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="form-group submit">
-                    <button class="ps-btn">Send message</button>
+                    <button class="ps-btn">Enviar mensaje</button>
                 </div>
             </form>
         </div>

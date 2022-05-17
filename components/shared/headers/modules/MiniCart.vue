@@ -12,8 +12,12 @@
                     <loading />
                 </template>
                 <template v-else-if="cartProducts !== null">
-                    <ProductMiniCart v-for="product in cartProducts.data" :key="product.id" :product="product"/>
-                </template>
+  <ProductMiniCart
+    v-for="product in cartProducts.data"
+    :key="product.id"
+    :product="product"
+  />
+</template>
             </div>
             <div class="ps-cart__footer">
                 <h3>
@@ -23,12 +27,12 @@
                 <figure>
                     <div>
                         <nuxt-link to="/account/shopping-cart" class="ps-btn">
-                            {{ $t('header.miniCart.viewCart') }}
+                            Ver carrito
                         </nuxt-link>
                     </div>
                     <div>
                         <nuxt-link to="/account/checkout" class="ps-btn">
-                            {{ $t('header.miniCart.checkout') }}
+                          Checkout
                         </nuxt-link>
                     </div>
                 </figure>
@@ -43,87 +47,85 @@
 </template>
 
 <script>
-import ProductoRepository from '~/repositories/ProductoRepository';
-import { mapState } from 'vuex';
-import { baseUrl } from '~/repositories/Repository';
-import ProductMiniCart from '~/components/elements/product/ProductMiniCart';
-import Loading from '~/components/elements/commons/Loading';
+import ProductoRepository from "~/repositories/ProductoRepository";
+import { mapState } from "vuex";
+import { baseUrl } from "~/repositories/Repository";
+import ProductMiniCart from "~/components/elements/product/ProductMiniCart";
+import Loading from "~/components/elements/commons/Loading";
 
 export default {
-    name: 'MiniCart',
-    components: { Loading, ProductMiniCart },
-    // data(){
-    //     return {
-    //         cartProducts: ''
-    //     }
-    // },
-    computed: {
-        ...mapState({
-            total: state => state.cart.total,
-            amount: state => state.cart.amount,
-            loading: state => state.cart.loading,
-            cartItems: state => state.cart.cartItems,
-            cartProducts: state => state.product.cartProducts
-        }),
-        baseUrl() {
-            return baseUrl;
-        },
+  name: "MiniCart",
+  components: { Loading, ProductMiniCart },
+  // data(){
+  //     return {
+  //         cartProducts: ''
+  //     }
+  // },
+  computed: {
+    ...mapState({
+      total: (state) => state.cart.total,
+      amount: (state) => state.cart.amount,
+      loading: (state) => state.cart.loading,
+      cartItems: (state) => state.cart.cartItems,
+      cartProducts: (state) => state.product.cartProducts,
+    }),
+    baseUrl() {
+      return baseUrl;
     },
-    mounted(){
-        console.log('desde mini cart', this.cartProducts)
+  },
+  mounted() {
+    console.log("desde mini cart", this.cartProducts);
+  },
+  methods: {
+    async loadCartProducts() {
+      // console.log('di click', this.cartProducts)
+      const cookieCart = this.$cookies.get("cart", { parseJSON: true });
+      let queries = [];
+      cookieCart.cartItems.forEach((item) => {
+        queries.push(item.id);
+      });
+      if (this.cartItems.length > 0) {
+        // return console.log('==> desde minicart',queries)
+        const response = await this.$store.dispatch(
+          "product/getCartProducts",
+          queries
+        );
+        // console.log(response)
+        if (response) {
+          this.$store.commit("cart/setLoading", false);
+          // this.cartProducts = response;
+        }
+      } else {
+        this.$store.commit("product/setCartProducts", null);
+      }
     },
-    methods: {
-        async loadCartProducts() {
-            // console.log('di click', this.cartProducts)
-            const cookieCart = this.$cookies.get('cart', { parseJSON: true });
-            let queries = [];
-            cookieCart.cartItems.forEach(item => {
-                queries.push(item.id);
-            });
-            if (this.cartItems.length > 0) {
-                // return console.log('==> desde minicart',queries)
-                const response = await this.$store.dispatch(
-                    'product/getCartProducts',
-                    queries
-                );
-                // console.log(response)
-                if (response) {
-                    this.$store.commit('cart/setLoading', false);
-                    // this.cartProducts = response;
-                }
-            } else {
-                this.$store.commit('product/setCartProducts', null);
-
-            }
-        },
-    },
-
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-    .ps-cart__items {
-        min-height: 150px;
-        &.no-products {
-            min-height: 50px;
-        }
-    }
-    .ps-cart__footer {
-        figure {
-            display: flex;
-            flex-flow: row nowrap;
-            margin-right: 0 -5px;
+.ps-cart__items {
+  min-height: 150px;
+  &.no-products {
+    min-height: 50px;
+  }
+}
+.ps-cart__footer {
+  figure {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-right: 0 -5px;
 
-            > * {
-                flex-basis: 100%;
-                max-width: 50%;
-                padding: 0 5px;
-            }
-
-            .ps-btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
+    > * {
+      flex-basis: 100%;
+      max-width: 50%;
+      padding: 0 5px;
     }
+
+    .ps-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
 </style>

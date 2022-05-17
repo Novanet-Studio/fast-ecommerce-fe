@@ -7,12 +7,12 @@
                     <ul class="ps-tab-list">
                         <li>
                             <nuxt-link to="/account/login">
-                                Login
+                                Iniciar Sesión
                             </nuxt-link>
                         </li>
                         <li class="active">
                             <nuxt-link to="/account/register">
-                                Register
+                                Registrarse
                             </nuxt-link>
                         </li>
                     </ul>

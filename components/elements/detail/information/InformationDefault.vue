@@ -6,9 +6,6 @@
 
         <module-product-shopping :product="product" />
 
-        <module-product-detail-specification />
-
-        <module-product-detail-sharing />
     </div>
 </template>
 

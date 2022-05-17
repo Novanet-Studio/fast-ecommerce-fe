@@ -2,7 +2,7 @@
     <div class="ps-section--shopping ps-whishlist">
         <div class="container">
             <div class="ps-section__header">
-                <h1>Wishlist</h1>
+                <h1>Lista de deseos</h1>
             </div>
             <div v-if="!wishlistItems" class="ps-section__content"> 
                 <div  class="table-responsive container" >
@@ -51,7 +51,7 @@
                                             handleAddToCart(product)
                                         "
                                     >
-                                        Add to cart
+                                        Añadir al carrito
                                     </a>
                                 </td>
                             </tr>

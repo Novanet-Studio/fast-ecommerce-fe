@@ -24,11 +24,11 @@ export default {
         return {
             breadCrumb: [
                 {
-                    text: 'Home',
+                    text: 'Inicio',
                     url: '/'
                 },
                 {
-                    text: 'Shopping Cart'
+                    text: 'Carrito de compra'
                 }
             ]
         };

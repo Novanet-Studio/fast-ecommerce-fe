@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="ps-form__billing-info">
         <h3 class="ps-form__heading">
-            Contact information
+            Información de contacto
         </h3>
         <form action >
 
