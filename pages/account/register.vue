@@ -43,11 +43,11 @@ export default {
         return {
             breadCrumb: [
                 {
-                    text: 'Home',
+                    text: 'Inicio',
                     url: '/'
                 },
                 {
-                    text: 'Register'
+                    text: 'Registro'
                 }
             ]
         };

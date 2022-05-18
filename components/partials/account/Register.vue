@@ -125,12 +125,12 @@ export default {
                   btn.disabled = false;
                 }
               } else {
-                alert("hubo un error");
+                alert("Ha ocurrido un error");
               }
             }
           );
         } catch (error) {
-          console.log(error, "error al registrar");
+          console.log(error, "Error al registrar");
         }
       }
     },
@@ -178,7 +178,7 @@ export default {
           maxAge: 60 * 60 * 24 * 7,
         });
         this.$router.push("/");
-        alert("se ha registrado el ausuario");
+        alert("Usuario registrado con éxito");
       } else {
         alert(respuesta.alert);
       }

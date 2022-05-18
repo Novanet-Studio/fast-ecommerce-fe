@@ -41,11 +41,11 @@ export default {
         return {
             breadCrumb: [
                 {
-                    text: 'Home',
+                    text: 'Inicio',
                     url: '/'
                 },
                 {
-                    text: 'Login'
+                    text: 'Acceso'
                 }
             ]
         };

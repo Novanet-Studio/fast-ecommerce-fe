@@ -1,7 +1,7 @@
 <template lang="html">
     <nuxt-link :to="`/product/${product.id}`">
         <img
-            :src="`${product.attributes.images.data[0].attributes.formats.thumbnail.url}`"
+            :src="`${product.attributes.images.data[0].attributes.formats.small.url}`"
             :alt="`${ product.attributes.name }`"
             class="img"
         />
@@ -39,8 +39,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.img{
-    width: 180px;
-    height: 101px;
-}
+
 </style>

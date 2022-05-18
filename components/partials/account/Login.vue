@@ -97,7 +97,7 @@ export default {
           console.log("logeado");
         } else {
           alert(respuesta.alert);
-          console.log("no esta logeado");
+          console.log("No ha iniciado sesión");
         }
         console.log(respuesta);
       }
