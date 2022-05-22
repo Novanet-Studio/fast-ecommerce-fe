@@ -86,7 +86,7 @@ export default {
             if (existItem !== undefined) {
                 if (this.quantity + existItem.quantity > 10) {
                     this.$notify({
-                        group: 'addCartSuccess',
+                        group: 'all',
                         title: 'Waring!',
                         text: `Can't add more than 10 items`
                     });
@@ -128,9 +128,9 @@ export default {
              var respuesta = await this.$store.dispatch('product/getCartProducts', queries)
 
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Success!',
-                text: `${this.product.attributes.name} has been added to your cart!`
+                group: 'all',
+                title: 'Exito!',
+                text: `${this.product.attributes.name} ha sido agregado al carrito!`
             });
         },
 
@@ -164,9 +164,9 @@ export default {
 
             this.$store.dispatch('wishlist/addItemToWishlist', item);
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Add to wishlist!',
-                text: `${this.product.attributes.name} has been added to your wishlist !`
+                group: 'all',
+                title: 'Exito!',
+                text: `${this.product.attributes.name} ha sido agregado a la lista de deseos!`
             });
         },
     }

@@ -104,9 +104,9 @@ export default {
             this.$store.dispatch('cart/addProductToCart', item);
             this.getCartProduct(this.cartItems);
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Success!',
-                text: `${this.product.title} has been added to your cart!`
+                group: 'all',
+                title: 'Exito!',
+                text: `${this.product.title} ha sido agregado al carrito!`
             });
         },
 
@@ -117,9 +117,9 @@ export default {
 
             this.$store.dispatch('wishlist/addItemToWishlist', item);
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Add to wishlist!',
-                text: `${this.product.title} has been added to your wishlist !`
+                group: 'all',
+                title: 'Exito',
+                text: `${this.product.title} ha sido agregado a la lista de deseos!`
             });
         },
 
@@ -129,7 +129,7 @@ export default {
             };
             this.$store.dispatch('compare/addItemToCompare', item);
             this.$notify({
-                group: 'addCartSuccess',
+                group: 'all',
                 title: 'Add to Compare!',
                 text: `${this.product.title} has been added to your compare !`
             });

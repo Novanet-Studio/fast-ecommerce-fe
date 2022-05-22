@@ -68,9 +68,9 @@ export default {
             var respuesta = await this.$store.dispatch('product/getCartProducts', queries)
             // this.getCartProduct(this.cartItems);
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Success!',
-                text: `${this.product.attributes.name} has been added to your cart!`
+                group: 'all',
+                title: 'Exito!',
+                text: `${this.product.attributes.name} ha sido agregado al carrito!`
             });
             // const handler = new HandlerActions()
             // handler.handleAddToCart(this.product)
@@ -86,23 +86,11 @@ export default {
 
             this.$store.dispatch('wishlist/addItemToWishlist', item);
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Add to wishlist!',
-                text: `${this.product.attributes.name} has been added to your wishlist !`
+                group: 'all',
+                title: 'Exito',
+                text: `${this.product.attributes.name} ha sido agregado a la lista de deseos!`
             });
         },
-
-        // handleAddItemToCompare() {
-        //     let item = {
-        //         id: this.product.id
-        //     };
-        //     this.$store.dispatch('compare/addItemToCompare', item);
-        //     this.$notify({
-        //         group: 'addCartSuccess',
-        //         title: 'Add to compare!',
-        //         text: `${this.product.attribues.title} has been added to your compare !`
-        //     });
-        // },
 
         async getCartProduct(products) {
             let listOfIds = [];

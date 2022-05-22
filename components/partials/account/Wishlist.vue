@@ -89,11 +89,11 @@ export default {
                 price: product.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
-            alert('se ha agregado el item al carrito')
+            // alert('se ha agregado el item al carrito')
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Success!',
-                text: `${product.name} has been added to your cart!`
+                group: 'all',
+                title: 'Exito!',
+                text: `${product.name} ha sido agregado al carrito!`
             });
             this.handleRemoveItemFromWishlist(product)
         },
@@ -102,9 +102,9 @@ export default {
             this.$store.dispatch('wishlist/removeItemFromWishlist', product);
             this.loadWishlist();
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Remove Item!',
-                text: `${product.name} has been removed from your wishlist!`
+                group: 'all',
+                title: 'Eliminado',
+                text: `${product.name} ha sido eliminado de la lista de deseos!`
             });
         },
         async loadWishlist() {

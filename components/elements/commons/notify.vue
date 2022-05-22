@@ -1,7 +1,7 @@
 <template lang="html">
-    <!-- <client-only> -->
+    <client-only>
         <notifications
-            group="addCartSuccess"
+            group="all"
             :duration="2000"
             :width="300"
             animation-name="fade-left"
@@ -21,7 +21,7 @@
                 </div>
             </template>
         </notifications>
-    <!-- </client-only> -->
+    </client-only>
 </template>
 <script>
 export default {

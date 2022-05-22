@@ -125,11 +125,21 @@ export default {
                   btn.disabled = false;
                 }
               } else {
-                alert("Ha ocurrido un error");
+                this.$notify({
+                  group: 'all',
+                  title: 'Error!',
+                  text: `Ha ocurrido un error`
+                });
+                // alert("Ha ocurrido un error");
               }
             }
           );
         } catch (error) {
+          this.$notify({
+            group: 'all',
+            title: 'Error!',
+            text: `Error al registrar!`
+          });
           console.log(error, "Error al registrar");
         }
       }
@@ -172,15 +182,25 @@ export default {
       if (respuesta.jwt) {
         this.loading = false;
         //status usuario loggeado true
+          this.$notify({
+            group: 'all',
+            title: 'Exito',
+            text: `Usuario registrado con exito`
+          });
         this.$store.dispatch("auth/setAuthStatus", true);
         this.$cookies.set("auth", respuesta, {
           path: "/",
           maxAge: 60 * 60 * 24 * 7,
         });
         this.$router.push("/");
-        alert("Usuario registrado con éxito");
+        // alert("Usuario registrado con éxito");
       } else {
-        alert(respuesta.alert);
+        this.$notify({
+          group: 'all',
+          title: 'Error',
+          text: `Hubo un error al registrar`
+        });
+        // alert(respuesta.alert);
       }
 
       console.log(respuesta);

@@ -100,9 +100,9 @@ export default {
             this.$store.dispatch('cart/addProductToCart', item);
             // this.getCartProduct(this.cartItems);
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Success!',
-                text: `${this.product.attributes.name} has been added to your cart!`
+                group: 'all',
+                title: 'Exito!',
+                text: `${this.product.attributes.name} ha sido agregado al carrito!`
             });
         },
 
@@ -124,9 +124,9 @@ export default {
             if (existItem !== undefined) {
                 if (this.quantity + existItem.quantity > 10) {
                     this.$notify({
-                        group: 'addCartSuccess',
-                        title: 'Waring!',
-                        text: `Can't add more than 10 items`
+                        group: 'all',
+                        title: 'Alerta!',
+                        text: `No puedes agregar mas de 10 items!`
                     });
                 } else {
                     this.addItemToCart(item);
@@ -156,7 +156,7 @@ export default {
             // this.$store.dispatch('cart/addProductToCart', item);
             // this.getCartProduct(this.cartItems);
             // this.$notify({
-            //     group: 'addCartSuccess',
+            //     group: 'all',
             //     title: 'Success!',
             //     text: `${this.product.name} has been added to your cart!`
             // });
@@ -173,9 +173,9 @@ export default {
              var respuesta = await this.$store.dispatch('product/getCartProducts', this.cartItems)
 
             this.$notify({
-                group: 'addCartSuccess',
-                title: 'Success!',
-                text: `${this.product.attributes.name} has been added to your cart!`
+                group: 'all',
+                title: 'Exito!',
+                text: `${this.product.attributes.name} ha sido agregado al carrito!`
             });
         },
 

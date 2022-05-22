@@ -10,7 +10,7 @@ export default class HandlerActions{
         };
         // this.$store.dispatch('cart/addProductToCart', item);
         // this.$notify({
-        //     group: 'addCartSuccess',
+        //     group: 'all',
         //     title: 'Success!',
         //     text: `${product.name} has been added to your cart!`
         // });

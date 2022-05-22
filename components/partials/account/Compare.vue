@@ -76,7 +76,7 @@ export default {
             this.$store.dispatch('compare/removeItemFromCompare', product);
             this.loadCompareProducts();
             this.$notify({
-                group: 'addCartSuccess',
+                group: 'all',
                 title: 'Remove Item!',
                 text: `${product.title} has been removed from your wishlist!`
             });

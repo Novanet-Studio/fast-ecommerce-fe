@@ -31,7 +31,7 @@ export default {
     name: 'VisaMethod',
     data: () => ({
         card: null,
-        loading: false, 
+        loading: false,
     }),
     computed: {
         cart(){
@@ -53,7 +53,7 @@ export default {
         fullName(){
             const name = this.cookie.name + " " + this.cookie.lastName;
             return name;
-        }, 
+        },
         token(){
             const token = this.$cookies.get('auth').jwt;
             return token
@@ -96,7 +96,7 @@ export default {
                         },
                         note: this.fullName,
                     };
-                    this.createPayment(payment)                    
+                    this.createPayment(payment)
                 }
             }).catch(error => {
                 return console.log(error)
@@ -110,13 +110,23 @@ export default {
                 const squareResponse = JSON.parse(res.data);
                 const paymentInfo = squareResponse.payment;
                 if(paymentInfo.status === 'COMPLETED'){
-                    alert('PAGO REALIZADO')
+                    // alert('PAGO REALIZADO')
+                    this.$notify({
+                        group: 'all',
+                        title: 'Exito',
+                        text: `El pago se realizado con exito!`
+                    });
                     this.loading = false;
                     const itemInvoices = this.cart.cartItems;
                     await this.createInvoice(paymentInfo, itemInvoices).then(respuesta => {
                         console.log(respuesta)
                         if(respuesta.status === 200 && respuesta.statusText == "OK"){
-                            alert('INVOICE CREADO')
+                            // alert('INVOICE CREADO')
+                            this.$notify({
+                                group: 'all',
+                                title: 'Invoice',
+                                text: `Su recibo fue creado, puede revisarlo en sus ordenes!`
+                            });
                             this.$router.push('/')
                             this.$store.dispatch('cart/clearCart');
                             this.card.clear()
@@ -141,9 +151,9 @@ export default {
            })
 
             const data = {
-                amount: (payment.totalMoney.amount)/100, 
+                amount: (payment.totalMoney.amount)/100,
                 order_id: payment.orderId,
-                paid: true, 
+                paid: true,
                 payment_id: payment.id,
                 products: setItems,
                 user_id: this.user.id,
@@ -166,7 +176,7 @@ export default {
 
             return res;
         }
-        
+
     }
 }
 

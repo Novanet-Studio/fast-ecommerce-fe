@@ -96,7 +96,12 @@ export default {
           this.$router.push("/");
           console.log("logeado");
         } else {
-          alert(respuesta.alert);
+          // alert(respuesta.alert);
+          this.$notify({
+            group: 'all',
+            title: 'Error!',
+            text: `Los campos son incorrectos`
+          });
           console.log("No ha iniciado sesión");
         }
         console.log(respuesta);

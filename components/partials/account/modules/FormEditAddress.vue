@@ -195,7 +195,13 @@ export default {
                     this.$router.push('/account/addresses');
                 }
             }).catch(error => {
-                alert('hubo un error')
+                // alert('hubo un error')
+                this.$notify({
+                    group: 'all',
+                    title: 'Error',
+                    text: `Hubo un error`
+                });
+
             })
         },
         async updateStrapi(data){
@@ -209,10 +215,20 @@ export default {
                         this.$router.push('/account/addresses');
                     }
                 }).catch(error => {
-                    alert('hubo un error')
+                    // alert('hubo un error')
+                    this.$notify({
+                        group: 'all',
+                        title: 'Error',
+                        text: `Hubo un error`
+                    });
                 })
             }else{
-                alert('hubo un error')
+                // alert('hubo un error')
+                this.$notify({
+                    group: 'all',
+                    title: 'Error',
+                    text: `Hubo un error`
+                });
             }
         },
 

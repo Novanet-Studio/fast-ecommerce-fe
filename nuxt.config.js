@@ -49,7 +49,7 @@ export default {
   plugins: [
     { src: "~plugins/vueliate.js", ssr: false },
     { src: "~/plugins/swiper-plugin.js", ssr: false },
-    { src: "~/plugins/vue-notification.js", ssr: false },
+    { src: "~/plugins/vue-notification.js", mode: "client" },
     { src: "~/plugins/axios.js", ssr: false },
     { src: "~/plugins/lazyLoad.js", ssr: false },
     { src: "~/plugins/http.js", ssr: false },
