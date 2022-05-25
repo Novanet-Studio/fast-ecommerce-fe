@@ -1,5 +1,6 @@
 <template lang="html">
     <div class="ps-cart--mini">
+      <div class="mini-desktop">
         <a class="header__extra" href="#" @click="loadCartProducts">
             <i class="icon-bag2"></i>
             <span>
@@ -12,12 +13,12 @@
                     <loading />
                 </template>
                 <template v-else-if="cartProducts !== null">
-  <ProductMiniCart
-    v-for="product in cartProducts.data"
-    :key="product.id"
-    :product="product"
-  />
-</template>
+                  <ProductMiniCart
+                    v-for="product in cartProducts.data"
+                    :key="product.id"
+                    :product="product"
+                  />
+                </template>
             </div>
             <div class="ps-cart__footer">
                 <h3>
@@ -43,6 +44,15 @@
                 {{ $t('header.miniCart.noProduct') }}
             </div>
         </div>
+      </div>
+      <div class="mini-movil">
+        <nuxt-link to="/account/shopping-cart" class="header__extra">
+            <i class="icon-bag2"></i>
+            <span>
+                <i>{{ total }}</i>
+            </span>
+        </nuxt-link>
+      </div>
     </div>
 </template>
 

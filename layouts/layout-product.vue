@@ -24,7 +24,6 @@
                     </template>
                 </notifications>
                 <header-default />
-                <header-mobile />
                 <nuxt></nuxt>
                 <footer-fullwidth />
                 <navigation-list />
@@ -37,7 +36,6 @@
 
 <script>
 import HeaderDefault from '~/components/shared/headers/HeaderDefault';
-import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
 import NavigationList from '~/components/shared/mobile/NavigationList';
 import MobileDrawer from '~/components/shared/mobile/MobileDrawer';
 import FooterFullwidth from '~/components/shared/footers/FooterFullwidth';
@@ -48,7 +46,6 @@ export default {
         FooterFullwidth,
         MobileDrawer,
         NavigationList,
-        HeaderMobile,
         HeaderDefault,
         Notify
     }

@@ -20,11 +20,20 @@ export default {
         href:
           "https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext",
       },
+      {
+        rel: "stylesheet",
+        href:
+          "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css",
+      },
     ],
     script: [
       {
         type: "module",
         src: "https://sandbox.web.squarecdn.com/v1/square.js",
+      },
+      {
+        type: "module",
+        src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js",
       },
     ],
   },

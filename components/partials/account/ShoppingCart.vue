@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="ps-section--shopping ps-shopping-cart">
-        <div class="container">
+        <div v-if="cartProducts > 0" class="container">
             <div class="ps-section__header">
                 <h1>Carrito de compras</h1>
             </div>
@@ -73,6 +73,14 @@
                         </nuxt-link>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div v-else class="contaniner">
+            <div class="ps-section__header">
+                <h1>Carrito de compras</h1>
+            </div>
+            <div class="ps-section__content">
+                <h3 class="empy-cart">No tiene elementos agregado al carrito actualmente</h3>
             </div>
         </div>
     </div>

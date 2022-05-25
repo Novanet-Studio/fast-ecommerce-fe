@@ -1,9 +1,9 @@
 <template lang="html">
-    <ul :class="className">
+    <ul :class="className" class="navbar-nav me-auto mb-2 mb-lg-0" >
         <template v-for="item in mainMenu">
             <MenuDropdown v-if="item.subMenu" :menu-data="item" />
             <MenuMega v-else-if="item.mega" :menu-data="item" />
-            <li v-else :key="item.text">
+            <li v-else :key="item.text" class="nav-item">
                 <nuxt-link :to="localePath(item.url)">
                     {{ item.text }}
                 </nuxt-link>
