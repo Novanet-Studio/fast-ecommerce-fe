@@ -26,12 +26,16 @@
 <script>
 import { v4 as uuidv4 } from 'uuid'
 import { mapState } from 'vuex';
+import ProductRepository from '~/repositories/ProductoRepository'; 
 
 export default {
     name: 'VisaMethod',
     data: () => ({
         card: null,
         loading: false,
+        resumen: '',
+        productMail: '',
+        productosFinalesHtml: '',
     }),
     computed: {
         cart(){
@@ -66,6 +70,8 @@ export default {
         this.card = card;
         console.log(this.cart)
         console.log(this.token)
+        this.getProducts(this.cart.cartItems)
+
     },
     methods: {
         async handlePayment(){
@@ -127,9 +133,8 @@ export default {
                                 title: 'Invoice',
                                 text: `Su recibo fue creado, puede revisarlo en sus ordenes!`
                             });
-                            this.$router.push('/')
-                            this.$store.dispatch('cart/clearCart');
-                            this.card.clear()
+                            this.sendInvoiceMail(itemInvoices, paymentInfo);
+
 
                         }
                     })
@@ -169,12 +174,123 @@ export default {
                 token: this.token,
                 data: data,
             }
-            // return console.log(data)
+            // console.log('lo que se envia al invoice',data)
            const res = await this.$store.dispatch('checkout/createInvoice', payload).then(res => {
                 return res
             }).catch(err => {console.log(err)})
 
             return res;
+        },
+        async getProducts(products){
+            try {
+                var metaData = [];
+                products.forEach(element => {
+                    metaData.push(element.id)
+                });
+                console.log('====> meta', metaData)
+                var respuesta = await this.$store.dispatch('product/getProductById', metaData ).then(res => {
+                    // return console.log('esta es la respuesta',res.data)
+                    return respuesta =  res.data;
+                }).catch(err=>{
+                    return err; 
+                })
+                this.productMail = respuesta
+                return console.log('====> el repo', respuesta)
+                
+            } catch (error) {
+                console.log(error)
+            }
+
+        }, 
+
+        async sendInvoiceMail(products, payment){
+
+            try {
+                var productos = [];
+                var created = new Date(payment.createdAt).toLocaleDateString(); 
+                var amountPayed = `$${(parseInt(payment.amountMoney.amount) / 100)} USD`;
+                let query = '';
+                products.forEach(item => {
+                    var finded = this.productMail.find(product => product.id === item.id);
+                    if(finded){
+                        productos.push({
+                            quantity: item.quantity,
+                            name: finded.attributes.name,
+                            amount: item.price,
+                            description: finded.attributes.description
+                        });
+
+                        if(query === ''){
+                            query = `
+                            <tr>
+                                <td style="padding:0px 40px 40px 40px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content">
+                                <div>
+                                    <div style="font-family: inherit; text-align: inherit">
+                                        <span style="color: #80817f; font-size: 12px">
+                                            <strong>Producto:</strong>
+                                        </span>
+                                        <br>
+                                        <p style="font-size: 12px">${finded.attributes.name} x ${item.quantity}</p>
+                                        <span style="color: #80817f; font-size: 12px">
+                                            <strong>descripcion:</strong>
+                                        </span>
+                                        <br>
+                                        <p style="font-size: 12px">${finded.attributes.description}</p>
+                                    </div>
+                                </div>
+                                </td>
+                            </tr>
+                            <br>`;
+                        }else{
+                            query = query + `<tr>
+                                <td style="padding:0px 40px 40px 40px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content">
+                                <div>
+                                    <div style="font-family: inherit; text-align: inherit">
+                                        <span style="color: #80817f; font-size: 12px">
+                                            <strong>Producto:</strong>
+                                        </span>
+                                        <br>
+                                        <p style="font-size: 12px">${finded.attributes.name} x ${item.quantity}</p>
+                                        <span style="color: #80817f; font-size: 12px">
+                                            <strong>descripcion:</strong>
+                                        </span>
+                                        <br>
+                                        <p style="font-size: 12px">${finded.attributes.description}</p>
+                                    </div>
+                                </div>
+                                </td>
+                            </tr>
+                            <br>`;
+                        }
+                    
+                    };
+                });
+
+                // console.log('===> el query', query)
+
+                this.$axios.$post('/api/sendgrid-mail', {
+                    payed: amountPayed,
+                    email: payment.buyerEmailAddress,
+                    nameCustomer: payment.note,
+                    date: created, 
+                    content: query,
+                }).then(async (res) => {console.log('lo de axios ===>',res)
+                    if(res.stat && res.stat === 200){
+                        this.$notify({
+                            group: 'all',
+                            title: 'recibo',
+                            text: `gracias por preferirnos!`
+                        });
+                        await new Promise(resolve => setTimeout(resolve, 2000))
+                        this.$router.push('/')
+                        this.$store.dispatch('cart/clearCart');
+                        this.card.clear()
+                    }
+                }); 
+                // alert('se envio el correo')
+            } catch (error) {
+                console.log('error en el correo')
+            }
         }
 
     }

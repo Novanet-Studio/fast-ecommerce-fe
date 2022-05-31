@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="ps-form__orders ps-block--checkout-order">
+    <div class="ps-form__orders ps-block--checkout-order" id="orden-resume">
         <h3 v-if="shipping === false">Tu Orden</h3>
         <div class="ps-block--checkout-order">
             <div class="ps-block__content">

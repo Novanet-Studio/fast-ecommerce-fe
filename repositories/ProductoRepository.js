@@ -25,7 +25,6 @@ export default class ProductRepository {
         )
         return response.data.data[0];
         return response.data[0]
-
     }
 
 }

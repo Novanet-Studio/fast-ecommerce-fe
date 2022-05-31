@@ -42,6 +42,7 @@ export default {
     SQUARE_APPLICATION_ID: process.env.SQUARE_APPLICATION_ID,
     SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
     SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
   },
 
   css: [
@@ -125,6 +126,8 @@ export default {
     port: 4002,
     host: "localhost",
   },
+
+  serverMiddleware: ['~/api/sendgrid-mail.js'],
 
   axios: {
     credentials: false,

@@ -166,7 +166,7 @@ export default {
                     left: 10,
                 } 
             });
-        }
+        },
 
     }
 };
