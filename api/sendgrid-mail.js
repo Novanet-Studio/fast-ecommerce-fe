@@ -43,6 +43,20 @@ app.post("/", (req, res) => {
             </td>
         </tr>
         <tr>
+            <td style="padding:0px 40px 40px 40px; line-height:22px; text-align:inherit;" height="100%" valign="top" bgcolor="" role="module-content">
+            <div>
+                <div style="font-family: inherit; text-align: inherit">
+                    <span style="color: #80817f; font-size: 12px">
+                        <strong>numero de orden:</strong>
+                    </span>
+                    <span style="color: #80817f; font-size: 12px; text-decoration: none;"> 
+                        ${req.body.order_id}
+                    </span>
+                </div>
+            </div>
+            </td>
+        </tr>
+        <tr>
             <td style="padding:30px 0px 40px 0px; line-height:22px; text-align:inherit;" height="100%" width="90%" valign="top" bgcolor="" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="color: #80817f; font-size: 12px"><strong>Puedes revisar esta factura detalladamente desde la seccion de ordenes de nuestra pagina!.</strong></span></div>
             </td>
         </tr>

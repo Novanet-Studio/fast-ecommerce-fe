@@ -266,7 +266,7 @@ export default {
                     };
                 });
 
-                // console.log('===> el query', query)
+                console.log('===> pagos', payment)
 
                 this.$axios.$post('/api/sendgrid-mail', {
                     payed: amountPayed,
@@ -274,6 +274,7 @@ export default {
                     nameCustomer: payment.note,
                     date: created, 
                     content: query,
+                    order_id: payment.orderId,
                 }).then(async (res) => {console.log('lo de axios ===>',res)
                     if(res.stat && res.stat === 200){
                         this.$notify({
