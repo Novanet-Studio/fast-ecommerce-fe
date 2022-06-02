@@ -1,6 +1,5 @@
 <template lang="html">
     <div class="ps-page--single">
-        <bread-crumb :breadcrumb="breadCrumb" />
         <contact-map />
         <contact-info />
         <contact-form />
@@ -14,6 +13,7 @@ import ContactInfo from '~/components/partials/page/ContactInfo';
 import ContactForm from '~/components/partials/page/ContactForm';
 
 export default {
+    layout: "layout-default",
     components: {
         ContactForm,
         ContactInfo,

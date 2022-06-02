@@ -1,7 +1,6 @@
 <template lang="html">
     <div class="ps-page--single">
         <img src="~/static/img/bg/about-us.jpg" alt="" />
-        <bread-crumb :breadcrumb="breadCrumb" />
         <about-awards />
     </div>
 </template>
@@ -12,6 +11,7 @@ import OurTeam from '~/components/partials/page/OurTeam';
 import AboutAwards from '~/components/partials/page/AboutAwards';
 
 export default {
+    layout: "layout-default",
     components: {
         AboutAwards,
         OurTeam,

@@ -1,6 +1,5 @@
 <template lang="html">
     <div class="ps-page--single">
-        <bread-crumb :breadcrumb="breadCrumb" />
         <div class="container">
             <faqs />
         </div>
@@ -12,6 +11,8 @@ import BreadCrumb from '~/components/elements/BreadCrumb';
 import Faqs from '~/components/partials/page/Faqs';
 
 export default {
+    layout: "layout-default",
+
     components: {
         Faqs,
         BreadCrumb

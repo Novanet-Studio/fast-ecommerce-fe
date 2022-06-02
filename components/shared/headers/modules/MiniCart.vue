@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="ps-cart--mini">
-      <div class="mini-desktop">
+      <div>
         <a class="header__extra" href="#" @click="loadCartProducts">
             <i class="icon-bag2"></i>
             <span>
@@ -44,14 +44,6 @@
                 {{ $t('header.miniCart.noProduct') }}
             </div>
         </div>
-      </div>
-      <div class="mini-movil">
-        <nuxt-link to="/account/shopping-cart" class="header__extra">
-            <i class="icon-bag2"></i>
-            <span>
-                <i>{{ total }}</i>
-            </span>
-        </nuxt-link>
       </div>
     </div>
 </template>
@@ -138,4 +130,5 @@ export default {
     }
   }
 }
+
 </style>

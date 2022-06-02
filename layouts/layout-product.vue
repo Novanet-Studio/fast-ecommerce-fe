@@ -27,7 +27,7 @@
                 <nuxt></nuxt>
                 <footer-fullwidth />
                 <navigation-list />
-                <mobile-drawer />
+                <!-- <mobile-drawer /> -->
                 <notify/>
             </v-main>
         </v-app>

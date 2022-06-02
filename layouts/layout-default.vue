@@ -26,7 +26,7 @@
                 <header-default />
                 <nuxt />
                 <footer-fullwidth />
-                <navigation-list />
+                <!-- <navigation-list /> -->
                 <mobile-drawer />
                 <notify />
             </v-main>
