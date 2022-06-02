@@ -1,3 +1,6 @@
 <template>
-  <h2>Ecommerce</h2>
+  <div>
+    <h2>Ecommerce</h2>
+    <hello />
+  </div>
 </template>
