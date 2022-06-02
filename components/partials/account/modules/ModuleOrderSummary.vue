@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="ps-form__orders ps-block--checkout-order" id="orden-resume">
+    <div v-if="cartItems.length > 0" class="ps-form__orders ps-block--checkout-order" id="orden-resume">
         <h3 v-if="shipping === false">Tu Orden</h3>
         <div class="ps-block--checkout-order">
             <div class="ps-block__content">
@@ -55,7 +55,7 @@ export default {
     },
     mounted(){
         this.loadCartProducts()
-        console.log(this.cartItems)
+        console.log('los item en el summary',this.cartItems)
     },
     methods: {
         async loadCartProducts() {
