@@ -2,7 +2,7 @@
     <table class="table ps-table--responsive ps-table--shopping-cart">
         <thead>
             <tr>
-                <th>Product0</th>
+                <th>Producto</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Total</th>

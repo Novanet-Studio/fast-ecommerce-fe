@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="ps-section--shopping ps-shopping-cart">
-        <div v-if="cartProducts > 0" class="container">
+        <div v-if="cartProducts.length > 0" class="container">
             <div class="ps-section__header">
                 <h1>Carrito de compras</h1>
             </div>
@@ -106,7 +106,7 @@ export default {
             total: state => state.cart.total,
             amount: state => state.cart.amount,
             cartItems: state => state.cart.cartItems,
-            cartProducts: state => state.product.cartProducts
+            cartProducts: state => state.product.cartProducts.data
         }),
         quantity() {
             if (this.cartItems !== null) {
@@ -126,7 +126,7 @@ export default {
     },
     async mounted(){
         this.loadCartProducts();
-        console.log(this.cartProducts);
+        console.log('====> productos del carrito',this.cartProducts);
 
     },
     methods: {
