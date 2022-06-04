@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "text": "Ordenes",
+      "url": "/invoices",
+      "icon": "icon-papers"
+    },
+    {
+      "text": "Dirección",
+      "url": "/addresses",
+      "icon": "icon-map-marker"
+    },
+    {
+      "text": "Carrito",
+      "url": "/shopping-cart",
+      "icon": "icon-bag2"
+    },
+    {
+      "text": "Wishlist",
+      "url": "/wishlist",
+      "icon": "icon-heart"
+    }
+  ]
+}

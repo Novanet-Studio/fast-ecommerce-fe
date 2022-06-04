@@ -11,6 +11,13 @@
     "sass": "1.52.1"
   },
   "dependencies": {
-    "firebase": "^9.8.2"
+    "@kyvg/vue3-notification": "^2.3.4",
+    "@pinia/nuxt": "^0.1.9",
+    "firebase": "^9.8.2",
+    "jspdf-html2canvas": "^1.4.9",
+    "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^1.6.1",
+    "slimeform": "^0.5.1",
+    "swiper": "^8.2.2"
   }
 }

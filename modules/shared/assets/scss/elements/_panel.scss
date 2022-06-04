@@ -1,0 +1,39 @@
+.ps-panel--sidebar {
+    position: relative;
+    height: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+    @extend %list-reset;
+
+    .ps-panel__header {
+        position: relative;
+        text-align: center;
+        padding: 15px 20px;
+        background-color: $color-1st;
+
+        h3 {
+            margin-bottom: 0;
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 1.6rem;
+            line-height: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ps-panel__close {
+            @include vertical-align();
+            right: 10px;
+            font-size: 16px;
+        }
+    }
+
+    .ps-panel__content {
+        padding: 10px;
+    }
+}
+
+.v-navigation-drawer--absolute {
+    z-index: 9999 !important;
+    position: fixed !important;
+}
