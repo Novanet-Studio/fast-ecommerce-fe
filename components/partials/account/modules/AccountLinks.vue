@@ -9,12 +9,11 @@
             </li>
         </template>
         <li>
-            <nuxt-link to="/account/my-account">
-                <a>
-                    <i class="icon-power-switch"></i>
-                    Cerrar Sesión
-                </a>
-            </nuxt-link>
+            <a href="#" @click.prevent="handleLogout">
+                <i class="icon-power-switch"></i>
+                Cerrar Sesión
+            </a>
+            
         </li>
     </ul>
 </template>
@@ -35,6 +34,10 @@ export default {
         idk(name){
             const nameLink = name;
             this.breadinfo(nameLink)
+        },
+        handleLogout() {
+            this.$store.dispatch('auth/setAuthStatus', false);
+            this.$router.push('/');
         }
     }
 

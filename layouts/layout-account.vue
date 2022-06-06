@@ -77,7 +77,7 @@ export default {
                     url: '/'
                 },
                 {
-                    text: 'asereje'
+                    text: ''
                 }
             ]
         }
