@@ -34,6 +34,7 @@ import Checkout from '~/components/partials/account/Checkout';
 import ShoppingCart from '~/components/partials/account/ShoppingCart';
 
 export default {
+    layout: 'layout-account',
     transition: 'zoom',
     components: {
         ShoppingCart,

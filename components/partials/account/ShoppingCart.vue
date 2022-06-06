@@ -1,11 +1,11 @@
 <template lang="html">
     <div class="ps-section--shopping ps-shopping-cart">
-        <div v-if="cartProducts.length > 0" class="container">
+        <div v-if="cartItems.length > 0" class="container">
             <div class="ps-section__header">
                 <h1>Carrito de compras</h1>
             </div>
             <div class="ps-section__content">
-                <table-shopping-cart v-if="cartProducts !== null " :item="cartProducts" />
+                <table-shopping-cart v-if="cartProducts !== null " :item="cartProducts.data" />
                 <p v-else>Carrito vacio</p>
                 <div class="ps-section__cart-actions">
                     <nuxt-link to="/shop" class="ps-btn">
@@ -97,7 +97,7 @@ export default {
     components: { TableShoppingCart, ProductShoppingCart, ModuleQuantity },
     data(){
         return {
-            products: false
+            products: false,
         }
     },
     computed: {
@@ -106,7 +106,8 @@ export default {
             total: state => state.cart.total,
             amount: state => state.cart.amount,
             cartItems: state => state.cart.cartItems,
-            cartProducts: state => state.product.cartProducts.data
+            cartProducts: state => state.product.cartProducts
+
         }),
         quantity() {
             if (this.cartItems !== null) {
@@ -126,6 +127,8 @@ export default {
     },
     async mounted(){
         this.loadCartProducts();
+
+    
         console.log('====> productos del carrito',this.cartProducts);
 
     },
@@ -137,6 +140,7 @@ export default {
             cookieCart.cartItems.forEach(item => {
                 queries.push(item.id);
             });
+            
             // return console.log(queries)
             if (this.cartItems.length > 0) {
                 const response = await this.$store.dispatch(

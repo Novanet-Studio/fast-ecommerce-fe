@@ -86,14 +86,14 @@ export default {
             let item = {
                 id: product.id,
                 quantity: 1,
-                price: product.price
+                price: product.attributes.price
             };
             this.$store.dispatch('cart/addProductToCart', item);
             // alert('se ha agregado el item al carrito')
             this.$notify({
                 group: 'all',
                 title: 'Exito!',
-                text: `${product.name} ha sido agregado al carrito!`
+                text: `${product.attributes.name} ha sido agregado al carrito!`
             });
             this.handleRemoveItemFromWishlist(product)
         },
@@ -104,7 +104,7 @@ export default {
             this.$notify({
                 group: 'all',
                 title: 'Eliminado',
-                text: `${product.name} ha sido eliminado de la lista de deseos!`
+                text: `${product.attributes.name} ha sido eliminado de la lista de deseos!`
             });
         },
         async loadWishlist() {

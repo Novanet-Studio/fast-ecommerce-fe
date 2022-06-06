@@ -12,6 +12,7 @@ import Wishlist from '~/components/partials/account/Wishlist';
 import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
 
 export default {
+    layout: 'layout-account',
     transition: 'zoom',
     components: {
         HeaderMobile,

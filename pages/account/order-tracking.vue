@@ -51,6 +51,7 @@ import BreadCrumb from '~/components/elements/BreadCrumb';
 import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
 
 export default {
+    layout: 'layout-account',
     transition: 'zoom',
     components: {
         HeaderMobile,

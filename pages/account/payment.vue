@@ -1,4 +1,7 @@
 <template lang="html">
+<div>
+    <header-default />
+
     <section class="ps-page--my-account">
         <notifications
             group="all"
@@ -25,6 +28,9 @@
         <payment />
         
     </section>
+        <footer-fullwidth />
+
+</div>
 </template>
 
 <script>
@@ -35,6 +41,8 @@ import Shipping from '~/components/partials/account/Shipping';
 import Payment from '~/components/partials/account/Payment';
 import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
 import Notify from '~/components/elements/commons/notify';
+import HeaderDefault from '~/components/shared/headers/HeaderDefault';
+import FooterFullwidth from '~/components/shared/footers/FooterFullwidth';
 
 export default {
     transition: 'zoom',
@@ -46,7 +54,9 @@ export default {
         Checkout,
         EditAddress,
         BreadCrumb,
-        Notify
+        Notify,
+        HeaderDefault,
+        FooterFullwidth
     },
 
     data: () => {

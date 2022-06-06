@@ -66,6 +66,7 @@ export default {
   computed: {
     ...mapState({
       total: (state) => state.cart.total,
+      idk: (state) => state.cart,
       amount: (state) => state.cart.amount,
       loading: (state) => state.cart.loading,
       cartItems: (state) => state.cart.cartItems,
@@ -76,7 +77,7 @@ export default {
     },
   },
   mounted() {
-    console.log("desde mini cart", this.cartProducts);
+    console.log("desde mini cart", this.cartProducts, this.idk);
   },
   methods: {
     async loadCartProducts() {

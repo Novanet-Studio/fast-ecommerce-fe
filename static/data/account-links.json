@@ -11,6 +11,11 @@
        "icon": "icon-map-marker"
     },
     {
+        "text": "Carrito",
+        "url": "/account/shopping-cart",
+       "icon": "icon-bag2"
+    },
+    {
         "text": "Wishlist",
         "url": "/account/wishlist",
        "icon": "icon-heart"

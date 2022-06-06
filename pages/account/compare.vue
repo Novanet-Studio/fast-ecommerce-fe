@@ -13,6 +13,8 @@ import Compare from '~/components/partials/account/Compare';
 import { getListOfProductId } from '~/utilities/product-helper';
 
 export default {
+    layout: 'layout-account',
+
     components: {
         Compare,
         Checkout,

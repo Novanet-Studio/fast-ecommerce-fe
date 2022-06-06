@@ -23,8 +23,10 @@
                         </div>
                     </template>
                 </notifications>
+                <header-default />
+
                 <section class="ps-my-account ps-page--account">
-                    <bread-crumb :breadcrumb="breadCrumb" />
+                    <!-- <bread-crumb :breadcrumb="breadCrumb" /> -->
 
                     <div class="container">
                         <div class="row">
@@ -39,6 +41,7 @@
                         </div>
                     </div>
                 </section>
+                <footer-fullwidth />
                 <notify />
 
             </v-main>
@@ -50,14 +53,21 @@
 import Notify from '~/components/elements/commons/notify';
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import AsideAccount from '~/components/partials/account/modules/AsideAccount';
+import HeaderDefault from '~/components/shared/headers/HeaderDefault';
+import NavigationList from '~/components/shared/mobile/NavigationList';
+import MobileDrawer from '~/components/shared/mobile/MobileDrawer';
+import FooterFullwidth from '~/components/shared/footers/FooterFullwidth';
+
 import {mapGetters} from 'vuex';
 
 export default {
-    name: 'layout-default',
+    name: 'layout-account',
     components: {
         Notify,
         BreadCrumb,
-        AsideAccount
+        AsideAccount,
+        HeaderDefault,
+        FooterFullwidth
     },
     data: () => {
         return {
@@ -67,7 +77,7 @@ export default {
                     url: '/'
                 },
                 {
-                    text: ''
+                    text: 'asereje'
                 }
             ]
         }
@@ -79,13 +89,22 @@ export default {
     },
     mounted(){
         //mostrando el nombre del enlace que dio click en el home page
-        const firstClick = this.links.find(item => item.url == this.$route.path )
-        this.breadCrumb[1].text = firstClick.text
+        console.log('==> el; bread', this.breadCrumb)
+        console.log('==> idk', this.$router.apps[0]._route.path)
+        var firstClick;
+        if(this.$router.apps[0]._route.path !== '/account/shopping-cart' || this.$router.apps[0]._route.path !== '/account/checkout'){
+            firstClick = this.links.find(item => item.url == this.$route.path )
+            this.breadCrumb[1].text = firstClick.text
+        }
+        console.log('click', firstClick)
     },
     methods: {
         //text del breadcrumb dinamico
         nombreBread(data){
+            if(this.$router.apps[0]._route.path !== '/account/shopping-cart' || this.$router.apps[0]._route.path !== '/account/checkout'){
+
             this.breadCrumb[1].text = data;
+            }
         }
     }
 };

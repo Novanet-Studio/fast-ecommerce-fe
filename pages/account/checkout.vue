@@ -1,4 +1,6 @@
 <template lang="html">
+<div>
+    <header-default />
     <section class="ps-page--my-account">
         <bread-crumb :breadcrumb="breadCrumb" />
         <notifications
@@ -22,20 +24,32 @@
                 </div>
             </template>
         </notifications>
+
         <checkout />
     </section>
+    <footer-fullwidth />
+</div>
+    
+
+
 </template>
 <script>
 import BreadCrumb from '~/components/elements/BreadCrumb';
 import EditAddress from '~/components/partials/account/EditAddress';
+import HeaderDefault from '~/components/shared/headers/HeaderDefault';
+import FooterFullwidth from '~/components/shared/footers/FooterFullwidth';
+
 import Checkout from '~/components/partials/account/Checkout';
 
 export default {
     middleware: 'authentication',
+
     components: {
         Checkout,
         EditAddress,
-        BreadCrumb
+        BreadCrumb,
+        HeaderDefault,
+        FooterFullwidth
     },
     transition: 'zoom',
     data: () => {
