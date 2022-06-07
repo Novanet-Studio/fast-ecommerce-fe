@@ -52,6 +52,7 @@ import Login from '~/components/partials/account/Login';
 import HeaderMobile from '~/components/shared/mobile/HeaderMobile';
 
 export default {
+    layout:'layout-default',
     components: {
         HeaderMobile,
         Login,
