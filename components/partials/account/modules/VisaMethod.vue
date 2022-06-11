@@ -72,8 +72,9 @@ export default {
     await card.attach("#card-container");
     this.card = card;
     console.log(this.cart);
-    console.log(this.token);
+    console.log(this.cookie);
     this.getProducts(this.cart.cartItems);
+
   },
   methods: {
     async handlePayment() {
@@ -82,7 +83,7 @@ export default {
       //creando token para la tarjeta
       this.card
         .tokenize()
-        .then((res) => {
+        .then(async(res) => {
           if (res.token) {
             this.loading = true;
             var token = res.token;
@@ -103,8 +104,15 @@ export default {
                 postalCode: this.cookie.zipCode,
                 country: "VE",
               },
+              billingAddress: {},
               note: this.fullName,
             };
+            const billingResponse = await this.hasBilling().then(res => {return res}).catch(error => {console.log(error)});
+            if(billingResponse !== false){
+              console.log(billingResponse)
+              payment.billingAddress = billingResponse;
+            }
+            console.log(payment)
             this.createPayment(payment);
           }
         })
@@ -744,6 +752,35 @@ export default {
         console.log("error en el correo");
       }
     },
+    async hasBilling(){
+      const type = 'billing';
+      const userId = this.user.id;
+
+      const data = {
+        userId: userId,
+        type: type
+      }
+
+      const response = await this.$store.dispatch('checkout/getAddress', data ).then(res => {
+        var response = false; 
+        if(res.length > 0){
+          console.log('el billing ===>',res)
+          const address = res[0].attributes.address;
+          response = {
+            addressLine1: address.direccion,
+            locality: address.estado,
+            postalCode: address.zipcode,
+            country: address.pais
+          }
+        }
+        return response; 
+      }).catch(error => {
+        console.log('error address', error)
+        return false
+      })
+
+      return response; 
+    }
   },
 };
 </script>

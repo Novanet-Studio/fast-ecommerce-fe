@@ -130,6 +130,9 @@ import { validationMixin } from 'vuelidate';
 export default {
     name: 'FormCheckoutInformation',
     computed: {
+        user(){
+            return this.$cookies.get('auth').user;
+        },
         emailErrors(){
             const errors = [];
             if(this.email){
@@ -208,8 +211,10 @@ export default {
         city: { required },
         zipCode: { required },
     },
-    mounted(){
+    async mounted(){
         this.formInfoCookie()
+        // this.hasShipping()
+
     },
 
     methods: {
@@ -249,7 +254,30 @@ export default {
                     this.zipCode = data.zipCode;
                 }
                 console.log('==> ship', data)
+            }else{
+                console.log('llamar funcion en strapi para la direccion')
+                this.hasShipping()
             }
+        },
+        async hasShipping(){
+            const type = 'shipping';
+            const userId = this.user.id;
+
+            const data = {
+                userId: userId,
+                type: type
+            }
+
+            await this.$store.dispatch('checkout/getAddress', data ).then(res => {
+                if(res.length > 0){
+                    const data = res[0].attributes.address;
+                    this.address = `${data.pais} ${data.direccion}`;
+                    this.city = data.estado;
+                    this.zipCode = data.zipcode;
+                }
+            }).catch(error => {
+                console.log('error address', error)
+            })
         }
     }
 };

@@ -5,7 +5,7 @@
             <h3 v-else>Shipping address</h3>
         </div>
         <div class="ps-form__content">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label> Country <sup>*</sup> </label>
                 <v-text-field
                     v-model="country"
@@ -15,6 +15,23 @@
                     outlined
                     height="50"
                 />
+            </div> -->
+            <div class="form-group">
+                <label> Country <sup>*</sup> </label>
+                <select class="form-control" 
+                    v-model="country"
+                    placeholder="Pais"
+                    :error-messages="countryErrors"
+                    @input="$v.country.$touch()"
+                    outlined
+                    height="50"
+                >
+                    <option class="form-control" selected disabled>-- selecciona un pais --</option>
+                    <option class="form-control" v-for="country in countries" :value="country.code">
+                        {{ country.name }}
+                    </option>
+                </select>
+                
             </div>
             <div class="form-group">
                 <label> Street Address <sup>*</sup> </label>
@@ -59,6 +76,7 @@
 <script>
 import { email, required } from 'vuelidate/lib/validators';
 import { validationMixin } from 'vuelidate';
+import countries from '~/static/data/countries.json'; 
 
 export default {
     props: ['tipo'],
@@ -69,7 +87,9 @@ export default {
             state: null,
             postcode: null,
             lastAddress: false,
-            addId: false
+            addId: false,
+            selected: null,
+            countries: countries
         }
     },
     computed: {
@@ -138,6 +158,7 @@ export default {
                 const addressType = this.setType();
 
                 if(addressType !== false){
+
                     const address = {
                         direccion: this.strAdd,
                         pais: this.country,
