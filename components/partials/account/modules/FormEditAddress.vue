@@ -160,6 +160,7 @@ export default {
 
         },
         async getLastAddress(){
+            console.log('la funcion')
             const userId = this.user.id;
             const type = this.setType();
             if(type !== false){
@@ -168,6 +169,7 @@ export default {
                     type: type
                 }
                 const respuesta = await this.$store.dispatch('checkout/getAddress', data ).then(res=> {
+                    console.log('respuesta de address ===>', res)
                     if(res.length > 0){
                         const address = res[0].attributes.address;
                         this.lastAddress = true; 
@@ -192,6 +194,11 @@ export default {
         async postStrapi(data){
             const respuesta = await this.$store.dispatch('checkout/setAddress', data). then(res => {
                 if(res.status == 200){
+                    this.$notify({
+                        group: 'all',
+                        title: 'Exito!',
+                        text: `La direccion se ha guardado!`
+                    });
                     this.$router.push('/account/addresses');
                 }
             }).catch(error => {
@@ -212,12 +219,17 @@ export default {
                 }
                 const respuesta = await this.$store.dispatch('checkout/updateAddress', setData). then(res => {
                     if(res.status == 200){
+                        this.$notify({
+                            group: 'all',
+                            title: 'Exito!',
+                            text: `La direccion se ha actualizado!`
+                        });                       
                         this.$router.push('/account/addresses');
                     }
                 }).catch(error => {
                     // alert('hubo un error')
                     this.$notify({
-                        group: 'all',
+                        group: 'all',       
                         title: 'Error',
                         text: `Hubo un error`
                     });
