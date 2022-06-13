@@ -34,7 +34,8 @@ definePageMeta({
     appear: true,
     appearActiveClass: 'zoom',
     appearFromClass: 'zoom',
-    appearToClass: 'zoom'
+    appearToClass: 'zoom',
+    name: 'zoom',
   },
 });
 

@@ -10,7 +10,7 @@
           </figcaption>
         </figure>
         <figure class="ps-block__items">
-          <nuxt-link v-for="(productItem, index) in product.cartProducts.data" :to="`/product/${productItem.id}`"
+          <nuxt-link v-for="(productItem, index) in product.cartProducts?.data" :to="`/product/${productItem.id}`"
             :key="productItem.id" class="ps-product__title">
             Cachitos {{ productItem.attributes.name }}
             <br />
@@ -41,7 +41,9 @@ type Props = {
   shipping: boolean;
 };
 
-defineProps<Props>();
+withDefaults(defineProps<Props>(), {
+  shipping: false,
+});
 
 const loadCartProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);

@@ -14,7 +14,7 @@
                     </div>
                   </div>
                   <div class="col-lg-8">
-                    <nuxt></nuxt>
+                    <nuxt-page />
                   </div>
                 </div>
               </div>

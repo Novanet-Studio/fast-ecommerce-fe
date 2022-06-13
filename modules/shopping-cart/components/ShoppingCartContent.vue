@@ -5,7 +5,7 @@
         <h1>Carrito de compras</h1>
       </div>
       <div class="ps-section__content">
-        <shopping-cart-table v-if="productStore.cartProducts.length" :item="productStore.cartProducts.data" />
+        <shopping-cart-table v-if="productStore.cartProducts?.length" :item="productStore.cartProducts?.data" />
         <p v-else>Carrito vacio</p>
         <div class="ps-section__cart-actions">
           <nuxt-link to="/shop" class="ps-btn">
@@ -39,7 +39,7 @@
               </div>
               <div class="ps-block__content">
                 <ul class="ps-block__product">
-                  <li v-for="(product, index) in productStore.cartProducts.data" :key="index">
+                  <li v-for="(product, index) in productStore.cartProducts?.data" :key="index">
                     <span class="ps-block__estimate">
                       <nuxt-link :to="`/product/${product.id}`" class="ps-product__title">
                         Cachitos {{ product.attributes.name }}

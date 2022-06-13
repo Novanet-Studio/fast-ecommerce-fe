@@ -3,7 +3,7 @@
     <!-- <header-default /> -->
     <section class="ps-page--my-account">
       <bread-crumb :breadcrumb="breadCrumb" />
-      <notifications group="all" :duration="2000" :width="300" animation-name="fade-left" position="top right">
+      <!-- <notifications group="all" :duration="2000" :width="300" animation-name="fade-left" position="top right">
         <template #body="props">
           <div class="ps-notify" :class="props.className">
             <button class="ps-notify__close" @click="props.close">
@@ -17,7 +17,7 @@
             </div>
           </div>
         </template>
-      </notifications>
+      </notifications> -->
       <checkout-content />
     </section>
     <!-- <footer-fullwidth /> -->
