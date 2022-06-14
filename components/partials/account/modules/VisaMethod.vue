@@ -36,6 +36,7 @@ export default {
     resumen: "",
     productMail: "",
     productosFinalesHtml: "",
+    productsCart: "", 
   }),
   computed: {
     cart() {
@@ -64,6 +65,7 @@ export default {
     },
   },
   mounted: async function () {
+    await this.getProducts(this.cart.cartItems); 
     const payments = Square.payments(
       process.env.SQUARE_APPLICATION_ID,
       process.env.SQUARE_LOCATION_ID
@@ -73,7 +75,7 @@ export default {
     this.card = card;
     console.log(this.cart);
     console.log(this.cookie);
-    this.getProducts(this.cart.cartItems);
+    // this.invoicesTest(this.cart.cartItems)
 
   },
   methods: {
@@ -108,9 +110,17 @@ export default {
               note: this.fullName,
             };
             const billingResponse = await this.hasBilling().then(res => {return res}).catch(error => {console.log(error)});
+            console.log('hay billing? ', billingResponse)
             if(billingResponse !== false){
               console.log(billingResponse)
               payment.billingAddress = billingResponse;
+            }else{
+              payment.billingAddress = {
+                addressLine1: 'no aplicable',
+                locality: 'no aplicable',
+                postalCode: '00000',
+                country: 'VE'
+              }
             }
             console.log(payment)
             this.createPayment(payment);
@@ -159,13 +169,20 @@ export default {
     },
 
     async createInvoice(payment, products) {
+      var productName = this.productsCart;
       var setItems = [];
-      products.map(function (products) {
-        setItems.push({
-          id_product: products.id,
-          quantity: products.quantity,
-        });
+      products.map(async function (products) {
+        var finded = productName.find(item => item.id === products.id)
+        if(finded){
+          setItems.push({
+            id_product: products.id,
+            quantity: products.quantity,
+            name_product: finded.attributes.name
+          });
+        }
       });
+
+      console.log('====> estp',setItems)
 
       const data = {
         amount: payment.totalMoney.amount / 100,
@@ -214,7 +231,8 @@ export default {
             return err;
           });
         this.productMail = respuesta;
-        return console.log("====> el repo", respuesta);
+        this.productsCart = respuesta; 
+        return console.log("====> el repo", respuesta, this.productMail, this.productsCart);
       } catch (error) {
         console.log(error);
       }

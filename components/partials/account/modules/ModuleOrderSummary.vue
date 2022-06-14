@@ -77,6 +77,8 @@ export default {
             } else {
                 this.$store.commit('product/setCartProducts', null);
             }
+
+            console.log('item del cart full', this.cartProducts)
         },
 
     }
