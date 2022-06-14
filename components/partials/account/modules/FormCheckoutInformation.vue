@@ -101,6 +101,19 @@
                         />
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Numero de contacto</label>
+                        <v-text-field
+                            v-model="phone"
+                            placeholder="Numero de contacto"
+                            :error-messages="phoneErrors"
+                            @input="$v.phone.$touch()"
+                            outlined
+                            height="50"
+                        />
+                    </div>
+                </div>
             </div>
             <!-- <div class="form-group">
                 <v-checkbox
@@ -189,6 +202,14 @@ export default {
                 return errors;
             }
         },
+        phoneErrors(){
+            const errors = [];
+            if(this.phone){
+                if (!this.$v.phone.$dirty) return errors;
+                !this.$v.phone.required && errors.push('This field is required');
+                return errors;
+            }
+        },
 
     },
     data() {
@@ -199,7 +220,8 @@ export default {
             address: null,
             home: null,
             city: null,
-            zipCode: null
+            zipCode: null,
+            phone: null
         }
     },
     validations: {
@@ -210,6 +232,7 @@ export default {
         home: { required },
         city: { required },
         zipCode: { required },
+        phone: {required}
     },
     async mounted(){
         this.formInfoCookie()
@@ -229,6 +252,7 @@ export default {
                     home: this.home,
                     city: this.city,
                     zipCode: this.zipCode,
+                    phone: this.phone
                 }
                 this.$store.dispatch('checkout/shippingInfo', data)
 
@@ -252,6 +276,7 @@ export default {
                     this.lastName = data.lastName;
                     this.name = data.name;
                     this.zipCode = data.zipCode;
+                    this.phone = data.phone; 
                 }
                 console.log('==> ship', data)
             }else{
@@ -274,6 +299,7 @@ export default {
                     this.address = `${data.pais} ${data.direccion}`;
                     this.city = data.estado;
                     this.zipCode = data.zipcode;
+                    this.phone = data.telefono; 
                 }
             }).catch(error => {
                 console.log('error address', error)

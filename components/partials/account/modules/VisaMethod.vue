@@ -76,6 +76,7 @@ export default {
     console.log(this.cart);
     console.log(this.cookie);
     // this.invoicesTest(this.cart.cartItems)
+    console.log('la cookie', this.cookie)
 
   },
   methods: {
@@ -105,6 +106,7 @@ export default {
                 locality: this.cookie.city,
                 postalCode: this.cookie.zipCode,
                 country: "VE",
+                phone: this.cookie.phone, 
               },
               billingAddress: {},
               note: this.fullName,
@@ -183,6 +185,8 @@ export default {
       });
 
       console.log('====> estp',setItems)
+      payment.shippingAddress.phone =this.cookie.phone; 
+
 
       const data = {
         amount: payment.totalMoney.amount / 100,
@@ -197,6 +201,7 @@ export default {
         cardKind: payment.cardDetails.card.cardType,
         cardLast: payment.cardDetails.card.last4,
       };
+
 
       const payload = {
         token: this.token,

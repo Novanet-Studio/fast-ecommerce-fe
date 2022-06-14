@@ -59,8 +59,19 @@
                 <label> Postcode <sup>*</sup> </label>
                 <v-text-field
                     v-model="postcode"
-                    placeholder="Direccion"
+                    placeholder="codigo postal"
                     :error-messages="postcodeErrors"
+                    @input="$v.postcode.$touch()"
+                    outlined
+                    height="50"
+                />
+            </div>
+            <div class="form-group">
+                <label> Numero Telefonico <sup>*</sup> </label>
+                <v-text-field
+                    v-model="phone"
+                    placeholder="Numero de telefono"
+                    :error-messages="phoneErrors"
                     @input="$v.postcode.$touch()"
                     outlined
                     height="50"
@@ -86,6 +97,7 @@ export default {
             strAdd: null,
             state: null,
             postcode: null,
+            phone: null, 
             lastAddress: false,
             addId: false,
             selected: null,
@@ -128,15 +140,25 @@ export default {
                 return errors;
             }
         },
+        phoneErrors(){
+            const errors = [];
+            if(this.phone){
+                if (!this.$v.phone.$dirty) return errors;
+                !this.$v.phone.required && errors.push('This field is required');
+                return errors;
+            }
+        },
     },
     validations: {
         country: { required },
         strAdd: { required },
         state: { required },
         postcode: { required },
+        phone: {required}
     },
     mounted(){
         console.log(this.country);
+        console.log('====> esto',this.tipo)
         this.getLastAddress();
     },
 
@@ -163,7 +185,8 @@ export default {
                         direccion: this.strAdd,
                         pais: this.country,
                         estado: this.state,
-                        zipcode: this.postcode
+                        zipcode: this.postcode,
+                        telefono: this.phone
                     }
 
                     const data = {
@@ -189,6 +212,7 @@ export default {
                     userId: userId,
                     type: type
                 }
+                console.log('el tipo', type)
                 const respuesta = await this.$store.dispatch('checkout/getAddress', data ).then(res=> {
                     console.log('respuesta de address ===>', res)
                     if(res.length > 0){
@@ -199,6 +223,7 @@ export default {
                         this.state = address.estado;
                         this.strAdd = address.direccion;
                         this.postcode = address.zipcode;
+                        this.phone = address.telefono
                     }
                 }).catch(err=>{
                     console.log(err)

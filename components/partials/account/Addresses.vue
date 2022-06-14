@@ -40,7 +40,7 @@
                                 No has registrado ningun shipping address
                             </p>
                             <nuxt-link
-                                to="/account/edit-address?add=bill"
+                                to="/account/edit-address?add=shipp"
                             >
                                 <a>Agregar</a>
                             </nuxt-link>
@@ -50,7 +50,7 @@
                                 ¿Deseas actualizar tu shipping Address?
                             </p>
                             <nuxt-link
-                                to="/account/edit-address?add=bill"
+                                to="/account/edit-address?add=shipp"
                             >
                                 <a>Actualizar</a>
                             </nuxt-link>
