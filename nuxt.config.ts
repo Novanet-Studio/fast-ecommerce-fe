@@ -1,9 +1,14 @@
 import { defineNuxtConfig } from 'nuxt';
 import { resolve } from 'path';
+import gql from '@rollup/plugin-graphql';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   modules: [
+    // Modules
+    '@nuxtjs/strapi',
+
+    // Custom
     '~/modules/shared/module',
     '~/modules/home/module',
     '~/modules/product/module',
@@ -41,5 +46,9 @@ export default defineNuxtConfig({
         types: [resolve(__dirname, './types/app.d.ts')],
       },
     },
+  },
+
+  vite: {
+    plugins: [gql()],
   },
 });

@@ -1,6 +1,8 @@
 <template>
   <section class="ps-page--my-account">
     <bread-crumb :breadcrumb="breadcrumb" />
+    <!-- TODO: remove this component when layout for this page is implemented -->
+    <notify />
     <div class="ps-my-account">
       <div class="container">
         <div class="ps-form--account">

@@ -7,6 +7,9 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
+    "@nuxtjs/strapi": "^1.4.0",
+    "@rollup/plugin-graphql": "^1.1.0",
+    "graphql": "^16.5.0",
     "nuxt": "3.0.0-rc.3",
     "sass": "1.52.1"
   },

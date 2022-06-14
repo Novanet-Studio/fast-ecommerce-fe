@@ -8,8 +8,6 @@
         <div class="errors">
           {{ status.user.message }}
         </div>
-        <!-- <v-text-field v-model="username" class="ps-text-field" :error-messages="usernameErrors"
-          @input="$v.username.$touch()" placeholder="Usuario o correo" height="50" outlined /> -->
       </div>
       <div class="form-group">
         <input type="password" v-model="form.password" placeholder="Por favor, ingrese su contraseña"
@@ -17,13 +15,10 @@
         <div class="errors">
           {{ status.password.message }}
         </div>
-        <!-- <v-text-field v-model="password" type="password" class="ps-text-field" :error-messages="passwordErrors"
-          @input="$v.password.$touch()" placeholder="Por favor ingrese su password" height="50" outlined /> -->
       </div>
       <div class="form-group">
         <input type="checkbox" name="rememberme" v-model="form.rememberMe">
         <label for="rememberme">Recordarme</label>
-        <!-- <v-checkbox label="Recordarme" color="warning" /> -->
       </div>
       <div class="form-group submit">
         <button type="submit" class="ps-btn ps-btn--fullwidth" @click.prevent="onSubmit(handleSubmit)">
@@ -38,8 +33,23 @@
 
 <script lang="ts" setup>
 import { useForm } from 'slimeform';
+import loginQuery from '../queries/login.gql';
 
-const isRequired = (val) => !!val || 'Este campo es obligatorio';
+const graphql = useStrapiGraphQL();
+const { setToken } = useStrapiAuth();
+const { $helpers, $notify } = useNuxtApp();
+
+const router = useRouter();
+
+type LoginResponse = {
+  data: {
+    login: {
+      jwt: string;
+    }
+  }
+}
+
+const isRequired = (val: string) => !!val || 'Este campo es obligatorio';
 
 const { form, status, onSubmit, verify } = useForm({
   form: () => ({
@@ -54,9 +64,28 @@ const { form, status, onSubmit, verify } = useForm({
   defaultMessage: '',
 });
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (!verify()) return;
 
-  console.log(form);
+  const [{ data }, error] = await $helpers.handleAsync(graphql<LoginResponse>(loginQuery, { identifier: form.user, password: form.password }));
+
+  if (error?.message) {
+    $notify({
+      group: 'all',
+      title: 'Error!',
+      text: 'Usuario o Contraseña inválidos',
+    });
+    return;
+  }
+
+  setToken(data.login.jwt);
+
+  $notify({
+    group: 'all',
+    title: 'Success!',
+    text: `Inicio de sesión con éxito!`,
+  });
+
+  router.push('/');
 }
 </script>

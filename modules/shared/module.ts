@@ -43,5 +43,6 @@ export default defineNuxtModule({
     addPlugin(path.resolve(__dirname, './plugins/pinia.ts'));
     addPlugin(path.resolve(__dirname, './plugins/firebase.ts'));
     addPlugin(path.resolve(__dirname, './plugins/vue-notification.ts'));
+    addPlugin(path.resolve(__dirname, './plugins/helpers.ts'));
   },
 });
