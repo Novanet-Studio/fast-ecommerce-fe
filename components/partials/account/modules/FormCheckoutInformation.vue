@@ -328,7 +328,7 @@ export default {
             await this.$store.dispatch('checkout/getAddress', data ).then(res => {
                 if(res.length > 0){
                     const data = res[0].attributes.address;
-                    this.address = `${data.pais} ${data.direccion}`;
+                    this.address = `${data.direccion}`;
                     this.city = data.estado;
                     this.zipCode = data.zipcode;
                     this.phone = data.telefono; 

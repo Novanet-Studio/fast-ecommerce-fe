@@ -19,9 +19,11 @@
                                 <strong>
                                     {{ invoice.attributes.fullName }}
                                 </strong>
-                                <p v-if="invoice.shippingAddress">
+                                <p v-if="invoice.attributes.shippingAddress">
                                     Dirección: {{ invoice.attributes.shippingAddress.addressLine1 }},
                                     {{ invoice.attributes.shippingAddress.locality }}, {{ invoice.attributes.shippingAddress.country }}
+                                    <br>
+                                    {{ invoice.attributes.shippingAddress.postalCode}}, <b>Apt, Casa: </b> {{ invoice.attributes.shippingAddress.home }}
                                 </p>
 
                             </div>
