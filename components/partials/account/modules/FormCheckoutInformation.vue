@@ -22,37 +22,37 @@
                     label="Quiero recibir más ofertas?"
                 />
             </div> -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <v-text-field
+                                v-model="name"
+                                placeholder="Nombre"
+                                :error-messages="nameErrors"
+                                @input="$v.name.$touch()"
+                                outlined
+                                height="50"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Apellido</label>
+                            <v-text-field
+                                v-model="lastName"
+                                placeholder="Apellido"
+                                :error-messages="lastNameErrors"
+                                @input="$v.lastName.$touch()"
+                                outlined
+                                height="50"
+                            />
+                        </div>
+                    </div>
+                </div>
             <h3 class="ps-form__heading">
                 Informacion de envio
             </h3>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <v-text-field
-                            v-model="name"
-                            placeholder="Nombre"
-                            :error-messages="nameErrors"
-                            @input="$v.name.$touch()"
-                            outlined
-                            height="50"
-                        />
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>Apellido</label>
-                        <v-text-field
-                            v-model="lastName"
-                            placeholder="Apellido"
-                            :error-messages="lastNameErrors"
-                            @input="$v.lastName.$touch()"
-                            outlined
-                            height="50"
-                        />
-                    </div>
-                </div>
-            </div>
             <div class="form-group">
                 <label>Dirección</label>
                 <v-text-field
@@ -74,6 +74,23 @@
                     height="50"
                 />
             </div>
+            <div class="form-group">
+                <label> Pais <sup>*</sup> </label>
+                <select class="form-control" 
+                    v-model="country"
+                    placeholder="Pais"
+                    :error-messages="countryErrors"
+                    @input="$v.country.$touch()"
+                    outlined
+                    height="50"
+                >
+                    <option class="form-control" selected disabled>-- selecciona un pais --</option>
+                    <option class="form-control" v-for="country in countries" :value="country.code">
+                        {{ country.name }}
+                    </option>
+                </select>
+            </div>
+            <br>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -139,12 +156,21 @@
 <script>
 import { email, required } from 'vuelidate/lib/validators';
 import { validationMixin } from 'vuelidate';
+import countries from '~/static/data/countries.json'; 
 
 export default {
     name: 'FormCheckoutInformation',
     computed: {
         user(){
             return this.$cookies.get('auth').user;
+        },
+        countryErrors(){
+            const errors = [];
+            if(!this.country){
+                if (!this.$v.country.$dirty) return errors;
+                !this.$v.country.required && errors.push('This field is required');
+                return errors;
+            }
         },
         emailErrors(){
             const errors = [];
@@ -221,7 +247,10 @@ export default {
             home: null,
             city: null,
             zipCode: null,
-            phone: null
+            country: null, 
+            phone: null,
+            countries: countries
+
         }
     },
     validations: {
@@ -232,10 +261,11 @@ export default {
         home: { required },
         city: { required },
         zipCode: { required },
-        phone: {required}
+        phone: {required},
+        country: { required}
     },
     async mounted(){
-        // this.formInfoCookie()
+        this.formInfoCookie()
         this.hasShipping()
 
     },
@@ -252,7 +282,8 @@ export default {
                     home: this.home,
                     city: this.city,
                     zipCode: this.zipCode,
-                    phone: this.phone
+                    phone: this.phone, 
+                    home: this.home,
                 }
                 this.$store.dispatch('checkout/shippingInfo', data)
 
@@ -269,19 +300,20 @@ export default {
             const data = this.$cookies.get('shippingInfo');
             if(typeof data !== 'undefined'){
                 if(data.hasOwnProperty('email')){
-                    this.address = data.address;
-                    this.city = data.city;
+                    // this.address = data.address;
+                    // this.city = data.city;
                     this.email = data.email;
-                    this.home = data.home;
+                    // this.home = data.home;
                     this.lastName = data.lastName;
                     this.name = data.name;
-                    this.zipCode = data.zipCode;
-                    this.phone = data.phone; 
+                    // this.zipCode = data.zipCode;
+                    // this.phone = data.phone; 
+                    // this.home = data.aptm; 
                 }
                 console.log('==> ship', data)
             }else{
                 console.log('llamar funcion en strapi para la direccion')
-                this.hasShipping()
+                // this.hasShipping()
             }
         },
         async hasShipping(){
@@ -300,6 +332,8 @@ export default {
                     this.city = data.estado;
                     this.zipCode = data.zipcode;
                     this.phone = data.telefono; 
+                    this.home = data.aptm; 
+                    this.country = data.pais;
                 }
             }).catch(error => {
                 console.log('error address', error)

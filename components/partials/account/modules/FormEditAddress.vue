@@ -17,7 +17,7 @@
                 />
             </div> -->
             <div class="form-group">
-                <label> Country <sup>*</sup> </label>
+                <label> Pais <sup>*</sup> </label>
                 <select class="form-control" 
                     v-model="country"
                     placeholder="Pais"
@@ -31,10 +31,9 @@
                         {{ country.name }}
                     </option>
                 </select>
-                
             </div>
             <div class="form-group">
-                <label> Street Address <sup>*</sup> </label>
+                <label> Dirección <sup>*</sup> </label>
                 <v-text-field
                     v-model="strAdd"
                     placeholder="Direccion"
@@ -45,10 +44,21 @@
                 />
             </div>
             <div class="form-group">
-                <label> State <sup>*</sup> </label>
+                <label>Apartamento</label>
+                <v-text-field
+                    v-model="home"
+                    placeholder="Apartamento, casa, etc."
+                    :error-messages="homeErrors"
+                    @input="$v.home.$touch()"
+                    outlined
+                    height="50"
+                />
+            </div>
+            <div class="form-group">
+                <label> Estado <sup>*</sup> </label>
                 <v-text-field
                     v-model="state"
-                    placeholder="Direccion"
+                    placeholder="Estado"
                     :error-messages="stateErrors"
                     @input="$v.state.$touch()"
                     outlined
@@ -101,6 +111,7 @@ export default {
             lastAddress: false,
             addId: false,
             selected: null,
+            home: null, 
             countries: countries
         }
     },
@@ -148,13 +159,22 @@ export default {
                 return errors;
             }
         },
+        homeErrors(){
+            const errors = [];
+            if(this.home){
+                if (!this.$v.home.$dirty) return errors;
+                !this.$v.home.required && errors.push('This field is required');
+                return errors;
+            }
+        },
     },
     validations: {
         country: { required },
         strAdd: { required },
         state: { required },
         postcode: { required },
-        phone: {required}
+        phone: {required},
+        home: {required}
     },
     mounted(){
         console.log(this.country);
@@ -186,7 +206,8 @@ export default {
                         pais: this.country,
                         estado: this.state,
                         zipcode: this.postcode,
-                        telefono: this.phone
+                        telefono: this.phone,
+                        aptm: this.home
                     }
 
                     const data = {
@@ -223,7 +244,8 @@ export default {
                         this.state = address.estado;
                         this.strAdd = address.direccion;
                         this.postcode = address.zipcode;
-                        this.phone = address.telefono
+                        this.phone = address.telefono;
+                        this.home = address.aptm;
                     }
                 }).catch(err=>{
                     console.log(err)

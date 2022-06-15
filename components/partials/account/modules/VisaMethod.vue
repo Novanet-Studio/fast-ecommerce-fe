@@ -102,7 +102,8 @@ export default {
               },
               buyerEmailAddress: this.email,
               shippingAddress: {
-                addressLine1: this.cookie.address,
+                addressLine1: `${this.cookie.address}`,
+                home: this.cookie.home, 
                 locality: this.cookie.city,
                 postalCode: this.cookie.zipCode,
                 country: "VE",
@@ -186,7 +187,8 @@ export default {
 
       console.log('====> estp',setItems)
       payment.shippingAddress.phone =this.cookie.phone; 
-
+      payment.shippingAddress.home =this.cookie.home; 
+      
 
       const data = {
         amount: payment.totalMoney.amount / 100,

@@ -13,6 +13,7 @@ export const mutations = {
         state.city = payload.city;
         state.zipCode = payload.zipCode;
         state.phone = payload.phone;
+        state.home = payload.home; 
     },
 
 
