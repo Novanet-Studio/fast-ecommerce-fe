@@ -235,8 +235,8 @@ export default {
         phone: {required}
     },
     async mounted(){
-        this.formInfoCookie()
-        // this.hasShipping()
+        // this.formInfoCookie()
+        this.hasShipping()
 
     },
 
