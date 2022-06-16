@@ -37,17 +37,9 @@ import loginQuery from '../queries/login.gql';
 
 const graphql = useStrapiGraphQL();
 const { setToken } = useStrapiAuth();
-const { $helpers, $notify } = useNuxtApp();
+const { $helpers, $notify, $store } = useNuxtApp();
 
 const router = useRouter();
-
-type LoginResponse = {
-  data: {
-    login: {
-      jwt: string;
-    }
-  }
-}
 
 const isRequired = (val: string) => !!val || 'Este campo es obligatorio';
 
@@ -79,6 +71,7 @@ const handleSubmit = async () => {
   }
 
   setToken(data.login.jwt);
+  $store.auth().isLoggedIn = true;
 
   $notify({
     group: 'all',

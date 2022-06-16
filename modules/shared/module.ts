@@ -44,5 +44,8 @@ export default defineNuxtModule({
     addPlugin(path.resolve(__dirname, './plugins/firebase.ts'));
     addPlugin(path.resolve(__dirname, './plugins/vue-notification.ts'));
     addPlugin(path.resolve(__dirname, './plugins/helpers.ts'));
+
+    // Global Store
+    addPlugin(path.resolve(__dirname, './plugins/store.ts'));
   },
 });
