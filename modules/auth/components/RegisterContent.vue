@@ -5,7 +5,7 @@
       <div class="form-group">
         <input v-model="form.username" placeholder="John Doe" class="ps-text-field"
           :class="status.username.isError && 'input-error'" />
-        <div class="errors">
+        <div v-show="status.username.isError" class="errors">
           {{ status.username.message }}
         </div>
       </div>
@@ -23,11 +23,18 @@
           {{ status.password.message }}
         </div>
       </div>
+      <div class="form-group">
+        <input v-model="form.confirmPassword" placeholder="Confirmar contraseña" class="ps-text-field"
+          :class="status.confirmPassword.isError && 'input-error'" />
+        <div class="errors">
+          {{ status.confirmPassword.message }}
+        </div>
+      </div>
       <div class="form-group submit">
-        <button type="submit" class="ps-btn ps-btn--fullwidth" @click.prevent="onSubmit(handleSubmit)" id="registerBtn">
+        <button class="ps-btn ps-btn--fullwidth" type="submit" @click.prevent="onSubmit(handleSubmit)">
           Registrar cuenta
         </button>
-        <template v-if="loading">
+        <template v-if="state.isLoading">
           <loading />
         </template>
       </div>
@@ -37,39 +44,107 @@
 </template>
 
 <script lang="ts" setup>
-import { useForm } from 'slimeform';
-
-const loading = ref<boolean>(false);
-
-const EMAIL_REGEX = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
-const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
-const USERNAME_REGEX = /[a-zA-Z][a-zA-Z0-9-_]{3,32}/gi;
-
-const { form, status, onSubmit } = useForm({
-  form: () => ({
-    username: '',
-    email: '',
-    password: '',
-  }),
-  rule: {
-    username: [
-      (val: string) => !!val || 'El campo es obligatorio',
-      (val: string) => val.length < 3 && 'El nombre del usuario es muy corto',
-      (val: string) => val.length > 15 && 'El nombre del usuario es muy largo',
-      (val: string) => USERNAME_REGEX.test(val) || 'Nombre de usuario es inválido',
-    ],
-    email: [
-      (val: string) => !!val || 'El campo es obligatorio',
-      (val: string) => EMAIL_REGEX.test(val) || 'Formato de email inválido',
-    ],
-    password: [
-      (val: string) => !!val || 'El campo es obligatorio',
-      (val: string) => PASSWORD_REGEX.test(val) || 'Contraseña no válida, debe contener al menos 8 caracteres, 1 letra en mayuscula, una en minuscula, un numero y un caracter especial',
-    ],
+definePageMeta({
+  pageTransition: {
+    name: 'zoom',
   }
 });
 
-const handleSubmit = () => { }
+import { useForm } from 'slimeform';
+import * as yup from 'yup';
+import { yupFieldRule } from 'slimeform/resolvers';
+import registerQuery from '../queries/register.gql';
+
+const graphql = useStrapiGraphQL();
+const router = useRouter();
+const { $notify, $helpers } = useNuxtApp();
+
+const state = reactive({
+  isLoading: false,
+  isDisabled: false,
+});
+
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm;
+
+const { form, status, onSubmit, verify } = useForm({
+  form: () => ({
+    email: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+  }),
+  rule: {
+    username: [
+      yupFieldRule(yup.string().required('El nombre de usuario es obligatorio')),
+      yupFieldRule(yup.string().nullable(false)),
+      yupFieldRule(yup.string().min(2, 'El nombre de usuario es muy corto')),
+      yupFieldRule(yup.string().max(15, 'El nombre de usuario es muy largo')),
+    ],
+    email: [
+      yupFieldRule(yup.string().required('El email es obligatorio')),
+      yupFieldRule(yup.string().email('Formato de email inválido')),
+    ],
+    password: [
+      yupFieldRule(yup.string().required('La contraseña es obligatoria')),
+      yupFieldRule(yup.string().matches(PASSWORD_REGEX, 'Debe contener 8 carácteres, una letra mayúscula, una minúscula, un número y un carácter especial')),
+    ],
+    confirmPassword: [
+      yupFieldRule(yup.string().required('Debes confirmar contraseña')),
+      yupFieldRule(yup.string().test('match-passwords', 'Contraseñas no coinciden', (value: string) => {
+        return form.password === value;
+      })),
+    ]
+  },
+  defaultMessage: '',
+});
+
+const resetState = () => {
+  state.isLoading = false;
+  state.isDisabled = false;
+}
+
+const handleSubmit = async () => {
+  console.log(form);
+  state.isLoading = true;
+  state.isDisabled = true;
+
+  if (!verify()) {
+    $notify({
+      group: 'all',
+      title: 'Hey!',
+      text: 'Debes rellenar el formulario',
+    });
+    resetState();
+    return;
+  }
+
+  const [{ data }, error] = await $helpers.handleAsync(graphql<RegisterResponse>(registerQuery, {
+    ...form,
+  }));
+
+  if (error?.message) {
+    $notify({
+      group: 'all',
+      title: 'Hey!',
+      text: 'Hubo un error al intentar registrarte!',
+    });
+    resetState();
+    return;
+  }
+
+  console.log(data);
+
+  $notify({
+    group: 'all',
+    title: 'Hey!',
+    text: 'Te has registrado exitosamente!',
+  });
+  resetState();
+
+  router.push('/login');
+}
+</script>
+
 
 // export default {
 //   methods: {
@@ -175,4 +250,3 @@ const handleSubmit = () => { }
 //     },
 //   },
 // };
-</script>

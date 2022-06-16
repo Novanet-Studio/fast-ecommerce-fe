@@ -1,6 +1,7 @@
 <template>
   <section class="ps-page--my-account">
-    <bread-crumb :breadcrumb="breadcrumb" />
+    <bread-crumb :items="breadcrumbData" />
+    <notify />
     <div class="ps-my-account">
       <div class="container">
         <div class="ps-form--account">
@@ -26,20 +27,15 @@
 </template>
 
 <script lang="ts" setup>
-
 definePageMeta({
   layout: false,
   // transition: 'zoom',
   pageTransition: {
-    appear: true,
-    appearActiveClass: 'zoom',
-    appearFromClass: 'zoom',
-    appearToClass: 'zoom',
     name: 'zoom',
   },
 });
 
-const breadcrumb = ref([
+const breadcrumbData = ref([
   {
     text: 'Inicio',
     url: '/'

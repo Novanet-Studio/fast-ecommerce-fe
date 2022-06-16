@@ -20,7 +20,8 @@
     "jspdf-html2canvas": "^1.4.9",
     "pinia": "^2.0.14",
     "pinia-plugin-persistedstate": "^1.6.1",
-    "slimeform": "^0.5.1",
-    "swiper": "^8.2.2"
+    "slimeform": "^0.5.2",
+    "swiper": "^8.2.2",
+    "yup": "^0.32.11"
   }
 }

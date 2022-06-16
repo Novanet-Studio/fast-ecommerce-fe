@@ -2,7 +2,7 @@
   <div class="ps-breadcrumb">
     <div :class="layout === 'fullwidth' ? 'ps-container' : 'container'">
       <ul class="breadcrumb">
-        <template v-for="item in breadcrumb">
+        <template v-for="item in items">
           <li v-if="item.url" :key="item.text">
             <nuxt-link :to="item.url">
               <a>{{ item.text }}</a>
@@ -16,18 +16,19 @@
 </template>
 
 <script lang="ts" setup>
-type Breadcrumb = {
-  text: string;
-  url: string;
+type BreadcrumbItem = {
+  text?: string;
+  url?: string | unknown;
+  active?: boolean | unknown;
 }
 
 type Props = {
-  breadcrumb?: Breadcrumb[];
+  items?: BreadcrumbItem[];
   layout?: string;
 }
 
 withDefaults(defineProps<Props>(), {
-  breadcrumb: null,
+  items: null,
   layout: null,
 });
 </script>
