@@ -1,18 +1,19 @@
 <template>
-  <div>
-    <!-- <header-default /> -->
-    <section class="ps-page--my-account">
-      <bread-crumb :breadcrumb="breadcrumb" />
-      <shipping-content />
-    </section>
-    <!-- <footer-fullwidth /> -->
-  </div>
+  <section>
+    <!-- <bread-crumb :breadcrumb="breadcrumb" /> -->
+    <shipping-content />
+  </section>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
   // middleware: 'authentication'
-  // transition: 'zoom',
+  pageTransition: {
+    name: 'zoom',
+  },
+  layoutTransition: {
+    name: 'zoom',
+  }
 });
 
 const breadcrumb = ref([

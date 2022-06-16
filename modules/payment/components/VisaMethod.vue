@@ -2,16 +2,12 @@
   <div>
     <form id="payment-form">
       <div id="card-container"></div>
-      <div class="form-group">
-        <p>
+      <div class="form-group text-dark-200">
+        <p class="text-sm mb-8">
           By making this purchase you agree to
-          <a href="#" class="highlight">our terms and conditions</a>.
+          <a href="#" class="text-yellow-500">our terms and conditions</a>.
         </p>
-        <button class="ps-btn ps-btn--fullwidth" @click.prevent="handlePayment" id="card-button" type="button">
-          <p v-if="!loading" class="btn-pagar">Pagar</p>
-          <p v-else>...</p>
-        </button>
-
+        <the-button :text="state.isLoading ? '...' : 'Pagar'" :disabled="state.cardButtonDisabled" ref="btnRef" />
       </div>
     </form>
     <div id="payment-status-container"></div>
@@ -19,314 +15,320 @@
 </template>
 
 <script lang="ts" setup>
-// import { v4 as uuidv4 } from "uuid";
-// import { emailTemplate } from '../templates';
+import { AddressType } from '~/modules/shared/shared-types';
+import { CreateInvoice } from '~/modules/invoices/queries';
+import { GetProductById } from '~/modules/product/queries';
+import { GetAddressByIdAndType } from '~/modules/addresses/queries';
+import { emailTemplate } from '../templates';
+import type { Payment } from 'square';
 
-const loading = ref<boolean>(false);
-
-const handlePayment = async () => {
-  console.log('Handle payment');
+interface State {
+  card: Square.Card;
+  productMail: Product[];
+  productsCart: Product[];
 }
 
-// export default {
-//   name: "VisaMethod",
-//   data: () => ({
-//     card: null,
-//     loading: false,
-//     resumen: "",
-//     productMail: "",
-//     productosFinalesHtml: "",
-//   }),
-//   computed: {
-//     cart() {
-//       return this.$cookies.get("cart");
-//     },
-//     cookie() {
-//       const cookieInfo = this.$cookies.get("shippingInfo", { parseJSON: true });
-//       return cookieInfo;
-//     },
-//     email() {
-//       return this.cookie.email;
-//     },
-//     customerId() {
-//       return this.$cookies.get("auth").user.customer_id;
-//     },
-//     user() {
-//       return this.$cookies.get("auth").user;
-//     },
-//     fullName() {
-//       const name = this.cookie.name + " " + this.cookie.lastName;
-//       return name;
-//     },
-//     token() {
-//       const token = this.$cookies.get("auth").jwt;
-//       return token;
-//     },
-//   },
-//   mounted: async function () {
-//     const payments = Square.payments(
-//       process.env.SQUARE_APPLICATION_ID,
-//       process.env.SQUARE_LOCATION_ID
-//     );
-//     const card = await payments.card();
-//     await card.attach("#card-container");
-//     this.card = card;
-//     console.log(this.cart);
-//     console.log(this.cookie);
-//     this.getProducts(this.cart.cartItems);
+const { $store, $helpers, $notify, $httpsCallable } = useNuxtApp();
+const {
+  SQUARE_APPLICATION_ID,
+  SQUARE_LOCATION_ID,
+} = useRuntimeConfig().public;
 
-//   },
-//   methods: {
-//     async handlePayment() {
-//       const cardButton = document.getElementById("card-button");
-//       cardButton.disabled = true;
-//       //creando token para la tarjeta
-//       this.card
-//         .tokenize()
-//         .then(async (res) => {
-//           if (res.token) {
-//             this.loading = true;
-//             var token = res.token;
-//             var idempotencyKeyGen = uuidv4();
-//             var payment = {
-//               idempotencyKey: idempotencyKeyGen,
-//               locationId: process.env.SQUARE_LOCATION_ID,
-//               sourceId: token,
-//               customerId: this.customerId,
-//               amountMoney: {
-//                 amount: parseInt(this.cart.amount) * 100,
-//                 currency: "USD",
-//               },
-//               buyerEmailAddress: this.email,
-//               shippingAddress: {
-//                 addressLine1: this.cookie.address,
-//                 locality: this.cookie.city,
-//                 postalCode: this.cookie.zipCode,
-//                 country: "VE",
-//               },
-//               billingAddress: {},
-//               note: this.fullName,
-//             };
-//             const billingResponse = await this.hasBilling().then(res => { return res }).catch(error => { console.log(error) });
-//             if (billingResponse !== false) {
-//               console.log(billingResponse)
-//               payment.billingAddress = billingResponse;
-//             }
-//             console.log(payment)
-//             this.createPayment(payment);
-//           }
-//         })
-//         .catch((error) => {
-//           return console.log(error);
-//         });
-//     },
+const router = useRouter();
+const graphql = useStrapiGraphQL();
+const auth = $store.auth();
+const cart = $store.cart();
+const checkout = $store.checkout();
 
-//     async createPayment(paymentBody) {
-//       const respuesta = await this.$fire.functions.httpsCallable("payment");
-//       respuesta(paymentBody)
-//         .then(async (res) => {
-//           const squareResponse = JSON.parse(res.data);
-//           const paymentInfo = squareResponse.payment;
-//           if (paymentInfo.status === "COMPLETED") {
-//             // alert('PAGO REALIZADO')
-//             this.$notify({
-//               group: "all",
-//               title: "Exito",
-//               text: `El pago se realizado con exito!`,
-//             });
-//             this.loading = false;
-//             const itemInvoices = this.cart.cartItems;
-//             await this.createInvoice(paymentInfo, itemInvoices).then(
-//               (respuesta) => {
-//                 console.log(respuesta);
-//                 if (respuesta.status === 200 && respuesta.statusText == "OK") {
-//                   // alert('INVOICE CREADO')
-//                   this.$notify({
-//                     group: "all",
-//                     title: "Invoice",
-//                     text: `Su recibo fue creado, puede revisarlo en sus ordenes!`,
-//                   });
-//                   this.sendInvoiceMail(itemInvoices, paymentInfo);
-//                 }
-//               }
-//             );
-//           }
-//           console.log(squareResponse);
-//         })
-//         .catch((error) => {
-//           console.log(error);
-//         });
-//     },
+const state = reactive<State & Record<any, any>>({
+  card: null,
+  isLoading: false,
+  summary: '',
+  productMail: null,
+  productHtml: null,
+  productsCart: null,
+  cardButtonDisabled: false,
+});
 
-//     async createInvoice(payment, products) {
-//       var setItems = [];
-//       products.map(function (products) {
-//         setItems.push({
-//           id_product: products.id,
-//           quantity: products.quantity,
-//         });
-//       });
+const btnRef = ref(null);
 
-//       const data = {
-//         amount: payment.totalMoney.amount / 100,
-//         order_id: payment.orderId,
-//         paid: true,
-//         payment_id: payment.id,
-//         products: setItems,
-//         user_id: this.user.id,
-//         shippingAddress: payment.shippingAddress,
-//         fullName: payment.note,
-//         cardType: payment.cardDetails.card.cardBrand,
-//         cardKind: payment.cardDetails.card.cardType,
-//         cardLast: payment.cardDetails.card.last4,
-//       };
+const checkBilling = async () => {
+  try {
+    const body = {
+      id: +auth.user.id,
+      type: AddressType.Billing,
+    };
 
-//       const payload = {
-//         token: this.token,
-//         data: data,
-//       };
-//       // console.log('lo que se envia al invoice',data)
-//       const res = await this.$store
-//         .dispatch("checkout/createInvoice", payload)
-//         .then((res) => {
-//           return res;
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//         });
+    const defaultResponse = {
+      addressLine1: 'no aplicable',
+      locality: 'no aplicable',
+      postalCode: '0000',
+      country: 'VE',
+    };
 
-//       return res;
-//     },
-//     async getProducts(products) {
-//       try {
-//         var metaData = [];
-//         products.forEach((element) => {
-//           metaData.push(element.id);
-//         });
-//         console.log("====> meta", metaData);
-//         var respuesta = await this.$store
-//           .dispatch("product/getProductById", metaData)
-//           .then((res) => {
-//             // return console.log('esta es la respuesta',res.data)
-//             return (respuesta = res.data);
-//           })
-//           .catch((err) => {
-//             return err;
-//           });
-//         this.productMail = respuesta;
-//         return console.log("====> el repo", respuesta);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     },
+    const { data } = await graphql<AddressResponse>(GetAddressByIdAndType, body);
+    const isDataAnArray = data?.addresses && Array.isArray(data.addresses?.data);
+    const isDataValid = data?.addresses?.data.length;
 
-//     async sendInvoiceMail(products, payment) {
-//       try {
-//         var productos = [];
-//         var created = new Date(payment.createdAt).toLocaleDateString();
-//         var amountPayed = `$${parseInt(payment.amountMoney.amount) / 100} USD`;
-//         let query = "";
-//         products.forEach((item) => {
-//           var finded = this.productMail.find(
-//             (product) => product.id === item.id
-//           );
-//           if (finded) {
-//             productos.push({
-//               quantity: item.quantity,
-//               name: finded.attributes.name,
-//               amount: item.price,
-//               description: finded.attributes.description,
-//             });
 
-//             if (query === "") {
-//               query = emailTemplate({
-//                 name: finded.attributes.name,
-//                 quantity: item.quantity,
-//                 price: item.price,
-//               })
-//             } else {
-//               query += emailTemplate({
-//                 name: finded.attributes.name,
-//                 quantity: item.quantity,
-//                 price: item.price,
-//               });
-//             }
-//           }
-//         });
+    if (!data.addresses || (isDataAnArray && !isDataValid)) {
+      return defaultResponse;
+    }
 
-//         console.log("===> pagos", payment);
+    const { address } = data?.addresses?.data[0].attributes;
 
-//         this.$axios
-//           .$post("/api/sendgrid-mail", {
-//             payed: amountPayed,
-//             email: payment.buyerEmailAddress,
-//             nameCustomer: payment.note,
-//             date: created,
-//             content: query,
-//             order_id: payment.orderId,
-//           })
-//           .then(async (res) => {
-//             console.log("lo de axios ===>", res);
-//             if (res.stat && res.stat === 200) {
-//               this.$notify({
-//                 group: "all",
-//                 title: "recibo",
-//                 text: `gracias por preferirnos!`,
-//               });
-//               await new Promise((resolve) => setTimeout(resolve, 2000));
-//               this.$router.push("/");
-//               this.$store.dispatch("cart/clearCart");
-//               this.card.clear();
-//             }
-//           });
-//         // alert('se envio el correo')
-//       } catch (error) {
-//         console.log("error en el correo");
-//       }
-//     },
-//     async hasBilling() {
-//       const type = 'billing';
-//       const userId = this.user.id;
+    return {
+      addressLine1: address.address,
+      locality: address.city,
+      postalCode: address.zipCode,
+      country: address.country,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-//       const data = {
-//         userId: userId,
-//         type: type
-//       }
+const sendInvoiceEmail = async (products: any[], payment: any) => {
+  try {
+    let emailContent = '';
+    const productItems = [];
+    const created = new Date(payment.createdAt).toLocaleDateString();
+    const amountPayed = `$${Number(payment.amountMoney.amount) / 100} USD`;
+    const sendReceiptEmail = $httpsCallable('sendReceiptEmail');
+    const sendMerchantEmail = $httpsCallable('sendMerchantEmail');
 
-//       const response = await this.$store.dispatch('checkout/getAddress', data).then(res => {
-//         var response = false;
-//         if (res.length > 0) {
-//           console.log('el billing ===>', res)
-//           const address = res[0].attributes.address;
-//           response = {
-//             addressLine1: address.direccion,
-//             locality: address.estado,
-//             postalCode: address.zipcode,
-//             country: address.pais
-//           }
-//         }
-//         return response;
-//       }).catch(error => {
-//         console.log('error address', error)
-//         return false
-//       })
+    products.forEach((item) => {
+      const productFinded = state.productMail.find((mailProduct) => mailProduct.id == item.id);
 
-//       return response;
-//     }
-//   },
-// };
+      if (productFinded) {
+        productItems.push({
+          quantity: item.quantity,
+          name: productFinded.attributes.name,
+          amount: item.price,
+          description: productFinded.attributes.description,
+        });
+
+        if (emailContent) {
+          emailContent = emailTemplate({
+            name: productFinded.attributes.name,
+            price: item.price,
+            quantity: item.quantity,
+          });
+        } else {
+          emailContent += emailTemplate({
+            name: productFinded.attributes.name,
+            price: item.price,
+            quantity: item.quantity,
+          });
+        }
+      }
+    });
+
+    const merchant = {
+      payed: amountPayed,
+      email: auth.user.email,
+      phone: checkout.phone,
+      shipping: checkout.fullAddress,
+      nameCustomer: checkout.fullName,
+      date: created,
+      content: emailContent,
+      order_id: payment.orderId,
+    };
+
+    const receipt = {
+      payed: amountPayed,
+      email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
+      nameCustomer: payment.note,
+      date: created,
+      content: emailContent,
+      order_id: payment.orderId,
+    }
+
+    const response = await sendReceiptEmail(receipt) as unknown as { message: string, status: number };
+
+    response.status === 200 && await sendMerchantEmail(merchant);
+
+    $notify({
+      group: 'all',
+      title: 'Recibo - Fake',
+      text: '¡Gracias por preferirnos!',
+    });
+
+    cart.clearCartItems();
+    state.card.destroy();
+    router.push('/');
+  } catch (err) {
+    console.log('sendInvoiceEmail Error: ', err);
+  }
+}
+
+const createInvoice = async (payment: any, products: any[]) => {
+  const productName = state.productsCart;
+  const filterProducts = [];
+
+  products.forEach((product) => {
+    const find = productName.find((item) => item.id === product.id);
+
+    if (find) {
+      filterProducts.push({
+        id_product: +product.id,
+        quantity: Number(product.quantity),
+        name_product: find.attributes.name,
+      });
+    }
+  });
+
+  payment.shippingAddress.phone = checkout.phone;
+  payment.shippingAddress.home = checkout.home;
+
+  const body = {
+    amount: payment.totalMoney.amount / 100,
+    order_id: payment.orderId,
+    paid: true,
+    payment_id: payment.id,
+    products: filterProducts,
+    user_id: +auth.user.id,
+    shippingAddress: payment.shippingAddress,
+    fullName: payment.note,
+    cardType: payment.cardDetails.card.cardBrand,
+    cardKind: payment.cardDetails.card.cardType,
+    cardLast: payment.cardDetails.card.last4,
+  };
+
+  const [{ data }] = await $helpers.handleAsync(graphql<Invoice>(CreateInvoice, { invoice: body }));
+
+  return data;
+}
+
+const createPayment = async (paymentBody: any) => {
+  const generatePayment = $httpsCallable('payment');
+  console.log({ paymentBody });
+  const { data } = await generatePayment(paymentBody) as { data: Payment };
+
+  if (data.status !== 'COMPLETED') {
+    $notify({
+      group: 'all',
+      title: 'Error',
+      text: 'El pago no fué realizado',
+    });
+    state.isLoading = false;
+    return;
+  }
+
+  $notify({
+    group: 'all',
+    title: 'Éxito',
+    text: 'El pago se ha realizado con éxito',
+  });
+
+  const invoiceItems = cart.cartItems;
+  // TODO: typings improvement
+  const { createInvoice: { data: invoiceResult } } = await createInvoice(data, invoiceItems);
+
+  if (!invoiceResult.id) {
+    $notify({
+      group: 'all',
+      title: 'Error',
+      text: 'Hubo un problema al generar la factura',
+    });
+    state.isLoading = false;
+    return;
+  }
+
+  $notify({
+    group: 'all',
+    title: 'Éxito',
+    text: 'Su recibo fué creado, puede revisarlo en sus ordenes',
+  });
+
+  sendInvoiceEmail(invoiceItems, data);
+}
+
+const makePayment = async (tokenResult: Square.TokenResult) => {
+  try {
+    state.isLoading = true;
+    state.cardButtonDisabled = true;
+
+    const idempotencyKey = crypto.randomUUID();
+
+    if (tokenResult.status !== 'OK') {
+      $notify({
+        group: 'all',
+        title: 'Error',
+        text: 'Hubo un problema al iniciar proceso de compra, intente de nuevo',
+      });
+      return;
+    }
+
+    const payment = {
+      idempotencyKey,
+      locationId: SQUARE_LOCATION_ID,
+      sourceId: tokenResult.token,
+      customerId: auth.user?.customerId ?? '',
+      amountMoney: {
+        amount: cart.amount * 100,
+        currency: "USD",
+      },
+      buyerEmailAddress: auth.user.email,
+      shippingAddress: {
+        addressLine1: `${checkout.address}`,
+        home: checkout.home,
+        locality: checkout.city,
+        postalCode: checkout.zipCode,
+        country: "VE",
+        phone: checkout.phone,
+      },
+      billingAddress: {},
+      note: checkout.fullName,
+    };
+
+    const billing = await checkBilling();
+    payment.billingAddress = billing;
+    await createPayment(payment);
+
+  } catch (err) {
+    console.log(err);
+  } finally {
+    state.isLoading = false;
+    state.cardButtonDisabled = false;
+  }
+}
+
+const getProducts = async () => {
+  const itemsId = cart.cartItems.map((item) => item.id);
+
+  if (!itemsId.length || !cart.cartItems.length) return;
+
+  const productPromises = itemsId.map((id: string) => graphql<ProductsResponse>(GetProductById, { id }));
+
+  const response = await Promise.all(productPromises);
+  let products: Product[] = [];
+
+  response.forEach((res) => {
+    products = res.data.products.data;
+  });
+
+  state.productMail = products;
+  state.productsCart = products;
+}
+
+const loadSquareCard = async () => {
+  const payments = Square.payments(
+    SQUARE_APPLICATION_ID,
+    SQUARE_LOCATION_ID,
+  );
+
+  const card = await payments.card();
+  await card.attach('#card-container');
+
+  btnRef.value.$ref.addEventListener('click', async () => {
+    const tokenResult = await card.tokenize();
+    makePayment(tokenResult);
+  });
+}
+
+onMounted(async () => {
+  await getProducts();
+  await loadSquareCard();
+});
 </script>
-
-<style lang="scss" scoped>
-.highlight {
-  color: $color-1st;
-}
-
-.btn-pagar {
-  font-weight: 500;
-  font-size: 20px;
-  padding: 0;
-  color: black;
-  margin: 0;
-}
-</style>

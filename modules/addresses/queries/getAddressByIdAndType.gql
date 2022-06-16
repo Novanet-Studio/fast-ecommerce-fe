@@ -1,0 +1,12 @@
+query getAddressByIdAndType($id: Int!, $type: String!) {
+  addresses(filters: { user_id: { eq: $id }, type: { eq: $type } }) {
+    data {
+      id
+      attributes {
+        type
+        user_id
+        address
+      }
+    }
+  }
+}

@@ -1,18 +1,17 @@
 <template>
-  <td data-label="Total">
+  <td class="px-[10px] py-[20px] align-middle text-base w-[22.5rem] border-t-2 border-t-gray-200 md:text-center">
     ${{ totalQuantity }}
   </td>
 </template>
 
 <script lang="ts" setup>
-import { useCart } from '~/store/cart';
-
 type Props = {
-  product: any;
+  product: Product;
 }
 
 const props = defineProps<Props>();
-const cart = useCart();
+const { $store } = useNuxtApp();
+const cart = $store.cart();
 
 const quantity = computed(() => {
   if (!cart.cartItems.length) return null;

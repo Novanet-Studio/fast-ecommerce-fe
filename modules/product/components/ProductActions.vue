@@ -1,19 +1,22 @@
 <template >
-  <ul class="ps-product__actions">
-    <li>
-      <a to="#" data-toggle="tooltip" data-placement="top" title="Add to cart" @click.prevent="handleAddToCart">
+  <ul
+    class="absolute bottom-0 left-2/4 flex flex-nowrap justify-center items-center w-full py-[10px] bg-white transition duration-500 ease-[cubic-bezier(0.7,0.3,1)] transform -translate-x-2/4 translate-y-100">
+    <li class="mr-3">
+      <a class="flex justify-center  items-center w-9 h-9 rounded-full transition ease hover:(bg-yellow-500 text-white)"
+        href="#" title="Add to cart" @click.prevent="handleAddToCart">
         <i class="icon-bag2"></i>
       </a>
     </li>
 
-    <li>
-      <a to="#" data-toggle="tooltip" data-placement="top" title="Quick View" @click.prevent="handleOpenQuickView">
+    <li class="mr-3">
+      <a class="flex justify-center items-center w-9 h-9 rounded-full transition ease hover:(bg-yellow-500 text-white)"
+        href="#" title="Quick View" @click.prevent="handleOpenQuickView">
         <i class="icon-eye"></i>
       </a>
     </li>
-    <li>
-      <a href="#" data-toggle="tooltip" data-placement="top" title="Add to wishlist"
-        @click.prevent="handleAddItemToWishlist">
+    <li class="mr-3">
+      <a class="flex justify-center items-center w-9 h-9 rounded-full transition ease hover:(bg-yellow-500 text-white)"
+        href="#" title="Add to wishlist" @click.prevent="handleAddItemToWishlist">
         <i class="icon-heart"></i>
       </a>
     </li>
@@ -21,15 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useCart } from '~/store/cart';
-import { useProduct } from '~/store/product';
-import { useWishList } from '~/store/wishlist';
-
-type Product = {
-  id: string;
-  quantity: number;
-  price: number;
-}
+import { GetProductById } from '../queries';
 
 type Props = {
   product: Product;
@@ -39,23 +34,26 @@ type Emits = {
   (e: 'quickView', open: boolean): void;
 }
 
-const { $notify } = useNuxtApp();
+const { $notify, $store } = useNuxtApp();
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
-const cart = useCart();
-const product = useProduct();
-const wishList = useWishList();
+const graphql = useStrapiGraphQL();
+const cart = $store.cart();
+const product = $store.product();
+const wishList = $store.wishlist();
 
 const handleAddToCart = async () => {
-  const newProduct: Product = {
+  const newProduct: Partial<Product> & Record<string, unknown> = {
     id: props.product.id,
     quantity: 1,
-    price: props.product.price,
+    price: props.product.attributes.price,
   }
 
-  cart.addProductToCart(newProduct);
-  const cartItemsId = cart.cartItems.map((item) => item.id);
-  await product.getCartProducts(cartItemsId);
+  cart.addProductToCart(newProduct as any);
+  const itemsList = cart.cartItems.map((item) => graphql<ProductsResponse>(GetProductById, { id: item.id }));
+
+  const itemsResult = await Promise.all(itemsList);
+  product.cartProducts = itemsResult;
 
   $notify({
     group: 'all',

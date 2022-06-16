@@ -1,5 +1,9 @@
-import path from 'path';
-import { defineNuxtModule, extendPages, addComponentsDir } from '@nuxt/kit';
+import {
+  defineNuxtModule,
+  extendPages,
+  addComponentsDir,
+  createResolver,
+} from '@nuxt/kit';
 
 export default defineNuxtModule({
   meta: {
@@ -7,14 +11,16 @@ export default defineNuxtModule({
     configKey: 'shipping-module',
   },
   setup() {
+    const { resolve } = createResolver(import.meta.url);
+
     addComponentsDir({
-      path: path.resolve(__dirname, './components'),
+      path: resolve('./components'),
     });
 
     extendPages((pages) => {
       pages.push({
         path: '/shipping',
-        file: path.resolve(__dirname, './pages/Shipping.vue'),
+        file: resolve('./pages/Shipping.vue'),
       });
     });
   },

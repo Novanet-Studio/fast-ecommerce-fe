@@ -1,54 +1,33 @@
 <template>
-  <section class="ps-page--my-account">
-    <bread-crumb :items="breadcrumbData" />
-    <notify />
-    <div class="ps-my-account">
-      <div class="container">
-        <div class="ps-form--account">
-          <ul class="ps-tab-list">
-            <li>
-              <nuxt-link to="/login">
-                Iniciar Sesión
-              </nuxt-link>
-            </li>
-            <li class="active">
-              <nuxt-link to="/register">
-                Registrarse
-              </nuxt-link>
-            </li>
-          </ul>
-          <div class="ps-tab active">
-            <register-content />
-          </div>
-        </div>
-      </div>
+  <section>
+    <div>
+      <ul class="p-4 flex justify-center">
+        <li class="text-2xl text-dark-50 font-bold mr-8">
+          <nuxt-link to="/login">
+            Iniciar Sesión
+          </nuxt-link>
+        </li>
+        <li class="text-2xl text-yellow-500 font-bold ">
+          <nuxt-link to="/register">
+            Registrarse
+          </nuxt-link>
+        </li>
+      </ul>
+    </div>
+    <div class="mt-4">
+      <register-content />
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
 definePageMeta({
-  layout: false,
-  // transition: 'zoom',
+  layout: 'access',
   pageTransition: {
     name: 'zoom',
   },
-});
-
-const breadcrumbData = ref([
-  {
-    text: 'Inicio',
-    url: '/'
-  },
-  {
-    text: 'Registro'
+  layoutTransition: {
+    name: 'zoom',
   }
-])
-
+});
 </script>
-
-<style lang="scss" scoped>
-.ps-tab-list {
-  padding-left: 0;
-}
-</style>

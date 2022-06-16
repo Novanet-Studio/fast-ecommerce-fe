@@ -1,13 +1,20 @@
 type User = {
   id: string;
-  username: string;
   email: string;
+  username: string;
+  customerId: string;
+  blocked: boolean;
+  confirmed: boolean;
+  provider: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 type LoginResponse = {
   data: {
     login: {
       jwt: string;
+      user: User;
     };
   };
 };

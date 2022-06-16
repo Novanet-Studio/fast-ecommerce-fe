@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import links from '~/modules/shared/public/data/account-links.json';
+import links from '~/data/account-links.json';
 type Currency = '$' | '€' | 'Bs';
 
 export const useGlobal = defineStore('global', {

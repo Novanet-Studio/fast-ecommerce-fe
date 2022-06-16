@@ -7,21 +7,28 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@nuxtjs/strapi": "^1.4.0",
-    "@rollup/plugin-graphql": "^1.1.0",
-    "graphql": "^16.5.0",
-    "nuxt": "3.0.0-rc.3",
-    "sass": "1.52.1"
+    "@nuxt/image-edge": "^1.0.0-27809804.194d2d6",
+    "@nuxtjs/strapi": "^1.6.3",
+    "@rollup/plugin-graphql": "^2.0.2",
+    "graphql": "^16.6.0",
+    "nuxt": "3.0.0",
+    "nuxt-windicss": "^2.5.5",
+    "sass": "1.56.1"
   },
   "dependencies": {
-    "@kyvg/vue3-notification": "^2.3.4",
-    "@pinia/nuxt": "^0.1.9",
-    "firebase": "^9.8.2",
+    "@kevinmarrec/nuxt-pwa": "^0.11.1",
+    "@kyvg/vue3-notification": "^2.6.1",
+    "@pinia/nuxt": "^0.4.4",
+    "firebase": "^9.14.0",
+    "gitart-vue-dialog": "^2.4.1",
+    "html-to-pdfmake": "^2.4.9",
+    "jspdf": "^2.5.1",
     "jspdf-html2canvas": "^1.4.9",
-    "pinia": "^2.0.14",
-    "pinia-plugin-persistedstate": "^1.6.1",
-    "slimeform": "^0.5.2",
-    "swiper": "^8.2.2",
+    "pdfmake": "^0.2.6",
+    "pinia-plugin-persistedstate": "^2.4.0",
+    "slimeform": "^0.7.0",
+    "square": "^24.0.0",
+    "swiper": "^8.4.4",
     "yup": "^0.32.11"
   }
 }

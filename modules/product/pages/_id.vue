@@ -1,26 +1,11 @@
 <template>
   <div class="martfury">
-    <bread-crumb :breadcrumb="state.breadCrumb" layout="fullwidth" />
-    <notifications group="all" :duration="2000" :width="300" animation-name="fade-left" position="top right">
-      <template #body="props">
-        <div class="ps-notify" :class="props.className">
-          <button class="ps-notify__close" @click="props.close">
-            <i class="icon icon-cross"></i>
-          </button>
-          <div class="ps-notify__header">
-            <span>{{ props.item.title }}</span>
-          </div>
-          <div class="ps-notify__content">
-            <p>{{ props.item.text }}</p>
-          </div>
-        </div>
-      </template>
-    </notifications>
+    <bread-crumb :items="state.breadCrumb" layout="fullwidth" />
     <div class="ps-page--product">
       <div class="ps-container">
         <div class="ps-page__container">
           <div class="ps-page__left">
-            <product-detail-fullwidth v-if="product" :product="product" />
+            <product-detail-fullwidth v-if="state.product" :product="state.product" />
           </div>
           <div class="ps-page__right">
           </div>
@@ -31,22 +16,18 @@
 </template>
 
 <script lang="ts" setup>
-import { useApp } from '~/store/app';
-
-type Props = {
-  product: any;
-}
-
-defineProps<Props>();
+import { GetProductById } from '../queries';
 
 definePageMeta({
-  layout: 'layout-account',
-  // transition: 'zoom',
+  pageTransition: {
+    name: 'zoom',
+  }
 });
 
-
+const { $store, $helpers, $notify } = useNuxtApp();
+const graphql = useStrapiGraphQL();
 const route = useRoute();
-const app = useApp();
+const global = $store.global();
 
 const state = reactive({
   productId: route.params.id,
@@ -55,19 +36,35 @@ const state = reactive({
   product: null,
 });
 
+state.breadCrumb = [
+  {
+    text: 'Volver',
+    url: '/',
+  },
+];
+
+const loadProductById = async () => {
+  state.pageLoading = true;
+
+  const [{ data }, error] = await $helpers.handleAsync(graphql<ProductsResponse>(GetProductById, {
+    id: state.productId,
+  }));
+
+  if (error?.message) {
+    $notify({
+      group: 'all',
+      title: 'Error',
+      text: 'Hubo un problema al intentar cargar el producto',
+    });
+    state.pageLoading = false;
+    return;
+  }
+
+  state.product = data.products.data[0];
+};
+
 onMounted(() => {
-  // Why this?
-  setTimeout(() => state.pageLoading = false, 2000);
-
-  state.breadCrumb = [
-    {
-      text: 'Volver',
-      url: '/',
-    },
-  ];
-  app.appDrawer = false;
-  // get product by id
-  state.product = {};
-
+  loadProductById();
+  global.appDrawer = false;
 });
 </script>

@@ -25,5 +25,6 @@ module.exports = {
     'import/no-unresolved': 0,
     'object-curly-spacing': 0,
     'indent': 0,
+    'max-len': 0,
   },
 };

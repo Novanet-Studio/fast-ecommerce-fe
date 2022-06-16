@@ -1,27 +1,30 @@
 <template>
-  <div v-if="cart.cartItems.length" class="ps-form__orders ps-block--checkout-order" id="orden-resume">
-    <h3 v-if="!shipping">Tu Orden</h3>
-    <div class="ps-block--checkout-order">
-      <div class="ps-block__content">
-        <figure>
-          <figcaption>
-            <strong>Producto</strong>
-            <strong>total</strong>
+  <div v-if="cart.cartItems?.length">
+    <h3 v-if="!shipping" class="font-semibold mb-3 text-yellow-400 text-2xl">Tu Orden</h3>
+    <div>
+      <div class="px-5 py-8 mb-3 rounded-sm border border-light-600">
+        <figure class="mb-6 pb-6 border-b-2 border-b-light-600">
+          <figcaption class="flex justify-between font-normal">
+            <strong class="text-sm text-dark-200 font-semibold uppercase">Producto</strong>
+            <strong class="text-sm text-dark-200 font-semibold uppercase">total</strong>
           </figcaption>
         </figure>
-        <figure class="ps-block__items">
-          <nuxt-link v-for="(productItem, index) in product.cartProducts?.data" :to="`/product/${productItem.id}`"
-            :key="productItem.id" class="ps-product__title">
-            Cachitos {{ productItem.attributes.name }}
-            <br />
-            {{ cart.cartItems[index].quantity }} x ${{
-                productItem.attributes.price.toFixed(2)
-            }}
-          </nuxt-link>
+        <figure class="mb-6 pb-6 border-b-2 border-b-light-600">
+          <template v-for="(productList, listIndex) in product.cartProducts" :key="listIndex">
+            <template v-for="(item, index) in productList.data.products.data" :key="item.id">
+              <nuxt-link :to="`/product/${item.id}`" class="py-3 flex justify-between w-full">
+                {{ item.attributes.name }}
+              </nuxt-link>
+              <p class="text-sm text-dark-100">{{ cart.cartItems[index].quantity }} x ${{
+              item.attributes.price.toFixed(2)
+              }}
+              </p>
+            </template>
+          </template>
         </figure>
-        <figure>
-          <figcaption>
-            <strong>Subtotal</strong>
+        <figure class="mb-6 pb-6 border-b-2 border-b-light-600">
+          <figcaption class="flex justify-between font-normal">
+            <strong class="text-sm text-dark-200 font-semibold uppercase">Subtotal</strong>
             <small>$ {{ cart.amount }}</small>
           </figcaption>
         </figure>
@@ -31,15 +34,16 @@
 </template>
 
 <script lang="ts" setup>
-import { useCart } from '~/store/cart';
-import { useProduct } from '~/store/product';
-
-const cart = useCart();
-const product = useProduct();
+import { GetProductById } from '~/modules/product/queries';
 
 type Props = {
   shipping: boolean;
 };
+
+const graphql = useStrapiGraphQL();
+const { $store } = useNuxtApp();
+const cart = $store.cart();
+const product = $store.product();
 
 withDefaults(defineProps<Props>(), {
   shipping: false,
@@ -53,10 +57,13 @@ const loadCartProducts = async () => {
     return;
   }
 
-  const response = await product.getCartProducts(itemsId);
+  const productPromises = itemsId.map((id: string) => graphql<ProductsResponse>(GetProductById, { id }));
 
-  if (response)
-    cart.loading = false;
+
+  const response = await Promise.all(productPromises);
+  product.cartProducts = response;
+
+  cart.loading = false;
 }
 
 onMounted(async () => {

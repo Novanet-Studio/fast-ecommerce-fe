@@ -1,10 +1,10 @@
 <template>
-  <div class="ps-product--cart-mobile">
-    <div class="ps-product__thumbnail">
+  <div class="mb-8 flex flex-nowrap">
+    <div class="max-w-14 w-full flex-auto">
       <product-thumbnail-image :product="product" />
     </div>
-    <div class="ps-product__content">
-      <a class="ps-product__remove" href="#" @click.prevent="handleRemoveProductFromCart(product)">
+    <div class="relative pr-8 pl-5 flex-1">
+      <a class="absolute top-0 right-0" href="#" @click.prevent="handleRemoveProductFromCart(product)">
         <i class="icon-cross"></i>
       </a>
       <product-title :product="product" />
@@ -16,54 +16,51 @@
 </template>
 
 <script lang="ts" setup>
-import { useCart } from '~/store/cart';
-import { useProduct } from '~/store/product';
-import { useApp } from '~/store/app';
+import { GetProductById } from '../queries';
 
-const cartStore = useCart();
-const productStore = useProduct();
-const appStore = useApp();
+const { $store } = useNuxtApp();
 
-// TODO: refactor
-type Props = {
-  product: {
-    attributes: {
-      price: number;
-    }
-  }
-}
+const graphql = useStrapiGraphQL();
 
-defineProps<Props>();
+const cartStore = $store.cart();
+const productStore = $store.product();
+const global = $store.global();
 
-const total = computed(() => cartStore.total);
+const props = defineProps<{ product: Product; }>();
+
 const cartItems = computed(() => cartStore.cartItems);
-const cartProducts = computed(() => productStore.cartProducts);
-const currency = computed(() => appStore.currency);
+const currency = computed(() => global.currency);
 const quantity = computed(() => {
-  if (!cartItems.value.length) {
-    return null;
-  }
+  if (!cartItems.value.length) return null;
 
-  // const cartItem = this.cartItems.find(
-  //   item => item.id === this.product.id
-  // );
-  const cartItem = cartItems.value.find((item) => item.id === cartProducts.value.id);
+  const item = cartItems.value.find((item) => item.id === props.product.id);
 
-  if (!cartItem) {
-    return null;
-  }
+  if (!item) return null;
 
-  return cartItem.quantity;
+  return item.quantity;
 });
 
 const loadCartProducts = async () => {
-  if (!cartItems.value.length) productStore.cartProducts = [];
+  try {
+    if (!cartItems.value.length) productStore.cartProducts = [];
+    if (productStore.cartProducts?.length) return;
 
-  const queries = [];
-  cartStore.cartItems.forEach((item) => queries.push(item));
 
-  const response = await productStore.getCartProducts(queries);
-  if (response) cartStore.loading = false;
+    const itemsList = cartStore.cartItems.map((item) =>
+      graphql<ProductsResponse>(GetProductById, { id: item.id })
+    );
+
+    const items = await Promise.all(itemsList);
+
+    if (!items?.length) return;
+
+    productStore.cartProducts = items;
+
+  } catch (err) {
+    console.log(err);
+  } finally {
+    cartStore.loading = false;
+  }
 }
 
 const handleRemoveProductFromCart = (product: any) => {
@@ -73,3 +70,11 @@ const handleRemoveProductFromCart = (product: any) => {
   loadCartProducts();
 }
 </script>
+
+<style lang="scss" scoped>
+.ps-product__remove {
+  padding: 1rem;
+  border: 1px solid rgb(176, 62, 62);
+  border-radius: 4px;
+}
+</style>

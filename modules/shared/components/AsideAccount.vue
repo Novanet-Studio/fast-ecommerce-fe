@@ -1,25 +1,23 @@
 <template>
-  <aside class="ps-widget--account-dashboard">
-    <div class="ps-widget__header">
-      <div>
-        <h3>Hola</h3>
-        <p>{{ auth.user.username }}</p>
+  <aside class="block">
+    <div class="flex flex-row flex-nowrap justify-between items-start pb-5">
+      <div class="flex items-center">
+        <h3 class="relative text-yellow-400 text-2xl mt-0 mb-2 font-bold">Bienvenido {{ auth.user.username }}</h3>
       </div>
     </div>
-    <div class="ps-widget__content">
-      <AccountLinks :breadInfo="dynamicBreadcrumb" />
+    <div>
+      <AccountLinks :breadInfo="breadcrumb" />
     </div>
   </aside>
 </template>
 
 <script lang="ts" setup>
-import { useAuth } from '~/store/auth';
-
-const auth = useAuth();
-
 type Props = {
-  dynamicBreadcrumb(link: string): string;
+  breadcrumb(link: string): void;
 };
 
 defineProps<Props>();
+
+const { $store } = useNuxtApp();
+const auth = $store.auth();
 </script>

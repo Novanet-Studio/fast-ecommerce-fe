@@ -1,51 +1,38 @@
-import path from 'path';
-import { defineNuxtModule, addComponentsDir, addPlugin } from '@nuxt/kit';
+import {
+  defineNuxtModule,
+  addComponentsDir,
+  addPlugin,
+  createResolver,
+} from '@nuxt/kit';
 
 export default defineNuxtModule({
   meta: {
     name: 'shared-module',
     configKey: 'shared-module',
   },
-  setup(options, nuxt) {
+  setup() {
+    const { resolve } = createResolver(import.meta.url);
+
     const componentsPathList = [
       './components/common',
       './components/footer',
       './components/header',
-      './components/mobile',
+      './components/carousel',
       './components/thumbnail',
       './components/information',
       './components',
     ];
 
-    const cssPathList = [
-      './assets/fonts/Linearicons/Font/demo-files/demo.css',
-      './assets/fonts/fontawesome/css/fontawesome.css',
-      './assets/fonts/fontawesome/css/brands.css',
-      './assets/fonts/fontawesome/css/regular.css',
-      './assets/fonts/fontawesome/css/solid.css',
-      './assets/scss/style.scss',
-    ];
-
     componentsPathList.forEach((componentPath) => {
       addComponentsDir({
-        path: path.resolve(__dirname, componentPath),
+        path: resolve(componentPath),
       });
     });
 
-    cssPathList.forEach((cssPath) => {
-      nuxt.options.css.push(path.resolve(__dirname, cssPath));
-    });
-
-    // Register pinia alias
-    nuxt.options.alias.pinia = 'pinia/dist/pinia.mjs';
-
     // Register plugins
-    addPlugin(path.resolve(__dirname, './plugins/pinia.ts'));
-    addPlugin(path.resolve(__dirname, './plugins/firebase.ts'));
-    addPlugin(path.resolve(__dirname, './plugins/vue-notification.ts'));
-    addPlugin(path.resolve(__dirname, './plugins/helpers.ts'));
+    addPlugin(resolve('./plugins/helpers.ts'));
 
     // Global Store
-    addPlugin(path.resolve(__dirname, './plugins/store.ts'));
+    addPlugin(resolve('./plugins/store.ts'));
   },
 });

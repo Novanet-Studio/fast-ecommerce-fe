@@ -1,22 +1,22 @@
 <template>
   <div>
-    <!-- <h1>{{ product.title }}</h1> -->
     <h1>{{ product.attributes.name }}</h1>
     <div class="ps-product__meta">
       <!-- <p>
-                Tipo:
-                <nuxt-link to="/shop">
-                    <a class="ml-2 text-capitalize">
-                        {{product.category.name }}
-                    </a>
-                </nuxt-link>
-            </p> -->
-      <div class="ps-product__rating">
+        Tipo:
+        <nuxt-link to="/shop">
+          <a class="ml-2 text-capitalize">
+            {{ product.category.name }}
+          </a>
+        </nuxt-link>
+      </p> -->
+      <!-- <div class="ps-product__rating">
         <rating />
         <span>(1 review)</span>
-      </div>
+      </div> -->
     </div>
-    <h4 v-if="product.attributes.is_sale === true" class="ps-product__price sale">
+    <!-- FIX: here is "is_sale" not "sale_price" -->
+    <h4 v-if="!!product.attributes.sale_price" class="ps-product__price sale">
       <del class="mr-2"> $ {{ product.attributes.sale_price }}</del>
       ${{ product.attributes.price }}
     </h4>
@@ -28,7 +28,7 @@
 
 <script lang="ts" setup>
 type Props = {
-  product: any;
+  product: Product;
 }
 
 defineProps<Props>();

@@ -1,5 +1,9 @@
-import path from 'path';
-import { defineNuxtModule, extendPages, addComponentsDir } from '@nuxt/kit';
+import {
+  defineNuxtModule,
+  extendPages,
+  addComponentsDir,
+  createResolver,
+} from '@nuxt/kit';
 
 export default defineNuxtModule({
   meta: {
@@ -7,20 +11,21 @@ export default defineNuxtModule({
     configKey: 'invoices-module',
   },
   setup() {
+    const { resolve } = createResolver(import.meta.url);
+
     addComponentsDir({
-      path: path.resolve(__dirname, './components'),
+      path: resolve('./components'),
     });
 
     extendPages((pages) => {
       pages.push({
         path: '/invoices',
-        file: path.resolve(__dirname, './pages/Invoices.vue'),
-        children: [
-          {
-            path: ':id',
-            file: path.resolve(__dirname, './pages/_id.vue'),
-          },
-        ],
+        file: resolve('./pages/Invoices.vue'),
+      });
+
+      pages.push({
+        path: '/invoice/:id',
+        file: resolve('./pages/_id.vue'),
       });
     });
   },

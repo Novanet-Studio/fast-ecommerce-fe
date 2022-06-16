@@ -1,17 +1,30 @@
 import { defineStore } from 'pinia';
 
+interface ProductStore {
+  product: unknown | null;
+  products: unknown[] | null;
+  searchResults: unknown | null;
+  cartProducts: ProductsResponse[] | null;
+  wishlistItems: ProductsResponse[] | null;
+  compareItems: unknown | null;
+  brands: unknown | null;
+  categories: unknown | null;
+  total: number;
+}
+
 export const useProduct = defineStore('product', {
-  state: () => ({
-    product: null,
-    products: null,
-    searchResults: null,
-    cartProducts: null,
-    wishlistItems: null,
-    compareItems: null,
-    brands: null,
-    categories: null,
-    total: 0,
-  }),
+  state: () =>
+    ({
+      product: null,
+      products: null,
+      searchResults: null,
+      cartProducts: null,
+      wishlistItems: null,
+      compareItems: null,
+      brands: null,
+      categories: null,
+      total: 0,
+    } as ProductStore),
   actions: {
     // async getProducts(payload) {
     // const reponse = await Repository.get(

@@ -1,26 +1,27 @@
 <template>
   <client-only>
-    <div class="layout-app">
-      <div class="layout-app--wrapper">
-        <div class="layout-main">
-          <div class="layout-main--wrapper">
+    <div class="flex relative">
+      <div class="flex-auto backface-hidden flex flex-col min-h-screen max-w-full relative">
+        <div class="flex flex-[1_0_auto] max-w-full transition animate-ease-[cubic-bezier(0.4,0,0.2,1)]">
+          <div class="flex-auto max-w-full relative">
             <the-header />
-            <section class="ps-my-account ps-page--account">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="ps-section__left">
-                      <aside-account :bread="dynamicBreadcrumb" />
+            <section class="pt-12 min-h-screen">
+              <!-- container -->
+              <div class="max-w-sm p-3 mx-auto flex sm:max-w-lg md:max-w-xl lg:max-w-7xl">
+                <div class="flex flex-wrap flex-auto -m-3">
+                  <div class="flex-[1_1_100%] mb-8 lg:(flex-[0_0_33.333333%] mb-8)">
+                    <div>
+                      <aside-account :breadcrumb="dynamicBreadcrumb" />
                     </div>
                   </div>
-                  <div class="col-lg-8">
+                  <div class="flex-[0_0_100%] flex lg:flex-[0_0_66.666666%]">
                     <nuxt-page />
                   </div>
                 </div>
               </div>
             </section>
-            <the-footer />
-            <navigation-list />
+            <footer />
+            <!-- <navigation-list /> -->
             <notify />
           </div>
         </div>
@@ -30,10 +31,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useApp } from '~/store/app';
-
+const { $store } = useNuxtApp();
 const route = useRoute();
-const app = useApp();
+const global = $store.global();
 
 const breadCrumb = ref([
   {
@@ -47,7 +47,7 @@ const breadCrumb = ref([
 
 const accountRoutes = ['/shopping-cart', '/checkout'];
 
-const dynamicBreadcrumb = (path: string) => {
+const dynamicBreadcrumb = (path: string): void => {
   if (!accountRoutes.includes(route.path)) {
     breadCrumb.value[1].text = path;
   }
@@ -57,8 +57,8 @@ onMounted(() => {
   // TODO: check why this logic
   if (!accountRoutes.includes(route.path)) {
     // 📝 why this name?
-    const firstClick = app.getLinks.find((item) => item.url === route.path);
-    breadCrumb.value[1].text = firstClick.text;
+    const routePath = global.getLinks.find((item) => item.url === route.path);
+    breadCrumb.value[1].text = routePath.text;
   }
 })
 
@@ -66,7 +66,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 // This styles are copied from farine-frontend (v-app, v-main)
-.layout-app {
+/* .layout-app {
   display: flex;
   position: relative;
 }
@@ -92,5 +92,5 @@ onMounted(() => {
   flex: 1 1 auto;
   max-width: 100%;
   position: relative;
-}
+} */
 </style>

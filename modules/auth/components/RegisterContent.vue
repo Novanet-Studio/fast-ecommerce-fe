@@ -1,63 +1,48 @@
 <template>
   <form>
-    <div class="ps-form__content">
-      <h5>Crear una cuenta</h5>
-      <div class="form-group">
-        <input v-model="form.username" placeholder="John Doe" class="ps-text-field"
-          :class="status.username.isError && 'input-error'" />
-        <div v-show="status.username.isError" class="errors">
-          {{ status.username.message }}
-        </div>
-      </div>
-      <div class="form-group">
-        <input v-model="form.email" placeholder="john@doe.com" class="ps-text-field"
-          :class="status.email.isError && 'input-error'" />
-        <div class="errors">
-          {{ status.email.message }}
-        </div>
-      </div>
-      <div class="form-group">
-        <input v-model="form.password" placeholder="Contraseña" class="ps-text-field"
-          :class="status.password.isError && 'input-error'" />
-        <div class="errors">
-          {{ status.password.message }}
-        </div>
-      </div>
-      <div class="form-group">
-        <input v-model="form.confirmPassword" placeholder="Confirmar contraseña" class="ps-text-field"
-          :class="status.confirmPassword.isError && 'input-error'" />
-        <div class="errors">
-          {{ status.confirmPassword.message }}
-        </div>
-      </div>
-      <div class="form-group submit">
-        <button class="ps-btn ps-btn--fullwidth" type="submit" @click.prevent="onSubmit(handleSubmit)">
-          Registrar cuenta
-        </button>
+    <div class="bg-white p-6 max-w-[26rem] mx-auto mb-4">
+      <h5 class="text-base mb-4 text-yellow-500">Crear una cuenta</h5>
+      <the-input v-model="form.username" placeholder="John Doe" :is-error="status.username.isError"
+        :error-message="status.username.message" />
+
+      <the-input v-model="form.email" placeholder="john@doe.com" :is-error="status.email.isError"
+        :error-message="status.email.message" />
+
+      <the-input v-model="form.password" placeholder="Ingresa tu contraseña" :is-error="status.password.isError"
+        :error-message="status.password.message" />
+
+      <the-input v-model="form.confirmPassword" placeholder="Confirma contraseña"
+        :is-error="status.confirmPassword.isError" :error-message="status.confirmPassword.message" />
+
+      <div class="py-3 mb-4 mt-2">
         <template v-if="state.isLoading">
           <loading />
         </template>
+        <the-button v-else text="Registrar cuenta" @click="onSubmit(handleSubmit)" />
       </div>
     </div>
-    <div class="ps-form__footer"></div>
   </form>
 </template>
 
 <script lang="ts" setup>
+import { useForm } from 'slimeform';
+import * as yup from 'yup';
+import { yupFieldRule } from 'slimeform/resolvers';
+import { HttpsCallable } from '@/modules/shared/shared-types';
+import registerQuery from '../queries/register.gql';
+
 definePageMeta({
   pageTransition: {
     name: 'zoom',
   }
 });
 
-import { useForm } from 'slimeform';
-import * as yup from 'yup';
-import { yupFieldRule } from 'slimeform/resolvers';
-import registerQuery from '../queries/register.gql';
-
 const graphql = useStrapiGraphQL();
+const { setToken } = useStrapiAuth();
 const router = useRouter();
-const { $notify, $helpers } = useNuxtApp();
+const { $store, $notify, $helpers, $httpsCallable } = useNuxtApp();
+
+const auth = $store.auth();
 
 const state = reactive({
   isLoading: false,
@@ -103,8 +88,61 @@ const resetState = () => {
   state.isDisabled = false;
 }
 
+const createCustomer = async ({ user, email }: { user: string, email: string }) => {
+  const customerId = $httpsCallable(HttpsCallable.CreateCustomer);
+  const idempotencyKey = crypto.randomUUID();
+  const data = {
+    idempotencyKey,
+    givenName: user,
+    emailAddress: email,
+  };
+  const customerResponse = await customerId(data);
+  return customerResponse;
+}
+
+const registerUser = async (customerId: string) => {
+  const body = {
+    email: form.email,
+    username: form.username,
+    password: form.password,
+    customerId,
+  };
+  const [{ data }, error] = await $helpers.handleAsync(graphql<RegisterResponse>(registerQuery, body));
+
+  if (!data) {
+    $notify({
+      group: 'all',
+      title: 'Oops',
+      text: 'El usuario o email ya existen',
+    });
+    resetState();
+    return;
+  }
+
+  if (error?.message) {
+    $notify({
+      group: 'all',
+      title: 'Oops',
+      text: 'Hubo un problema al registrarte',
+    });
+    resetState();
+    return;
+  }
+
+  setToken(data.register.jwt);
+  auth.authenticated = true;
+  Object.assign(auth.user, data.register.user);
+
+  $notify({
+    group: 'all',
+    title: 'Hey!',
+    text: 'Te has registrado exitosamente!',
+  });
+
+  router.push('/');
+}
+
 const handleSubmit = async () => {
-  console.log(form);
   state.isLoading = true;
   state.isDisabled = true;
 
@@ -118,135 +156,25 @@ const handleSubmit = async () => {
     return;
   }
 
-  const [{ data }, error] = await $helpers.handleAsync(graphql<RegisterResponse>(registerQuery, {
-    ...form,
-  }));
+  const response = await createCustomer({
+    user: form.username,
+    email: form.email,
+  }) as any;
 
-  if (error?.message) {
+  if (!response.data.id) {
     $notify({
       group: 'all',
-      title: 'Hey!',
-      text: 'Hubo un error al intentar registrarte!',
+      title: 'Error!',
+      text: 'Hubo un error al intentar registrarte',
     });
     resetState();
     return;
   }
 
-  console.log(data);
+  const customerId = response.data.id;
 
-  $notify({
-    group: 'all',
-    title: 'Hey!',
-    text: 'Te has registrado exitosamente!',
-  });
+  await registerUser(customerId);
+
   resetState();
-
-  router.push('/login');
 }
 </script>
-
-
-// export default {
-//   methods: {
-//     async handleSubmit() {
-//       this.$v.$touch();
-//       if (!this.$v.$invalid) {
-//         // creating customerId in square and passing it to strapi to save that reference
-//         try {
-//           const btn = document.getElementById("registerBtn");
-//           btn.disabled = true;
-//           this.loading = true;
-//           // return console.log(this.username, this.email)
-//           await this.createCustomer(this.username, this.email).then(
-//             async (res) => {
-//               const respuesta = res;
-//               // return console.log(res)
-//               if (respuesta.length > 0) {
-//                 const customerid = respuesta[0].id;
-//                 if (customerid && respuesta[1] == "success") {
-//                   this.registerUser(customerid);
-//                   btn.disabled = false;
-//                 }
-//               } else {
-//                 this.$notify({
-//                   group: 'all',
-//                   title: 'Error!',
-//                   text: `Ha ocurrido un error`
-//                 });
-//                 // alert("Ha ocurrido un error");
-//               }
-//             }
-//           );
-//         } catch (error) {
-//           this.$notify({
-//             group: 'all',
-//             title: 'Error!',
-//             text: `Error al registrar!`
-//           });
-//           console.log(error, "Error al registrar");
-//         }
-//       }
-//     },
-
-//     async createCustomer(username, email) {
-//       var idempotencyKeyGen = uuidv4();
-//       const data = {
-//         idempotencyKey: idempotencyKeyGen,
-//         givenName: username,
-//         emailAddress: email,
-//       };
-//       var datos = [];
-//       const customerId = this.$fire.functions.httpsCallable("createCustomer");
-//       await customerId(data)
-//         .then(async (res) => {
-//           const squareResponse = JSON.parse(res.data);
-//           const customerinfo = await squareResponse.customer;
-//           if (customerinfo) {
-//             datos.push(customerinfo);
-//             datos.push("success");
-//           }
-//           console.log("===> respuesta square", squareResponse.customer);
-//           // return datos
-//         })
-//         .catch((error) => {
-//           console.log(error);
-//         });
-//       return datos;
-//     },
-
-//     async registerUser(customerId) {
-//       const data = {
-//         username: this.username,
-//         email: this.email,
-//         password: this.password,
-//         customer_id: customerId,
-//       };
-//       const respuesta = await this.$store.dispatch("auth/setNewUser", data);
-//       if (respuesta.jwt) {
-//         this.loading = false;
-//         //status usuario loggeado true
-//         this.$notify({
-//           group: 'all',
-//           title: 'Exito',
-//           text: `Usuario registrado con exito`
-//         });
-//         this.$store.dispatch("auth/setAuthStatus", true);
-//         this.$cookies.set("auth", respuesta, {
-//           path: "/",
-//           maxAge: 60 * 60 * 24 * 7,
-//         });
-//         this.$router.push("/");
-//         // alert("Usuario registrado con éxito");
-//       } else {
-//         this.$notify({
-//           group: 'all',
-//           title: 'Error',
-//           text: `Hubo un error al registrar`
-//         });
-//         // alert(respuesta.alert);
-//       }
-
-//       console.log(respuesta);
-//     },
-//   },
-// };

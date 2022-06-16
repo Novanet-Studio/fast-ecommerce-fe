@@ -59,7 +59,7 @@ export const useCart = defineStore('cart', {
         this.total = 0;
       }
     },
-    increaseItemQuantity(payload: CartItem) {
+    increaseItemQuantity(payload: Product) {
       let selectedItem = this.cartItems.find((item) => item.id === payload.id);
       if (selectedItem) {
         selectedItem.quantity++;
@@ -84,71 +84,22 @@ export const useCart = defineStore('cart', {
 
     addProductToCart(payload: CartItem) {
       this.addItem(payload);
-      // const cookieParams = {
-      //   total: this.total,
-      //   amount: this.amount,
-      //   cartItems: this.cartItems,
-      // };
-
-      // this.$cookies.set('cart', cookieParams, {
-      //   path: '/',
-      //   maxAge: 60 * 60 * 24 * 7,
-      // });
     },
 
     removeProductFromCart(payload) {
       this.removeItem(payload);
-      // const cookieParams = {
-      //   total: this.total,
-      //   amount: this.amount,
-      //   cartItems: this.cartItems,
-      // };
-
-      // this.$cookies.set('cart', cookieParams, {
-      //   path: '/',
-      //   maxAge: 60 * 60 * 24 * 7,
-      // });
     },
 
-    increaseCartItemQuantity(payload) {
+    increaseCartItemQuantity(payload: Product) {
       this.increaseItemQuantity(payload);
-      // const cookieParams = {
-      //   total: this.total,
-      //   amount: this.amount,
-      //   cartItems: this.cartItems,
-      // };
-
-      // this.$cookies.set('cart', cookieParams, {
-      //   path: '/',
-      //   maxAge: 60 * 60 * 24 * 7,
-      // });
     },
 
     decreaseCartItemQuantity(payload) {
       this.decreaseItemQuantity(payload);
-      // const cookieParams = {
-      //   total: this.total,
-      //   amount: this.amount,
-      //   cartItems: this.cartItems,
-      // };
-
-      // this.$cookies.set('cart', cookieParams, {
-      //   path: '/',
-      //   maxAge: 60 * 60 * 24 * 7,
-      // });
     },
 
     clearCart() {
       this.clearCartItems();
-      // const cookieParams = {
-      //   total: 0,
-      //   amount: 0,
-      //   cartItems: [],
-      // };
-      // this.$cookies.set('cart', cookieParams, {
-      //   path: '/',
-      //   maxAge: 60 * 60 * 24 * 7,
-      // });
     },
   },
   persist: true,

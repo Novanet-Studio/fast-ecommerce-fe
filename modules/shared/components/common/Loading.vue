@@ -1,5 +1,5 @@
 <template>
-  <div class="ps-loading--progress">
+  <div class="w-full flex items-center justify-center">
     <div class="lds-ellipsis">
       <div></div>
       <div></div>
@@ -14,8 +14,8 @@
 .lds-ellipsis {
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
 
 .lds-ellipsis div {

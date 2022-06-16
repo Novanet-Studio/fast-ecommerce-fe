@@ -1,20 +1,14 @@
 <template>
-  <p v-if="product.isSale" class="ps-product__price sale">
-    ${{ product.price }}
-    <del class="ml-2"> ${{ product.salePrice }}</del>
-  </p>
-  <p v-else class="ps-product__price">${{ product.price }}</p>
+  <!-- <p v-if="product.attributes.sale_price" class="ps-product__price sale">
+    ${{ product.attributes.price }}
+    <del class="ml-2"> ${{ product.attributes.sale_price }}</del>
+  </p> -->
+  <p class="relative text-base text-dark-200">${{ product.attributes.price }}</p>
 </template>
 
 <script lang="ts" setup>
 type Props = {
-  product: {
-    id: string;
-    quantity: number;
-    price: number;
-    salePrice: number;
-    isSale: boolean;
-  }
+  product: Product;
 }
 
 defineProps<Props>();

@@ -5,14 +5,13 @@
 </template>
 
 <script lang="ts" setup>
-import { useCart } from '~/store/cart';
-
 type Props = {
-  product: any;
+  product: Product;
 }
 
+const { $store } = useNuxtApp();
 const props = defineProps<Props>();
-const cart = useCart();
+const cart = $store.cart();
 
 // TODO: Quantity refactor, move to one store as method
 const quantity = computed(() => {

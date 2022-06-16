@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 type Props = {
-  product: any;
+  product: Product;
 };
 
 defineProps<Props>();

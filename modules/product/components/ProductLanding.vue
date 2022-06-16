@@ -1,33 +1,16 @@
 <template>
-  <div v-if="category.attributes.products.data.length"
-    class="ps-product-list ps-clothings ps-section--carousel-outside">
-    <div class="ps-container">
-      <div class="ps-section__header">
-        <h3>{{ category.attributes.name }}</h3>
+  <div v-if="category.attributes.products.data.length" class="pb-20">
+    <div class="max-w-[1650px] mx-auto px-[15px]">
+      <div class="flex flex-nowrap justify-between items-center px-5 py-4 bg-light-600 border-b-2 border-b-gray-300">
+        <h3 class="mb-0 inline-block text-xl font-medium text-yellow-500">{{ category.attributes.name }}</h3>
       </div>
-      <div class="ps-section__content">
-        <swiper :navigation="true" :modules="modules" :space-between="30" :centered-slides="true" :autoplay="{
-          delay: 2500,
-          disableOnInteraction: false,
-        }">
-          <swiper-slide style="height: 15rem; width: 100%">1</swiper-slide>
+      <!-- ps-section__content -->
+      <div class="relative pt-6">
+        <swiper navigation :modules="modules" :slides-per-view="5" :space-between="0">
+          <swiper-slide v-for="product in products" :key="product.id" class="!w-[260px]">
+            <product-default :product="product" />
+          </swiper-slide>
         </swiper>
-        <!-- <carousel-arrows type="simple" />
-                <div
-                    class="ps-carousel outside"
-                    v-swiper:carousel="carouselSetting"
-                >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="product in products">                  
-                         
-                            <product-default :product="product" />
-                        </div>
-                    </div> -->
-        <!--Carousel controls-->
-        <!-- <div
-                        class="swiper-pagination swiper-pagination-bullets"
-                    ></div>
-                </div> -->
       </div>
     </div>
   </div>
@@ -36,26 +19,42 @@
 <script lang="ts" setup>
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+
+import { GetProductsByCategoryId } from '../queries';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// TODO: add typings
 type Props = {
-  category: any;
+  category: Category;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
+const { $helpers, $notify } = useNuxtApp();
+const graphql = useStrapiGraphQL();
 
-// TODO: get products by categories
-const products = ref([]);
-const modules = ref([Autoplay, Navigation, Pagination]);
+const products = ref<Product[]>([]);
+const modules = [Autoplay, Navigation, Pagination];
 
 const productsByCategory = async () => {
-  // TODO: extract categories from database
+  const [{ data }, error] = await $helpers.handleAsync(graphql<ProductsResponse>(GetProductsByCategoryId, {
+    id: props.category.id,
+  }));
+
+  if (error?.message) {
+    $notify({
+      group: '',
+      title: 'Error',
+      text: 'Hubo un error al intentar cargar los productos',
+    });
+    return;
+  }
+
+  products.value = data.products.data;
 }
 
-onMounted(async () => {
-  await productsByCategory();
+onMounted(() => {
+  productsByCategory();
 });
 </script>

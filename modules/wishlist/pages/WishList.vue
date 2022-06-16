@@ -1,23 +1,20 @@
 <template>
-  <section class="ps-page--my-account">
-    <bread-crumb :breadcrumb="breadCrumb" />
+  <section>
+    <!-- <bread-crumb :items="breadCrumb" /> -->
     <wish-list-content />
   </section>
 </template>
 
 <script lang="ts" setup>
-import { useWishList } from '~/store/wishlist';
-import { useProduct } from '~/store/product';
-
 definePageMeta({
   layout: 'layout-account',
+  layoutTransition: {
+    name: 'zoom',
+  },
   pageTransition: {
-    // TODO: add zoom transition
+    name: 'zoom',
   },
 });
-
-const wishlist = useWishList();
-const product = useProduct();
 
 const breadCrumb = ref([
   {
@@ -28,12 +25,4 @@ const breadCrumb = ref([
     text: 'List de deseos',
   }
 ]);
-
-onMounted(async () => {
-  const itemsId = wishlist.items.map((item) => item.id);
-
-  if (itemsId.length) {
-    await product.wishlistItems(itemsId);
-  }
-});
 </script>

@@ -22,7 +22,12 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: 'layout-account',
-  // transition: 'zoom',
+  pageTransition: {
+    name: 'zoom',
+  },
+  layoutTransition: {
+    name: 'zoom',
+  },
   // middleware: 'authentication',
 });
 </script>

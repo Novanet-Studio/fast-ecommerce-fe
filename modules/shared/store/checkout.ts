@@ -19,7 +19,16 @@ export const useCheckout = defineStore('checkout', {
     home: '',
     city: '',
     zipCode: '',
+    phone: '',
   }),
+  getters: {
+    fullName() {
+      return `${this.name} ${this.lastName}`;
+    },
+    fullAddress() {
+      return `${this.address}, ${this.city}, ${this.zipCode}`;
+    },
+  },
   actions: {
     shippingInfo(info: ShippingInfo) {
       this.email = info.email;
@@ -44,6 +53,7 @@ export const useCheckout = defineStore('checkout', {
               date: new Date().toLocaleDateString(),
               createdAt: new Date().toLocaleDateString(),
               paid: true,
+              amount: 20,
               status: '',
             },
           },

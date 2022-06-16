@@ -1,5 +1,9 @@
-import path from 'path';
-import { defineNuxtModule, extendPages, addComponentsDir } from '@nuxt/kit';
+import {
+  defineNuxtModule,
+  extendPages,
+  addComponentsDir,
+  createResolver,
+} from '@nuxt/kit';
 
 export default defineNuxtModule({
   meta: {
@@ -7,14 +11,20 @@ export default defineNuxtModule({
     configKey: 'addresses-module',
   },
   setup() {
+    const { resolve } = createResolver(import.meta.url);
+
     addComponentsDir({
-      path: path.resolve(__dirname, './components'),
+      path: resolve('./components'),
     });
 
     extendPages((pages) => {
       pages.push({
         path: '/addresses',
-        file: path.resolve(__dirname, './pages/Addresses.vue'),
+        file: resolve('./pages/Addresses.vue'),
+      });
+      pages.push({
+        path: '/edit-address',
+        file: resolve('./pages/EditAddress.vue'),
       });
     });
   },

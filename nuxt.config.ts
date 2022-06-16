@@ -1,16 +1,29 @@
-import { defineNuxtConfig } from 'nuxt';
+// import { defineNuxtConfig } from 'nuxt';
 import { resolve } from 'path';
 import gql from '@rollup/plugin-graphql';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      script: [
+        {
+          type: 'module',
+          src: 'https://sandbox.web.squarecdn.com/v1/square.js',
+        },
+      ],
+    },
+  },
   modules: [
     // Modules
+    '@pinia/nuxt',
     '@nuxtjs/strapi',
+    'nuxt-windicss',
+    '@kevinmarrec/nuxt-pwa',
+    '@nuxt/image-edge',
 
     // Custom
     '~/modules/shared/module',
-    '~/modules/home/module',
     '~/modules/product/module',
     '~/modules/auth/module',
     '~/modules/addresses/module',
@@ -18,13 +31,22 @@ export default defineNuxtConfig({
     '~/modules/shipping/module',
     '~/modules/shopping-cart/module',
     '~/modules/wishlist/module',
-    // '~/modules/compare/module',
-    // '~/modules/edit-compare/module',
+    '~/modules/invoices/module',
+    '~/modules/payment/module',
+  ],
+
+  css: [
+    'virtual:windi.css',
+    'virtual:windi-devtools',
+    '~/static/fontawesome/css/fontawesome.css',
+    '~/static/fontawesome/css/brands.css',
+    '~/static/fontawesome/css/regular.css',
+    '~/static/fontawesome/css/solid.css',
+    '~/static/Linearicons/Font/demo-files/demo.css',
   ],
 
   dir: {
     assets: resolve(__dirname, './modules/shared/assets'),
-    public: resolve(__dirname, './modules/shared/public'),
   },
 
   runtimeConfig: {
@@ -37,18 +59,50 @@ export default defineNuxtConfig({
       FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
       FIREBASE_ID: process.env.FIREBASE_ID,
       FIREBASE_MEASURENT_ID: process.env.FIREBASE_MEASURENT_ID,
+      SQUARE_APPLICATION_ID: process.env.SQUARE_APPLICATION_ID,
+      SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
     },
   },
 
   typescript: {
     tsConfig: {
       compilerOptions: {
-        types: [resolve(__dirname, './types/app.d.ts')],
+        types: ['nuxt-windicss', resolve(__dirname, './types/app.d.ts')],
       },
     },
   },
 
   vite: {
     plugins: [gql()],
+  },
+
+  pwa: {
+    meta: {
+      title: 'Tienda en mano',
+      name: 'Tienda en mano Aplicación web',
+      author: 'Novanet Studio <info@novanet.studio>',
+      description: 'Tienda en online para vender tus productos online',
+      theme_color: '#fcd34d',
+      lang: 'es',
+    },
+    manifest: {
+      name: 'Tienda en mano Aplicación web',
+      short_name: 'Tienda en mano',
+      description: 'Tienda en online para vender tus productos online',
+      start_url: '/',
+      display: 'standalone',
+      background_color: '#ffffff',
+      theme_color: '#fcd34d',
+    },
+    icon: { source: 'static/favicon.png' },
+    /*workbox: {
+      enabled: true,
+    },*/
+  },
+
+  image: {
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/novanet-studio/image/upload/',
+    },
   },
 });

@@ -1,24 +1,23 @@
 <template>
-  <div class="form-group--number">
-    <button class="up" @click.prevent="handleIncreaseQuantity">
+  <div class="max-w-[6.25rem] flex items-center justify-between border border-gray-300">
+    <button class="p-2" @click.prevent="handleIncreaseQuantity">
       <i class="fa fa-plus"></i>
     </button>
-    <button class="down" @click.prevent="handleDescreaseQuantity">
+    <input class="h-9 w-6 text-center" v-model="quantity" type="text" disabled />
+    <button class="p-2" @click.prevent="handleDescreaseQuantity">
       <i class="fa fa-minus"></i>
     </button>
-    <input v-model="quantity" class="form-control" type="text" disabled />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useCart } from '~/store/cart';
-
 type Props = {
-  product: any;
+  product: Product;
 }
 
 const props = defineProps<Props>();
-const cart = useCart();
+const { $store } = useNuxtApp();
+const cart = $store.cart();
 
 const quantity = computed(() => {
   if (!cart.cartItems.length) return null;

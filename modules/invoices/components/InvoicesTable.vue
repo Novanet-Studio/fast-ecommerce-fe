@@ -11,29 +11,27 @@
         </tr>
       </thead>
       <tbody v-if="!state.page">
-        <tr v-for="item in state.tableInvoices" :key="item.id"
-          @click="goToInvoice(item.attributes.id_invoice_user, item)">
-          <td class="invoice-hover">{{ item.attributes.id_invoice_user }}</td>
-          <td>{{ item.attributes.payment_id }}</td>
-          <td>{{ item.attributes.date }}</td>
-          <td>${{ item.attributes.amount }}</td>
-          <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
-          <td v-else>{{ item.attributes.status }}</td>
+        <tr v-for="item in state.tableInvoices" :key="item.id" @click="goToInvoice(item.id_invoice_user, item)">
+          <td class="invoice-hover">{{ item.id_invoice_user }}</td>
+          <td>{{ item.payment_id }}</td>
+          <td>{{ item.date }}</td>
+          <td>${{ item.amount }}</td>
+          <td v-if="item.paid === true" class="status-color">{{ item.status }}</td>
+          <td v-else>{{ item.status }}</td>
         </tr>
       </tbody>
       <tbody v-else>
-        <tr v-for="item in state.tableInvoices" :key="item.id"
-          @click="goToInvoice(item.attributes.id_invoice_user, item)">
-          <td class="invoice-hover">{{ item.attributes.id_invoice_user }}</td>
-          <td>{{ item.attributes.payment_id }}</td>
-          <td>{{ item.attributes.date }}</td>
-          <td>${{ item.attributes.amount }}</td>
-          <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
-          <td v-else>{{ item.attributes.status }}</td>
+        <tr v-for="item in state.tableInvoices" :key="item.id" @click="goToInvoice(item.id_invoice_user, item)">
+          <td class="invoice-hover">{{ item.id_invoice_user }}</td>
+          <td>{{ item.payment_id }}</td>
+          <td>{{ item.date }}</td>
+          <td>${{ item.amount }}</td>
+          <td v-if="item.paid === true" class="status-color">{{ item.status }}</td>
+          <td v-else>{{ item.status }}</td>
         </tr>
       </tbody>
     </table>
-    <h4 v-else>No posees ninguna factura aun!</h4>
+    <h4 class="text-lg text-yellow-400 font-bold mb-3" v-else>No posees ninguna factura aun!</h4>
     <div class="ps-pagination" v-if="state.page">
       hola
       <ul class="pagination">
@@ -52,16 +50,26 @@
 </template>
 
 <script lang="ts" setup>
-import { useAuth } from '~/store/auth';
-import { useCheckout } from '~/store/checkout';
-import { useInvoice } from '~/store/invoice';
+import { GetInvoicesByUserId } from '../queries';
 
+const { $store } = useNuxtApp();
+const graphql = useStrapiGraphQL();
 const router = useRouter();
-const auth = useAuth();
-const checkout = useCheckout();
-const invoice = useInvoice();
+const auth = $store.auth();
+const invoice = $store.invoice();
 
-const state = reactive({
+const TABLE_LIMIT = 10;
+
+type State = {
+  invoiceExist: boolean;
+  tableInvoices: InvoiceTableDetail[] | null;
+  page: boolean;
+  pages: any[];
+  number: string | null;
+  invoicesList: InvoiceDetail[] | null;
+}
+
+const state = reactive<State>({
   invoiceExist: false,
   tableInvoices: null,
   page: false,
@@ -71,13 +79,13 @@ const state = reactive({
 });
 
 const pagination = () => {
-  if (state.invoiceExist !== false) {
-    if (state.tableInvoices.length > 10) {
+  if (state.invoiceExist) {
+    if (state.tableInvoices.length > TABLE_LIMIT) {
       state.page = true;
-      state.number = (state.tableInvoices.length / 10).toFixed(0);
+      state.number = (state.tableInvoices.length / TABLE_LIMIT).toFixed(0);
       // TODO: refactor this
-      var pages = []
-      for (let i = 1; i <= (state.number); i++) {
+      let pages = []
+      for (let i = 1; i <= Number(state.number); i++) {
         pages.push(i);
       }
       state.pages = pages;
@@ -89,38 +97,32 @@ const pagination = () => {
 const setPageInvoice = (number: any) => console.log(number);
 
 const goToInvoice = (invoiceId: string, invoiceItem: any) => {
+  // invoice.invoice = invoiceItem;
   invoice.invoice = invoiceItem;
-  // const cookieParams = {
-  //   invoice: invoice
-  // }
-  // this.$cookies.set('invoice', cookieParams, {
-  //   path: '/',
-  //   maxAge: 60 * 60 * 24 * 7
-  // });
-  // this.$router.push(`/invoice/${idInvUser}`)
   router.push(`/invoice/${invoiceId}`);
 }
 
 const getPayments = async () => {
-  const invoicesList = await checkout.getInvoicesList(auth.user.id);
-  if (!invoicesList.data.length) {
+  const { data: { invoices } } = await graphql<InvoicesResponse>(GetInvoicesByUserId, { id: auth.user.id });
+
+  if (!invoices.data.length) {
     state.invoiceExist = false;
     return;
   }
 
-  // TODO: refactor this
-  const res = invoicesList.data
   state.invoiceExist = true;
-  for (let i = 0; i < res.length; i++) {
-    res[i].attributes.id_invoice_user = i + 1;
-    res[i].attributes.date = new Date(res[i].attributes.createdAt).toLocaleDateString()
-    if (res[i].attributes.paid === true) {
-      res[i].attributes.status = 'Pagado'
-    } else {
-      res[i].attributes.status = 'Cancelado'
-    }
-  }
-  state.tableInvoices = res
+  state.tableInvoices = invoices.data.map((invoice, index) => {
+    const item = invoice as unknown as { id: string, attributes: InvoiceDetail };
+    const invoices = {
+      ...item.attributes,
+      id_invoice_user: index + 1,
+      date: new Date(item.attributes.createdAt).toLocaleDateString('ve-Es'),
+      status: item.attributes.paid ? 'Pagado' : 'Cancelado',
+    };
+
+    return invoices;
+  }) as unknown as InvoiceTableDetail[];
+
   pagination();
 }
 

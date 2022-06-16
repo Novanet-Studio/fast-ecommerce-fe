@@ -1,0 +1,26 @@
+mutation createNewInvoice($invoice: InvoiceInput!) {
+  createInvoice(data: $invoice) {
+    data {
+      id
+      attributes {
+        paid
+        amount
+        products {
+          id
+          quantity
+          id_product
+          name_product
+        }
+        payment_id
+        order_id
+        user_id
+        shippingAddress
+        fullName
+        cardType
+        cardKind
+        cardLast
+        createdAt
+      }
+    }
+  }
+}

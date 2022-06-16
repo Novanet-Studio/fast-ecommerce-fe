@@ -1,0 +1,12 @@
+mutation createAddress($userId: Int!, $type: String!, $address: JSON) {
+  createAddress(data: { user_id: $userId, type: $type, address: $address }) {
+    data {
+      id
+      attributes {
+        user_id
+        type
+        address
+      }
+    }
+  }
+}

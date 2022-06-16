@@ -1,35 +1,14 @@
 <template>
-  <div class="ps-footer__widgets">
-    <aside class="widget widget_footer widget_contact-us">
-      <h4 class="widget-title">
-        Contáctanos
-      </h4>
-      <div class="widget_content">
-        <p>Call us 24/7</p>
-        <h3>1800 97 97 69</h3>
-        <p>
-          502 New Design Str, Melbourne, Australia <br />
-          <a href="mailto:contact@martfury.co">contact@martfury.co</a>
-        </p>
-        <ul class="ps-list--social">
-          <li>
-            <a class="general" href="https://www.instagram.com/farinebyvane/?hl=es">
-              <i class="fab fa-instagram"></i>
+  <div class="pb-7 mx-4 lg:container lg:mx-auto">
+    <aside class="max-w-full w-full relative pb-5 mb-5">
+      <div>
+        <h3 class="text-xl mb-[10px] font-bold text-yellow-400">Contáctanos</h3>
+        <ul class="mt-7">
+          <li v-for="(item, index) in socialNetworks" :key="index" class="relative inline-block mr-[20px] align-top">
+            <a class="text-yellow-400 inline-block text-lg" :href="item.link">
+              <i :class="item.iconClass"></i>
             </a>
-            @farinebyvane
-          </li>
-          <li>
-            <a class="general" href="#">
-              <i class="fa fa-phone"></i>
-            </a>
-            412.319.48.27
-          </li>
-          <li>
-            <a class="general" href="#">
-              <i class="far fa-envelope
-                        </a>"></i>
-            </a>
-            vanessa@farinebyvane.com - farinebyvane@gmail.com
+            {{ item.text }}
           </li>
         </ul>
       </div>
@@ -37,3 +16,28 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+const socialNetworks = [
+  {
+    link: 'https://www.instagram.com/fast-ecommerce/',
+    iconClass: 'fab fa-instagram',
+    text: '@fast-ecommerce',
+  },
+  {
+    link: 'https://www.facebook.com/people/fast-ecommerce',
+    iconClass: 'fa-brands fa-facebook',
+    text: 'fast-ecommerce',
+  },
+  {
+    link: '#',
+    iconClass: 'fa-brands fa-whatsapp',
+    text: '+58-412-12345654',
+  },
+  {
+    link: '#',
+    iconClass: 'far fa-envelope',
+    text: 'fast@ecommerce.com',
+  },
+]
+
+</script>

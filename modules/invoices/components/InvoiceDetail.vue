@@ -4,7 +4,7 @@
       <div id="pdf-content">
         <div class="ps-section__header">
           <h3>
-            Factura #{{ invoice.invoice.attributes.id_invoice_user }} -
+            Factura #{{ invoice.id_invoice_user }} -
             <strong>Successful delivery PPU</strong>
           </h3>
         </div>
@@ -17,12 +17,12 @@
                 </figcaption>
                 <div class="ps-block__content">
                   <strong>
-                    {{ invoice.invoice.attributes.fullName }}
+                    {{ invoice.fullName }}
                   </strong>
-                  <p v-if="invoice.invoice.shippingAddress">
-                    Dirección: {{ invoice.invoice.attributes.shippingAddress.addressLine1 }},
-                    {{ invoice.invoice.attributes.shippingAddress.locality }}, {{
-                        invoice.invoice.attributes.shippingAddress.country
+                  <p v-if="invoice.shippingAddress">
+                    Dirección: {{ invoice.shippingAddress.addressLine1 }},
+                    {{ invoice.shippingAddress.locality }}, {{
+                        invoice.shippingAddress.country
                     }}
                   </p>
 
@@ -35,12 +35,12 @@
                   Estado
                 </figcaption>
                 <div class="ps-block__content">
-                  <p v-if="invoice.invoice.attributes.paid">
+                  <p v-if="invoice.paid">
                     Pagado
                   </p>
                   <p v-else>No pagado</p>
                   <p>
-                    {{ invoice.invoice.attributes.date }}
+                    {{ invoice.date }}
                   </p>
                 </div>
               </figure>
@@ -52,9 +52,9 @@
                 </figcaption>
                 <div class="ps-block__content">
                   <p>
-                    Pago: {{ invoice.invoice.attributes.cardKind }} {{ invoice.invoice.attributes.cardType }},
+                    Pago: {{ invoice.cardKind }} {{ invoice.cardType }},
                   </p>
-                  <p>Ultimos Cuatro digitos: {{ invoice.invoice.attributes.cardLast }}</p>
+                  <p>Ultimos Cuatro digitos: {{ invoice.cardLast }}</p>
                 </div>
               </figure>
             </div>
@@ -70,17 +70,19 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="product, index in products" :key="product.id">
-                  <td>{{ product.attributes.name }}</td>
-                  <td class="price">$ {{ product.attributes.price }}</td>
-                  <td>{{ invoice.invoice.attributes.products[index].quantity }}</td>
-                  <td class="price">$ {{ product.attributes.price }}</td>
-                </tr>
+                <template v-for="(parentItem, index) in products" :key="index">
+                  <tr v-for="product, index in parentItem.data.products.data" :key="product.id">
+                    <td>{{ product.attributes.name }}</td>
+                    <td class="price">$ {{ product.attributes.price }}</td>
+                    <td>{{ invoice.products[index].quantity }}</td>
+                    <td class="price">$ {{ product.attributes.price }}</td>
+                  </tr>
+                </template>
                 <tr>
                   <td></td>
                   <td></td>
                   <td>MONTO TOTAL</td>
-                  <td>${{ invoice.invoice.attributes.amount }}</td>
+                  <td>${{ invoice.amount }}</td>
 
                 </tr>
               </tbody>
@@ -101,45 +103,38 @@
 </template>
 
 <script lang="ts" setup>
-import html2PDF from 'jspdf-html2canvas';
-import { useInvoice } from '~/store/invoice';
-import { useProduct } from '~/store/product';
+import pdfmake from "pdfmake";
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import htmlToPdfmake from 'html-to-pdfmake';
+import { GetProductById } from '~/modules/product/queries';
 
-const invoice = useInvoice();
-const product = useProduct();
+const { $store } = useNuxtApp();
+const graphql = useStrapiGraphQL();
+const { invoice } = $store.invoice();
 
-const products = ref<any>(null);
+const products = ref<ProductsResponse[]>();
 
-const getPdf = () => {
+const getPdf = async () => {
   const element = document.querySelector('#pdf-content');
-  const name = invoice.attributes.id_invoice_user;
-  html2PDF(element, {
-    jsPDF: {
-      format: 'a4',
-    },
-    imageType: 'image/jpeg',
-    output: `factura-${name}`,
-    margin: {
-      top: 20,
-      right: 10,
-      bottom: 20,
-      left: 10,
-    }
-  });
-}
-
-const getProductsInvoice = async (idList: string[]) => {
-  const response = await product.getProductsById(idList);
-  return response.data;
+  const html = htmlToPdfmake(element.innerHTML);
+  const documentDefinition = {
+    content: html,
+  };
+  pdfmake.vfs = pdfFonts.pdfMake.vfs;
+  pdfmake.createPdf(documentDefinition).download();
 }
 
 const getProductsId = async (productList: any[]) => {
-  const productsId = productList.map((product) => product.id_product);
-  products.value = await getProductsInvoice(productsId);
+  if (!productList.length) return;
+  const itemsId = productList.map((product) => product.id_product);
+  const productPromises = itemsId.map((id: string) => graphql<ProductsResponse>(GetProductById, { id }));
+
+  const response = await Promise.all(productPromises);
+  products.value = response;
 }
 
 onMounted(() => {
-  getProductsId(invoice.invoice.attributes.products);
+  getProductsId(invoice.products ?? []);
 });
 
 </script>

@@ -5,64 +5,115 @@
         <div class="ps-wrapper">
           <!-- Gallery-->
           <div class="ps-product__gallery">
-            <swiper class="ps-carousel inside" :navigation="true" :modules="modules" :space-between="30"
-              :centered-slides="true" :autoplay="{
-                delay: 2500,
-                disableOnInteraction: false,
-              }" :thumbs="{ swiper: thumbsSwiper }">
-              <swiper-slide v-for="image in product.attributes.images.data">
-                <img :src="`${image.attributes.url}`" />
+            <swiper class="main-swiper" :space-between="10" :navigation="true" :modules="modules"
+              :thumbs="{ swiper: thumbsSwiper }">
+              <swiper-slide v-for="image in product.attributes.image.data" :key="image.id">
+                <img :src="image.attributes.url" :alt="image.attributes.alternativeText">
               </swiper-slide>
             </swiper>
           </div>
         </div>
       </figure>
-      <!--Variants-->
+      <!-- Thumbnail -->
       <div class="ps-product__variants">
-        <swiper class="ps-carousel" :space-between="30" :centered-slides="true" :modules="[Thumbs]"
-          watch-slides-progress @swiper="setThumbsSwiper">
-          <swiper-slide v-for="(image, index) in product.attributes.images.data" :class="[activeSlide && 'active']"
-            :key="index">
-            <img :src="image.attributes.url" />
+        <swiper class="swiper-thumbs" @swiper="setThumbsSwiper" :space-between="10" :slides-per-view="4" free-mode
+          watch-slides-progress :modules="modules">
+          <swiper-slide v-for="image in product.attributes.image.data" :key="image.id">
+            <img :src="image.attributes.url" :alt="image.attributes.alternativeText">
           </swiper-slide>
         </swiper>
-        <!-- <div class="ps-carousel swiper" v-swiper:swiperVariants="swiperOptionThumbs">
-          <div class="swiper-wrapper">
-            <div v-for="(image, index) in product.attributes.images.data" :class="
-              `swiper-slide ${activeSlide === index ? 'active' : ''
-              } `
-            " @click="handleClickSlide(index)">
-              <img :src="`${image.attributes.url}`" />
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </client-only>
 </template>
 
 <script lang="ts" setup>
-import { Autoplay, Navigation, Pagination, Thumbs } from 'swiper';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
+import { Autoplay, Navigation, Pagination, Thumbs, FreeMode } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
 
 type Props = {
-  product: any;
+  product: Product;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
-const modules = ref([Autoplay, Navigation, Pagination, Thumbs]);
-const activeSlide = ref<number>(0);
+console.log(props.product.attributes.image.data);
 
-const swiper = useSwiper();
+const modules = ref([Autoplay, Navigation, Pagination, Thumbs, FreeMode]);
+
 const thumbsSwiper = ref(null);
 
-const setThumbsSwiper = (swiper) => {
-  console.log(swiper);
+const setThumbsSwiper = (swiper: any) => {
+  console.log('thumbs: ', swiper);
   thumbsSwiper.value = swiper;
-  activeSlide.value = swiper.index;
 }
 </script>
+
+<style lang="scss" scoped>
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.main-swiper {
+  height: 80%;
+  width: 100%;
+}
+
+.swiper-thumbs {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.swiper-thumbs .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.swiper-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>

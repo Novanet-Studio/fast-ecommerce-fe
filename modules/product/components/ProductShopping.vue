@@ -4,10 +4,10 @@
       <figcaption>Cantidad</figcaption>
       <div class="form-group--number">
         <button class="up" @click.prevent="handleIncreaseQuantity">
-          <i class="fa fa-plus"></i>
+          <i class="fa fa-plus">+</i>
         </button>
         <button class="down" @click.prevent="handleDescreaseQuantity">
-          <i class="fa fa-minus"></i>
+          <i class="fa fa-minus">-</i>
         </button>
         <input v-model="quantity" class="form-control" type="text" disabled />
       </div>
@@ -27,19 +27,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useCart } from '~/store/cart';
-import { useProduct } from '~/store/product';
-import { useWishList } from '~/store/wishlist';
-
 type Props = {
-  product: any;
+  product: Product;
 }
 
-const cart = useCart();
-const product = useProduct();
-const wishlist = useWishList();
-
-const { $notify } = useNuxtApp();
+const { $notify, $store } = useNuxtApp();
+const cart = $store.cart();
+const product = $store.product();
+const wishlist = $store.wishlist();
 const router = useRouter();
 const props = defineProps<Props>();
 const quantity = ref<number>(1);
@@ -47,7 +42,8 @@ const quantity = ref<number>(1);
 const handleIncreaseQuantity = () => quantity.value++;
 const handleDescreaseQuantity = () => quantity.value > 1 ? quantity.value-- : quantity;
 
-const addItemToCart = async (payload) => {
+// TODO: add typings
+const addItemToCart = async (payload: any) => {
   cart.addProductToCart(payload);
 
   if (!cart.cartItems.length) return;
@@ -63,10 +59,10 @@ const addItemToCart = async (payload) => {
   });
 }
 
-const getCartProduct = async (products: any[]) => {
-  const itemsId = products.map((item) => item.id);
-  await product.getCartProducts(itemsId);
-}
+// const getCartProduct = async (products: any[]) => {
+//   const itemsId = products.map((item) => item.id);
+//   await product.getCartProducts(itemsId);
+// }
 
 // const loadCartProducts = async () => {
 //   if (!cart.cartItems.length) {

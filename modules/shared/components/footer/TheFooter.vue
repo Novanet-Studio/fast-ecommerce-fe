@@ -1,8 +1,8 @@
 <template>
-  <footer class="ps-footer">
-    <div class="ps-container">
-      <FooterWidgets />
-      <FooterCopyright />
+  <footer class="pt-20">
+    <div class="mx-auto px-4 md:(px-8 max-w-full)">
+      <footer-widgets />
+      <footer-copyright />
     </div>
   </footer>
 </template>
