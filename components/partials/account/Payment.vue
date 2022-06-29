@@ -37,7 +37,7 @@
                                     <strong>$20.00</strong>
                                 </figure>
                             </div> -->
-                            <h4>Payment Methods</h4>
+                            <h4>Selecciona el metodo de pago</h4>
                             <payment-methods />
                             <div class="ps-block__footer">
                                 <nuxt-link to="/account/shipping">
