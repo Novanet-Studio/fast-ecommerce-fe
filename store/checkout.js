@@ -14,6 +14,7 @@ export const mutations = {
         state.zipCode = payload.zipCode;
         state.phone = payload.phone;
         state.home = payload.home; 
+        state.country = payload.country; 
     },
 
 
@@ -31,7 +32,8 @@ export const actions = {
             home: state.home,
             city: state.city,
             zipCode: state.zipCode,
-            phone: state.phone
+            phone: state.phone,
+            country: state.country
         }
         this.$cookies.set('shippingInfo', cookieParams, {
             path: '/',

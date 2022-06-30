@@ -189,6 +189,15 @@ export default {
       payment.shippingAddress.phone =this.cookie.phone; 
       payment.shippingAddress.home =this.cookie.home; 
       
+      const paymentInfo = {
+        nombre: this.cookie.name,
+        apellido: this.cookie.lastName,
+        email: payment.buyerEmailAddress,
+        confirmacion: payment.id,
+        monto: payment.totalMoney.amount / 100, 
+        fecha_pago: new Date()
+      }
+      
 
       const data = {
         amount: payment.totalMoney.amount / 100,
@@ -202,6 +211,8 @@ export default {
         cardType: payment.cardDetails.card.cardBrand,
         cardKind: payment.cardDetails.card.cardType,
         cardLast: payment.cardDetails.card.last4,
+        payment_info: [paymentInfo],
+        payment_method: 'sqaureUp'
       };
 
 

@@ -38,7 +38,7 @@
                                 <p v-if="invoice.attributes.paid === true">
                                     Pagado
                                 </p>
-                                <p v-else>No pagado</p>
+                                <p v-else>Pendiente en aprobación</p>
                                 <p>
                                     {{ invoice.attributes.date }}
                                 </p>

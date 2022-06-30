@@ -147,6 +147,15 @@ export default {
                 AddressLine1: payment.purchase_units[0].shipping.address.address_line_1
             }
 
+            const paymentInf = {
+                nombre: payment.payer.name.given_name,
+                apellido: payment.payer.name.surname,
+                email: payment.payer.email_address,
+                confirmacion: payment.id,
+                monto: payment.purchase_units[0].amount.value,
+                fecha_pago: payment.create_time
+            }
+
             const data = {
                 amount: payment.purchase_units[0].amount.value,
                 order_id: payment.purchase_units[0].invoice_id,
@@ -159,6 +168,8 @@ export default {
                 cardType: 'no aplica',
                 cardKind: 'no aplica',
                 cardLast: 'no aplica',
+                payment_info: [paymentInf],
+                payment_method: 'paypal'
             };
 
 
@@ -733,7 +744,6 @@ export default {
                     await new Promise((resolve) => setTimeout(resolve, 2000));
                     this.$router.push("/");
                     this.$store.dispatch("cart/clearCart");
-                    this.card.clear();
                     }
                 });
                 // alert('se envio el correo')

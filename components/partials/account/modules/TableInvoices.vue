@@ -17,7 +17,7 @@
                     <td>{{ item.attributes.date }}</td>
                     <td>${{ item.attributes.amount }}</td>
                     <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
-                    <td v-else>{{ item.attributes.status }}</td>
+                    <td v-else class="status-color--pending">{{ item.attributes.status }}</td>
                 </tr>
             </tbody>
             <tbody v-else>
@@ -27,7 +27,7 @@
                     <td>{{ item.attributes.date }}</td>
                     <td>${{ item.attributes.amount }}</td>
                     <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
-                    <td v-else>{{ item.attributes.status }}</td>
+                    <td v-else class="status-color--pending">{{ item.attributes.status }}</td>
                 </tr>
             </tbody>
         </table>
@@ -84,7 +84,7 @@ export default {
                         if(res[i].attributes.paid === true){
                             res[i].attributes.status = 'Pagado'
                         }else{
-                            res[i].attributes.status = 'Cancelado'
+                            res[i].attributes.status = 'Pendiente'
                         }
                     }
                     this.tableInvoices = res
@@ -123,8 +123,6 @@ export default {
                     
                     this.pages = pages; 
 
-
-
                 }
             }
         },
@@ -139,6 +137,9 @@ export default {
 <style lang="scss" scoped>
 .status-color{
     background-color: rgba(216, 255, 154, 0.603);
+}
+.status-color--pending{
+    background-color: rgba(242, 191, 51, 0.603);
 }
 .invoice-hover:hover{
     background-color: #feeed7;

@@ -284,6 +284,7 @@ export default {
                     zipCode: this.zipCode,
                     phone: this.phone, 
                     home: this.home,
+                    country: this.country, 
                 }
                 this.$store.dispatch('checkout/shippingInfo', data)
 
