@@ -61,6 +61,17 @@ export const actions = {
 
         return response;
     },
+    async getAllInvoicesPaginator({commit}, payload){
+        const userId = payload.userId;
+        const page = payload.page; 
+        const response = await Repository.get(`${baseUrl}/invoices?populate=*&filters[user_id]=${userId}&pagination[page]=${page}&pagination[pageSize]=10`)
+            .then(response => {
+                return response
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
+
+        return response;
+    },
 
     async createInvoice({commit},payload){
 

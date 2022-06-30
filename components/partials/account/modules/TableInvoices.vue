@@ -10,7 +10,7 @@
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody v-if="page = false">
+            <!-- <tbody v-if="page = false">
                 <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.attributes.id_invoice_user, item)">
                     <td class="invoice-hover">{{item.attributes.id_invoice_user}}</td>
                     <td>{{item.attributes.order_id}}</td>
@@ -19,8 +19,8 @@
                     <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
                     <td v-else class="status-color--pending">{{ item.attributes.status }}</td>
                 </tr>
-            </tbody>
-            <tbody v-else>
+            </tbody> -->
+            <tbody>
                 <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.attributes.id_invoice_user, item)">
                     <td class="invoice-hover">{{item.attributes.id_invoice_user}}</td>
                     <td>{{item.attributes.order_id}}</td>
@@ -32,14 +32,19 @@
             </tbody>
         </table>
         <h4 v-else>No posees ninguna factura aun!</h4>
-        <div class="ps-pagination" v-if="page !== false">
-            hola
+        <div class="ps-pagination">
             <ul class="pagination">
-                <li class="active" v-for="link in pages" @click="setPageInvoice(link)">
-                    <a href="#">{{ link }}</a>
+                <li class="pagination_links" id="page_1">
+                    <a href="#" @click="changeTo(1)">1</a>
                 </li>
-                <li>
-                    <a href="#">
+                <li class="pagination_links" id="page_2">
+                    <a href="#" @click="changeTo(2)">2</a>
+                </li>
+                <li class="pagination_links" id="page_3">
+                    <a href="#" @click="changeTo(3)">3</a>
+                </li>
+                <li class="pagination_links" id="page_rest">
+                    <a href="#" @click="changePage()">
                         Next Page
                         <i class="icon-chevron-right"></i>
                     </a>
@@ -57,10 +62,11 @@ export default {
         return {
             invoiceExist: false, 
             tableInvoices: null,
-            page: false,
+            page: 1,
             pages: [],
             number: null,
             allInvoices: null,
+            currentPage: 1,
         };
     },
     computed: {
@@ -69,7 +75,8 @@ export default {
         },
     },
     mounted(){
-        this.getPayments();
+        // this.getPayments();
+        this.getPaymentsPaginated()
     },
     methods: {
         async getPayments(){
@@ -97,6 +104,44 @@ export default {
 
 
         },
+        async getPaymentsPaginated(){
+            var payload = {
+                userId: this.user.id, 
+                page: this.page
+            }
+            const respuesta = await this.$store.dispatch('checkout/getAllInvoicesPaginator', payload ).then( ress => {
+                console.log('===? los invoices',ress.data)
+                if(ress.data.data.length > 0){
+                    var res = ress.data.data
+                    this.invoiceExist = true;
+                    if(this.page === 1){
+                        for (let i = 0; i < res.length; i++) {
+                            res[i].attributes.id_invoice_user = i+1;
+                            res[i].attributes.date = new Date(res[i].attributes.createdAt).toLocaleDateString()
+                            if(res[i].attributes.paid === true){
+                                res[i].attributes.status = 'Pagado'
+                            }else{
+                                res[i].attributes.status = 'Pendiente'
+                            }
+                        }
+                    }else{
+                        for (let i = 0; i < res.length; i++) {
+                            res[i].attributes.id_invoice_user = ((this.page-1)*10)+(i+1);
+                            res[i].attributes.date = new Date(res[i].attributes.createdAt).toLocaleDateString()
+                            if(res[i].attributes.paid === true){
+                                res[i].attributes.status = 'Pagado'
+                            }else{
+                                res[i].attributes.status = 'Pendiente'
+                            }
+                        }
+                    }
+                    this.tableInvoices = res
+                }else{
+                    this.invoiceExist = false;
+                }
+            })
+            console.log('===> todo creo', this.tableInvoices)
+        },
         goToInvoice(idInvUser, invoice){
             const cookieParams = {
                 invoice: invoice
@@ -107,27 +152,39 @@ export default {
             });
             this.$router.push(`/invoice/${idInvUser}`)
         },
-        pagination(){
-            if(this.invoiceExist !== false ){
-                if(this.tableInvoices.length > 10){
-                    this.page = true;
-                    this.number = (this.tableInvoices.length/10).toFixed(0)
-                    var pages = []
-                    for (let i = 1; i <= (this.number); i++) {
-                        pages.push(i)
-                    }
-                    // for (let i = i; i < pages.length; i++) {
-                    //     console.log(this.tableInvoices.splice(0, 10))
-                        
-                    // }
-                    
-                    this.pages = pages; 
+        async changePage(){
+            this.page = this.page + 1; 
 
-                }
+            var payload = {
+                userId: this.user.id, 
+                page: this.page
             }
+            const respuesta = await this.$store.dispatch('checkout/getAllInvoicesPaginator', payload ).then( ress => {
+                if(ress.data.data.length > 0 && ress.data.meta.pagination.pageCount >= this.page){
+                    var all_links = document.querySelectorAll('.pagination_links')
+                    all_links.forEach(item => {
+                        if(item.classList.value.includes('active')){
+                            item.classList.remove('active')
+                        }
+                    })
+                    var current_link = document.getElementById(`page_${this.page}`);
+                    current_link.classList.add('active')
+                    this.getPaymentsPaginated()
+                }
+            })
         },
-        setPageInvoice(number){
-            console.log('===> number', number)
+        changeTo(number){
+            this.page = number; 
+            var all_links = document.querySelectorAll('.pagination_links')
+            all_links.forEach(item => {
+                if(item.classList.value.includes('active')){
+                    item.classList.remove('active')
+                }
+            })
+            var current_link = document.getElementById(`page_${number}`);
+            current_link.classList.add('active')
+
+            this.getPaymentsPaginated()
         }
 
     }
