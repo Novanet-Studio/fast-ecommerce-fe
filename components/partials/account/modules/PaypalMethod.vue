@@ -724,6 +724,17 @@ export default {
 
                 console.log("===> pagos", payment);
 
+                const merchant = {
+                    payed: amountPayed,
+                    email: this.email,
+                    phone: this.cookie.phone,
+                    shipping: `${payment.purchase_units[0].shipping.address.address_line_1}, ${this.cookie.home}, ${payment.purchase_units[0].shipping.address.admin_area_2}. Zip Code: ${payment.purchase_units[0].shipping.address.postal_code}. ${payment.purchase_units[0].shipping.address.country_code}`,
+                    nameCustomer: this.fullName,
+                    date: created,
+                    content: query,
+                    order_id: this.invoice_id,
+                }
+
                 this.$axios
                 .$post("/api/sendgrid-mail", {
                     payed: amountPayed,
@@ -735,22 +746,37 @@ export default {
                 })
                 .then(async (res) => {
                     console.log("lo de axios ===>", res);
-                    if (res.stat && res.stat === 200) {
-                    this.$notify({
-                        group: "all",
-                        title: "recibo",
-                        text: `gracias por preferirnos!`,
-                    });
-                    await new Promise((resolve) => setTimeout(resolve, 2000));
-                    this.$router.push("/");
-                    this.$store.dispatch("cart/clearCart");
-                    }
+                        if (res.stat && res.stat === 200) {
+                            await this.sendMerchantMail(merchant)
+                        }
                 });
                 // alert('se envio el correo')
             } catch (error) {
                 console.log("error en el correo");
             }
         },
+        async sendMerchantMail(data){
+            try {
+                console.log(data)
+                this.$axios
+                .$post("/api/sendgrid-mail/merchant", data)
+                .then(async (res) => {
+                    console.log("lo de axios DOS ===>", res);
+                    if (res.stat && res.stat === 200) {
+                        this.$notify({
+                            group: "all",
+                            title: "recibo",
+                            text: `gracias por preferirnos!`,
+                        });
+                        await new Promise((resolve) => setTimeout(resolve, 2000));
+                        this.$router.push("/");
+                        this.$store.dispatch("cart/clearCart");
+                    }
+                });
+            } catch (error) {
+                console.log('error enviando correo marchatn', error)
+            }
+        }
     }
 };
 </script>
