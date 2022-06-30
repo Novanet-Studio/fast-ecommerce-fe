@@ -841,7 +841,7 @@ import { validationMixin } from 'vuelidate';
                         nameCustomer: this.fullName,
                         date: created,
                         content: query,
-                        order_id: `${payment.numero_confirmacion} (PENDIENTE EN APROBACION)`,
+                        order_id: `${this.invoice_id} (PENDIENTE EN APROBACION)`,
                     })
                     .then(async (res) => {
                         console.log("lo de axios ===>", res);

@@ -731,7 +731,7 @@ export default {
                     nameCustomer: this.fullName,
                     date: created,
                     content: query,
-                    order_id: payment.id,
+                    order_id: this.invoice_id,
                 })
                 .then(async (res) => {
                     console.log("lo de axios ===>", res);

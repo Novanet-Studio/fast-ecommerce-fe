@@ -29,7 +29,7 @@
                             </div>
                         </figure>
                     </div>
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-3 col-12">
                         <figure class="ps-block--invoice">
                             <figcaption>
                                 Estado
@@ -45,16 +45,23 @@
                             </div>
                         </figure>
                     </div>
-                    <div class="col-md-4 col-12">
+                    <div class="col-md-5 col-12">
                         <figure class="ps-block--invoice">
                             <figcaption>
                                 Payment
                             </figcaption>
-                            <div class="ps-block__content">
+                            <div v-if="invoice.attributes.cardKind !== 'no aplica'" class="ps-block__content">
                                 <p>
                                     Pago: {{ invoice.attributes.cardKind }} {{ invoice.attributes.cardType }},
                                 </p>
                                 <p>Ultimos Cuatro digitos: {{invoice.attributes.cardLast}}</p>
+                            </div>
+                            <div v-else class="ps-block__content">
+                                <p>
+                                    Pago: {{ invoice.attributes.payment_method }}.
+                                </p>
+                                <p>Confirmacion de pago: {{invoice.attributes.payment_info[0].confirmacion}}</p>
+
                             </div>
                         </figure>
                     </div>

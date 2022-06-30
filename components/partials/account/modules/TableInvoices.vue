@@ -13,7 +13,7 @@
             <tbody v-if="page = false">
                 <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.attributes.id_invoice_user, item)">
                     <td class="invoice-hover">{{item.attributes.id_invoice_user}}</td>
-                    <td>{{item.attributes.payment_id}}</td>
+                    <td>{{item.attributes.order_id}}</td>
                     <td>{{ item.attributes.date }}</td>
                     <td>${{ item.attributes.amount }}</td>
                     <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
@@ -23,7 +23,7 @@
             <tbody v-else>
                 <tr v-for="item in tableInvoices" :key="item.id" @click="goToInvoice(item.attributes.id_invoice_user, item)">
                     <td class="invoice-hover">{{item.attributes.id_invoice_user}}</td>
-                    <td>{{item.attributes.payment_id}}</td>
+                    <td>{{item.attributes.order_id}}</td>
                     <td>{{ item.attributes.date }}</td>
                     <td>${{ item.attributes.amount }}</td>
                     <td v-if="item.attributes.paid === true" class="status-color">{{ item.attributes.status }}</td>
