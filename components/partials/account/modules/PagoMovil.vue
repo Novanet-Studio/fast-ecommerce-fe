@@ -1,20 +1,27 @@
 <template>
     <div class="pagoMovil--contenedor">
-        <div class="ps-block__content">
-            <strong>Pago movil Datos</strong>
+        <div v-if="payment_merchant_info" class="ps-block__content">
+            <strong>Zelle Datos</strong>
             <figure class="ps-block__items">
-                Banco: Banesco.
+                Nombre: {{ payment_merchant_info.attributes.nombre  }}.
                 <br>
-                Numero de telefono: 04141112233.
+                Numero de telefono: {{ payment_merchant_info.attributes.telefono }}.
                 <br>
-                rif: j-0975432826
+                banco: {{ payment_merchant_info.attributes.nombre_banco  }}
+                <br>
+                rif: {{ payment_merchant_info.attributes.codigo_unico  }}
+                <br>
+                motivo: {{ payment_merchant_info.attributes.concepto_pago  }}
             </figure>
             <figure>
                 <figcaption>
-                    <strong>Subtotal </strong>
-                    <small> {{ amountRate }} Bs</small>
+                    <strong>Subtotal en Bs</strong>
+                    <small>{{ amountRate }}</small>
                 </figcaption>
             </figure>
+        </div>
+        <div v-else class="ps-block__content">
+            <strong>No disponemos de este metodo actualmente, elige otro por favor!</strong>
         </div>
        <form id="pagomovil-form">
             <div class="form-group">
@@ -115,6 +122,7 @@ import { validationMixin } from 'vuelidate';
                 productMail: "",
                 productosFinalesHtml: "",
                 productsCart: "", 
+                payment_merchant_info: null,
 
             }
         }, 
@@ -193,6 +201,7 @@ import { validationMixin } from 'vuelidate';
             confirmation: { required },
         },
         mounted: async function(){
+            await this.getPaymentInfo()
             await this.getProducts(this.cart.cartItems); 
             this.invoice_id = this.getInvoiceId(); 
         },
@@ -887,6 +896,15 @@ import { validationMixin } from 'vuelidate';
                 } catch (error) {
                     console.log('error enviando correo marchatn', error)
                 }
+            },
+            async getPaymentInfo(){
+                const tipo = 'pago_movil'
+                const response = await this.$store.dispatch('checkout/paymentInfo', tipo).then( res => {
+                    if(res.id){
+                        console.log('====> estoooo payment', res)
+                        this.payment_merchant_info = res; 
+                    }
+                })
             }
         }
     }

@@ -1,15 +1,15 @@
 <template>
     <div class="pagoMovil--contenedor">
-        <div class="ps-block__content">
+        <div v-if="payment_merchant_info" class="ps-block__content">
             <strong>Zelle Datos</strong>
             <figure class="ps-block__items">
-                Nombre: un nombre.
+                Nombre: {{ payment_merchant_info.attributes.nombre  }}.
                 <br>
-                Numero de telefono: 04141112233.
+                Numero de telefono: {{ payment_merchant_info.attributes.telefono }}.
                 <br>
-                correo: correo@correo.com
+                correo: {{ payment_merchant_info.attributes.correo  }}
                 <br>
-                motivo: Pago farine
+                motivo: {{ payment_merchant_info.attributes.concepto_pago  }}
             </figure>
             <figure>
                 <figcaption>
@@ -17,6 +17,9 @@
                     <small>$ {{ amount }}</small>
                 </figcaption>
             </figure>
+        </div>
+        <div v-else class="ps-block__content">
+            <strong>No disponemos de este metodo actualmente, elige otro por favor!</strong>
         </div>
        <form id="zelle-form">
             <div class="form-group">
@@ -113,6 +116,7 @@ import { validationMixin } from 'vuelidate';
                 productMail: "",
                 productosFinalesHtml: "",
                 productsCart: "", 
+                payment_merchant_info: null,
 
             }
         }, 
@@ -192,6 +196,7 @@ import { validationMixin } from 'vuelidate';
             amountPayed: {required}
         },
         mounted: async function(){
+            await this.getPaymentInfo()
             await this.getProducts(this.cart.cartItems); 
             this.invoice_id = this.getInvoiceId(); 
         },
@@ -885,6 +890,15 @@ import { validationMixin } from 'vuelidate';
                 } catch (error) {
                     console.log('error enviando correo marchatn', error)
                 }
+            },
+            async getPaymentInfo(){
+                const tipo = 'zelle'
+                const response = await this.$store.dispatch('checkout/paymentInfo', tipo).then( res => {
+                    if(res.id){
+                        console.log('====> estoooo payment', res)
+                        this.payment_merchant_info = res; 
+                    }
+                })
             }
         }
     }

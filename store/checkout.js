@@ -124,7 +124,17 @@ export const actions = {
             .catch(error => ({ error: JSON.stringify(error) }));
 
         return response;       
-    }
+    },
+    async paymentInfo({commit}, payload){
+        const tipo = payload
+        const response = await Repository.get(`${baseUrl}/payments?populate=*&filters[tipo]=${tipo}`)
+            .then(response => {
+                return response.data.data[0]
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
+
+        return response;
+    },
    
 
 }
