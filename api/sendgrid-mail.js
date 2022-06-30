@@ -5,6 +5,7 @@ const sgMail = require("@sendgrid/mail");
 const app = express();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const senderMail = process.env.SENDGRID_SENDER_MAIL;
+const ordersMail = process.env.SENDGRID_ORDER_RECEIVER_MAIL;
 
 app.use(bodyParser.json());
 app.post("/", (req, res) => {
@@ -884,7 +885,7 @@ app.post("/", (req, res) => {
 });
 app.post("/merchant", (req, res) => {
   const msg = {
-    to: req.body.email,
+    to: ordersMail,
     from: senderMail,
     subject: `Farine nueva orden ${req.body.order_id}`,
     text: "Farine nueva orden",
