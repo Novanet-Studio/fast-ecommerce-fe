@@ -52,7 +52,7 @@ export default {
         const clientId = process.env.PAYPAL_CLIENT_ID; 
         console.log('====> ', clientId)
         const script = document.createElement("script");
-        script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+        script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}&disable-funding=credit,card`;
         script.addEventListener('load', this.setLoaded);
         document.body.appendChild(script)
         console.log('el invoice id',this.invoice_id)
