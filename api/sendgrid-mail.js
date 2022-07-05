@@ -883,6 +883,7 @@ app.post("/", (req, res) => {
     res.status(400).json({ status: "ERROR", message: error.message });
   }
 });
+
 app.post("/merchant", (req, res) => {
   const msg = {
     to: ordersMail,
@@ -1482,7 +1483,6 @@ app.post("/merchant", (req, res) => {
     res.status(400).json({ status: "ERROR", message: error.message });
   }
 });
-
 
 module.exports = {
   path: "/api/sendgrid-mail",
