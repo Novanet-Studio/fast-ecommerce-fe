@@ -1,7 +1,7 @@
 <template>
     <div class="pagoMovil--contenedor">
         <div v-if="payment_merchant_info" class="ps-block__content">
-            <strong>Zelle Datos</strong>
+            <strong>Datos de pago</strong>
             <figure class="ps-block__items">
                 Nombre: {{ payment_merchant_info.attributes.nombre  }}.
                 <br>

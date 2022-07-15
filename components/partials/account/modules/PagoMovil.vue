@@ -1,7 +1,7 @@
 <template>
     <div class="pagoMovil--contenedor">
         <div v-if="payment_merchant_info" class="ps-block__content">
-            <strong>Zelle Datos</strong>
+            <strong>Datos de pago</strong>
             <figure class="ps-block__items">
                 Nombre: {{ payment_merchant_info.attributes.nombre  }}.
                 <br>
@@ -61,7 +61,7 @@
             <div class="form-group">
                 <label> Monto del pago en Bs<sup>*</sup> </label>
                  <p>
-                    <b>La tasa del dia es de {{ rateBs }} BsD, El monto del pago debe ser de {{ amountRate }}</b>
+                    <b>La tasa del día BCV es de {{ rateBs }} BsD. El monto del pago debe ser de {{ amountRate }}</b>
                 </p>
                 <v-text-field
                     v-model="amountPayed"
@@ -122,13 +122,12 @@ import { validationMixin } from 'vuelidate';
                 productosFinalesHtml: "",
                 productsCart: "", 
                 payment_merchant_info: null,
+                rateBs: null
 
             }
         }, 
         computed: {
-            rateBs(){
-                return 5.500; 
-            },
+
             amountRate(){
                 let amount = (this.rateBs * parseInt(this.$cookies.get('cart').amount))
                 return amount
@@ -449,7 +448,7 @@ import { validationMixin } from 'vuelidate';
                     if(res.id){
                         console.log('====> estoooo payment', res)
                         this.payment_merchant_info = res; 
-                        if(res.attributes.tasa_cambio > 0){
+                        if(res.attributes.tasa_cambio && res.attributes.tasa_cambio > 0){
                             this.rateBs = res.attributes.tasa_cambio; 
                         }
                     }
