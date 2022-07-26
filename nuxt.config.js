@@ -1,4 +1,5 @@
 export default {
+  target: 'static',
   head: {
     titleTemplate: "Martfury - Multi-purpose Ecomerce template with vuejs",
     title: "Martfury - Multi-purpose Ecomerce template with vuejs",
