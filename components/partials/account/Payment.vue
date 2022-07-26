@@ -4,7 +4,7 @@
 
         <div class="container">
             <div class="ps-section__header">
-                <h1>Payment</h1>
+                <h1>Método de pago</h1>
             </div>
             <div class="ps-section__content">
                 <div class="row">
@@ -12,19 +12,19 @@
                         <div class="ps-block--shipping">
                             <div class="ps-block__panel">
                                 <figure>
-                                    <small>Contact</small>
+                                    <small>Contacto</small>
                                     <p>{{email}}</p>
                                     <nuxt-link to="/account/checkout">
-                                        <a>Change</a>
+                                        <a>Cambiar</a>
                                     </nuxt-link>
                                 </figure>
                                 <figure>
-                                    <small>Ship to</small>
+                                    <small>Enviar a</small>
                                     <p>
                                         {{ fullAddress }}
                                     </p>
                                     <nuxt-link to="/account/checkout">
-                                        <a>Change</a>
+                                        <a>Cambiar</a>
                                     </nuxt-link>
                                 </figure>
                             </div>
@@ -37,12 +37,12 @@
                                     <strong>$20.00</strong>
                                 </figure>
                             </div> -->
-                            <h4>Selecciona el metodo de pago</h4>
+                            <h4>Selecciona el método de pago</h4>
                             <payment-methods />
                             <div class="ps-block__footer">
                                 <nuxt-link to="/account/shipping">
                                     <i class="icon-arrow-left mr-2"></i>
-                                    Return to shipping
+                                    Regresar a Información de envío
                                 </nuxt-link>
                             </div>
                         </div>

@@ -1,51 +1,51 @@
 <template lang="html">
-    <div class="ps-cart--mini">
-      <div>
-        <a class="header__extra" href="#" @click="loadCartProducts">
-            <i class="icon-bag2"></i>
-            <span>
-                <i>{{ total }}</i>
-            </span>
-        </a>
-        <div v-if="total > 0" class="ps-cart__content">
-            <div class="ps-cart__items">
-                <template v-if="loading === true">
-                    <loading />
-                </template>
-                <template v-else-if="cartProducts !== null">
-                  <ProductMiniCart
-                    v-for="product in cartProducts.data"
-                    :key="product.id"
-                    :product="product"
-                  />
-                </template>
-            </div>
-            <div class="ps-cart__footer">
-                <h3>
-                    {{ $t('header.miniCart.subTotal') }}
-                    <strong>${{ amount }}</strong>
-                </h3>
-                <figure>
-                    <div>
-                        <nuxt-link to="/account/shopping-cart" class="ps-btn">
-                            Ver carrito
-                        </nuxt-link>
-                    </div>
-                    <div>
-                        <nuxt-link to="/account/checkout" class="ps-btn">
-                          Checkout
-                        </nuxt-link>
-                    </div>
-                </figure>
-            </div>
+  <div class="ps-cart--mini">
+    <div>
+      <a class="header__extra" href="#" @click="loadCartProducts">
+        <i class="icon-bag2"></i>
+        <span>
+          <i>{{ total }}</i>
+        </span>
+      </a>
+      <div v-if="total > 0" class="ps-cart__content">
+        <div class="ps-cart__items">
+          <template v-if="loading === true">
+            <loading />
+          </template>
+          <template v-else-if="cartProducts !== null">
+            <ProductMiniCart
+              v-for="product in cartProducts.data"
+              :key="product.id"
+              :product="product"
+            />
+          </template>
         </div>
-        <div v-else class="ps-cart__content">
-            <div class="ps-cart__items no-products">
-                {{ $t('header.miniCart.noProduct') }}
+        <div class="ps-cart__footer">
+          <h3>
+            {{ $t("header.miniCart.subTotal") }}
+            <strong>${{ amount }}</strong>
+          </h3>
+          <figure>
+            <div>
+              <nuxt-link to="/account/shopping-cart" class="ps-btn">
+                Ver carrito
+              </nuxt-link>
             </div>
+            <div>
+              <nuxt-link to="/account/checkout" class="ps-btn">
+                Pagar
+              </nuxt-link>
+            </div>
+          </figure>
+        </div>
+      </div>
+      <div v-else class="ps-cart__content">
+        <div class="ps-cart__items no-products">
+          {{ $t("header.miniCart.noProduct") }}
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -131,5 +131,4 @@ export default {
     }
   }
 }
-
 </style>

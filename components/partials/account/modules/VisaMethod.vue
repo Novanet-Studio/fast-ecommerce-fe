@@ -1,26 +1,25 @@
 <template lang="html">
-<div>
+  <div>
     <form id="payment-form">
-        <div id="card-container"></div>
-        <div class="form-group">
-            <p>
-                By making this purchase you agree to
-                <a href="#" class="highlight">our terms and conditions</a>.
-            </p>
-            <button class="ps-btn ps-btn--fullwidth"
-                @click.prevent="handlePayment"
-                id="card-button"
-                type="button"
-            >
-                <p v-if="!loading" class="btn-pagar">Pagar</p>
-                <p v-else>...</p>
-            </button>
-
-        </div>
+      <div id="card-container"></div>
+      <div class="form-group">
+        <p>
+          Al realizar esta compra usted acepta
+          <a href="#" class="terms">nuestros términos y condiciones</a>.
+        </p>
+        <button
+          class="ps-btn ps-btn--fullwidth"
+          @click.prevent="handlePayment"
+          id="card-button"
+          type="button"
+        >
+          <p v-if="!loading" class="btn-pagar">Pagar</p>
+          <p v-else>...</p>
+        </button>
+      </div>
     </form>
     <div id="payment-status-container"></div>
-
-</div>
+  </div>
 </template>
 
 <script>
@@ -36,7 +35,7 @@ export default {
     resumen: "",
     productMail: "",
     productosFinalesHtml: "",
-    productsCart: "", 
+    productsCart: "",
   }),
   computed: {
     cart() {
@@ -64,8 +63,8 @@ export default {
       return token;
     },
   },
-  mounted: async function () {
-    await this.getProducts(this.cart.cartItems); 
+  mounted: async function() {
+    await this.getProducts(this.cart.cartItems);
     const payments = Square.payments(
       process.env.SQUARE_APPLICATION_ID,
       process.env.SQUARE_LOCATION_ID
@@ -76,8 +75,7 @@ export default {
     console.log(this.cart);
     console.log(this.cookie);
     // this.invoicesTest(this.cart.cartItems)
-    console.log('la cookie', this.cookie)
-
+    console.log("la cookie", this.cookie);
   },
   methods: {
     async handlePayment() {
@@ -86,7 +84,7 @@ export default {
       //creando token para la tarjeta
       this.card
         .tokenize()
-        .then(async(res) => {
+        .then(async (res) => {
           if (res.token) {
             this.loading = true;
             var token = res.token;
@@ -103,29 +101,35 @@ export default {
               buyerEmailAddress: this.email,
               shippingAddress: {
                 addressLine1: `${this.cookie.address}`,
-                home: this.cookie.home, 
+                home: this.cookie.home,
                 locality: this.cookie.city,
                 postalCode: this.cookie.zipCode,
                 country: "VE",
-                phone: this.cookie.phone, 
+                phone: this.cookie.phone,
               },
               billingAddress: {},
               note: this.fullName,
             };
-            const billingResponse = await this.hasBilling().then(res => {return res}).catch(error => {console.log(error)});
-            console.log('hay billing? ', billingResponse)
-            if(billingResponse !== false){
-              console.log(billingResponse)
+            const billingResponse = await this.hasBilling()
+              .then((res) => {
+                return res;
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+            console.log("hay billing? ", billingResponse);
+            if (billingResponse !== false) {
+              console.log(billingResponse);
               payment.billingAddress = billingResponse;
-            }else{
+            } else {
               payment.billingAddress = {
-                addressLine1: 'no aplicable',
-                locality: 'no aplicable',
-                postalCode: '00000',
-                country: 'VE'
-              }
+                addressLine1: "no aplicable",
+                locality: "no aplicable",
+                postalCode: "00000",
+                country: "VE",
+              };
             }
-            console.log(payment)
+            console.log(payment);
             this.createPayment(payment);
           }
         })
@@ -174,30 +178,29 @@ export default {
     async createInvoice(payment, products) {
       var productName = this.productsCart;
       var setItems = [];
-      products.map(async function (products) {
-        var finded = productName.find(item => item.id === products.id)
-        if(finded){
+      products.map(async function(products) {
+        var finded = productName.find((item) => item.id === products.id);
+        if (finded) {
           setItems.push({
             id_product: products.id,
             quantity: products.quantity,
-            name_product: finded.attributes.name
+            name_product: finded.attributes.name,
           });
         }
       });
 
-      console.log('====> estp',setItems)
-      payment.shippingAddress.phone =this.cookie.phone; 
-      payment.shippingAddress.home =this.cookie.home; 
-      
+      console.log("====> estp", setItems);
+      payment.shippingAddress.phone = this.cookie.phone;
+      payment.shippingAddress.home = this.cookie.home;
+
       const paymentInfo = {
         nombre: this.cookie.name,
         apellido: this.cookie.lastName,
         email: payment.buyerEmailAddress,
         confirmacion: payment.id,
-        monto: payment.totalMoney.amount / 100, 
-        fecha_pago: new Date()
-      }
-      
+        monto: payment.totalMoney.amount / 100,
+        fecha_pago: new Date(),
+      };
 
       const data = {
         amount: payment.totalMoney.amount / 100,
@@ -212,9 +215,8 @@ export default {
         cardKind: payment.cardDetails.card.cardType,
         cardLast: payment.cardDetails.card.last4,
         payment_info: [paymentInfo],
-        payment_method: 'sqaureUp'
+        payment_method: "sqaureUp",
       };
-
 
       const payload = {
         token: this.token,
@@ -249,8 +251,13 @@ export default {
             return err;
           });
         this.productMail = respuesta;
-        this.productsCart = respuesta; 
-        return console.log("====> el repo", respuesta, this.productMail, this.productsCart);
+        this.productsCart = respuesta;
+        return console.log(
+          "====> el repo",
+          respuesta,
+          this.productMail,
+          this.productsCart
+        );
       } catch (error) {
         console.log(error);
       }
@@ -276,31 +283,35 @@ export default {
         //   }
         // });
 
-        for(let item of products){
-            var finded = this.productMail.find(
-                (product) => product.id === item.id
-            );
-            if (finded) {
-                console.log(finded)
-                productos.push({
-                    quantity: item.quantity,
-                    name: finded.attributes.name,
-                    amount: item.price,
-                    description: finded.attributes.description,
-                });
-                var payload = {
-                    quantity: item.quantity,
-                    name: finded.attributes.name,
-                    price: item.price,
-                }
-                var queryResponse = await this.$store.dispatch('checkout/productsMailQuery',payload ).then(res => {return res});
+        for (let item of products) {
+          var finded = this.productMail.find(
+            (product) => product.id === item.id
+          );
+          if (finded) {
+            console.log(finded);
+            productos.push({
+              quantity: item.quantity,
+              name: finded.attributes.name,
+              amount: item.price,
+              description: finded.attributes.description,
+            });
+            var payload = {
+              quantity: item.quantity,
+              name: finded.attributes.name,
+              price: item.price,
+            };
+            var queryResponse = await this.$store
+              .dispatch("checkout/productsMailQuery", payload)
+              .then((res) => {
+                return res;
+              });
 
-                if(query === ""){
-                    query = queryResponse; 
-                }else{
-                    query = query + queryResponse; 
-                }
+            if (query === "") {
+              query = queryResponse;
+            } else {
+              query = query + queryResponse;
             }
+          }
         }
 
         console.log("===> pagos", payment);
@@ -313,7 +324,7 @@ export default {
           date: created,
           content: query,
           order_id: payment.orderId,
-        }
+        };
 
         this.$axios
           .$post("/api/sendgrid-mail", {
@@ -326,80 +337,83 @@ export default {
           })
           .then(async (res) => {
             console.log("lo de axios ===>", res);
-              if (res.stat && res.stat === 200) {
-                  await this.sendMerchantMail(merchant)
-              }
+            if (res.stat && res.stat === 200) {
+              await this.sendMerchantMail(merchant);
+            }
           });
         // alert('se envio el correo')
       } catch (error) {
         console.log("error en el correo");
       }
     },
-    async hasBilling(){
-      const type = 'billing';
+    async hasBilling() {
+      const type = "billing";
       const userId = this.user.id;
 
       const data = {
         userId: userId,
-        type: type
-      }
+        type: type,
+      };
 
-      const response = await this.$store.dispatch('checkout/getAddress', data ).then(res => {
-        var response = false; 
-        if(res.length > 0){
-          console.log('el billing ===>',res)
-          const address = res[0].attributes.address;
-          response = {
-            addressLine1: address.direccion,
-            locality: address.estado,
-            postalCode: address.zipcode,
-            country: address.pais
+      const response = await this.$store
+        .dispatch("checkout/getAddress", data)
+        .then((res) => {
+          var response = false;
+          if (res.length > 0) {
+            console.log("el billing ===>", res);
+            const address = res[0].attributes.address;
+            response = {
+              addressLine1: address.direccion,
+              locality: address.estado,
+              postalCode: address.zipcode,
+              country: address.pais,
+            };
           }
-        }
-        return response; 
-      }).catch(error => {
-        console.log('error address', error)
-        return false
-      })
+          return response;
+        })
+        .catch((error) => {
+          console.log("error address", error);
+          return false;
+        });
 
-      return response; 
+      return response;
     },
-    async sendMerchantMail(data){
-        try {
-            console.log(data)
-            this.$axios
-            .$post("/api/sendgrid-mail/merchant", data)
-            .then(async (res) => {
-                console.log("lo de axios DOS ===>", res);
-                if (res.stat && res.stat === 200) {
-                    this.$notify({
-                        group: "all",
-                        title: "recibo",
-                        text: `gracias por preferirnos!`,
-                    });
-                    await new Promise((resolve) => setTimeout(resolve, 2000));
-                    this.$router.push("/");
-                    this.$store.dispatch("cart/clearCart");
-                }
-            });
-        } catch (error) {
-            console.log('error enviando correo marchatn', error)
-        }
-    }
-
+    async sendMerchantMail(data) {
+      try {
+        console.log(data);
+        this.$axios
+          .$post("/api/sendgrid-mail/merchant", data)
+          .then(async (res) => {
+            console.log("lo de axios DOS ===>", res);
+            if (res.stat && res.stat === 200) {
+              this.$notify({
+                group: "all",
+                title: "recibo",
+                text: `gracias por preferirnos!`,
+              });
+              await new Promise((resolve) => setTimeout(resolve, 2000));
+              this.$router.push("/");
+              this.$store.dispatch("cart/clearCart");
+            }
+          });
+      } catch (error) {
+        console.log("error enviando correo marchatn", error);
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.highlight {
-  color: $color-1st;
-}
 .btn-pagar {
   font-weight: 500;
   font-size: 20px;
   padding: 0;
   color: black;
   margin: 0;
+
+  &:hover {
+    color: white;
+  }
 }
 </style>

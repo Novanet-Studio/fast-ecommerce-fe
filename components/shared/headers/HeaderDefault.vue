@@ -39,11 +39,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.header--1 {
-    .header__top {
-        background-color: $color-1st;
-    }
-}
-</style>
-`
+

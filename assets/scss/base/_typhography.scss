@@ -71,7 +71,7 @@ a {
     @include transition(all 0.4s ease);
 
     &:hover {
-        color: $color-1st;
+        color: $color-dark;
     }
 }
 

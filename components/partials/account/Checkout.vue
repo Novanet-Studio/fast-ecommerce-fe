@@ -2,7 +2,7 @@
     <div class="ps-checkout ps-section--shopping">
         <div class="container">
             <div class="ps-section__header">
-                <h1>Informacion de shipping</h1>
+                <h1>Información de contacto</h1>
             </div>
             <div class="ps-section__content">
                 <div class="ps-form--checkout">
