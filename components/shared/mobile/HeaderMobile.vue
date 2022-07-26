@@ -22,7 +22,7 @@
         <div class="navigation--mobile">
             <div class="navigation__left">
                 <nuxt-link to="/" class="ps-logo">
-                    <img src="~/static/img/logo_light.png" alt="martfury" />
+                    <img src="~/static/img/farine-logo.png" alt="martfury" />
                 </nuxt-link>
             </div>
             <mobile-header-actions />
