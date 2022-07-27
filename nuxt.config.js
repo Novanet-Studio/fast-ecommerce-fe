@@ -44,6 +44,7 @@ export default {
     SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
     SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+    SENDGRID_SENDER_MAIL: process.env.SENDGRID_SENDER_MAIL,
     SENDGRID_ORDER_RECEIVER_MAIL: process.env.SENDGRID_ORDER_RECEIVER_MAIL,
     PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID, 
   },
@@ -82,7 +83,9 @@ export default {
   },
 
   modules: [
-    "@nuxtjs/axios",
+    ['@nuxtjs/axios',{
+      // baseURL: 'http://localhost:4002'
+    }],
     "nuxt-i18n",
     "@nuxtjs/proxy",
     "@nuxt/http",

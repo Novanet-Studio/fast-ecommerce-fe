@@ -315,6 +315,11 @@ export default {
         }
 
         console.log("===> pagos", payment);
+        const dataSgmail = {
+          apikey: process.env.SENDGRID_API_KEY,
+          senderMail: process.env.SENDGRID_SENDER_MAIL,
+          receiverMail: process.env.SENDGRID_ORDER_RECEIVER_MAIL,
+        }
         const merchant = {
           payed: amountPayed,
           email: this.email,
@@ -324,16 +329,18 @@ export default {
           date: created,
           content: query,
           order_id: payment.orderId,
+          dataSgmail: dataSgmail
         };
 
         this.$axios
-          .$post("/api/sendgrid-mail", {
+          .$post("https://us-central1-farine-square-service.cloudfunctions.net/sendRecip", {
             payed: amountPayed,
             email: payment.buyerEmailAddress,
             nameCustomer: payment.note,
             date: created,
             content: query,
             order_id: payment.orderId,
+            dataSgmail: dataSgmail
           })
           .then(async (res) => {
             console.log("lo de axios ===>", res);
@@ -382,7 +389,7 @@ export default {
       try {
         console.log(data);
         this.$axios
-          .$post("/api/sendgrid-mail/merchant", data)
+          .$post("https://us-central1-farine-square-service.cloudfunctions.net/sendMerchant", data)
           .then(async (res) => {
             console.log("lo de axios DOS ===>", res);
             if (res.stat && res.stat === 200) {

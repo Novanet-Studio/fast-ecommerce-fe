@@ -15,7 +15,9 @@
   "main": "index.js",
   "dependencies": {
     "@netlify/zip-it-and-ship-it": "^5.13.2",
+    "@sendgrid/mail": "^7.7.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.20.1",
     "square": "^17.3.0"
