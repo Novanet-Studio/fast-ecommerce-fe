@@ -7,8 +7,9 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "npm run generate"
+    "generate": "npm run generate",
+    "start": "nuxt start"
+    
   },
   "dependencies": {
     "@nuxt/http": "^0.6.4",
