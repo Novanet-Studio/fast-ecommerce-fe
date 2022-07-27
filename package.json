@@ -8,8 +8,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "npm run generate",
-    "heroku-postbuild": "npm run build"
+    "generate": "npm run generate"
   },
   "dependencies": {
     "@nuxt/http": "^0.6.4",
