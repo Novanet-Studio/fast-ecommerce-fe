@@ -8,7 +8,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "npm run generate"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@nuxt/http": "^0.6.4",
@@ -53,6 +53,7 @@
     "@types/uuid": "^8.3.4"
   },
   "engines": {
-    "node": "14.x"
+    "node": "14.x",
+    "yarn": "1.x"
   }
 }
