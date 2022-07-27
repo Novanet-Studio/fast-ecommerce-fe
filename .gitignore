@@ -92,4 +92,3 @@ sw.*
 
 # Heroku
 package-lock
-yarn.lock
