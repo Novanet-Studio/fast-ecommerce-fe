@@ -89,3 +89,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Heroku
+package-lock
+yarn.lock
