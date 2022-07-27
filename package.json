@@ -54,6 +54,6 @@
     "@types/uuid": "^8.3.4"
   },
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   }
 }
