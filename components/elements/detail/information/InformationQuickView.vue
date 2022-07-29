@@ -101,7 +101,7 @@ export default {
             // this.getCartProduct(this.cartItems);
             this.$notify({
                 group: 'all',
-                title: 'Exito!',
+                title: '¡Producto agregado!',
                 text: `${this.product.attributes.name} ha sido agregado al carrito!`
             });
         },
@@ -174,7 +174,7 @@ export default {
 
             this.$notify({
                 group: 'all',
-                title: 'Exito!',
+                title: '¡Producto agregado!!',
                 text: `${this.product.attributes.name} ha sido agregado al carrito!`
             });
         },

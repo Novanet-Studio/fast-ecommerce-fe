@@ -1,58 +1,56 @@
 <template lang="html">
-    <form>
-        <div class="ps-form__content">
-            <h5>Crear una cuenta</h5>
-            <div class="form-group">
-                <v-text-field
-                    v-model="username"
-                    :error-messages="usernameErrors"
-                    @input="$v.username.$touch()"
-                    placeholder="Usuario"
-                    class="ps-text-field"
-                    outlined
-                    height="50"
-                />
-            </div>
-            <div class="form-group">
-                <v-text-field
-                    v-model="email"
-                    :error-messages="emailErrors"
-                    @input="$v.email.$touch()"
-                    placeholder="Email"
-                    class="ps-text-field"
-                    outlined
-                    height="50"
-                />
-            </div>
-            <div class="form-group">
-                <v-text-field
-                    v-model="password"
-                    :error-messages="passwordErrors"
-                    @input="$v.password.$touch()"
-                    placeholder="Contraseña"
-                    class="ps-text-field"
-                    outlined
-                    height="50"
-                />
-            </div>
-            <div class="form-group submit">
-                <button
-                    type="submit"
-                    class="ps-btn ps-btn--fullwidth"
-                    @click.prevent="handleSubmit"
-                    id="botonRegistro"
-                >
-                    Registrar cuenta
-                </button>
-                <template v-if="loading === true">
-                    <loading />
-                </template>
-            </div>
-        </div>
-        <div class="ps-form__footer">
-           
-        </div>
-    </form>
+  <form>
+    <div class="ps-form__content">
+      <h5>Crear una cuenta</h5>
+      <div class="form-group">
+        <v-text-field
+          v-model="username"
+          :error-messages="usernameErrors"
+          @input="$v.username.$touch()"
+          placeholder="Usuario"
+          class="ps-text-field"
+          outlined
+          height="50"
+        />
+      </div>
+      <div class="form-group">
+        <v-text-field
+          v-model="email"
+          :error-messages="emailErrors"
+          @input="$v.email.$touch()"
+          placeholder="Email"
+          class="ps-text-field"
+          outlined
+          height="50"
+        />
+      </div>
+      <div class="form-group">
+        <v-text-field
+          v-model="password"
+          :error-messages="passwordErrors"
+          @input="$v.password.$touch()"
+          placeholder="Contraseña"
+          class="ps-text-field"
+          outlined
+          height="50"
+        />
+      </div>
+      <div class="form-group submit">
+        <button
+          type="submit"
+          class="ps-btn ps-btn--fullwidth"
+          @click.prevent="handleSubmit"
+          id="botonRegistro"
+        >
+          Registrar cuenta
+        </button>
+        <template v-if="loading === true">
+          <loading />
+        </template>
+      </div>
+    </div>
+    <div class="ps-form__footer"></div>
+  </form>
 </template>
 
 <script>
@@ -126,9 +124,9 @@ export default {
                 }
               } else {
                 this.$notify({
-                  group: 'all',
-                  title: 'Error!',
-                  text: `Ha ocurrido un error`
+                  group: "all",
+                  title: "Error!",
+                  text: `Ha ocurrido un error`,
                 });
                 // alert("Ha ocurrido un error");
               }
@@ -136,9 +134,9 @@ export default {
           );
         } catch (error) {
           this.$notify({
-            group: 'all',
-            title: 'Error!',
-            text: `Error al registrar!`
+            group: "all",
+            title: "Error!",
+            text: `Error al registrar!`,
           });
           console.log(error, "Error al registrar");
         }
@@ -182,11 +180,11 @@ export default {
       if (respuesta.jwt) {
         this.loading = false;
         //status usuario loggeado true
-          this.$notify({
-            group: 'all',
-            title: 'Exito',
-            text: `Usuario registrado con exito`
-          });
+        this.$notify({
+          group: "all",
+          title: "Registro",
+          text: `Usuario registrado con exito`,
+        });
         this.$store.dispatch("auth/setAuthStatus", true);
         this.$cookies.set("auth", respuesta, {
           path: "/",
@@ -196,9 +194,9 @@ export default {
         // alert("Usuario registrado con éxito");
       } else {
         this.$notify({
-          group: 'all',
-          title: 'Error',
-          text: `Hubo un error al registrar`
+          group: "all",
+          title: "Error",
+          text: `Hubo un error al registrar`,
         });
         // alert(respuesta.alert);
       }

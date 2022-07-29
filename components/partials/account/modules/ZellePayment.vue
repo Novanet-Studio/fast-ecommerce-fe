@@ -265,7 +265,7 @@ export default {
               if (respuesta.status === 200 && respuesta.statusText == "OK") {
                 this.$notify({
                   group: "all",
-                  title: "Exito",
+                  title: "¡Proceso exitoso!",
                   text: `la orden se ha generado, se encuentra pendiente en aprobacion!`,
                 });
                 this.sendInvoiceMail(this.cart.cartItems, dataPayment);
@@ -418,7 +418,7 @@ export default {
           apikey: process.env.SENDGRID_API_KEY,
           senderMail: process.env.SENDGRID_SENDER_MAIL,
           receiverMail: process.env.SENDGRID_ORDER_RECEIVER_MAIL,
-        }
+        };
         const merchant = {
           payed: amountPayed,
           email: this.email,
@@ -428,21 +428,24 @@ export default {
           date: created,
           content: query,
           order_id: `${this.invoice_id} (PENDIENTE EN APROBACION)`,
-          dataSgmail: dataSgmail
+          dataSgmail: dataSgmail,
         };
-        
+
         console.log("el query principal ====>", query);
 
         this.$axios
-          .$post("https://us-central1-farine-square-service.cloudfunctions.net/sendRecip", {
-            payed: amountPayed,
-            email: this.email,
-            nameCustomer: this.fullName,
-            date: created,
-            content: query,
-            order_id: `${this.invoice_id} (PENDIENTE EN APROBACION)`,
-            dataSgmail: dataSgmail
-          })
+          .$post(
+            "https://us-central1-farine-square-service.cloudfunctions.net/sendRecip",
+            {
+              payed: amountPayed,
+              email: this.email,
+              nameCustomer: this.fullName,
+              date: created,
+              content: query,
+              order_id: `${this.invoice_id} (PENDIENTE EN APROBACION)`,
+              dataSgmail: dataSgmail,
+            }
+          )
           .then(async (res) => {
             console.log("lo de axios ===>", res);
             if (res.stat && res.stat === 200) {
@@ -458,14 +461,17 @@ export default {
       try {
         console.log(data);
         this.$axios
-          .$post("https://us-central1-farine-square-service.cloudfunctions.net/sendMerchant", data)
+          .$post(
+            "https://us-central1-farine-square-service.cloudfunctions.net/sendMerchant",
+            data
+          )
           .then(async (res) => {
             console.log("lo de axios DOS ===>", res);
             if (res.stat && res.stat === 200) {
               this.$notify({
                 group: "all",
-                title: "recibo",
-                text: `gracias por preferirnos!`,
+                title: "Orden de compra generada",
+                text: `¡Gracias por preferirnos!`,
               });
               await new Promise((resolve) => setTimeout(resolve, 2000));
               this.$router.push("/");

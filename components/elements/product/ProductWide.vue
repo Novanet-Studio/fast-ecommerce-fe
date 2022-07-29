@@ -105,7 +105,7 @@ export default {
             this.getCartProduct(this.cartItems);
             this.$notify({
                 group: 'all',
-                title: 'Exito!',
+                title: '¡Producto agregado!',
                 text: `${this.product.title} ha sido agregado al carrito!`
             });
         },
@@ -118,7 +118,7 @@ export default {
             this.$store.dispatch('wishlist/addItemToWishlist', item);
             this.$notify({
                 group: 'all',
-                title: 'Exito',
+                title: '¡Producto agregado!',
                 text: `${this.product.title} ha sido agregado a la lista de deseos!`
             });
         },

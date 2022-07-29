@@ -68,7 +68,7 @@ export default {
             this.$store.commit('cart/addItem', { ...item });
             this.$notify({
                 group: 'all',
-                title: 'Exito!',
+                title: '¡Producto agregado!',
                 text: `${this.product.name} ha sido agregado al carrito!`
             });
         },

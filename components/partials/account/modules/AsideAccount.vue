@@ -2,8 +2,7 @@
   <aside class="ps-widget--account-dashboard">
     <div class="ps-widget__header">
       <div>
-        <h3>Hola</h3>
-        <p>{{ user.user.username }}</p>
+        <h3>¡Bienvendo {{ user.user.username }}!</h3>
       </div>
     </div>
     <div class="ps-widget__content">
@@ -32,5 +31,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

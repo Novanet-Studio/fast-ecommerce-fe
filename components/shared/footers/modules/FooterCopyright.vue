@@ -9,7 +9,7 @@
       </a>
     </p>
     <p>
-      <span>Tienda relizada por</span>
+      <span>Tienda realizada por</span>
       <a href="https://novanet.studio/">
         <img src="~/static/img/novanet-logo.svg" alt="SquareUp logo" />
       </a>
