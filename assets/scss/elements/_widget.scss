@@ -597,3 +597,10 @@
         }
     }
 }
+
+
+@media only screen and (min-device-width: 20em) and (max-device-width: 48em) and (-webkit-min-device-pixel-ratio: 1) {
+    .ps-footer__widgets {
+        display: block !important;
+    }
+  }

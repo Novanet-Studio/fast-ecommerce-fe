@@ -9,7 +9,7 @@
 
         <div class="ps-block__right">
             <nuxt-link to="/account/login">
-                Iniciar Sesión
+                Ingresar
             </nuxt-link>
             <nuxt-link to="/account/register">
                 Registro

@@ -93,7 +93,6 @@
     > i {
       font-size: 30px;
       line-height: 42px;
-      color: $color-dark;
     }
 
     span {
@@ -137,7 +136,6 @@
   }
   //header default
   .header__left {
-    max-width: 300px;
     display: flex;
     align-items: center;
 
@@ -484,4 +482,14 @@
   max-width: 450px;
   margin: 0 auto;
   padding: 10px 20px;
+}
+
+@media only screen and (min-device-width: 20em) and (max-device-width: 48em) and (-webkit-min-device-pixel-ratio: 1) {
+  .header__left {
+    width: 800% !important;
+  }
+
+  .header.header--sticky .header__left .ps-logo {
+    display: block;
+  }
 }
