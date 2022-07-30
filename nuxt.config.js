@@ -1,8 +1,8 @@
 export default {
   target: 'static',
   head: {
-    titleTemplate: "Martfury - Multi-purpose Ecomerce template with vuejs",
-    title: "Martfury - Multi-purpose Ecomerce template with vuejs",
+    titleTemplate: "Farine by Vane - Cachitos",
+    title: "Farine by Vane - Cachitos",
     meta: [
       { charset: "utf-8" },
       {
@@ -12,7 +12,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: "Martfury - Multipurpose Marketplace Vuejs Ecommerce Template",
+        content: "Farine by Vane - Cachitos",
       },
     ],
     link: [
