@@ -11,9 +11,7 @@
         data-netlify-honeypot="bot-field"
       >
         <h3>Envíanos un mensaje</h3>
-        <p hidden>
-          <label> Don’t fill this out: <input name="bot-field" /> </label>
-        </p>
+        <input type="hidden" name="form-name" value="contacto" />
         <div class="row">
           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ">
             <div class="form-group">

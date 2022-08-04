@@ -35,13 +35,13 @@ export default {
                 },
                 {
                     text: 'Nosotros',
-                    url: '/page/nosotros',
+                    url: '/nosotros',
                     extraClass: 'menu-item-has-children',
                     subClass: 'sub-menu',
                 },
                 {
                     text: 'Contáctanos',
-                    url: '/page/contacto',
+                    url: '/contacto',
                     extraClass: 'menu-item-has-children',
                     subClass: 'sub-menu',
                 },

@@ -1,9 +1,9 @@
 {
-    "name": "martfury_vue",
-    "version": "1.3.0",
-    "description": "Martfury - Multi-purpose Ecomerce template with vuejs",
-    "author": "nouthemes",
-    "private": true,
+    "name": "farine-fe",
+    "version": "1.5.0",
+    "description": "Tienda en mano - Farine by Vane",
+    "author": "Novanet Studio <info@novanet.studio>",
+    "private": false,
     "scripts": {
         "dev": "nuxt",
         "build": "nuxt build",
@@ -31,7 +31,7 @@
         "ky-universal": "^0.10.1",
         "lodash": "^4.17.21",
         "moment": "^2.26.0",
-        "nuxt": "^2.14.7",
+        "nuxt": "^2.14.7", 
         "nuxt-i18n": "^6.3.0",
         "nuxt-mail": "^3.0.23",
         "prettier": "^1.9.2",
@@ -51,5 +51,6 @@
         "@nuxt/types": "~0.7.0",
         "@nuxtjs/style-resources": "^1.0.0",
         "@types/uuid": "^8.3.4"
-    }
+    },
+    "license": "MIT"
 }
