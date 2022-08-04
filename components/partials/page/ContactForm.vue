@@ -92,7 +92,7 @@ export default {
           ...this.formData,
         }),
       })
-        .then(() => this.$router.push("/contacto"))
+        .then(() => this.$router.push("/gracias"))
         .catch((error) => alert(error));
     },
   },

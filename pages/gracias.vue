@@ -10,7 +10,7 @@
             <p>
               Le responderemos a la brevedad posible.
               <nuxt-link to="/" class="gracias-link">
-                Ir al inicio
+                Regresar al inicio
               </nuxt-link>
             </p>
           </figure>

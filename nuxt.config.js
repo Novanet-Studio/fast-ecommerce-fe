@@ -1,5 +1,5 @@
 export default {
-  target: 'static',
+  target: "static",
   head: {
     titleTemplate: "Farine by Vane - Cachitos",
     title: "Farine by Vane - Cachitos",
@@ -34,7 +34,8 @@ export default {
       },
       {
         type: "module",
-        src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js",
+        src:
+          "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js",
       },
     ],
   },
@@ -46,7 +47,7 @@ export default {
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     SENDGRID_SENDER_MAIL: process.env.SENDGRID_SENDER_MAIL,
     SENDGRID_ORDER_RECEIVER_MAIL: process.env.SENDGRID_ORDER_RECEIVER_MAIL,
-    PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID, 
+    PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
   },
 
   css: [
@@ -76,6 +77,7 @@ export default {
     "@nuxtjs/vuetify",
     "@nuxtjs/style-resources",
     "cookie-universal-nuxt",
+    "@nuxtjs/pwa",
   ],
 
   styleResources: {
@@ -83,9 +85,12 @@ export default {
   },
 
   modules: [
-    ['@nuxtjs/axios',{
-      // baseURL: 'http://localhost:4002'
-    }],
+    [
+      "@nuxtjs/axios",
+      {
+        // baseURL: 'http://localhost:4002'
+      },
+    ],
     "nuxt-i18n",
     "@nuxtjs/proxy",
     "@nuxt/http",
@@ -133,10 +138,26 @@ export default {
     host: "localhost",
   },
 
-  serverMiddleware: ['~/api/sendgrid-mail.js'],
+  serverMiddleware: ["~/api/sendgrid-mail.js"],
 
   axios: {
     credentials: false,
     proxyheaders: false,
+  },
+  pwa: {
+    meta: {
+      title: "Farine by Vane",
+      author: "Novanet Studio <info@novanet.studio>",
+      description: "Tienda en mano de Farine by Vane",
+    },
+    manifest: {
+      name: "Farine by Vane web app",
+      short_name: "Farine app",
+      lang: "es",
+      background_color: "#feeed7",
+    },
+    workbox: {
+      urlPattern: "https://res.cloudinary.com/.*",
+    },
   },
 };

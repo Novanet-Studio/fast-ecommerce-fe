@@ -92,3 +92,6 @@ sw.*
 
 # Heroku
 package-lock
+
+# PWA
+sw.*
