@@ -5,7 +5,6 @@
         class="ps-form--contact-us"
         name="contacto"
         v-on:submit.prevent="handleSubmit"
-        action="/"
         method="post"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
@@ -92,7 +91,7 @@ export default {
           ...this.formData,
         }),
       })
-        .then(() => this.$router.push("/success"))
+        .then(() => this.$router.push("/contacto"))
         .catch((error) => alert(error));
     },
   },
