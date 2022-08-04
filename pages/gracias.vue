@@ -9,7 +9,7 @@
             <h3>¡Gracias por contactarnos!</h3>
             <p>
               Le responderemos a la brevedad posible.
-              <nuxt-link to="/">
+              <nuxt-link to="/" class="gracias-link">
                 Ir al inicio
               </nuxt-link>
             </p>
@@ -45,4 +45,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

@@ -5,7 +5,7 @@
         class="ps-form--contact-us"
         name="contacto"
         v-on:submit.prevent="handleSubmit"
-        action="/contacto/"
+        action="/gracias/"
         method="post"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
