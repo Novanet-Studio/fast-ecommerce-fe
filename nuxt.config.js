@@ -156,8 +156,5 @@ export default {
       lang: "es",
       background_color: "#feeed7",
     },
-    workbox: {
-      urlPattern: "https://res.cloudinary.com/.*",
-    },
   },
 };
