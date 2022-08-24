@@ -48,6 +48,7 @@ export default {
     SENDGRID_SENDER_MAIL: process.env.SENDGRID_SENDER_MAIL,
     SENDGRID_ORDER_RECEIVER_MAIL: process.env.SENDGRID_ORDER_RECEIVER_MAIL,
     PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
+    STRAPI_URL: process.env.STRAPI_URL,
   },
 
   css: [
