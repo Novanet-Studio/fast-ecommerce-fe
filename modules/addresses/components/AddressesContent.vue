@@ -73,9 +73,11 @@ const auth = $store.auth();
 const hasBilling = ref<boolean>(false);
 const hasShipping = ref<boolean>(false);
 
+const id = Number(auth.user.id);
+
 const checkBilling = async () => {
   const data = {
-    id: auth.user.id,
+    id,
     type: AddressType.Billing,
   };
 
@@ -91,7 +93,7 @@ const checkBilling = async () => {
 
 const checkShipping = async () => {
   const data = {
-    id: auth.user.id,
+    id,
     type: AddressType.Shipping,
   };
 

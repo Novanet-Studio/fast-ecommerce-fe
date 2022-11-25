@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmit(handleSave)">
+  <form>
     <div class="mb-8 pb-3 border-b border-b-light-800">
       <h3 class="text-2xl font-semibold text-yellow-400" v-if="type === AddressType.Billing">Dirección de facturación
       </h3>
@@ -18,16 +18,16 @@
       </div>
       <div class="mb-10">
         <label class="mb-6 text-dark-800" for="state">Estado<sup class="ml-1 text-red-500">*</sup> </label>
-        <the-input v-model="form.state" placeholder="Av Fco Miranda, calle solar" :is-error="status.state.isError"
+        <the-input v-model="form.state" placeholder="Miranda" :is-error="status.state.isError"
           :error-message="status.state.message" />
       </div>
       <div class="mb-10">
         <label class="mb-6 text-dark-800">Código postal<sup class="ml-1 text-red-500">*</sup> </label>
-        <the-input v-model="form.postcode" placeholder="Av Fco Miranda, calle solar" :is-error="status.postcode.isError"
+        <the-input v-model="form.postcode" placeholder="1073" :is-error="status.postcode.isError"
           :error-message="status.postcode.message" />
       </div>
       <div class="mb-10 md:w-[25%]">
-        <the-button btn-type="submit" text="Guardar" />
+        <the-button btn-type="submit" text="Guardar" @click="submit" />
       </div>
     </div>
   </form>
@@ -55,7 +55,7 @@ const type = computed(() =>
   [AddressType.Billing, AddressType.Shipping].includes(props.type) ? props.type : AddressType.None,
 )
 
-const { form, status, reset, onSubmit, clearErrors, verify } = useForm({
+const { form, status, submitter, verify } = useForm({
   form: () => ({
     country: '',
     streetAddress: '',
@@ -73,11 +73,11 @@ const { form, status, reset, onSubmit, clearErrors, verify } = useForm({
 const goToAddresses = () => {
   setTimeout(() => {
     router.push('/addresses');
-  }, 500);
+  }, 1000);
 }
 
 const createAddress = async (data: any) => {
-  const result = await graphql<AddressResponse>(CreateAddress, data);
+  await graphql<AddressResponse>(CreateAddress, data);
 
   $notify({
     group: 'all',
@@ -136,7 +136,7 @@ const sendAddress = async (data: object) => {
   createAddress(data);
 };
 
-const handleSave = () => {
+const { submit } = submitter(() => {
   if (!verify() || type.value === AddressType.None) return;
 
   const info = {
@@ -148,15 +148,15 @@ const handleSave = () => {
 
   const body = {
     type: type.value,
-    userId: auth.user.id,
+    userId: +auth.user.id,
     address: info,
   }
 
   sendAddress(body);
-}
+})
 
 const getLastAddress = async () => {
-  const id = auth.user.id;
+  const id = +auth.user.id;
   if (type.value === AddressType.None) return;
 
   const body = {

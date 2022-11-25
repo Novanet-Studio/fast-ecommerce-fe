@@ -62,7 +62,7 @@
       </div>
 
       <div class="mb-0 md:(mb-10 w-[25%])">
-        <the-button btn-type="submit" text="Continuar" @click="onSubmit(handleToShipping)" />
+        <the-button btn-type="submit" text="Continuar" @click="submit" />
       </div>
       <!-- <div class="ps-form__submit">
         <div class="ps-block__footer">
@@ -83,13 +83,13 @@ import { GetAddressByIdAndType } from '~/modules/addresses/queries';
 import { AddressType } from '~/modules/shared/shared-types';
 
 
-const { $store, $helpers } = useNuxtApp();
+const { $store } = useNuxtApp();
 const router = useRouter();
 const graphql = useStrapiGraphQL();
 const auth = $store.auth();
 const checkout = $store.checkout();
 
-const { form, status, onSubmit, verify } = useForm({
+const { form, status, submitter, verify } = useForm({
   form: () => ({
     name: '',
     lastName: '',
@@ -117,6 +117,10 @@ const { form, status, onSubmit, verify } = useForm({
 });
 
 const fillFormFromStorage = () => {
+  if (auth.user.email) {
+    form.email = auth.user.email;
+  }
+
   if (!checkout.email) return;
 
   form.email = checkout.email;
@@ -131,12 +135,11 @@ const fillFormFromStrapiShippingData = async () => {
       type: AddressType.Shipping,
     };
 
-    // TODO: add typings for address response
-    const { data } = await graphql<unknown[]>(GetAddressByIdAndType, body) as any;
+    const { data } = await graphql<AddressResponse>(GetAddressByIdAndType, body) as any;
 
-    if (!data?.length) return;
+    if (!data?.addresses.data.length) return;
 
-    const response = data[0].attributes.address;
+    const response = data?.addresses?.data[0]?.attributes.address;
 
     Object.assign(form, response);
 
@@ -151,14 +154,14 @@ const fillFormFromStrapiShippingData = async () => {
   }
 }
 
-const handleToShipping = async () => {
+const { submit } = submitter(async () => {
   if (!verify()) return;
 
   const data = { ...form };
   checkout.shippingInfo(data);
 
   router.push('/shipping');
-}
+})
 
 onMounted(() => {
   fillFormFromStorage();

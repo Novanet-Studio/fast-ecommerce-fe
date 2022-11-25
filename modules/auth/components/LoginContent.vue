@@ -4,8 +4,8 @@
       <h5 class="text-base mb-4 text-yellow-500">Inicia sesión en tu cuenta</h5>
       <the-input v-model="form.user" placeholder="john o john@doe.com" :is-error="status.user.isError"
         :error-message="status.user.message" />
-      <the-input v-model="form.password" placeholder="Ingrese su contraseña" :is-error="status.password.isError"
-        :error-message="status.password.message" />
+      <the-input v-model="form.password" placeholder="Ingrese su contraseña" type="password"
+        :is-error="status.password.isError" :error-message="status.password.message" />
       <!-- <div class="border border-green-400 p-3 mb-4">
         <input type="checkbox" name="rememberme" v-model="form.rememberMe">
         <label for="rememberme">Recordarme</label>
@@ -14,7 +14,7 @@
         <template v-if="state.isLoading">
           <loading />
         </template>
-        <the-button v-else text="Entrar" @click="onSubmit(handleSubmit)" :disabled="state.isDisabled" />
+        <the-button v-else text="Entrar" @click="submit" :disabled="state.isDisabled" />
       </div>
     </div>
   </form>
@@ -28,7 +28,7 @@ import loginQuery from '../queries/login.gql';
 
 const graphql = useStrapiGraphQL();
 const { setToken } = useStrapiAuth();
-const { $helpers, $notify, $store } = useNuxtApp();
+const { $notify, $store } = useNuxtApp();
 
 const router = useRouter();
 const auth = $store.auth();
@@ -38,7 +38,7 @@ const state = reactive({
   isDisabled: false,
 });
 
-const { form, status, onSubmit, verify } = useForm({
+const { form, status, submitter, verify } = useForm({
   form: () => ({
     user: '',
     password: '',
@@ -56,14 +56,21 @@ const resetState = () => {
   state.isDisabled = false;
 }
 
-const handleSubmit = async () => {
+const { submit } = submitter(async () => {
   try {
-    if (!verify()) return;
+    if (!verify()) {
+      $notify({
+        group: 'all',
+        title: 'Error!',
+        text: 'Por favor, rellene los campos obligatorios',
+      });
+      return;
+    }
 
     state.isLoading = true;
     state.isDisabled = true;
 
-    const [{ data }, error] = await $helpers.handleAsync(graphql<LoginResponse>(loginQuery, { identifier: form.user, password: form.password }));
+    const { data } = await graphql<LoginResponse>(loginQuery, { identifier: form.user, password: form.password });
 
     if (!data) {
       $notify({
@@ -71,17 +78,6 @@ const handleSubmit = async () => {
         title: 'Error!',
         text: 'Usuario o Contraseña inválidos',
       });
-      // resetState();
-      return;
-    }
-
-    if (error?.message) {
-      $notify({
-        group: 'all',
-        title: 'Error!',
-        text: 'Hubo un problema al iniciar sesión',
-      });
-      // resetState();
       return;
     }
 
@@ -98,12 +94,17 @@ const handleSubmit = async () => {
     setTimeout(() => {
       router.push('/');
     }, 1000);
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.toString());
+    $notify({
+      group: 'all',
+      title: 'Error!',
+      text: 'Hubo un problema al iniciar sesión',
+    });
   } finally {
     state.isLoading = false;
     state.isDisabled = false;
     resetState();
   }
-}
+})
 </script>
