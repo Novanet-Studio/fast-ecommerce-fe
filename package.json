@@ -30,6 +30,7 @@
     "slimeform": "^0.7.0",
     "square": "^24.0.0",
     "swiper": "^8.4.5",
+    "vue3-tabs-component": "^1.1.1",
     "yup": "^0.32.11"
   }
 }
