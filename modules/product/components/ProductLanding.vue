@@ -31,27 +31,27 @@ type Props = {
 }
 
 const props = defineProps<Props>();
-const { $helpers, $notify } = useNuxtApp();
+const { $notify } = useNuxtApp();
 const graphql = useStrapiGraphQL();
 
 const products = ref<Product[]>([]);
 const modules = [Autoplay, Navigation, Pagination];
 
 const productsByCategory = async () => {
-  const [{ data }, error] = await $helpers.handleAsync(graphql<ProductsResponse>(GetProductsByCategoryId, {
-    id: props.category.id,
-  }));
+  try {
+    const { data } = await graphql<ProductsResponse>(GetProductsByCategoryId, {
+      id: props.category.id,
+    });
 
-  if (error?.message) {
+    products.value = data.products.data;
+  } catch (error) {
     $notify({
       group: '',
       title: 'Error',
       text: 'Hubo un error al intentar cargar los productos',
     });
-    return;
+    console.log(error);
   }
-
-  products.value = data.products.data;
 }
 
 onMounted(() => {

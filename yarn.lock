@@ -888,10 +888,10 @@
   resolved "https://registry.yarnpkg.com/@nuxt/devalue/-/devalue-2.0.0.tgz#c7bd7e9a516514e612d5d2e511ffc399e0eac322"
   integrity sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==
 
-"@nuxt/image-edge@1.0.0-27821548.ab054e4":
-  version "1.0.0-27821548.ab054e4"
-  resolved "https://registry.yarnpkg.com/@nuxt/image-edge/-/image-edge-1.0.0-27821548.ab054e4.tgz#7146f5b6a56142982ba23a148f1416af7423299e"
-  integrity sha512-1QSKE7HAIk8b/LeC4ff52Tsx0Z9M0V7xg+QqQh/l6jwkMlzvi6kqVXDT1AeiCwXOQX6IaOhASaEX6AgMx8jr3g==
+"@nuxt/image-edge@1.0.0-27827328.bc9ddc0":
+  version "1.0.0-27827328.bc9ddc0"
+  resolved "https://registry.yarnpkg.com/@nuxt/image-edge/-/image-edge-1.0.0-27827328.bc9ddc0.tgz#3be36c6a98dffc3812d368e7f708ab25d41923fb"
+  integrity sha512-8fy6dSJaH9I5FKPK4EA6ddgUWNkxz2Y1AGIKVbAaRKftyK4y66gHmA+pbPPjb1cgYw6pWoWrnA4JxsHKelD8+A==
   dependencies:
     "@nuxt/kit" "^3.0.0"
     consola "^2.15.3"
@@ -1069,6 +1069,13 @@
     graphql "^16.6.0"
     pathe "^1.0.0"
     qs "^6.11.0"
+
+"@paypal/paypal-js@^5.1.4":
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-5.1.4.tgz#aff45a27bb542dc331853577094aee78d5233b75"
+  integrity sha512-5ktge4DFOMu3rvFR4YWDiPm4wDUzOmghtCM9ZxgJyJCOJP+61IVYdrENysMay91T4GOZ10k2ywWcBN5shsGhLw==
+  dependencies:
+    promise-polyfill "^8.2.3"
 
 "@pinia/nuxt@^0.4.5":
   version "0.4.6"
@@ -5088,6 +5095,11 @@ process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
+
+promise-polyfill@^8.2.3:
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.2.3.tgz#2edc7e4b81aff781c88a0d577e5fe9da822107c6"
+  integrity sha512-Og0+jCRQetV84U8wVjMNccfGCnMQ9mGs9Hv78QFe+pSDD3gWTpz0y+1QCuxy5d/vBFuZ3iwP2eycAkvqIMPmWg==
 
 property-expr@^2.0.4:
   version "2.0.5"

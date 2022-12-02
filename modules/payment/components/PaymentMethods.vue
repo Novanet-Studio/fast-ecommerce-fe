@@ -5,8 +5,8 @@
       <tab name="Square up">
         <visa-method />
       </tab>
-      <tab name="Zelle">
-        Zelle data form goes here...
+      <tab name="Paypal">
+        <paypal-method />
       </tab>
     </Tabs>
   </div>

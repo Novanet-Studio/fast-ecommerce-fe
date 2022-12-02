@@ -61,6 +61,7 @@ export default defineNuxtConfig({
       FIREBASE_MEASURENT_ID: process.env.FIREBASE_MEASURENT_ID,
       SQUARE_APPLICATION_ID: process.env.SQUARE_APPLICATION_ID,
       SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
+      PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     },
   },
 

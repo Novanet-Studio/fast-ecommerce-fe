@@ -8,7 +8,7 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@nuxt/image-edge": "1.0.0-27821548.ab054e4",
+    "@nuxt/image-edge": "1.0.0-27827328.bc9ddc0",
     "@nuxtjs/strapi": "^1.6.3",
     "@rollup/plugin-graphql": "^2.0.2",
     "graphql": "^16.6.0",
@@ -19,6 +19,7 @@
   "dependencies": {
     "@kevinmarrec/nuxt-pwa": "^0.13.0",
     "@kyvg/vue3-notification": "^2.6.1",
+    "@paypal/paypal-js": "^5.1.4",
     "@pinia/nuxt": "^0.4.5",
     "firebase": "^9.14.0",
     "gitart-vue-dialog": "^2.4.1",
