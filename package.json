@@ -10,6 +10,7 @@
   "devDependencies": {
     "@nuxt/image-edge": "1.0.0-27827328.bc9ddc0",
     "@nuxtjs/strapi": "^1.6.3",
+    "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@rollup/plugin-graphql": "^2.0.2",
     "graphql": "^16.6.0",
     "nuxt": "3.0.0",
@@ -27,7 +28,6 @@
     "jspdf": "^2.5.1",
     "jspdf-html2canvas": "^1.4.9",
     "pdfmake": "^0.2.6",
-    "pinia-plugin-persistedstate": "^3.0.1",
     "slimeform": "^0.8.0",
     "square": "^24.0.0",
     "swiper": "^8.4.5",

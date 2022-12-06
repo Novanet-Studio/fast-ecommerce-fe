@@ -17,6 +17,7 @@ export default defineNuxtConfig({
   modules: [
     // Modules
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/strapi',
     'nuxt-windicss',
     '@kevinmarrec/nuxt-pwa',
