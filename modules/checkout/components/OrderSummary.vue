@@ -16,7 +16,7 @@
                 {{ item.attributes.name }}
               </nuxt-link>
               <p class="text-sm text-dark-100">{{ cart.cartItems[index].quantity }} x ${{
-              item.attributes.price.toFixed(2)
+                  item.attributes.price.toFixed(2)
               }}
               </p>
             </template>
@@ -34,39 +34,16 @@
 </template>
 
 <script lang="ts" setup>
-import { GetProductById } from '~/modules/product/queries';
-
 type Props = {
   shipping: boolean;
 };
-
-const graphql = useStrapiGraphQL();
 const { $store } = useNuxtApp();
 const cart = $store.cart();
 const product = $store.product();
 
+useGetCartProducts();
+
 withDefaults(defineProps<Props>(), {
   shipping: false,
-});
-
-const loadCartProducts = async () => {
-  const itemsId = cart.cartItems.map((item) => item.id);
-
-  if (!cart.cartItems.length) {
-    product.cartProducts = null;
-    return;
-  }
-
-  const productPromises = itemsId.map((id: string) => graphql<ProductsResponse>(GetProductById, { id }));
-
-
-  const response = await Promise.all(productPromises);
-  product.cartProducts = response;
-
-  cart.loading = false;
-}
-
-onMounted(async () => {
-  await loadCartProducts();
 });
 </script>

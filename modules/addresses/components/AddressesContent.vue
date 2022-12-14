@@ -63,52 +63,5 @@
 </template>
 
 <script lang="ts" setup>
-import { GetAddressByIdAndType } from '../queries';
-import { AddressType } from '~/modules/shared/shared-types';
-
-const { $store } = useNuxtApp();
-const graphql = useStrapiGraphQL();
-const auth = $store.auth();
-
-const hasBilling = ref<boolean>(false);
-const hasShipping = ref<boolean>(false);
-
-const id = Number(auth.user.id);
-
-const checkBilling = async () => {
-  const data = {
-    id,
-    type: AddressType.Billing,
-  };
-
-  const response = await graphql<AddressResponse>(GetAddressByIdAndType, data);
-
-  if (!response.data.addresses.data.length) {
-    hasBilling.value = false;
-    return;
-  }
-
-  hasBilling.value = true;
-}
-
-const checkShipping = async () => {
-  const data = {
-    id,
-    type: AddressType.Shipping,
-  };
-
-  const response = await graphql<AddressResponse>(GetAddressByIdAndType, data);
-
-  if (!response.data.addresses.data.length) {
-    hasShipping.value = false;
-    return;
-  }
-
-  hasShipping.value = true;
-}
-
-onMounted(async () => {
-  await checkBilling();
-  await checkShipping();
-})
+const { hasBilling, hasShipping } = useCheckAddressType();
 </script>

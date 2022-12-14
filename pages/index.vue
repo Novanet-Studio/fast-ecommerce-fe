@@ -19,7 +19,7 @@
       </div>
     </template>
     <template v-if="!isLoading && categories.length">
-      <div v-for="category in orderedCategories" :key="category.id">
+      <div v-for="category in categories" :key="category.id">
         <product-landing :category="category" />
       </div>
     </template>
@@ -27,10 +27,6 @@
 </template>
 
 <script lang="ts" setup>
-import categoriesQuery from '../modules/shared/queries/categories.gql';
-
-const isLoading = ref(false);
-
 definePageMeta({
   layoutTransition: {
     name: 'zoom'
@@ -40,31 +36,5 @@ definePageMeta({
   }
 });
 
-const { $helpers, $notify } = useNuxtApp();
-const graphql = useStrapiGraphQL();
-
-const categories = ref<Category[]>([]);
-const orderedCategories = ref<Category[]>([]);
-
-const loadCategories = async () => {
-  isLoading.value = true;
-  const [{ data }, error] = await $helpers.handleAsync(graphql<CategoriesResponse>(categoriesQuery));
-
-  if (error?.message) {
-    $notify({
-      group: '',
-      title: 'Error',
-      text: 'Hubo un error al intentar cargar las categorias',
-    });
-    return;
-  }
-
-  categories.value = data.categories.data;
-  orderedCategories.value = data.categories.data.sort((a: Category, b: Category) => Number(a.id) - Number(b.id));
-  isLoading.value = false;
-}
-
-onMounted(() => {
-  loadCategories();
-})
+const { categories, isLoading } = useCategory({ ordered: true });
 </script>
