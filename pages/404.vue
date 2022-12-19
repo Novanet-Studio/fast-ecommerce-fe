@@ -5,7 +5,7 @@
       <div class="container">
         <div class="ps-section__content">
           <figure>
-            <img src="/img/404.jpg" alt="" />
+            <nuxt-img src="/404.jpg" alt="" />
             <h3>Ohh! Page not found</h3>
             <p>
               It seems we can't find what you're looking

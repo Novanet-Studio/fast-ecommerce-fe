@@ -103,6 +103,7 @@ export default defineNuxtConfig({
   },
 
   image: {
+    dir: "modules/shared/assets/img",
     cloudinary: {
       baseURL: 'https://res.cloudinary.com/novanet-studio/image/upload/',
     },

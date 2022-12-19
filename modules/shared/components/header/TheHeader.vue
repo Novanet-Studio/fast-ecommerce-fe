@@ -6,7 +6,7 @@
       >
         <div class="flex items-center flex-basis-[35%] md:flex-basis-[auto]">
           <nuxt-link class="cursor-pointer" to="/">
-            <img src="modules/shared/assets/img/logo.png" alt="martfury" />
+            <nuxt-img src="/logo.png" alt="martfury" />
           </nuxt-link>
         </div>
         <!-- <div class=""> -->
