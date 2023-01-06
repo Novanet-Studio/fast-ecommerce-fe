@@ -1,0 +1,10 @@
+export { default as createAdress } from './create-address.gql';
+export { default as createInvoice } from './create-invoice.gql';
+export { default as getAddressByIdAndType } from './get-address-by-id-and-type.gql';
+export { default as categories } from './categories.gql';
+export { default as getInvoicesByUserId } from './get-invoices-by-user-id.gql';
+export { default as getProductById } from './get-product-by-id.gql';
+export { default as getProductsByCategoryId } from './get-products-by-category-id.gql';
+export { default as login } from './login.gql';
+export { default as register } from './register.gql';
+export { default as updateAddress } from './update-address.gql';

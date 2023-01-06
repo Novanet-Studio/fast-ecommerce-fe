@@ -22,18 +22,6 @@ export default defineNuxtConfig({
     'nuxt-windicss',
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/image-edge',
-
-    // Custom
-    '~/modules/shared/module',
-    '~/modules/product/module',
-    '~/modules/auth/module',
-    '~/modules/addresses/module',
-    '~/modules/checkout/module',
-    '~/modules/shipping/module',
-    '~/modules/shopping-cart/module',
-    '~/modules/wishlist/module',
-    '~/modules/invoices/module',
-    '~/modules/payment/module',
   ],
 
   css: [
@@ -45,10 +33,6 @@ export default defineNuxtConfig({
     '~/static/fontawesome/css/solid.css',
     '~/static/Linearicons/Font/demo-files/demo.css',
   ],
-
-  dir: {
-    assets: resolve(__dirname, './modules/shared/assets'),
-  },
 
   runtimeConfig: {
     public: {
@@ -103,9 +87,16 @@ export default defineNuxtConfig({
   },
 
   image: {
-    dir: "modules/shared/assets/img",
-    cloudinary: {
-      baseURL: 'https://res.cloudinary.com/novanet-studio/image/upload/',
+    dir: 'assets/img',
+    // The screen sizes predefined by `@nuxt/image`:
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536,
+      '2xl': 1536,
     },
   },
 });

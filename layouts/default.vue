@@ -9,12 +9,12 @@
             class="flex flex[1_0_auto] max-w-full transition animate-ease-[cubic-bezier(0.4,0,0.2,1)]"
           >
             <div class="flex-auto max-w-full relative">
-              <the-header />
+              <app-header />
               <!-- <navigation-list /> -->
               <main class="lg:container lg:mx-auto">
                 <nuxt-page />
               </main>
-              <the-footer />
+              <app-footer />
               <notify />
             </div>
           </div>
