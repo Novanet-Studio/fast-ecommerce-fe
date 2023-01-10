@@ -18,7 +18,7 @@
     "sass": "1.57.1"
   },
   "dependencies": {
-    "@kevinmarrec/nuxt-pwa": "^0.14.0",
+    "@kevinmarrec/nuxt-pwa": "^0.15.0",
     "@kyvg/vue3-notification": "^2.7.0",
     "@paypal/paypal-js": "^5.1.4",
     "@pinia/nuxt": "^0.4.5",

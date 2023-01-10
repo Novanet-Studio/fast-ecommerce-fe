@@ -1,20 +1,14 @@
 <template>
-  <form>
-    <div class="mb-8 pb-3 border-b border-b-light-800">
-      <h3
-        class="text-2xl font-semibold text-yellow-400"
-        v-if="type === AddressType.Billing"
-      >
-        Dirección de facturación
+  <form class="address-form">
+    <header class="address-form__header">
+      <h3 class="address-form__title">
+        {{ title }}
       </h3>
-      <h3 class="text-2xl font-semibold text-yellow-400" v-else>
-        Dirección de envío
-      </h3>
-    </div>
+    </header>
     <div>
-      <div class="mb-10">
-        <label class="mb-6 text-dark-800"
-          >País<sup class="ml-1 text-red-500">*</sup></label
+      <div class="address-form__group">
+        <label class="address-form__label"
+          >País<sup class="address-form__required">*</sup></label
         >
         <app-input
           v-model="form.country"
@@ -23,9 +17,9 @@
           :error-message="status.country.message"
         />
       </div>
-      <div class="mb-10">
-        <label class="mb-6 text-dark-800" for="streetAddress"
-          >Dirección<sup class="ml-1 text-red-500">*</sup>
+      <div class="address-form__group">
+        <label class="address-form__label" for="streetAddress"
+          >Dirección<sup class="address-form__required">*</sup>
         </label>
         <app-input
           v-model="form.streetAddress"
@@ -34,9 +28,9 @@
           :error-message="status.streetAddress.message"
         />
       </div>
-      <div class="mb-10">
-        <label class="mb-6 text-dark-800" for="state"
-          >Estado<sup class="ml-1 text-red-500">*</sup>
+      <div class="address-form__group">
+        <label class="address-form__label" for="state"
+          >Estado<sup class="address-form__required">*</sup>
         </label>
         <app-input
           v-model="form.state"
@@ -45,9 +39,9 @@
           :error-message="status.state.message"
         />
       </div>
-      <div class="mb-10">
-        <label class="mb-6 text-dark-800"
-          >Código postal<sup class="ml-1 text-red-500">*</sup>
+      <div class="address-form__group">
+        <label class="address-form__label"
+          >Código postal<sup class="address-form__required">*</sup>
         </label>
         <app-input
           v-model="form.postcode"
@@ -56,7 +50,7 @@
           :error-message="status.postcode.message"
         />
       </div>
-      <div class="mb-10 md:w-[25%]">
+      <div class="address-form__group-btn">
         <app-button btn-type="submit" text="Guardar" @click="submit" />
       </div>
     </div>
@@ -88,6 +82,12 @@ const type = computed(() =>
   [AddressType.Billing, AddressType.Shipping].includes(props.type)
     ? props.type
     : AddressType.None
+);
+
+const title = computed(() =>
+  type.value === AddressType.Billing
+    ? 'Dirección de facturación'
+    : 'Dirección de envío'
 );
 
 const { form, status, submitter, verify } = useForm({

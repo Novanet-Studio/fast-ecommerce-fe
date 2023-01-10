@@ -5,25 +5,14 @@
       @mouseleave="isOpen = false"
       @click="isOpen = !isOpen"
     >
-      <a
-        class="inline-block relative w-[30px] h-[42px] transition ease"
-        href="#"
-        @click="loadCartProducts"
-      >
-        <i class="icon-bag2 text-3xl"></i>
-        <span
-          class="absolute bottom-2 -right-[5px] flex justify-center items-center w-[20px] h-[20px] text-white bg-dark-300 rounded-full"
-        >
-          <i class="text-xs leading-4 font-medium not-italic">{{ total }}</i>
+      <a class="header-actions__link" href="#" @click="loadCartProducts">
+        <i class="header-actions__icon icon-bag2"></i>
+        <span class="header-actions__indicator-wrapper">
+          <i class="header-actions__indicator">{{ total }}</i>
         </span>
       </a>
-      <div
-        v-if="isOpen && total > 0"
-        class="absolute min-w-[300px] right-0 -left-[178px] z-30 pt-[10px] transition ease"
-      >
-        <div
-          class="min-h-[150px] relative p-5 max-h-[300px] overflow-auto bg-white border border-white border-b-transparent"
-        >
+      <div v-if="isOpen && total > 0" class="mini-cart">
+        <div class="mini-cart__body">
           <template v-if="isLoadingCart">
             <loading />
           </template>
@@ -38,40 +27,27 @@
             </div>
           </template>
         </div>
-        <div class="p-[10px_20px_20px] border-t-0 bg-white">
-          <h3 class="block mb-5 text-lg font-semibold flex justify-between">
+        <div class="mini-cart__footer">
+          <h3 class="mini-cart__footer-title">
             Sub total:
-            <strong class="text-red-600 font-bold">${{ amount }}</strong>
+            <strong class="mini-cart__amount">${{ amount }}</strong>
           </h3>
-          <figure class="flex flex-nowrap justify-between items-center">
-            <div class="max-w-[50%] pr-1 flex basis-full">
-              <nuxt-link
-                to="/shopping-cart"
-                class="w-full text-center p-[12px] font-semibold bg-yellow-400 text-white transition ease hover:bg-yellow-500"
-              >
+          <figure class="mini-cart__wrapper">
+            <div class="mini-cart__left">
+              <nuxt-link to="/shopping-cart" class="btn">
                 Ver carrito
               </nuxt-link>
             </div>
-            <div class="basis-full max-w-[50%] pl-1">
-              <nuxt-link
-                to="/checkout"
-                class="flex text-center justify-center p-[12px] font-semibold border border-yellow-400 transition ease text-yellow-500 hover:(bg-yellow-400 border-transparent text-white)"
-              >
+            <div class="mini-cart__right">
+              <nuxt-link to="/checkout" class="btn btn--outline">
                 Checkout
               </nuxt-link>
             </div>
           </figure>
         </div>
       </div>
-      <div
-        v-else-if="isOpen"
-        class="absolute min-w-[300px] right-0 -left-[178px] z-30 pt-[10px] transition ease"
-      >
-        <div
-          class="min-h-[50px] relative p-5 max-h-[300px] overflow-auto bg-white border border-white border-b-transparent"
-        >
-          No hay productos en el carrito
-        </div>
+      <div v-else-if="isOpen" class="mini-cart">
+        <div class="mini-cart__empty">No hay productos en el carrito</div>
       </div>
     </div>
   </div>

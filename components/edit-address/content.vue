@@ -1,11 +1,9 @@
 <template>
-  <div class="w-full">
-    <!-- ps-section__header -->
-    <div class="mb-8 pb-3 border-b border-b-light-800">
-      <h3 class="text-2xl font-semibold text-yellow-400">Dirección</h3>
-    </div>
-    <!-- ps-section__content -->
-    <div class="p-5">
+  <div class="edit-address__wrapper">
+    <header class="edit-address__header">
+      <h3 class="edit-address__title">Dirección</h3>
+    </header>
+    <div class="edit-address__content">
       <edit-address-form :type="type" />
     </div>
   </div>

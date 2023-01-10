@@ -1,34 +1,13 @@
 <template>
-  <!-- table ps-table--responsive ps-table--shopping-cart -->
-  <div class="overflow-auto">
-    <table class="w-full mb-4 text-dark-200">
-      <thead class="align-bottom">
+  <div class="cart-table-container">
+    <table class="cart-table">
+      <thead class="cart-table__thead">
         <tr>
-          <th
-            class="text-left px-5 py-4 uppercase text-dark-300 font-semibold bg-light-200 align-bottom"
-          >
-            Producto
-          </th>
-          <th
-            class="px-5 py-4 uppercase text-dark-300 font-semibold bg-light-200 align-bottom"
-          >
-            Precio
-          </th>
-          <th
-            class="px-5 py-4 uppercase text-dark-300 font-semibold bg-light-200 align-bottom"
-          >
-            Cantidad
-          </th>
-          <th
-            class="px-5 py-4 uppercase text-dark-300 font-semibold bg-light-200 align-bottom"
-          >
-            Total
-          </th>
-          <th
-            class="px-5 py-4 uppercase text-dark-300 font-semibold bg-light-200 align-bottom text-right"
-          >
-            Acciones
-          </th>
+          <th class="cart-table__th">Producto</th>
+          <th class="cart-table__th">Precio</th>
+          <th class="cart-table__th">Cantidad</th>
+          <th class="cart-table__th">Total</th>
+          <th class="cart-table__th text-right">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -37,28 +16,18 @@
             v-for="productItem in parentItem.data.products.data"
             :key="productItem.id"
           >
-            <td
-              class="min-w-52 px-[10px] py-[20px] align-middle text-base w-[22.5rem] border-t-2 border-t-gray-200 md:text-center lg:min-w-auto"
-            >
+            <td class="cart-table__td-product">
               <product-shopping-cart :product="productItem" />
             </td>
-            <td
-              class="px-[10px] py-[20px] align-middle text-base border-t-2 border-t-gray-200 md:text-center"
-            >
-              $ {{ productItem.attributes.price }}
-            </td>
-            <td
-              class="px-[10px] py-[20px] align-middle text-base w-[22.5rem] border-t-2 border-t-gray-200 md:text-center"
-            >
+            <td class="cart-table__td">$ {{ productItem.attributes.price }}</td>
+            <td class="cart-table__td">
               <quantity :product="productItem" />
             </td>
             <total-quantity :product="productItem" />
-            <td
-              class="px-[10px] py-[20px] align-middle text-base w-[22.5rem] border-t-2 border-t-gray-200 md:text-center"
-            >
+            <td class="cart-table__td">
               <a
                 href="#"
-                class="text-2xl text-right"
+                class="cart-table__link"
                 @click.prevent="handleRemoveProductFromCart(productItem)"
               >
                 <i class="icon-cross"></i>

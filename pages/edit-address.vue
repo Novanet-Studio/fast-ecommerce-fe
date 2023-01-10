@@ -1,5 +1,5 @@
 <template>
-  <section v-if="type" class="w-full lg:ml-8">
+  <section class="edit-address" v-if="type">
     <edit-address-content :type="type" />
   </section>
 </template>

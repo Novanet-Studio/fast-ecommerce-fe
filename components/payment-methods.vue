@@ -1,6 +1,6 @@
 <template>
   <!-- ps-block--methods -->
-  <div class="w-full">
+  <div class="payment-methods">
     <Tabs :options="{ useUrlFragmet: false }">
       <tab name="Square up">
         <visa-method />
@@ -18,7 +18,7 @@ type Methods = {
   text: string;
   enabled?: boolean;
   active?: boolean;
-}
+};
 
 const methods: Methods[] = [
   {
@@ -41,7 +41,7 @@ const methods: Methods[] = [
     enabled: false,
     active: false,
   },
-]
+];
 </script>
 
 <style scoped>

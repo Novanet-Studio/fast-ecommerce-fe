@@ -1,20 +1,14 @@
 <template>
   <section>
-    <div>
-      <ul class="p-4 flex justify-center">
-        <li class="text-2xl text-yellow-500 font-bold mr-8">
-          <nuxt-link to="/login">
-            Iniciar Sesión
-          </nuxt-link>
-        </li>
-        <li class="text-2xl font-bold text-dark-50">
-          <nuxt-link to="/register">
-            Registrarse
-          </nuxt-link>
-        </li>
-      </ul>
-    </div>
-    <div class="mt-4">
+    <ul class="auth__links">
+      <li class="auth__link auth__link--active">
+        <nuxt-link to="/login">Iniciar Sesión</nuxt-link>
+      </li>
+      <li class="auth__link">
+        <nuxt-link to="/register">Registrarse</nuxt-link>
+      </li>
+    </ul>
+    <div class="auth__content">
       <login-content />
     </div>
   </section>

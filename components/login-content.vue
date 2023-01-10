@@ -1,7 +1,7 @@
 <template>
-  <form>
-    <div class="bg-white p-6 max-w-[26rem] mx-auto mb-4">
-      <h5 class="text-base mb-4 text-yellow-500">Inicia sesión en tu cuenta</h5>
+  <form class="auth-form">
+    <div class="auth-form__wrapper">
+      <h5 class="auth-form__title">Inicia sesión en tu cuenta</h5>
       <app-input
         v-model="form.user"
         placeholder="john o john@doe.com"
@@ -19,7 +19,7 @@
         <input type="checkbox" name="rememberme" v-model="form.rememberMe">
         <label for="rememberme">Recordarme</label>
       </div> -->
-      <div class="py-3 mb-4 mt-2">
+      <div class="auth-form__footer">
         <template v-if="state.isLoading">
           <loading />
         </template>

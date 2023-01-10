@@ -1,15 +1,12 @@
 <template>
-  <div v-if="category.attributes.products.data.length" class="pb-20">
-    <div class="max-w-[1650px] mx-auto px-[15px]">
-      <div
-        class="flex flex-nowrap justify-between items-center px-5 py-4 bg-light-600 border-b-2 border-b-gray-300"
-      >
-        <h3 class="mb-0 inline-block text-xl font-medium text-yellow-500">
+  <div class="landing" v-if="category?.attributes?.products.data.length">
+    <div class="landing__wrapper">
+      <div class="landing__header">
+        <h3 class="landing__title">
           {{ category.attributes.name }}
         </h3>
       </div>
-      <!-- ps-section__content -->
-      <div class="relative pt-6">
+      <div class="landing__content">
         <swiper
           navigation
           :modules="modules"
@@ -19,7 +16,7 @@
           <swiper-slide
             v-for="product in products"
             :key="product.id"
-            class="!w-[260px]"
+            class="landing__slide"
           >
             <product-default :product="product" />
           </swiper-slide>

@@ -1,101 +1,73 @@
 <template>
-  <div class="mt-8 max-w-sm md:max-w-xl lg:(px-4 mt-0 max-w-full)">
-    <div
-      v-if="cart.cartItems?.length"
-      class="w-full px-3 mx-auto lg:max-w-[1230px]"
-    >
-      <div class="pb-12 text-center lg:pb-[6.25rem]">
-        <h1 class="text-3xl font-semibold text-yellow-400 lg:text-5xl">
-          Carrito de compras
-        </h1>
-      </div>
+  <div class="shopping-cart__wrapper">
+    <div class="shopping-cart__container" v-if="cart.cartItems?.length">
+      <header class="shopping-cart__header">
+        <h1 class="shopping-cart__title">Carrito de compras</h1>
+      </header>
       <div>
         <shopping-cart-table
           v-if="product.cartProducts?.length"
           :item="product.cartProducts"
         />
         <p v-else>Carrito vacio</p>
-        <div class="py-[1.875rem] flex flex-row flex-nowrap justify-between">
-          <nuxt-link
-            to="#"
-            class="inline-block px-[45px] py-[15px] text-base rounded-sm bg-yellow-400 transition ease hover:bg-yellow-500 active:bg-yellow-500 cursor-pointer"
-          >
+        <div class="shopping-cart__link-wrapper">
+          <nuxt-link to="#" class="shopping-cart__link">
             <i class="icon-arrow-left mr-2"></i>
             Regresar
           </nuxt-link>
         </div>
       </div>
-      <!-- ps-section__footer -->
-      <div>
-        <div class="grid lg:grid-cols-3">
-          <div class="mb-8 lg:mb-0">
-            <figure>
-              <figcaption class="relative block text-xl text-dark-200 mb-9">
-                Cupon de descuento
-              </figcaption>
-              <app-input v-model="ref('').value" />
-              <!-- TODO: add outline style -->
-              <app-button
-                text="Aplicar"
-                class="!bg-transparent border border-yellow-400 mt-4 text-yellow-500 hover:(!bg-yellow-400 text-white)"
-              />
-            </figure>
-          </div>
-          <div></div>
-          <div>
-            <div class="mb-8 px-8 py-7 bg-light-100 border">
-              <div class="block mb-5 border-b border-light-700 text-dark-100">
-                <p class="flex justify-between">
-                  Subtotal <span> ${{ cart.amount }} </span>
-                </p>
-              </div>
-              <!-- ps-block__content -->
-              <div>
-                <ul class="ps-block__product">
-                  <template v-for="productList in product.cartProducts">
-                    <li
-                      class="border-b border-b-light-700 pb-5 mb-5"
-                      v-for="item in productList.data.products.data"
-                      :key="item.id"
-                    >
-                      <span class="block text-base">
-                        <nuxt-link
-                          :to="`/product/${item.id}`"
-                          class="ps-product__title"
-                        >
-                          {{ item.attributes.name }}
-                          <br />
-                          <quantity-section :product="item" />
-                        </nuxt-link>
-                      </span>
-                    </li>
-                  </template>
-                </ul>
-                <h3 class="mb-0 text-2xl flex justify-between text-yellow-500">
-                  Total
-                  <span class="font-semibold text-red-500"
-                    >${{ cart.amount }}</span
-                  >
-                </h3>
-              </div>
+      <div class="shopping-cart__footer">
+        <div class="shopping-cart__left">
+          <figure>
+            <figcaption class="shopping-cart__figcaption">
+              Cupon de descuento
+            </figcaption>
+            <app-input v-model="ref('').value" />
+            <!-- TODO: add outline style -->
+            <app-button text="Aplicar" class="shopping-cart__btn" />
+          </figure>
+        </div>
+        <div></div>
+        <div>
+          <div class="shopping-cart__right-wrapper">
+            <div class="shopping-cart__text-wrapper">
+              <p class="shopping-cart__text">
+                Subtotal <span> ${{ cart.amount }} </span>
+              </p>
             </div>
-            <!-- <nuxt-link to="/checkout" class="ps-btn ps-btn--fullwidth">
-              Proceder a la compra
-            </nuxt-link> -->
-            <app-button text="Proceder a la compra" class="mb-24" />
-            <!-- <button @click.prevent="goToCheckout">
-              Proceder a la compra
-            </button> -->
+            <div>
+              <ul class="cart-product">
+                <template v-for="productList in product.cartProducts">
+                  <li
+                    class="cart-product__item"
+                    v-for="item in productList.data.products.data"
+                    :key="item.id"
+                  >
+                    <span class="cart-product__wrapper">
+                      <nuxt-link :to="`/product/${item.id}`">
+                        {{ item.attributes.name }}
+                        <br />
+                        <quantity-section :product="item" />
+                      </nuxt-link>
+                    </span>
+                  </li>
+                </template>
+              </ul>
+              <h3 class="cart-product__total">
+                Total
+                <span class="cart-product__amount">${{ cart.amount }}</span>
+              </h3>
+            </div>
           </div>
+          <app-button text="Proceder a la compra" class="mb-24" />
         </div>
       </div>
     </div>
-    <div v-else class="w-full px-3 mx-auto lg:max-w-[1230px]">
-      <div class="text-center pb-[6.25rem]">
-        <h1 class="text-5xl font-semibold text-yellow-400">
-          Carrito de compras
-        </h1>
-      </div>
+    <div v-else class="shopping-cart__container">
+      <header class="shopping-cart__header">
+        <h1 class="shopping-cart__title">Carrito de compras</h1>
+      </header>
       <div>
         <h3 class="empy-cart">
           No tiene elementos agregado al carrito actualmente

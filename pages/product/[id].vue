@@ -1,16 +1,16 @@
 <template>
-  <div class="martfury">
-    <bread-crumb :items="state.breadCrumb" layout="fullwidth" />
-    <div class="ps-page--product">
-      <div class="ps-container">
-        <div class="ps-page__container">
-          <div class="ps-page__left">
+  <div>
+    <!-- <bread-crumb :items="state.breadCrumb" layout="fullwidth" /> -->
+    <div class="product">
+      <div class="product__container">
+        <div class="product__page-container">
+          <div class="product__page-left">
             <product-detail-fullwidth
               v-if="state.product"
               :product="state.product"
             />
           </div>
-          <div class="ps-page__right"></div>
+          <div class="product__page-right"></div>
         </div>
       </div>
     </div>

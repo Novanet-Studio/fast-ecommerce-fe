@@ -1,7 +1,7 @@
 <template>
   <button
     :type="btnType"
-    class="w-full text-center inline-block px-[45px] py-[15px] text-base border-transparent rounded-sm bg-yellow-300 transition ease cursor-pointer hover:bg-yellow-500 active:bg-yellow-500"
+    class="btn"
     :class="class"
     @click.prevent="$emit('click')"
     :disabled="disabled"

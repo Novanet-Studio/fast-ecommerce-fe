@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:ml-8">
+  <div class="invoices">
     <invoices-content />
   </div>
 </template>

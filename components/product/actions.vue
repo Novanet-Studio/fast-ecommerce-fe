@@ -1,10 +1,8 @@
 <template>
-  <ul
-    class="absolute bottom-0 left-2/4 flex flex-nowrap justify-center items-center w-full py-[10px] bg-white transition duration-500 ease-[cubic-bezier(0.7,0.3,1)] transform -translate-x-2/4 translate-y-100"
-  >
-    <li class="mr-3">
+  <ul class="product-actions">
+    <li class="product-actions__item">
       <a
-        class="flex justify-center items-center w-9 h-9 rounded-full transition ease hover:(bg-yellow-500 text-white)"
+        class="product-actions__link"
         href="#"
         title="Add to cart"
         @click.prevent="handleAddToCart"
@@ -13,9 +11,9 @@
       </a>
     </li>
 
-    <li class="mr-3">
+    <li class="product-actions__item">
       <a
-        class="flex justify-center items-center w-9 h-9 rounded-full transition ease hover:(bg-yellow-500 text-white)"
+        class="product-actions__link"
         href="#"
         title="Quick View"
         @click.prevent="handleOpenQuickView"
@@ -23,9 +21,9 @@
         <i class="icon-eye"></i>
       </a>
     </li>
-    <li class="mr-3">
+    <li class="product-actions__item">
       <a
-        class="flex justify-center items-center w-9 h-9 rounded-full transition ease hover:(bg-yellow-500 text-white)"
+        class="product-actions__link"
         href="#"
         title="Add to wishlist"
         @click.prevent="handleAddItemToWishlist"

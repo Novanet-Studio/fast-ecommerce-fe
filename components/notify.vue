@@ -1,6 +1,12 @@
 <template>
   <client-only>
-    <notifications group="all" :duration="2000" :width="300" animation-name="fade-left" position="top right">
+    <notifications
+      group="all"
+      :duration="2000"
+      :width="300"
+      animation-name="fade-left"
+      position="top right"
+    >
       <template #body="props">
         <div class="ps-notify" :class="props.className">
           <button class="ps-notify__close" @click="props.close">
@@ -18,7 +24,7 @@
   </client-only>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .ps-notify {
   margin-bottom: 10px;
   position: relative;
@@ -50,7 +56,6 @@
       transform: translateY(-50%) rotate(180deg);
 
       .ps-icon--cross {
-
         &:before,
         &:after {
           background-color: #e36d65;

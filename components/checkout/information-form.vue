@@ -1,13 +1,11 @@
 <template>
   <div>
     <!-- ps-form__heading -->
-    <h3 class="font-semibold mb-3 text-yellow-300 text-2xl">
-      Información de contacto
-    </h3>
+    <h3 class="information-form-title">Información de contacto</h3>
     <form>
-      <div class="mb-4 md:mb-10">
-        <label class="mb-6 text-dark-800"
-          >Email<sup class="ml-1 text-red-500">*</sup></label
+      <div class="form__group">
+        <label class="form__label"
+          >Email<sup class="form__required">*</sup></label
         >
         <app-input
           v-model="form.email"
@@ -17,10 +15,10 @@
         />
       </div>
 
-      <div class="flex flex-col justify-between md:flex-row">
-        <div class="flex-[0_0_100%] gap-4 md:flex-[0_0_calc(50%-1rem)]">
-          <div class="mb-4 md:mb-10">
-            <label class="mb-6 text-dark-800">Nombre</label>
+      <div class="form__container">
+        <div class="form__left">
+          <div class="form__group">
+            <label class="form__label">Nombre</label>
             <app-input
               v-model="form.name"
               placeholder="John"
@@ -29,9 +27,9 @@
             />
           </div>
         </div>
-        <div class="flex-[0_0_100%] md:flex-[0_0_calc(50%-1rem)]">
-          <div class="mb-4 md:mb-10">
-            <label class="mb-6 text-dark-800">Apellido</label>
+        <div class="form__right">
+          <div class="form__group">
+            <label class="form__label">Apellido</label>
             <app-input
               v-model="form.lastName"
               placeholder="Doe"
@@ -42,12 +40,10 @@
         </div>
       </div>
 
-      <h3 class="font-semibold mb-8 text-yellow-300 text-2xl md:mb-3">
-        Informacion de envio
-      </h3>
+      <h3 class="form__title">Informacion de envio</h3>
 
-      <div class="mb-4 md:mb-10">
-        <label class="mb-6 text-dark-800">Dirección</label>
+      <div class="form__group">
+        <label class="form__label">Dirección</label>
         <app-input
           v-model="form.address"
           placeholder="Venezuela, dto capital"
@@ -55,8 +51,8 @@
           :error-message="status.address.message"
         />
       </div>
-      <div class="mb-4 md:mb-10">
-        <label class="mb-6 text-dark-800">Apartamento</label>
+      <div class="form__group">
+        <label class="form__label">Apartamento</label>
         <app-input
           v-model="form.home"
           placeholder="Apartamento nro 12"
@@ -65,9 +61,9 @@
         />
       </div>
 
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div class="mb-4 lg:mb-6">
-          <label class="mb-6 text-dark-800">Ciudad</label>
+      <div class="form__grid">
+        <div class="form__group-alt">
+          <label class="form__label">Ciudad</label>
           <app-input
             v-model="form.city"
             placeholder="Caracas"
@@ -75,8 +71,8 @@
             :error-message="status.city.message"
           />
         </div>
-        <div class="mb-4 lg:mb-6">
-          <label class="mb-6 text-dark-800">Código Postal</label>
+        <div class="form__group-alt">
+          <label class="form__label">Código Postal</label>
           <app-input
             v-model="form.zipCode"
             placeholder="1073"
@@ -84,8 +80,8 @@
             :error-message="status.zipCode.message"
           />
         </div>
-        <div class="mb-4 md:mb-10">
-          <label class="mb-6 text-dark-800">Numero de contacto</label>
+        <div class="form__group">
+          <label class="form__label">Numero de contacto</label>
           <app-input
             v-model="form.phone"
             placeholder="04122349782"
@@ -95,7 +91,7 @@
         </div>
       </div>
 
-      <div class="mb-0 md:(mb-10 w-[25%])">
+      <div class="form__btn-group">
         <app-button btn-type="submit" text="Continuar" @click="submit" />
       </div>
       <!-- <div class="ps-form__submit">

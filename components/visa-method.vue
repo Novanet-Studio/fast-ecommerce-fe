@@ -2,10 +2,10 @@
   <div>
     <form id="payment-form">
       <div id="card-container"></div>
-      <div class="form-group text-dark-200">
-        <p class="text-sm mb-8">
+      <div class="visa__terms-wrapper">
+        <p class="visa__text">
           By making this purchase you agree to
-          <a href="#" class="text-yellow-500">our terms and conditions</a>.
+          <a href="#" class="visa__link">our terms and conditions</a>.
         </p>
         <app-button
           :text="state.isLoading ? '...' : 'Pagar'"
@@ -19,15 +19,11 @@
 </template>
 
 <script lang="ts" setup>
-// import { CreateInvoice } from '~/modules/invoices/queries';
-// import { GetProductById } from '~/modules/product/queries';
-// import { GetAddressByIdAndType } from '~/modules/addresses/queries';
 import {
   createInvoice as CreateInvoice,
   getProductById as GetProductById,
   getAddressByIdAndType as GetAddressByIdAndType,
 } from '~/graphql';
-// import { emailTemplate } from '../templates';
 import type { Payment } from 'square';
 
 interface State {

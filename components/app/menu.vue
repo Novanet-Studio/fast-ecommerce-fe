@@ -1,8 +1,8 @@
 <template>
-  <ul :class="className" class="flex flex-col mb-2 lg:flex-row">
+  <ul class="menu" :class="className">
     <li v-for="item in mainMenu" :key="item.text" class="first:pl-0">
       <!-- TODO: highlight active link -->
-      <nuxt-link :to="item.url" class="block py-[10px] pr-12 pl-0">
+      <nuxt-link class="menu__item" :to="item.url">
         {{ item.text }}
       </nuxt-link>
     </li>
@@ -12,12 +12,11 @@
 <script lang="ts" setup>
 type Props = {
   className: string;
-}
+};
 
 withDefaults(defineProps<Props>(), {
   className: 'menu',
 });
-
 
 const mainMenu = ref([
   {
@@ -38,5 +37,5 @@ const mainMenu = ref([
     extraClass: 'menu-item-has-children',
     subClass: 'sub-menu',
   },
-])
+]);
 </script>

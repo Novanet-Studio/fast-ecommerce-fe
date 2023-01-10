@@ -1,34 +1,39 @@
 <template>
   <div v-if="cart.cartItems?.length">
-    <h3 v-if="!shipping" class="font-semibold mb-3 text-yellow-400 text-2xl">Tu Orden</h3>
-    <div>
-      <div class="px-5 py-8 mb-3 rounded-sm border border-light-600">
-        <figure class="mb-6 pb-6 border-b-2 border-b-light-600">
-          <figcaption class="flex justify-between font-normal">
-            <strong class="text-sm text-dark-200 font-semibold uppercase">Producto</strong>
-            <strong class="text-sm text-dark-200 font-semibold uppercase">total</strong>
-          </figcaption>
-        </figure>
-        <figure class="mb-6 pb-6 border-b-2 border-b-light-600">
-          <template v-for="(productList, listIndex) in product.cartProducts" :key="listIndex">
-            <template v-for="(item, index) in productList.data.products.data" :key="item.id">
-              <nuxt-link :to="`/product/${item.id}`" class="py-3 flex justify-between w-full">
-                {{ item.attributes.name }}
-              </nuxt-link>
-              <p class="text-sm text-dark-100">{{ cart.cartItems[index].quantity }} x ${{
-                  item.attributes.price.toFixed(2)
+    <h3 class="order-summary__title" v-if="!shipping">Tu Orden</h3>
+    <div class="order-summary__content">
+      <figure class="order-summary__figure">
+        <figcaption class="order-summary__figcaption">
+          <strong class="order-summary__strong-text">Producto</strong>
+          <strong class="order-summary__strong-text">total</strong>
+        </figcaption>
+      </figure>
+      <figure class="order-summary__figure">
+        <template
+          v-for="(productList, index) in product.cartProducts"
+          :key="index"
+        >
+          <template
+            v-for="(item, index) in productList.data.products.data"
+            :key="item.id"
+          >
+            <nuxt-link :to="`/product/${item.id}`" class="order-summary__link">
+              {{ item.attributes.name }}
+            </nuxt-link>
+            <p class="order-summary__price">
+              {{ cart.cartItems[index].quantity }} x ${{
+                item.attributes.price.toFixed(2)
               }}
-              </p>
-            </template>
+            </p>
           </template>
-        </figure>
-        <figure class="mb-6 pb-6 border-b-2 border-b-light-600">
-          <figcaption class="flex justify-between font-normal">
-            <strong class="text-sm text-dark-200 font-semibold uppercase">Subtotal</strong>
-            <small>$ {{ cart.amount }}</small>
-          </figcaption>
-        </figure>
-      </div>
+        </template>
+      </figure>
+      <figure class="order-summary__figure">
+        <figcaption class="order-summary__figcaption">
+          <strong class="order-summary__strong-text">Subtotal</strong>
+          <small>$ {{ cart.amount }}</small>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </template>

@@ -1,10 +1,6 @@
 <template>
-  <nav
-    class="relative flex flex-wrap items-center justify-between px-4 py-2 bg-yellow-100"
-  >
-    <div
-      class="flex flex-col items-center justify-between w-full lg:container lg:mx-auto"
-    >
+  <nav class="navigation">
+    <div class="navigation__wrapper">
       <button
         class="lg:hidden"
         type="button"
@@ -26,10 +22,7 @@
           />
         </svg>
       </button>
-      <div
-        class="w-full text-center justify-center mt-4 flex-[1_0_100%] lg:(flex justify-start)"
-        :class="[isOpen ? 'flex' : 'hidden']"
-      >
+      <div class="navigation__content" :class="[isOpen ? 'flex' : 'hidden']">
         <app-menu />
       </div>
     </div>

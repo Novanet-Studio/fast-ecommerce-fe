@@ -1,17 +1,19 @@
 <template>
-  <div class="pb-7 mx-4 lg:container lg:mx-auto">
-    <aside class="max-w-full w-full relative pb-5 mb-5">
-      <div>
-        <h3 class="text-xl mb-[10px] font-bold text-yellow-400">Contáctanos</h3>
-        <ul class="mt-7">
-          <li v-for="(item, index) in socialNetworks" :key="index" class="relative inline-block mr-[20px] align-top">
-            <a class="text-yellow-400 inline-block text-lg" :href="item.link">
-              <i :class="item.iconClass"></i>
-            </a>
-            {{ item.text }}
-          </li>
-        </ul>
-      </div>
+  <div class="widgets">
+    <aside class="widgets__wrapper">
+      <h3 class="widgets__title">Contáctanos</h3>
+      <ul class="widgets__list">
+        <li
+          v-for="(item, index) in socialNetworks"
+          :key="index"
+          class="widgets__item"
+        >
+          <a class="widgets__link" :href="item.link">
+            <i :class="item.iconClass"></i>
+          </a>
+          {{ item.text }}
+        </li>
+      </ul>
     </aside>
   </div>
 </template>
@@ -38,6 +40,5 @@ const socialNetworks = [
     iconClass: 'far fa-envelope',
     text: 'fast@ecommerce.com',
   },
-]
-
+];
 </script>

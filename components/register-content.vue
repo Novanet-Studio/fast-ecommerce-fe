@@ -1,7 +1,7 @@
 <template>
-  <form>
-    <div class="bg-white p-6 max-w-[26rem] mx-auto mb-4">
-      <h5 class="text-base mb-4 text-yellow-500">Crear una cuenta</h5>
+  <form class="auth-form">
+    <div class="auth-form__wrapper">
+      <h5 class="auth-form__title">Crear una cuenta</h5>
       <app-input
         v-model="form.username"
         placeholder="John Doe"
@@ -32,7 +32,7 @@
         :error-message="status.confirmPassword.message"
       />
 
-      <div class="py-3 mb-4 mt-2">
+      <div class="auth-form__footer">
         <template v-if="state.isLoading">
           <loading />
         </template>

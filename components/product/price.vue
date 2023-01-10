@@ -3,13 +3,13 @@
     ${{ product.attributes.price }}
     <del class="ml-2"> ${{ product.attributes.sale_price }}</del>
   </p> -->
-  <p class="relative text-base text-dark-200">${{ product.attributes.price }}</p>
+  <p class="product__price">${{ product.attributes.price }}</p>
 </template>
 
 <script lang="ts" setup>
 type Props = {
   product: Product;
-}
+};
 
 defineProps<Props>();
 </script>

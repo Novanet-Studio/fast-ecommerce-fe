@@ -1,11 +1,11 @@
 <template>
-  <div class="mb-8 flex flex-nowrap">
-    <div class="max-w-14 w-full flex-auto">
+  <div class="product-mini-cart">
+    <div class="product-mini-cart__image-wrapper">
       <product-thumbnail-image :product="product" />
     </div>
-    <div class="relative pr-8 pl-5 flex-1">
+    <div class="product-mini-cart__body">
       <a
-        class="absolute top-0 right-0"
+        class="product-mini-cart__icon-wrapper"
         href="#"
         @click.prevent="handleRemoveProductFromCart(product)"
       >

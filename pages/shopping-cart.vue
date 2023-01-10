@@ -1,5 +1,5 @@
 <template>
-  <section class="max-w-full">
+  <section class="shopping-cart">
     <!-- <bread-crumb :breadcrumb="breadCrumb" /> -->
     <shopping-cart-content />
   </section>
@@ -16,13 +16,13 @@ definePageMeta({
   },
 });
 
-const breadCrumb = ref([
-  {
-    text: 'Inicio',
-    url: '/'
-  },
-  {
-    text: 'Carrito de compra'
-  }
-]);
+// const breadCrumb = ref([
+//   {
+//     text: 'Inicio',
+//     url: '/',
+//   },
+//   {
+//     text: 'Carrito de compra',
+//   },
+// ]);
 </script>

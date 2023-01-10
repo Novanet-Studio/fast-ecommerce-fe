@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-nowrap flex-row items-center">
-    <div class="w-full max-w-[6.25rem]">
+  <div class="shopping-cart-table">
+    <div class="shopping-cart-table__thumbnail">
       <product-thumbnail-image :product="product" />
     </div>
-    <div class="text-left w-full pl-8">
+    <div class="shopping-cart-table__title">
       <product-title :product="product" />
     </div>
   </div>
