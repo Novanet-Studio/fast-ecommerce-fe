@@ -47,6 +47,7 @@ import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 import { register as registerQuery } from '~/graphql';
+import { HttpsCallable } from '~/types';
 
 definePageMeta({
   pageTransition: {

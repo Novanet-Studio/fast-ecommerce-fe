@@ -6,7 +6,7 @@ import {
 } from 'firebase/functions';
 import type { FirebaseOptions } from 'firebase/app';
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
   const config = useRuntimeConfig();
 
   const firebaseConfig: FirebaseOptions = {
@@ -23,10 +23,11 @@ export default defineNuxtPlugin(() => {
   const functions = getFunctions(firebaseApp);
 
   // connectFunctionsEmulator(functions, 'localhost', 5001);
+  nuxtApp.vueApp.provide('httpsCallable', (name: string) =>
+    httpsCallable(functions, name)
+  );
 
-  return {
-    provide: {
-      httpsCallable: (name: string) => httpsCallable(functions, name),
-    },
-  };
+  nuxtApp.provide('httpsCallable', (name: string) =>
+    httpsCallable(functions, name)
+  );
 });

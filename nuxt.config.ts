@@ -56,7 +56,7 @@ export default defineNuxtConfig({
   typescript: {
     tsConfig: {
       compilerOptions: {
-        types: ['nuxt-windicss', resolve(__dirname, './types/app.d.ts')],
+        types: ['nuxt-windicss'],
       },
     },
   },
