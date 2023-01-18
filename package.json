@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@nuxt/image-edge": "1.0.0-27840416.dc1ed65",
-    "@nuxtjs/strapi": "^1.6.3",
+    "@nuxtjs/strapi": "^1.7.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@rollup/plugin-graphql": "^2.0.2",
     "graphql": "^16.6.0",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@kevinmarrec/nuxt-pwa": "^0.15.0",
-    "@kyvg/vue3-notification": "^2.7.0",
+    "@kyvg/vue3-notification": "^2.8.0",
     "@paypal/paypal-js": "^5.1.4",
     "@pinia/nuxt": "^0.4.5",
     "firebase": "^9.15.0",
@@ -30,7 +30,7 @@
     "pdfmake": "^0.2.7",
     "slimeform": "^0.8.0",
     "square": "^25.0.0",
-    "swiper": "^8.4.5",
+    "swiper": "^8.4.6",
     "vue3-tabs-component": "^1.1.2",
     "yup": "^0.32.11"
   }
