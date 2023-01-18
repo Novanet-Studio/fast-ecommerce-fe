@@ -7,26 +7,26 @@
 
 <script lang="ts" setup>
 definePageMeta({
-  // middleware: 'authentication'
+  middleware: 'authentication',
   pageTransition: {
     name: 'zoom',
   },
   layoutTransition: {
     name: 'zoom',
-  }
+  },
 });
 
-const breadcrumb = ref([
-  {
-    text: 'Home',
-    url: '/'
-  },
-  {
-    text: 'Shopping Cart',
-    url: '/shopping-cart'
-  },
-  {
-    text: 'Shipping'
-  }
-]);
+// const breadcrumb = ref([
+//   {
+//     text: 'Home',
+//     url: '/',
+//   },
+//   {
+//     text: 'Shopping Cart',
+//     url: '/shopping-cart',
+//   },
+//   {
+//     text: 'Shipping',
+//   },
+// ]);
 </script>

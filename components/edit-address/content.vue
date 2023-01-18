@@ -10,5 +10,7 @@
 </template>
 
 <script lang="ts" setup>
+import { AddressType } from '~/types';
+
 defineProps<{ type: AddressType }>();
 </script>

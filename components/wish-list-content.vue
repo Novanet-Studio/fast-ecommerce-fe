@@ -86,7 +86,7 @@ const handleRemoveItemFromWishlist = (product: any) => {
 };
 
 const loadWishlist = async () => {
-  if (!wishlist.items.length) {
+  if (!wishlist?.items?.length) {
     product.wishlistItems = null;
     return;
   }

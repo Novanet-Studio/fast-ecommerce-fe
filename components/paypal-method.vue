@@ -8,10 +8,7 @@ import {
   type OrderResponseBody,
   type PayPalNamespace,
 } from '@paypal/paypal-js';
-import {
-  createInvoice as CreateInvoice,
-  getProductById as GetProductById,
-} from '~/graphql';
+import { getProductById as GetProductById } from '~/graphql';
 const { $store, $notify, $httpsCallable } = useNuxtApp();
 
 const { PAYPAL_CLIENT_ID } = useRuntimeConfig().public;
@@ -21,58 +18,10 @@ const graphql = useStrapiGraphQL();
 const auth = $store.auth();
 const cart = $store.cart();
 const checkout = $store.checkout();
+const invoice = $store.invoice();
 const paypalRef = ref();
 const paypal = ref();
 const productsMail = ref<Product[]>();
-
-type CartItem = {
-  id: string;
-  quantity: number;
-  price: number;
-};
-
-const createInvoice = async (order: OrderResponseBody, items: CartItem[]) => {
-  const orderAddress = order.purchase_units[0].shipping?.address;
-  const address = {
-    phone: checkout.phone,
-    home: checkout.home,
-    country: orderAddress?.country_code,
-    locality: orderAddress?.admin_area_2,
-    postalCode: orderAddress?.postal_code,
-    addressLine1: orderAddress?.address_line_1,
-  };
-
-  const paymentInfo = {
-    nombre: order.payer.name?.given_name,
-    apellido: order.payer.name?.surname,
-    email: order.payer.email_address,
-    confirmacion: order.id,
-    monto: order.purchase_units[0].amount.value,
-    fecha_pago: order.create_time,
-  };
-
-  const body = {
-    amount: order.purchase_units[0].amount.value,
-    order_id: order.purchase_units[0].invoice_id,
-    paid: true,
-    payment_id: order.id,
-    products: items,
-    user_id: auth.user.id,
-    shippingAddress: address,
-    fullName: checkout.fullName,
-    cardType: 'no aplica',
-    cardKind: 'no aplica',
-    cardLast: 'no aplica',
-    payment_info: [paymentInfo],
-    payment_method: 'paypal',
-  };
-
-  const { data } = await graphql<Invoice>(CreateInvoice, {
-    invoice: body,
-  });
-
-  return data;
-};
 
 const sendInvoiceEmail = async (
   order: OrderResponseBody,
@@ -245,7 +194,7 @@ const loadPaypal = async () => {
               text: 'El pago se ha realizado con éxito',
             });
 
-            await createInvoice(result, cartItems);
+            await invoice.createInvoice(result, cartItems);
             $notify({
               group: 'all',
               title: 'Recibo creado',

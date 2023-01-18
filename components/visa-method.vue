@@ -32,7 +32,7 @@ interface State {
   productsCart: Product[];
 }
 
-const { $store, $helpers, $notify, $httpsCallable } = useNuxtApp();
+const { $store, $notify, $httpsCallable } = useNuxtApp();
 const { SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID } = useRuntimeConfig().public;
 
 const router = useRouter();
@@ -204,16 +204,13 @@ const createInvoice = async (payment: any, products: any[]) => {
     cardLast: payment.cardDetails.card.last4,
   };
 
-  const [{ data }] = await $helpers.handleAsync(
-    graphql<Invoice>(CreateInvoice, { invoice: body })
-  );
+  const data = await graphql<Invoice>(CreateInvoice, { invoice: body });
 
   return data;
 };
 
 const createPayment = async (paymentBody: any) => {
   const generatePayment = $httpsCallable('payment');
-  console.log({ paymentBody });
   const { data } = (await generatePayment(paymentBody)) as { data: Payment };
 
   if (data.status !== 'COMPLETED') {
@@ -332,6 +329,7 @@ const loadSquareCard = async () => {
   const card = await payments.card();
   await card.attach('#card-container');
 
+  // @ts-ignore
   btnRef.value.$ref.addEventListener('click', async () => {
     const tokenResult = await card.tokenize();
     makePayment(tokenResult);

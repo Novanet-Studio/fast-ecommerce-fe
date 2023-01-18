@@ -1,54 +1,49 @@
 import { defineStore } from 'pinia';
 
+type WishListItem = {
+  id: string;
+};
+
+type WishlistStore = {
+  items: WishListItem[] | null;
+  total: number;
+  loading: boolean;
+};
+
 export const useWishList = defineStore('wishlist', {
-  state: () => ({
-    items: [],
-    total: null,
-    loading: false,
-  }),
+  state: () =>
+    ({
+      items: null,
+      total: 0,
+      loading: false,
+    } as WishlistStore),
   actions: {
     initWishList(payload: any): void {
       this.items = payload.items;
       this.total = payload.total;
     },
-    addItemToWishlist(payload) {
-      if (this.total !== null) {
-        const existItem = this.items.find((item) => item.id === payload.id);
-        if (!existItem) {
-          this.items.push({
-            id: payload.id,
-          });
-          this.total = this.total + 1;
-        }
-      } else {
-        this.items.push({
-          id: payload.id,
+    addItemToWishlist(item: Product) {
+      if (!this.total) {
+        this.items?.push({
+          id: item.id,
+        });
+        this.total = this.total + 1;
+        return;
+      }
+
+      const existItem = this.items?.find((product) => product.id === item.id);
+
+      if (!existItem) {
+        this.items?.push({
+          id: item.id,
         });
         this.total = this.total + 1;
       }
-      // const params = {
-      //   items: this.items,
-      //   total: this.total,
-      // };
-
-      // this.$cookies.set('wishlist', params, {
-      //   path: '/',
-      //   maxAge: 60 * 60 * 24 * 7,
-      // });
     },
-    removeItemFromWishlist(payload) {
-      const index = this.items.findIndex((item) => item.id === payload.id);
+    removeItemFromWishlist(item: Product) {
+      const index = this.items!.findIndex((product) => product.id === item.id);
       this.total = this.total - 1;
-      this.items.splice(index, 1);
-      // const params = {
-      //   items: this.items,
-      //   total: this.total,
-      // };
-
-      // this.$cookies.set('wishlist', params, {
-      //   path: '/',
-      //   maxAge: 60 * 60 * 24 * 7,
-      // });
+      this.items?.splice(index, 1);
     },
   },
 });

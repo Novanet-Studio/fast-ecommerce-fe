@@ -1,4 +1,10 @@
 import { defineStore } from 'pinia';
+import {
+  createAdress as CreateAddress,
+  updateAddress as UpdateAddress,
+  getAddressByIdAndType as GetAddressByIdAndType,
+} from '~/graphql';
+import { AddressType } from '~/types';
 
 type ShippingInfo = {
   email?: string;
@@ -8,24 +14,26 @@ type ShippingInfo = {
   home?: string;
   city?: string;
   zipCode?: string;
+  phone?: string;
 };
 
 export const useCheckout = defineStore('checkout', {
-  state: () => ({
-    email: '',
-    name: '',
-    lastName: '',
-    address: '',
-    home: '',
-    city: '',
-    zipCode: '',
-    phone: '',
-  }),
+  state: () =>
+    ({
+      email: '',
+      name: '',
+      lastName: '',
+      address: '',
+      home: '',
+      city: '',
+      zipCode: '',
+      phone: '',
+    } as ShippingInfo),
   getters: {
-    fullName() {
+    fullName(): string {
       return `${this.name} ${this.lastName}`;
     },
-    fullAddress() {
+    fullAddress(): string {
       return `${this.address}, ${this.city}, ${this.zipCode}`;
     },
   },
@@ -39,42 +47,66 @@ export const useCheckout = defineStore('checkout', {
       this.city = info.city;
       this.zipCode = info.zipCode;
     },
-    async invoiceInfo(id: string) {
-      // get invoice by id from database and return response
-      return { id, invoice: 'xxxxxx' };
-    },
-    async getInvoicesList(userId: string) {
-      // get all invoices of the current user from database
-      return {
-        data: [
-          {
-            attributes: {
-              id_invoice_user: 1,
-              date: new Date().toLocaleDateString(),
-              createdAt: new Date().toLocaleDateString(),
-              paid: true,
-              amount: 20,
-              status: '',
-            },
-          },
-        ],
-      };
-    },
-    async createInvoice(data: any) {
-      // create invoice and return response
-      return {};
-    },
-    async setAddress(address: any) {
-      // const response = await Repository.post(`${baseUrl}/addresses`, payload)
-      //   .then((response) => {
-      //     return response;
-      //   })
-      //   .catch((error) => ({ error: JSON.stringify(error) }));
+    async createAddress(data: Record<string, string>) {
+      const { $notify } = useNuxtApp();
+      const router = useRouter();
+      const graphql = useStrapiGraphQL();
+      await graphql<AddressResponse>(CreateAddress, data);
 
-      // return response;
-      return 'address added';
+      $notify({
+        group: 'all',
+        title: 'Éxito',
+        text: 'Dirección creada con éxito',
+      });
+
+      router.push('/addresses');
     },
-    async updateAddress(address: any) {
+    async updateAddress(existId: string, data: Record<string, string>) {
+      const { $notify } = useNuxtApp();
+      const graphql = useStrapiGraphQL();
+      const router = useRouter();
+
+      if (!existId) {
+        $notify({
+          group: 'all',
+          title: 'Error',
+          text: 'Hubo un error',
+        });
+        return;
+      }
+
+      const body = {
+        id: existId,
+        data: {
+          user_id: data.userId,
+          address: data.address,
+          type: data.type,
+        },
+      };
+
+      const {
+        data: {
+          updateAddress: { data: result },
+        },
+      } = await graphql<UpdateAddressResponse>(UpdateAddress, body);
+
+      if (!result) {
+        $notify({
+          group: 'all',
+          title: 'Error',
+          text: 'Hubo un error',
+        });
+        return;
+      }
+
+      $notify({
+        group: 'all',
+        title: 'Éxito!',
+        text: 'La dirección se ha actualizado!',
+      });
+
+      router.push('/addresses');
+
       // const addId = payload.addId;
       // const data = payload.data;
       // const response = await Repository.put(
@@ -87,23 +119,33 @@ export const useCheckout = defineStore('checkout', {
       //   .catch((error) => ({ error: JSON.stringify(error) }));
 
       // return response;
-      return { id: 1, address: 'xxx xxx xxxxxx xx' };
     },
+    async getAddress({
+      userId,
+      type,
+    }: {
+      userId: number;
+      type: AddressType;
+    }): Promise<Address | null> {
+      const graphql = useStrapiGraphQL();
+      if (type === AddressType.None) return null;
 
-    async getAddress({ userId, type }: { userId: string; type: string }) {
-      // const userId = payload.userId;
-      // const type = payload.type;
+      const id = userId;
+      const body = {
+        id,
+        type,
+      };
 
-      // const response = await Repository.get(
-      //   `${baseUrl}/addresses?populate=*&filters[user_id]=${userId}&filters[type]=${type}`
-      // )
-      //   .then((response) => {
-      //     return response.data.data;
-      //   })
-      //   .catch((error) => ({ error: JSON.stringify(error) }));
+      const { data } = await graphql<AddressResponse>(
+        GetAddressByIdAndType,
+        body
+      );
 
-      // return response;
-      return { id: 1, address: 'xxx xxx xxxxxx xx' };
+      if (!data.addresses.data.length) return null;
+
+      const [address] = data.addresses.data;
+
+      return address;
     },
   },
 });

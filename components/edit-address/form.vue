@@ -61,19 +61,14 @@
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
-import {
-  getAddressByIdAndType,
-  createAdress as CreateAddress,
-  updateAddress as UpdateAddress,
-} from '~/graphql';
+import { AddressType } from '~/types';
 
 const props = defineProps<{ type: AddressType }>();
 
-const { $store, $notify } = useNuxtApp();
-const graphql = useStrapiGraphQL();
-const router = useRouter();
+const { $store } = useNuxtApp();
 
 const auth = $store.auth();
+const checkout = $store.checkout();
 
 const haveLastAddress = ref(false);
 const existentId = ref('');
@@ -107,74 +102,13 @@ const { form, status, submitter, verify } = useForm({
   },
 });
 
-const goToAddresses = () => {
-  setTimeout(() => {
-    router.push('/addresses');
-  }, 1000);
-};
-
-const createAddress = async (data: any) => {
-  await graphql<AddressResponse>(CreateAddress, data);
-
-  $notify({
-    group: 'all',
-    title: 'Éxito',
-    text: 'Dirección creada con éxito',
-  });
-
-  goToAddresses();
-};
-
-const updateAddress = async (data: any) => {
-  if (!existentId.value) {
-    $notify({
-      group: 'all',
-      title: 'Error',
-      text: 'Hubo un error',
-    });
-    return;
-  }
-
-  const body = {
-    id: existentId.value,
-    data: {
-      user_id: data.userId,
-      address: data.address,
-      type: data.type,
-    },
-  };
-
-  const {
-    data: {
-      updateAddress: { data: result },
-    },
-  } = await graphql<UpdateAddressResponse>(UpdateAddress, body);
-
-  if (!result) {
-    $notify({
-      group: 'all',
-      title: 'Error',
-      text: 'Hubo un error',
-    });
-    return;
-  }
-
-  $notify({
-    group: 'all',
-    title: 'Éxito!',
-    text: 'La dirección se ha actualizado!',
-  });
-
-  goToAddresses();
-};
-
-const sendAddress = async (data: object) => {
+const sendAddress = async (data: Record<string, string>) => {
   if (haveLastAddress.value) {
-    updateAddress(data);
+    checkout.updateAddress(existentId.value, data);
     return;
   }
 
-  createAddress(data);
+  checkout.createAddress(data);
 };
 
 const { submit } = submitter(() => {
@@ -193,23 +127,14 @@ const { submit } = submitter(() => {
     address: info,
   };
 
-  sendAddress(body);
+  sendAddress(body as unknown as Record<string, string>);
 });
 
 const getLastAddress = async () => {
   const id = +auth.user.id;
-  if (type.value === AddressType.None) return;
+  const address = await checkout.getAddress({ userId: id, type: type.value });
 
-  const body = {
-    id,
-    type: type.value,
-  };
-
-  const { data } = await graphql<AddressResponse>(getAddressByIdAndType, body);
-
-  if (!data.addresses.data.length) return;
-
-  const [address] = data.addresses.data;
+  if (!address) return;
 
   haveLastAddress.value = true;
   existentId.value = address.id;

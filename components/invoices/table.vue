@@ -14,7 +14,7 @@
         <tr
           v-for="item in state.tableInvoices"
           :key="item.id"
-          @click="goToInvoice(item.id_invoice_user, item)"
+          @click="goToInvoice(item.id_invoice_user.toString(), item)"
         >
           <td class="invoice-hover">{{ item.id_invoice_user }}</td>
           <td>{{ item.payment_id }}</td>
@@ -30,7 +30,7 @@
         <tr
           v-for="item in state.tableInvoices"
           :key="item.id"
-          @click="goToInvoice(item.id_invoice_user, item)"
+          @click="goToInvoice(item.id_invoice_user.toString(), item)"
         >
           <td class="invoice-hover">{{ item.id_invoice_user }}</td>
           <td>{{ item.payment_id }}</td>
@@ -68,10 +68,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getInvoicesByUserId } from '~/graphql';
-
 const { $store } = useNuxtApp();
-const graphql = useStrapiGraphQL();
 const router = useRouter();
 const auth = $store.auth();
 const invoice = $store.invoice();
@@ -97,17 +94,17 @@ const state = reactive<State>({
 });
 
 const pagination = () => {
-  if (state.invoiceExist) {
-    if (state.tableInvoices.length > TABLE_LIMIT) {
-      state.page = true;
-      state.number = (state.tableInvoices.length / TABLE_LIMIT).toFixed(0);
-      // TODO: refactor this
-      let pages = [];
-      for (let i = 1; i <= Number(state.number); i++) {
-        pages.push(i);
-      }
-      state.pages = pages;
+  if (!state.tableInvoices?.length || !state.invoiceExist) return;
+
+  if (state.tableInvoices.length > TABLE_LIMIT) {
+    state.page = true;
+    state.number = (state.tableInvoices.length / TABLE_LIMIT).toFixed(0);
+    // TODO: refactor this
+    let pages = [];
+    for (let i = 1; i <= Number(state.number); i++) {
+      pages.push(i);
     }
+    state.pages = pages;
   }
 };
 
@@ -121,32 +118,15 @@ const goToInvoice = (invoiceId: string, invoiceItem: any) => {
 };
 
 const getPayments = async () => {
-  const {
-    data: { invoices },
-  } = await graphql<InvoicesResponse>(getInvoicesByUserId, {
-    id: auth.user.id,
-  });
+  const invoices = await invoice.fetchInvoices(auth.user.id);
 
-  if (!invoices.data.length) {
+  if (!invoices.length) {
     state.invoiceExist = false;
     return;
   }
 
   state.invoiceExist = true;
-  state.tableInvoices = invoices.data.map((invoice, index) => {
-    const item = invoice as unknown as {
-      id: string;
-      attributes: InvoiceDetail;
-    };
-    const invoices = {
-      ...item.attributes,
-      id_invoice_user: index + 1,
-      date: new Date(item.attributes.createdAt).toLocaleDateString('ve-Es'),
-      status: item.attributes.paid ? 'Pagado' : 'Cancelado',
-    };
-
-    return invoices;
-  }) as unknown as InvoiceTableDetail[];
+  state.tableInvoices = invoice.getMappedInvoices;
 
   pagination();
 };

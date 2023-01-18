@@ -4,6 +4,12 @@ declare module '*.gql' {
   export = Schema;
 }
 
+type CartItem = {
+  id: string;
+  quantity: number;
+  price: number;
+};
+
 type User = {
   id: string;
   email: string;
@@ -98,7 +104,7 @@ interface InvoiceDetail {
 
 interface InvoiceTableDetail extends InvoiceDetail {
   id: string;
-  id_invoice_user: string;
+  id_invoice_user: number;
   date: string;
   status: string;
 }
@@ -139,11 +145,16 @@ interface Address {
   };
 }
 
-interface Invoice {
+interface InvoiceResponse {
   data: {
     id: string;
     attributes: InvoiceDetail;
   };
+}
+
+interface Invoice {
+  id: string;
+  attributes: InvoiceDetail;
 }
 
 interface ProductsResponse {

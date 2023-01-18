@@ -1,5 +1,5 @@
 <template>
-  <div class="landing" v-if="category?.attributes?.products.data.length">
+  <div class="landing" v-if="category?.attributes?.products?.data.length">
     <div class="landing__wrapper">
       <div class="landing__header">
         <h3 class="landing__title">
@@ -30,8 +30,6 @@
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 
-import { getProductsByCategoryId } from '~/graphql';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -41,30 +39,13 @@ type Props = {
 };
 
 const props = defineProps<Props>();
-const { $notify } = useNuxtApp();
-const graphql = useStrapiGraphQL();
+const { $store } = useNuxtApp();
+const productStore = $store.product();
 
-const products = ref<Product[]>([]);
+const products = ref<Product[] | null>(null);
 const modules = [Autoplay, Navigation, Pagination];
 
-const productsByCategory = async () => {
-  try {
-    const { data } = await graphql<ProductsResponse>(getProductsByCategoryId, {
-      id: props.category.id,
-    });
-
-    products.value = data.products.data;
-  } catch (error) {
-    $notify({
-      group: '',
-      title: 'Error',
-      text: 'Hubo un error al intentar cargar los productos',
-    });
-    console.log(error);
-  }
-};
-
-onMounted(() => {
-  productsByCategory();
+onMounted(async () => {
+  products.value = await productStore.getProductsByCategory(props.category.id);
 });
 </script>

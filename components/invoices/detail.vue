@@ -4,7 +4,7 @@
       <div id="pdf-content">
         <div class="ps-section__header">
           <h3>
-            Factura #{{ invoice.id_invoice_user }} -
+            Factura #{{ invoice?.id_invoice_user }} -
             <strong>Successful delivery PPU</strong>
           </h3>
         </div>
@@ -15,10 +15,12 @@
                 <figcaption>Address</figcaption>
                 <div class="ps-block__content">
                   <strong>
-                    {{ invoice.fullName }}
+                    {{ invoice?.fullName }}
                   </strong>
-                  <p v-if="invoice.shippingAddress">
-                    Dirección: {{ invoice.shippingAddress.addressLine1 }},
+                  <p v-if="invoice?.shippingAddress">
+                    Dirección:
+                    {{ invoice.shippingAddress.address }},
+                    <!-- {{ invoice.attributes.shippingAddress.addressLine1 }}, -->
                     {{ invoice.shippingAddress.locality }},
                     {{ invoice.shippingAddress.country }}
                   </p>
@@ -29,10 +31,10 @@
               <figure class="ps-block--invoice">
                 <figcaption>Estado</figcaption>
                 <div class="ps-block__content">
-                  <p v-if="invoice.paid">Pagado</p>
+                  <p v-if="invoice?.paid">Pagado</p>
                   <p v-else>No pagado</p>
                   <p>
-                    {{ invoice.date }}
+                    {{ invoice?.date }}
                   </p>
                 </div>
               </figure>
@@ -41,8 +43,8 @@
               <figure class="ps-block--invoice">
                 <figcaption>Payment</figcaption>
                 <div class="ps-block__content">
-                  <p>Pago: {{ invoice.cardKind }} {{ invoice.cardType }},</p>
-                  <p>Ultimos Cuatro digitos: {{ invoice.cardLast }}</p>
+                  <p>Pago: {{ invoice?.cardKind }} {{ invoice?.cardType }},</p>
+                  <p>Ultimos Cuatro digitos: {{ invoice?.cardLast }}</p>
                 </div>
               </figure>
             </div>
@@ -65,7 +67,7 @@
                   >
                     <td>{{ product.attributes.name }}</td>
                     <td class="price">$ {{ product.attributes.price }}</td>
-                    <td>{{ invoice.products[index].quantity }}</td>
+                    <td>{{ invoice?.products[index].quantity }}</td>
                     <td class="price">$ {{ product.attributes.price }}</td>
                   </tr>
                 </template>
@@ -73,7 +75,7 @@
                   <td></td>
                   <td></td>
                   <td>MONTO TOTAL</td>
-                  <td>${{ invoice.amount }}</td>
+                  <td>${{ invoice?.amount }}</td>
                 </tr>
               </tbody>
             </table>
@@ -102,7 +104,7 @@ const products = ref<ProductsResponse[]>();
 
 const getPdf = async () => {
   const element = document.querySelector('#pdf-content');
-  const html = htmlToPdfmake(element.innerHTML);
+  const html = htmlToPdfmake(element?.innerHTML);
   const documentDefinition = {
     content: html,
   };
@@ -122,6 +124,6 @@ const getProductsId = async (productList: any[]) => {
 };
 
 onMounted(() => {
-  getProductsId(invoice.products ?? []);
+  getProductsId(invoice?.products ?? []);
 });
 </script>

@@ -38,10 +38,7 @@
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
-import { login as loginQuery } from '~/graphql';
 
-const graphql = useStrapiGraphQL();
-const { setToken } = useStrapiAuth();
 const { $notify, $store } = useNuxtApp();
 
 const router = useRouter();
@@ -86,29 +83,7 @@ const { submit } = submitter(async () => {
     state.isLoading = true;
     state.isDisabled = true;
 
-    const { data } = await graphql<LoginResponse>(loginQuery, {
-      identifier: form.user,
-      password: form.password,
-    });
-
-    if (!data) {
-      $notify({
-        group: 'all',
-        title: 'Error!',
-        text: 'Usuario o Contraseña inválidos',
-      });
-      return;
-    }
-
-    setToken(data.login.jwt);
-    auth.authenticated = true;
-    Object.assign(auth.user, data.login.user);
-
-    $notify({
-      group: 'all',
-      title: 'Success!',
-      text: `Inicio de sesión con éxito!`,
-    });
+    await auth.login(form.user, form.password);
 
     setTimeout(() => {
       router.push('/');

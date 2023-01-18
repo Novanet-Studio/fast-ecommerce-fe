@@ -5,6 +5,8 @@
 </template>
 
 <script lang="ts" setup>
+import { AddressType } from '~/types';
+
 definePageMeta({
   middleware: 'authentication',
   layout: 'layout-account',

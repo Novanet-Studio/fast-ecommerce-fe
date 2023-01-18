@@ -69,7 +69,7 @@ const handleDescreaseQuantity = () =>
 
 const goToCheckout = () => setTimeout(() => router.push('/checkout'), 500);
 
-const addItemToCart = async (payload) => {
+const addItemToCart = async (payload: CartItem) => {
   cart.addProductToCart(payload);
   await getCartProducts(cart.cartItems);
   $notify({
@@ -102,7 +102,7 @@ const handleBuyNow = (isBuyNow: boolean) => {
 
   const item = {
     id: props.product.id,
-    quantity,
+    quantity: quantity.value,
     price: props.product.attributes.price,
   };
 
@@ -114,7 +114,7 @@ const handleBuyNow = (isBuyNow: boolean) => {
     }
   }
 
-  const isGreaterThanTen = quantity.value + existentItem.quantity > 10;
+  const isGreaterThanTen = quantity.value + existentItem!.quantity > 10;
 
   if (isGreaterThanTen) {
     $notify({

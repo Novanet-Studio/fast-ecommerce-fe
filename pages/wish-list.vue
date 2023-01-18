@@ -16,13 +16,13 @@ definePageMeta({
   },
 });
 
-const breadCrumb = ref([
-  {
-    text: 'Inicio',
-    url: '/',
-  },
-  {
-    text: 'List de deseos',
-  }
-]);
+// const breadCrumb = ref([
+//   {
+//     text: 'Inicio',
+//     url: '/',
+//   },
+//   {
+//     text: 'List de deseos',
+//   }
+// ]);
 </script>

@@ -26,45 +26,49 @@ definePageMeta({
   },
 });
 
-const { $store, $helpers, $notify } = useNuxtApp();
+type State = {
+  productId: string;
+  pageLoading: boolean;
+  product: Product | null;
+};
+
+const { $store, $notify } = useNuxtApp();
 const graphql = useStrapiGraphQL();
 const route = useRoute();
 const global = $store.global();
 
-const state = reactive({
-  productId: route.params.id,
-  breadCrumb: null,
+const state = reactive<State>({
+  productId: route.params.id as string,
+  // breadCrumb: null,
   pageLoading: true,
   product: null,
 });
 
-state.breadCrumb = [
-  {
-    text: 'Volver',
-    url: '/',
-  },
-];
+// state.breadCrumb = [
+//   {
+//     text: 'Volver',
+//     url: '/',
+//   },
+// ];
 
 const loadProductById = async () => {
-  state.pageLoading = true;
+  try {
+    state.pageLoading = true;
 
-  const [{ data }, error] = await $helpers.handleAsync(
-    graphql<ProductsResponse>(GetProductById, {
+    const { data } = await graphql<ProductsResponse>(GetProductById, {
       id: state.productId,
-    })
-  );
+    });
 
-  if (error?.message) {
+    state.product = data.products.data[0];
+  } catch (error) {
     $notify({
       group: 'all',
       title: 'Error',
       text: 'Hubo un problema al intentar cargar el producto',
     });
+  } finally {
     state.pageLoading = false;
-    return;
   }
-
-  state.product = data.products.data[0];
 };
 
 onMounted(() => {

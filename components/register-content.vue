@@ -46,8 +46,6 @@
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
-import { register as registerQuery } from '~/graphql';
-import { HttpsCallable } from '~/types';
 
 definePageMeta({
   pageTransition: {
@@ -55,10 +53,8 @@ definePageMeta({
   },
 });
 
-const graphql = useStrapiGraphQL();
-const { setToken } = useStrapiAuth();
 const router = useRouter();
-const { $store, $notify, $httpsCallable } = useNuxtApp();
+const { $store, $notify } = useNuxtApp();
 
 const auth = $store.auth();
 
@@ -120,67 +116,6 @@ const resetState = () => {
   state.isDisabled = false;
 };
 
-const createCustomer = async ({
-  user,
-  email,
-}: {
-  user: string;
-  email: string;
-}) => {
-  const customerId = $httpsCallable(HttpsCallable.CreateCustomer);
-  const idempotencyKey = crypto.randomUUID();
-  const data = {
-    idempotencyKey,
-    givenName: user,
-    emailAddress: email,
-  };
-  const customerResponse = await customerId(data);
-  return customerResponse;
-};
-
-const registerUser = async (customerId: string) => {
-  try {
-    const body = {
-      email: form.email,
-      username: form.username,
-      password: form.password,
-      customerId,
-    };
-    const { data } = await graphql<RegisterResponse>(registerQuery, body);
-
-    if (!data) {
-      $notify({
-        group: 'all',
-        title: 'Oops',
-        text: 'El usuario o email ya existen',
-      });
-      resetState();
-      return;
-    }
-
-    setToken(data.register.jwt);
-    auth.authenticated = true;
-    Object.assign(auth.user, data.register.user);
-
-    $notify({
-      group: 'all',
-      title: 'Hey!',
-      text: 'Te has registrado exitosamente!',
-    });
-
-    router.push('/');
-  } catch (error) {
-    console.log(error);
-    $notify({
-      group: 'all',
-      title: 'Oops',
-      text: 'Hubo un problema al registrarte',
-    });
-  } finally {
-    resetState();
-  }
-};
-
 const { submit } = submitter(async () => {
   try {
     state.isLoading = true;
@@ -196,10 +131,7 @@ const { submit } = submitter(async () => {
       return;
     }
 
-    const response = (await createCustomer({
-      user: form.username,
-      email: form.email,
-    })) as any;
+    const response = await auth.createCustomer(form.username, form.email);
 
     if (!response.data.id) {
       $notify({
@@ -213,9 +145,21 @@ const { submit } = submitter(async () => {
 
     const customerId = response.data.id;
 
-    await registerUser(customerId);
+    const { confirmPassword: _, ...body } = form;
+
+    await auth.register({
+      customerId,
+      ...body,
+    });
+
+    router.push('/');
   } catch (error: any) {
     console.log(error);
+    $notify({
+      group: 'all',
+      title: 'Oops',
+      text: 'Hubo un problema al registrarte',
+    });
   } finally {
     resetState();
   }
