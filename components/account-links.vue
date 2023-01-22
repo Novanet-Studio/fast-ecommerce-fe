@@ -4,17 +4,19 @@
       class="border-b-2 border-b-gray-300"
       v-for="link in links"
       :key="link.text"
-      :class="$route.path === link?.text ? 'active' : ''"
-      :style="{ color: $route.path === link?.text && 'red' }"
+      :class="$route.path === link?.url ? 'text-yellow-500' : ''"
     >
-      <nuxt-link :to="link.url" class="block px-5 py-4 font-medium uppercase">
+      <nuxt-link
+        :to="link.url"
+        class="flex items-center px-5 py-4 font-medium uppercase"
+      >
         <i class="mr-3" :class="link.icon"></i>
         {{ link.text }}
       </nuxt-link>
     </li>
     <li>
       <a
-        class="block px-5 py-4 font-medium uppercase"
+        class="flex px-5 py-4 items-center font-medium uppercase"
         href="#"
         @click.prevent="handleLogout"
       >

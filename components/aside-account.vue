@@ -1,12 +1,14 @@
 <template>
-  <aside class="block">
+  <aside class="flex flex-col">
     <div class="flex flex-row flex-nowrap justify-between items-start pb-5">
       <div class="flex items-center">
-        <h3 class="relative text-yellow-400 text-2xl mt-0 mb-2 font-bold">Bienvenido {{ auth.user.username }}</h3>
+        <h3 class="relative text-yellow-400 text-2xl mt-0 mb-2 font-bold">
+          Bienvenido {{ auth.user.username }}
+        </h3>
       </div>
     </div>
     <div>
-      <AccountLinks :breadInfo="breadcrumb" />
+      <account-links :breadInfo="breadcrumb" />
     </div>
   </aside>
 </template>
