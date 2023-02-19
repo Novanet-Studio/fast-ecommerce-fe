@@ -2,7 +2,7 @@
   <div class="detail-description">
     <ul>
       <li class="detail-description__item">
-        {{ product.attributes.description }}
+        {{ product.description }}
       </li>
     </ul>
   </div>
@@ -10,7 +10,7 @@
 
 <script lang="ts" setup>
 type Props = {
-  product: Product;
+  product: ProductsMapped;
 };
 
 defineProps<Props>();

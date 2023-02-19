@@ -1,17 +1,17 @@
 <template>
   <div class="info-quick-view">
     <h1 class="info-quick-view__title">
-      {{ product.attributes?.name }}
+      {{ product?.name }}
     </h1>
     <div class="info-quick-view__meta">
       <p class="info-quick-view__text">
         Tipo:
         <nuxt-link to="/shop" class="info-quick-view__link">
-          {{ product.attributes.category.data.attributes.name }}
+          {{ product.category.name }}
         </nuxt-link>
       </p>
     </div>
-    <h4 class="info-quick-view__price">${{ product.attributes.price }}</h4>
+    <h4 class="info-quick-view__price">${{ product.price }}</h4>
 
     <product-detail-description :product="product" />
     <div class="info-quick-view__divition"></div>
@@ -57,7 +57,7 @@
 <script lang="ts" setup>
 const { $store, $notify } = useNuxtApp();
 const router = useRouter();
-const props = defineProps<{ product: Product }>();
+const props = defineProps<{ product: ProductsMapped }>();
 const cart = $store.cart();
 const { getCartProducts } = $store.product();
 
@@ -75,7 +75,7 @@ const addItemToCart = async (payload: CartItem) => {
   $notify({
     group: 'all',
     title: 'Exito!',
-    text: `${props.product.attributes.name} ha sido agregado al carrito!`,
+    text: `${props.product.name} ha sido agregado al carrito!`,
   });
 };
 
@@ -83,7 +83,7 @@ const handleAddToCart = () => {
   const productItem = {
     id: props.product.id,
     quantity,
-    price: props.product.attributes.price,
+    price: props.product.price,
   };
 
   // @ts-ignore
@@ -91,7 +91,7 @@ const handleAddToCart = () => {
   $notify({
     group: 'all',
     title: '¡Éxito!',
-    text: `${props.product.attributes.name} ha sido agregado al carrito!`,
+    text: `${props.product.name} ha sido agregado al carrito!`,
   });
 };
 
@@ -103,7 +103,7 @@ const handleBuyNow = (isBuyNow: boolean) => {
   const item = {
     id: props.product.id,
     quantity: quantity.value,
-    price: props.product.attributes.price,
+    price: props.product.price,
   };
 
   if (!existentItem) {

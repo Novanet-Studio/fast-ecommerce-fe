@@ -21,7 +21,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-defineProps<{ product: Product }>();
+defineProps<{ product: ProductsMapped }>();
 
 const state = reactive({
   rating: 5,

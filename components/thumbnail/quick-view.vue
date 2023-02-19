@@ -4,11 +4,11 @@
       <div class="thumbnail-quick-view__content">
         <swiper :centered-slides="true" navigation :modules="[Navigation]">
           <swiper-slide
-            v-for="(image, index) in product.attributes.image.data"
+            v-for="(image, index) in product.image"
             :key="index"
             class="thumbnail-quick-view__slide"
           >
-            <img :src="image.attributes.formats.thumbnail.url" />
+            <img :src="image.formats.thumbnail.url" />
           </swiper-slide>
         </swiper>
       </div>
@@ -22,5 +22,5 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-defineProps<{ product: Product }>();
+defineProps<{ product: ProductsMapped }>();
 </script>

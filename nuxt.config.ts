@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/image-edge',
     '@sidebase/nuxt-pdf',
+    'nuxt-lodash',
   ],
 
   css: [
@@ -64,6 +65,11 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [gql()],
+  },
+
+  lodash: {
+    prefix: '_',
+    upperAfterPrefix: false,
   },
 
   pwa: {

@@ -7,7 +7,6 @@
    <p>Base ecommerce site :computer:</p>
 </div>
 
-
 <div align="center">
   <img src="https://api.netlify.com/api/v1/badges/78aa6416-c116-42af-8a43-b05f8a3b637d/deploy-status" />
 </div>
@@ -23,11 +22,9 @@
 
 This project use an [Strapi](https://docs.strapi.io/developer-docs/latest/getting-started/quick-start.html) project to handle the backend request, and the frontend is built in [Nuxt](https://nuxt.com/docs/getting-started/introduction)
 
-
 After install the prerequisites:
 
 > **NOTE** You need to set the env variables in both projects for the right functionality.
-
 
 #### Backend
 
@@ -44,15 +41,14 @@ yarn install
 ```
 
 And run the project:
+
 ```console
 yarn develop
 ```
 
 After that you should see the server initializated, and you can open the project in `http://localhost:1337/admin`
 
-
 #### Frontend
-
 
 Clone repo:
 
@@ -67,6 +63,7 @@ yarn install
 ```
 
 And run the project:
+
 ```console
 yarn dev
 ```

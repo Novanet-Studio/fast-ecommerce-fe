@@ -38,7 +38,7 @@
 import { getProductById } from '~/graphql';
 
 type Props = {
-  product: Product;
+  product: ProductsMapped;
 };
 
 type Emits = {
@@ -57,7 +57,7 @@ const handleAddToCart = async () => {
   const newProduct: Partial<Product> & Record<string, unknown> = {
     id: props.product.id,
     quantity: 1,
-    price: props.product.attributes.price,
+    price: props.product.price,
   };
 
   cart.addProductToCart(newProduct as any);

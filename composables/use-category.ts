@@ -6,12 +6,12 @@ interface Params {
 }
 
 interface Result {
-  categories: Ref<Category[]>;
+  categories: Ref<CategoriesMapped[]>;
   isLoading: Ref<boolean>;
 }
 
 export default function useCategory(params?: Params): Result {
-  const categories = ref<Category[]>([]);
+  const categories = ref<CategoriesMapped[]>([]);
   const isLoading = ref<boolean>(false);
   const graphql = useStrapiGraphQL();
   const { $notify } = useNuxtApp();
@@ -19,17 +19,18 @@ export default function useCategory(params?: Params): Result {
   const getCategories = async () => {
     try {
       isLoading.value = true;
-      const response = await graphql<CategoriesResponse>(categoriesQuery);
+      const response = await graphql<CategoriesRequest>(categoriesQuery);
 
       if (params?.ordered) {
         const ordered = response.data.categories.data.sort(
-          (a: Category, b: Category) => Number(a.id) - Number(b.id)
+          (a: CategoriesData, b: CategoriesData) => Number(a.id) - Number(b.id)
         );
-        categories.value = ordered;
+        categories.value = mapperData<CategoriesMapped[]>(ordered);
+        const mapped = mapperData(ordered);
         return;
       }
 
-      categories.value = response.data.categories.data;
+      categories.value = mapperData(response.data.categories.data);
     } catch (error) {
       console.log(error);
       $notify({

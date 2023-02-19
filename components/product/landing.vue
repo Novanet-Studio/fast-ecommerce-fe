@@ -1,9 +1,9 @@
 <template>
-  <div class="landing" v-if="category?.attributes?.products?.data.length">
+  <div class="landing" v-if="category?.products?.length">
     <div class="landing__wrapper">
       <div class="landing__header">
         <h3 class="landing__title">
-          {{ category.attributes.name }}
+          {{ category.name }}
         </h3>
       </div>
       <div class="landing__content">
@@ -35,17 +35,21 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 type Props = {
-  category: Category;
+  category: CategoriesMapped;
 };
 
 const props = defineProps<Props>();
 const { $store } = useNuxtApp();
 const productStore = $store.product();
 
-const products = ref<Product[] | null>(null);
+const products = ref<ProductsMapped[] | null>(null);
 const modules = [Autoplay, Navigation, Pagination];
 
 onMounted(async () => {
-  products.value = await productStore.getProductsByCategory(props.category.id);
+  const result = (await productStore.getProductsByCategory(
+    props.category.id
+  )) as ProductsMapped[];
+
+  products.value = result;
 });
 </script>

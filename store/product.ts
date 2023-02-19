@@ -36,8 +36,9 @@ export const useProduct = defineStore('product', {
         const { data } = await gql<ProductsResponse>(getProductsByCategoryId, {
           id: categoryId,
         });
+        const mapped = mapperData(data.products.data);
 
-        return data.products.data;
+        return mapped;
       } catch (error) {
         return null;
       } finally {

@@ -1,13 +1,13 @@
 <template>
   <!-- ps-product__title -->
   <nuxt-link :to="`/product/${product.id}`" class="product-mini-cart__title">
-    {{ product.attributes.name && product.attributes.name }}
+    {{ product.name && product.name }}
   </nuxt-link>
 </template>
 
 <script lang="ts" setup>
 type Props = {
-  product: Product;
+  product: ProductsMapped;
 };
 
 defineProps<Props>();
