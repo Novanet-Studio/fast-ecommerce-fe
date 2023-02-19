@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     'nuxt-windicss',
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/image-edge',
+    '@sidebase/nuxt-pdf',
   ],
 
   css: [

@@ -1,7 +1,7 @@
 <template>
   <div class="ps-section__content">
     <div class="ps-section--account-setting">
-      <div id="pdf-content">
+      <div ref="pdfSection">
         <div class="ps-section__header">
           <h3>
             Factura #{{ invoice?.id_invoice_user }} -
@@ -21,7 +21,8 @@
                     Dirección:
                     {{ invoice.shippingAddress.address }},
                     <!-- {{ invoice.attributes.shippingAddress.addressLine1 }}, -->
-                    {{ invoice.shippingAddress.locality }},
+                    <!-- {{ invoice.shippingAddress.locality }}, ??? -->
+                    {{ invoice.shippingAddress.city }},
                     {{ invoice.shippingAddress.country }}
                   </p>
                 </div>
@@ -83,17 +84,19 @@
         </div>
       </div>
       <nuxt-link to="/invoices">
-        <a class="ps-btn ps-btn--sm"> regresar </a>
+        <a class="ps-btn ps-btn--sm">regresar</a>
       </nuxt-link>
-      <button @click="getPdf" class="ps-btn ps-btn--sm">PDF</button>
+      <button
+        @click="exportToPDF('invoices.pdf', pdfSection)"
+        class="ps-btn ps-btn--sm"
+      >
+        PDF
+      </button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import pdfmake from 'pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import htmlToPdfmake from 'html-to-pdfmake';
 import { getProductById as GetProductById } from '~/graphql';
 
 const { $store } = useNuxtApp();
@@ -101,16 +104,7 @@ const graphql = useStrapiGraphQL();
 const { invoice } = $store.invoice();
 
 const products = ref<ProductsResponse[]>();
-
-const getPdf = async () => {
-  const element = document.querySelector('#pdf-content');
-  const html = htmlToPdfmake(element?.innerHTML);
-  const documentDefinition = {
-    content: html,
-  };
-  pdfmake.vfs = pdfFonts.pdfMake.vfs;
-  pdfmake.createPdf(documentDefinition).download();
-};
+const pdfSection = ref<HTMLElement | undefined>(undefined);
 
 const getProductsId = async (productList: any[]) => {
   if (!productList.length) return;
