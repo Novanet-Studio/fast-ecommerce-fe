@@ -147,10 +147,12 @@ const { submit } = submitter(async () => {
 
     const { confirmPassword: _, ...body } = form;
 
-    await auth.register({
+    const success = await auth.register({
       customerId,
       ...body,
     });
+
+    if (!success) return;
 
     router.push('/');
   } catch (error: any) {

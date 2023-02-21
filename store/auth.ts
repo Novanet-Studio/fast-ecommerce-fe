@@ -22,7 +22,7 @@ export const useAuth = defineStore('auth', {
     authenticated: false,
   }),
   actions: {
-    async login(user: string, password: string) {
+    async login(user: string, password: string): Promise<boolean> {
       const { $notify } = useNuxtApp();
       const { setToken } = useStrapiAuth();
       const graphql = useStrapiGraphQL();
@@ -38,7 +38,7 @@ export const useAuth = defineStore('auth', {
           title: 'Error!',
           text: 'Usuario o Contraseña inválidos',
         });
-        return;
+        return false;
       }
 
       setToken(data.login.jwt);
@@ -50,8 +50,10 @@ export const useAuth = defineStore('auth', {
         title: 'Success!',
         text: `Inicio de sesión con éxito!`,
       });
+
+      return true;
     },
-    async register(body: RegisterPaylod) {
+    async register(body: RegisterPaylod): Promise<boolean> {
       const { $notify } = useNuxtApp();
       const { setToken } = useStrapiAuth();
       const graphql = useStrapiGraphQL();
@@ -64,7 +66,7 @@ export const useAuth = defineStore('auth', {
           title: 'Oops',
           text: 'El usuario o email ya existen',
         });
-        return;
+        return false;
       }
 
       setToken(data.register.jwt);
@@ -76,6 +78,8 @@ export const useAuth = defineStore('auth', {
         title: 'Hey!',
         text: 'Te has registrado exitosamente!',
       });
+
+      return true;
     },
     async createCustomer(user: string, email: string) {
       const { $httpsCallable } = useNuxtApp();

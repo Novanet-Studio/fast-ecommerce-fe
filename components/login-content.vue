@@ -83,7 +83,9 @@ const { submit } = submitter(async () => {
     state.isLoading = true;
     state.isDisabled = true;
 
-    await auth.login(form.user, form.password);
+    const success = await auth.login(form.user, form.password);
+
+    if (!success) return;
 
     setTimeout(() => {
       router.push('/');
