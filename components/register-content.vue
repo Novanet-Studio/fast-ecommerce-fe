@@ -2,35 +2,41 @@
   <form class="auth-form">
     <div class="auth-form__wrapper">
       <h5 class="auth-form__title">Crear una cuenta</h5>
-      <app-input
+      <app-input2
         v-model="form.username"
         placeholder="John Doe"
-        :is-error="status.username.isError"
+        :error="status.username.isError"
         :error-message="status.username.message"
+        icon-left="fa fa-user"
       />
 
-      <app-input
+      <app-input2
         v-model="form.email"
         placeholder="john@doe.com"
-        :is-error="status.email.isError"
+        :error="status.email.isError"
         :error-message="status.email.message"
+        icon-left="fa fa-envelope"
       />
 
-      <app-input
+      <app-input2
         v-model="form.password"
         placeholder="Ingresa tu contraseña"
-        type="password"
-        :is-error="status.password.isError"
+        :type="showPasswords ? 'text' : 'password'"
+        :error="status.password.isError"
         :error-message="status.password.message"
+        icon-left="fa fa-lock"
       />
 
-      <app-input
+      <app-input2
         v-model="form.confirmPassword"
         placeholder="Confirma contraseña"
-        type="password"
-        :is-error="status.confirmPassword.isError"
+        :type="showPasswords ? 'text' : 'password'"
+        :error="status.confirmPassword.isError"
         :error-message="status.confirmPassword.message"
+        icon-left="fa fa-lock"
       />
+
+      <app-checkbox label="Show passwords" v-model="showPasswords" />
 
       <div class="auth-form__footer">
         <template v-if="state.isLoading">
@@ -62,6 +68,8 @@ const state = reactive({
   isLoading: false,
   isDisabled: false,
 });
+
+const showPasswords = ref(false);
 
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm;

@@ -2,23 +2,23 @@
   <form class="auth-form">
     <div class="auth-form__wrapper">
       <h5 class="auth-form__title">Inicia sesión en tu cuenta</h5>
-      <app-input
+      <app-input2
         v-model="form.user"
         placeholder="john o john@doe.com"
-        :is-error="status.user.isError"
+        :error="status.user.isError"
         :error-message="status.user.message"
+        icon-left="fa fa-user"
       />
-      <app-input
+      <app-input2
         v-model="form.password"
         placeholder="Ingrese su contraseña"
-        type="password"
-        :is-error="status.password.isError"
+        :type="showPassword ? 'text' : 'password'"
+        :error="status.password.isError"
         :error-message="status.password.message"
+        icon-left="fa fa-lock"
+        :icon-right="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+        @click-right-icon="handleIconClick"
       />
-      <!-- <div class="border border-green-400 p-3 mb-4">
-        <input type="checkbox" name="rememberme" v-model="form.rememberMe">
-        <label for="rememberme">Recordarme</label>
-      </div> -->
       <div class="auth-form__footer">
         <template v-if="state.isLoading">
           <loading />
@@ -49,6 +49,8 @@ const state = reactive({
   isDisabled: false,
 });
 
+const showPassword = ref(false);
+
 const { form, status, submitter, verify } = useForm({
   form: () => ({
     user: '',
@@ -63,6 +65,10 @@ const { form, status, submitter, verify } = useForm({
   },
   defaultMessage: '',
 });
+
+const handleIconClick = () => {
+  showPassword.value = !showPassword.value;
+};
 
 const resetState = () => {
   state.isLoading = false;
