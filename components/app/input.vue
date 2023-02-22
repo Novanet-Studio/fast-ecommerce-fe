@@ -29,6 +29,7 @@ type Emits = {
 };
 
 const props = withDefaults(defineProps<Props>(), {
+  isError: false,
   type: 'text',
 });
 

@@ -14,6 +14,16 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  build: {
+    transpile: [
+      '@fortawesome/vue-fontawesome',
+      '@fortawesome/fontawesome-svg-core',
+      '@fortawesome/free-solid-svg-icons',
+      '@fortawesome/free-brands-svg-icons',
+    ],
+  },
+
   modules: [
     // Modules
     '@pinia/nuxt',
@@ -29,11 +39,7 @@ export default defineNuxtConfig({
   css: [
     'virtual:windi.css',
     'virtual:windi-devtools',
-    '~/static/fontawesome/css/fontawesome.css',
-    '~/static/fontawesome/css/brands.css',
-    '~/static/fontawesome/css/regular.css',
-    '~/static/fontawesome/css/solid.css',
-    '~/static/Linearicons/Font/demo-files/demo.css',
+    '@fortawesome/fontawesome-svg-core/styles.css',
     '~/assets/styles/index.css',
     '~/assets/styles/components.css',
     '~/assets/styles/pages.css',
