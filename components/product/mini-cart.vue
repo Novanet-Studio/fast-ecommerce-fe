@@ -13,7 +13,7 @@
       </a>
       <product-title :product="product" />
       <small v-if="quantity !== null">
-        {{ quantity }} x {{ currency }} {{ product.attributes.price }}
+        {{ quantity }} x {{ currency }} {{ product.price }}
       </small>
     </div>
   </div>
@@ -30,7 +30,7 @@ const cartStore = $store.cart();
 const productStore = $store.product();
 const global = $store.global();
 
-const props = defineProps<{ product: Product }>();
+const props = defineProps<{ product: ProductsMapped }>();
 
 const cartItems = computed(() => cartStore.cartItems);
 const currency = computed(() => global.currency);

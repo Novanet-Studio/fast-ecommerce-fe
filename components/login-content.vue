@@ -16,7 +16,7 @@
         :error="status.password.isError"
         :error-message="status.password.message"
         icon-left="fa fa-lock"
-        :icon-right="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+        :icon-right="!showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
         @click-right-icon="handleIconClick"
       />
       <div class="auth-form__footer">

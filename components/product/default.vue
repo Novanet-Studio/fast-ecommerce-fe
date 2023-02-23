@@ -12,8 +12,8 @@
     </div>
     <modal v-model="state.quickView">
       <div class="product-modal">
-        <a class="product-modal__icon" @click="state.quickView = false"
-          ><i class="icon icon-cross"></i
+        <a class="product-modal__icon" @click="state.quickView = false">
+          <i class="icon icon-cross"></i
         ></a>
         <product-quick-view :product="product" />
       </div>

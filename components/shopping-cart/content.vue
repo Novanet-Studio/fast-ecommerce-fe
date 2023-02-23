@@ -7,7 +7,7 @@
       <div>
         <shopping-cart-table
           v-if="product.cartProducts?.length"
-          :item="product.cartProducts"
+          :products="product.cartProducts"
         />
         <p v-else>Carrito vacio</p>
         <div class="shopping-cart__link-wrapper">
@@ -38,21 +38,19 @@
             </div>
             <div>
               <ul class="cart-product">
-                <template v-for="productList in product.cartProducts">
-                  <li
-                    class="cart-product__item"
-                    v-for="item in productList.data.products.data"
-                    :key="item.id"
-                  >
-                    <span class="cart-product__wrapper">
-                      <nuxt-link :to="`/product/${item.id}`">
-                        {{ item.attributes.name }}
-                        <br />
-                        <quantity-section :product="item" />
-                      </nuxt-link>
-                    </span>
-                  </li>
-                </template>
+                <li
+                  class="cart-product__item"
+                  v-for="item in product.cartProducts"
+                  :key="item.id"
+                >
+                  <span class="cart-product__wrapper">
+                    <nuxt-link :to="`/product/${item.id}`">
+                      {{ item.name }}
+                      <br />
+                      <quantity-section :product="item" />
+                    </nuxt-link>
+                  </span>
+                </li>
               </ul>
               <h3 class="cart-product__total">
                 Total
@@ -114,9 +112,12 @@ const loadCartProducts = async () => {
     graphql<ProductsResponse>(GetProductById, { id })
   );
 
-  const response = await Promise.all(productPromises);
+  const [response] = await Promise.all(productPromises);
 
-  product.cartProducts = response;
+  product.cartProducts = mapperData(
+    response.data.products.data
+  ) as ProductsMapped[];
+  console.log(product.cartProducts);
 };
 
 onMounted(() => {

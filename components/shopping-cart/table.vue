@@ -11,30 +11,25 @@
         </tr>
       </thead>
       <tbody>
-        <template v-for="parentItem in item">
-          <tr
-            v-for="productItem in parentItem.data.products.data"
-            :key="productItem.id"
-          >
-            <td class="cart-table__td-product">
-              <product-shopping-cart :product="productItem" />
-            </td>
-            <td class="cart-table__td">$ {{ productItem.attributes.price }}</td>
-            <td class="cart-table__td">
-              <quantity :product="productItem" />
-            </td>
-            <total-quantity :product="productItem" />
-            <td class="cart-table__td">
-              <a
-                href="#"
-                class="cart-table__link"
-                @click.prevent="handleRemoveProductFromCart(productItem)"
-              >
-                <i class="icon-cross"></i>
-              </a>
-            </td>
-          </tr>
-        </template>
+        <tr v-for="product in products" :key="product.id">
+          <td class="cart-table__td-product">
+            <product-shopping-cart :product="product" />
+          </td>
+          <td class="cart-table__td">$ {{ product.price }}</td>
+          <td class="cart-table__td">
+            <quantity :product="product" />
+          </td>
+          <total-quantity :product="product" />
+          <td class="cart-table__td">
+            <a
+              href="#"
+              class="cart-table__link"
+              @click.prevent="handleRemoveProductFromCart(product)"
+            >
+              <i class="icon-cross"></i>
+            </a>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -44,7 +39,7 @@
 import { getProductById as GetProductById } from '~/graphql';
 
 type Props = {
-  item: ProductsResponse[];
+  products: ProductsMapped[];
 };
 
 defineProps<Props>();
@@ -52,13 +47,13 @@ defineProps<Props>();
 const { $store } = useNuxtApp();
 const graphql = useStrapiGraphQL();
 const cart = $store.cart();
-const product = $store.product();
+const productStore = $store.product();
 
 const loadCartProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
 
   if (!cart.cartItems.length) {
-    product.cartProducts = null;
+    productStore.cartProducts = null;
     return;
   }
 
@@ -66,15 +61,15 @@ const loadCartProducts = async () => {
     graphql<ProductsResponse>(GetProductById, { id })
   );
 
-  const response = await Promise.all(productPromises);
+  const [response] = await Promise.all(productPromises);
 
-  product.cartProducts = response;
+  productStore.cartProducts = mapperData(response.data.products.data);
 };
 
-const handleRemoveProductFromCart = (product: Product) => {
+const handleRemoveProductFromCart = (product: ProductsMapped) => {
   const cartItem = cart.cartItems.find((item) => item.id === product.id);
 
-  cart.removeProductFromCart(cartItem);
+  cart.removeProductFromCart(cartItem as any);
   loadCartProducts();
 };
 </script>

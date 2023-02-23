@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 type Props = {
-  product: Product;
+  product: ProductsMapped;
 };
 
 defineProps<Props>();

@@ -1,18 +1,18 @@
 <template>
   <div class="quantity">
     <button class="quantity__btn" @click.prevent="handleIncreaseQuantity">
-      <i class="fa fa-plus"></i>
+      <font-awesome icon="fa fa-plus" />
     </button>
     <input class="quantity__input" v-model="quantity" type="text" disabled />
     <button class="quantity__btn" @click.prevent="handleDescreaseQuantity">
-      <i class="fa fa-minus"></i>
+      <font-awesome icon="fa fa-minus" />
     </button>
   </div>
 </template>
 
 <script lang="ts" setup>
 type Props = {
-  product: Product;
+  product: ProductsMapped;
 };
 
 const props = defineProps<Props>();

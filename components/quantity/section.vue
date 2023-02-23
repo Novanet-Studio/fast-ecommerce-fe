@@ -1,13 +1,11 @@
 <template>
-  <div>
-    {{ quantity }} x ${{ product.attributes.price }}
-  </div>
+  <div>{{ quantity }} x ${{ product.price }}</div>
 </template>
 
 <script lang="ts" setup>
 type Props = {
-  product: Product;
-}
+  product: ProductsMapped;
+};
 
 const { $store } = useNuxtApp();
 const props = defineProps<Props>();
@@ -17,9 +15,7 @@ const cart = $store.cart();
 const quantity = computed(() => {
   if (!cart.cartItems.length) return null;
 
-  const cartItem = cart.cartItems.find(
-    item => item.id === props.product.id
-  );
+  const cartItem = cart.cartItems.find((item) => item.id === props.product.id);
 
   if (!cartItem) return null;
 

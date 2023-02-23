@@ -5,7 +5,7 @@ interface ProductStore {
   product: unknown | null;
   products: Product[] | null;
   searchResults: unknown | null;
-  cartProducts: ProductsResponse[] | null;
+  cartProducts: ProductsMapped[] | null;
   wishlistItems: ProductsResponse[] | null;
   compareItems: unknown | null;
   brands: unknown | null;

@@ -1,7 +1,8 @@
 <template>
   <nuxt-link :to="`/product/${product.id}`">
     <nuxt-img
-      :src="productImageUrl"
+      v-if="imageUrl"
+      :src="imageUrl"
       :alt="product.name"
       :placeholder="[100, 50, 10]"
       fit="cover"
@@ -17,8 +18,5 @@ type Props = {
 };
 
 const props = defineProps<Props>();
-
-const productImageUrl = computed(
-  () => props.product.image[0].formats?.small?.url
-);
+const imageUrl = computed(() => props.product.image[0].formats?.small?.url);
 </script>

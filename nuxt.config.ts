@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     'virtual:windi.css',
     'virtual:windi-devtools',
     '@fortawesome/fontawesome-svg-core/styles.css',
+    '~/static/Linearicons/Font/demo-files/demo.css',
     '~/assets/styles/index.css',
     '~/assets/styles/components.css',
     '~/assets/styles/pages.css',

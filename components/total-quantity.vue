@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 type Props = {
-  product: Product;
+  product: ProductsMapped;
 };
 
 const props = defineProps<Props>();
@@ -22,6 +22,6 @@ const quantity = computed(() => {
 });
 
 const totalQuantity = computed(() =>
-  (quantity.value * props.product.attributes.price).toFixed(2)
+  ((quantity.value as number) * props.product.price).toFixed(2)
 );
 </script>

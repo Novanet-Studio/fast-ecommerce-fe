@@ -1,10 +1,6 @@
 <template>
   <div class="relative">
-    <div
-      @mouseover="isOpen = true"
-      @mouseleave="isOpen = false"
-      @click="isOpen = !isOpen"
-    >
+    <div @mouseover="isOpen = true" @mouseleave="isOpen = false">
       <a class="header-actions__link" href="#" @click="loadCartProducts">
         <i class="header-actions__icon icon-bag2"></i>
         <span class="header-actions__indicator-wrapper">
@@ -17,13 +13,8 @@
             <loading />
           </template>
           <template v-else-if="cartProducts?.length">
-            <div v-for="(productItems, index) in cartProducts" :key="index">
-              <div
-                v-for="product in productItems.data.products.data"
-                :key="product.id"
-              >
-                <product-mini-cart :product="product" />
-              </div>
+            <div v-for="(product, index) in cartProducts" :key="index">
+              <product-mini-cart :product="product" />
             </div>
           </template>
         </div>
@@ -73,6 +64,7 @@ const isOpen = ref(false);
 const loadCartProducts = async () => {
   try {
     cartStore.loading = true;
+
     const itemsList = cartStore.cartItems.map((item) =>
       graphql<ProductsResponse>(GetProductById, { id: item.id })
     );
@@ -85,8 +77,8 @@ const loadCartProducts = async () => {
     // If doesnt exist in the local storage
     // then load from database
     if (!productStore.cartProducts?.length) {
-      const response = await Promise.all(itemsList);
-      productStore.cartProducts = response;
+      const [response] = await Promise.all(itemsList);
+      productStore.cartProducts = mapperData(response.data.products.data);
       return;
     }
   } catch (err) {
@@ -95,4 +87,6 @@ const loadCartProducts = async () => {
     cartStore.loading = false;
   }
 };
+
+onMounted(() => loadCartProducts());
 </script>
