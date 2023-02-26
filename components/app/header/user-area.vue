@@ -42,8 +42,12 @@
 const { $store } = useNuxtApp();
 const auth = $store.auth();
 const global = $store.global();
+const router = useRouter();
 
 const isOpen = ref(false);
 
-const handleLogout = () => (auth.authenticated = false);
+const handleLogout = () => {
+  router.go(0);
+  auth.authenticated = false;
+};
 </script>
