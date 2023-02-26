@@ -1,35 +1,19 @@
 <template>
   <div>
-    <h1>{{ product.attributes.name }}</h1>
-    <div class="ps-product__meta">
-      <!-- <p>
-        Tipo:
-        <nuxt-link to="/shop">
-          <a class="ml-2 text-capitalize">
-            {{ product.category.name }}
-          </a>
-        </nuxt-link>
-      </p> -->
-      <!-- <div class="ps-product__rating">
-        <rating />
-        <span>(1 review)</span>
-      </div> -->
-    </div>
+    <h1 class="text-3xl mb-2">{{ product.name }}</h1>
     <!-- FIX: here is "is_sale" not "sale_price" -->
-    <h4 v-if="!!product.attributes.sale_price" class="ps-product__price sale">
-      <del class="mr-2"> $ {{ product.attributes.sale_price }}</del>
-      ${{ product.attributes.price }}
+    <h4 v-if="!!product.sale_price" class="text-2xl font-light">
+      <del class="mr-2"> $ {{ product.sale_price }}</del>
+      ${{ product.price }}
     </h4>
-    <h4 v-else class="ps-product__price">
-      ${{ product.attributes.price }}
-    </h4>
+    <h4 v-else class="text-2xl font-light">${{ product.price }}</h4>
   </div>
 </template>
 
 <script lang="ts" setup>
 type Props = {
-  product: Product;
-}
+  product: ProductsMapped;
+};
 
 defineProps<Props>();
 </script>

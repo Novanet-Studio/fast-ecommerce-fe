@@ -8,7 +8,7 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "@nuxt/image-edge": "1.0.0-27919678.2f5b64b",
+    "@nuxt/image-edge": "1.0.0-27954023.4cee565",
     "@nuxtjs/strapi": "^1.8.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@rollup/plugin-graphql": "^2.0.3",
@@ -27,13 +27,13 @@
     "@kevinmarrec/nuxt-pwa": "^0.16.2",
     "@kyvg/vue3-notification": "^2.9.0",
     "@paypal/paypal-js": "^5.1.4",
-    "@pinia/nuxt": "^0.4.5",
+    "@pinia/nuxt": "^0.4.7",
     "firebase": "^9.17.1",
     "gitart-vue-dialog": "^2.4.1",
     "slimeform": "^0.9.1",
     "square": "^25.1.0",
     "swiper": "^9.0.5",
     "vue3-tabs-component": "^1.2.0",
-    "yup": "^1.0.0"
+    "yup": "^1.0.1"
   }
 }

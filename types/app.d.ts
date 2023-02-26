@@ -71,6 +71,8 @@ interface Image {
   name: string;
   formats: Formats;
   alternativeText: string;
+  url: string;
+  caption?: string;
 }
 
 interface Formats {

@@ -1,18 +1,7 @@
 <template>
-  <div>
-    <!-- <bread-crumb :items="state.breadCrumb" layout="fullwidth" /> -->
-    <div class="product">
-      <div class="product__container">
-        <div class="product__page-container">
-          <div class="product__page-left">
-            <product-detail-fullwidth
-              v-if="state.product"
-              :product="state.product"
-            />
-          </div>
-          <div class="product__page-right"></div>
-        </div>
-      </div>
+  <div class="flex w-full min-h-full mt-12">
+    <div class="product2">
+      <product-detail-fullwidth v-if="state.product" :product="state.product" />
     </div>
   </div>
 </template>
@@ -29,7 +18,7 @@ definePageMeta({
 type State = {
   productId: string;
   pageLoading: boolean;
-  product: Product | null;
+  product: ProductsMapped | null;
 };
 
 const { $store, $notify } = useNuxtApp();
@@ -39,17 +28,9 @@ const global = $store.global();
 
 const state = reactive<State>({
   productId: route.params.id as string,
-  // breadCrumb: null,
   pageLoading: true,
   product: null,
 });
-
-// state.breadCrumb = [
-//   {
-//     text: 'Volver',
-//     url: '/',
-//   },
-// ];
 
 const loadProductById = async () => {
   try {
@@ -59,7 +40,7 @@ const loadProductById = async () => {
       id: state.productId,
     });
 
-    state.product = data.products.data[0];
+    state.product = mapperData(data.products.data[0]);
   } catch (error) {
     $notify({
       group: 'all',
