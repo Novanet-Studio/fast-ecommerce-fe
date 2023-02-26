@@ -1,5 +1,6 @@
 import { getAddressByIdAndType as GetAddressByIdAndType } from '~/graphql';
 import type { Ref } from 'vue';
+import { AddressType } from '~/types';
 
 interface Result {
   hasBilling: Ref<boolean>;
@@ -20,41 +21,53 @@ export default function useCheckAddressType(): Result {
   const id = Number(auth.user.id);
 
   const checkBilling = async () => {
-    const data = {
-      id,
-      type: AddressType.Billing,
-    };
+    try {
+      const data = {
+        id,
+        type: AddressType.Billing,
+      };
 
-    const response = await graphql<AddressResponse>(
-      GetAddressByIdAndType,
-      data
-    );
+      const response = await graphql<AddressResponse>(
+        GetAddressByIdAndType,
+        data
+      );
 
-    if (!response.data.addresses.data.length) {
+      console.log(response);
+
+      if (!response.data.addresses.data.length) {
+        hasBilling.value = false;
+        return;
+      }
+
+      hasBilling.value = true;
+    } catch (error) {
       hasBilling.value = false;
-      return;
+      console.log('An error occurred while checkBilling: ', error);
     }
-
-    hasBilling.value = true;
   };
 
   const checkShipping = async () => {
-    const data = {
-      id,
-      type: AddressType.Shipping,
-    };
+    try {
+      const data = {
+        id,
+        type: AddressType.Shipping,
+      };
 
-    const response = await graphql<AddressResponse>(
-      GetAddressByIdAndType,
-      data
-    );
+      const response = await graphql<AddressResponse>(
+        GetAddressByIdAndType,
+        data
+      );
 
-    if (!response.data.addresses.data.length) {
+      if (!response.data.addresses.data.length) {
+        hasShipping.value = false;
+        return;
+      }
+
+      hasShipping.value = true;
+    } catch (error) {
       hasShipping.value = false;
-      return;
+      console.log('An error occurred while checkShipping: ', error);
     }
-
-    hasShipping.value = true;
   };
 
   onMounted(async () => {

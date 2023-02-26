@@ -62,7 +62,6 @@ const modules = ref([Autoplay, Navigation, Pagination, Thumbs, FreeMode]);
 const thumbsSwiper = ref(null);
 
 const setThumbsSwiper = (swiper: any) => {
-  console.log('thumbs: ', swiper);
   thumbsSwiper.value = swiper;
 };
 </script>

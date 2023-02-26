@@ -5,7 +5,7 @@ type WishListItem = {
 };
 
 type WishlistStore = {
-  items: WishListItem[] | null;
+  items: WishListItem[];
   total: number;
   loading: boolean;
 };
@@ -13,20 +13,18 @@ type WishlistStore = {
 export const useWishList = defineStore('wishlist', {
   state: () =>
     ({
-      items: null,
+      items: [],
       total: 0,
       loading: false,
     } as WishlistStore),
   actions: {
-    initWishList(payload: any): void {
+    initWishList(payload: { items: { id: string }[]; total: number }): void {
       this.items = payload.items;
       this.total = payload.total;
     },
-    addItemToWishlist(item: Product) {
+    addItemToWishlist(item: { id: string }) {
       if (!this.total) {
-        this.items?.push({
-          id: item.id,
-        });
+        this.items = [item];
         this.total = this.total + 1;
         return;
       }
@@ -34,9 +32,7 @@ export const useWishList = defineStore('wishlist', {
       const existItem = this.items?.find((product) => product.id === item.id);
 
       if (!existItem) {
-        this.items?.push({
-          id: item.id,
-        });
+        this.items?.push(item);
         this.total = this.total + 1;
       }
     },
@@ -46,4 +42,5 @@ export const useWishList = defineStore('wishlist', {
       this.items?.splice(index, 1);
     },
   },
+  persist: true,
 });

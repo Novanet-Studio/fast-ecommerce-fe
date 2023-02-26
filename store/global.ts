@@ -15,7 +15,6 @@ export const useGlobal = defineStore('global', {
   },
   actions: {
     async nuxtServerInit() {
-      console.log('setting store');
       // const cartItems = this.$cookies.get('cart', { parseJSON: true });
       // const wishlistItems = this.$cookies.get('wishlist', {
       //   parseJSON: true,

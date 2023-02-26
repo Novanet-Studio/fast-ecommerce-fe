@@ -6,7 +6,7 @@ interface ProductStore {
   products: Product[] | null;
   searchResults: unknown | null;
   cartProducts: ProductsMapped[] | null;
-  wishlistItems: ProductsResponse[] | null;
+  wishlistItems: ProductsMapped[] | null;
   compareItems: unknown | null;
   brands: unknown | null;
   categories: unknown | null;
@@ -29,14 +29,16 @@ export const useProduct = defineStore('product', {
       loading: false,
     } as ProductStore),
   actions: {
-    async getProductsByCategory(categoryId: string) {
+    async getProductsByCategory(
+      categoryId: string
+    ): Promise<ProductsMapped[] | null> {
       try {
         this.loading = true;
         const gql = useStrapiGraphQL();
         const { data } = await gql<ProductsResponse>(getProductsByCategoryId, {
           id: categoryId,
         });
-        const mapped = mapperData(data.products.data);
+        const mapped = mapperData<ProductsMapped[]>(data.products.data);
 
         return mapped;
       } catch (error) {
@@ -87,7 +89,7 @@ export const useProduct = defineStore('product', {
     //   .catch((error) => ({ error: JSON.stringify(error) }));
     // return reponse;
     // },
-    async getCartProducts(payload) {
+    async getCartProducts(payload: unknown) {
       // let query = '';
       // payload.forEach((item) => {
       //   if (query === '') {

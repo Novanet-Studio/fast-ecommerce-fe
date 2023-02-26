@@ -23,17 +23,19 @@
           <tbody>
             <template v-for="parentItem in product.wishlistItems">
               <tr
-                v-for="productItem in parentItem.data.products.data"
+                v-for="productItem in parentItem.products"
                 :key="productItem.id"
               >
                 <td class="w-table__td-product">
                   <product-shopping-cart :product="productItem" />
                 </td>
                 <td class="w-table__td-price">
-                  $ {{ productItem.attributes.price.toFixed(2) }}
+                  $ {{ productItem.price.toFixed(2) }}
                 </td>
                 <td class="w-table__td-action">
-                  <button class="w-table__action-btn">Añadir al carrito</button>
+                  <button class="w-table__action-btn" @click="handleAddToCart">
+                    Añadir al carrito
+                  </button>
                   <a
                     href="#"
                     class="w-table__action-delete"
@@ -98,7 +100,7 @@ const loadWishlist = async () => {
 
   const response = await Promise.all(wishlistPromises);
 
-  product.wishlistItems = response;
+  product.wishlistItems = mapperData(response);
 };
 
 onMounted(() => {

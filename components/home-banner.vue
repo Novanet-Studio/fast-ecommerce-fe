@@ -17,21 +17,18 @@
         </div>
       </div>
       <div class="banner__right">
-        <nuxt-link to="/shop" class="flex-1 block flex">
+        <nuxt-link to="/shop" class="flex-1 flex">
           <img
             src="~/assets/img/slider/home/promotion-1.jpeg"
             alt="Promotion 1"
           />
         </nuxt-link>
-        <nuxt-link to="/shop" class="h-full flex-1 block">
+        <nuxt-link to="/shop" class="h-full flex-1">
           <img
             src="~/assets/img/slider/home/promotion-2.jpeg"
             alt="Promotion 2"
           />
         </nuxt-link>
-        <!-- <nuxt-link to="/shop" class="h-full flex-1 block">
-          <nuxt-img src="/slider/home/promotion-2.jpeg" alt="Promotion 2" />
-        </nuxt-link> -->
       </div>
     </div>
   </div>

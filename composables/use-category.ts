@@ -26,7 +26,6 @@ export default function useCategory(params?: Params): Result {
           (a: CategoriesData, b: CategoriesData) => Number(a.id) - Number(b.id)
         );
         categories.value = mapperData<CategoriesMapped[]>(ordered);
-        const mapped = mapperData(ordered);
         return;
       }
 

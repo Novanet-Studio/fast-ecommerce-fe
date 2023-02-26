@@ -1,5 +1,5 @@
 <template>
-  <div class="landing" v-if="category?.products?.length">
+  <div class="landing" v-if="products?.length">
     <div class="landing__wrapper">
       <div class="landing__header">
         <h3 class="landing__title">
@@ -46,10 +46,7 @@ const products = ref<ProductsMapped[] | null>(null);
 const modules = [Autoplay, Navigation, Pagination];
 
 onMounted(async () => {
-  const result = (await productStore.getProductsByCategory(
-    props.category.id
-  )) as ProductsMapped[];
-
+  const result = await productStore.getProductsByCategory(props.category.id);
   products.value = result;
 });
 </script>

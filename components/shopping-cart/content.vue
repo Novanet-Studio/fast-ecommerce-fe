@@ -117,7 +117,6 @@ const loadCartProducts = async () => {
   product.cartProducts = mapperData(
     response.data.products.data
   ) as ProductsMapped[];
-  console.log(product.cartProducts);
 };
 
 onMounted(() => {
