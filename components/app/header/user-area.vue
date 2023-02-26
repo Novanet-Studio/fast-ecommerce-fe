@@ -47,7 +47,7 @@ const router = useRouter();
 const isOpen = ref(false);
 
 const handleLogout = () => {
+  auth.reset();
   router.go(0);
-  auth.authenticated = false;
 };
 </script>

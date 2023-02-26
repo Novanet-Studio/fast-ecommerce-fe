@@ -10,17 +10,32 @@ type RegisterPaylod = {
   customerId: string;
 };
 
+interface User {
+  id: string;
+  email: string;
+  username: string;
+  customerId: string;
+}
+
+interface AuthState {
+  token: string;
+  user: User;
+  authenticated: boolean;
+}
+
+const initialState = {
+  token: '',
+  user: {
+    id: '',
+    email: '',
+    username: '',
+    customerId: '',
+  },
+  authenticated: false,
+};
+
 export const useAuth = defineStore('auth', {
-  state: () => ({
-    token: '',
-    user: {
-      id: '',
-      email: '',
-      username: '',
-      customerId: '',
-    },
-    authenticated: false,
-  }),
+  state: () => initialState as AuthState,
   actions: {
     async login(user: string, password: string): Promise<boolean> {
       const { $notify } = useNuxtApp();
@@ -43,6 +58,7 @@ export const useAuth = defineStore('auth', {
 
       setToken(data.login.jwt);
       this.authenticated = true;
+      this.token = data.login.jwt;
       Object.assign(this.user, data.login.user);
 
       $notify({
@@ -92,6 +108,11 @@ export const useAuth = defineStore('auth', {
       };
 
       return customerId(data);
+    },
+    reset() {
+      this.token = '';
+      Object.assign(this.user, initialState.user);
+      this.authenticated = false;
     },
   },
   persist: true,
