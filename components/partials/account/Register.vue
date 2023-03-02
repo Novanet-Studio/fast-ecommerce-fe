@@ -8,6 +8,7 @@
           :error-messages="usernameErrors"
           @input="$v.username.$touch()"
           placeholder="Usuario"
+          prepend-inner-icon="mdi-account"
           class="ps-text-field"
           outlined
           height="50"
@@ -18,6 +19,7 @@
           v-model="email"
           :error-messages="emailErrors"
           @input="$v.email.$touch()"
+          prepend-inner-icon="mdi-email"
           placeholder="Email"
           class="ps-text-field"
           outlined
@@ -28,9 +30,13 @@
         <v-text-field
           v-model="password"
           :error-messages="passwordErrors"
+          :type="showPass ? 'text' : 'password'"
           @input="$v.password.$touch()"
           placeholder="Contraseña"
           class="ps-text-field"
+          prepend-inner-icon="mdi-lock"
+          :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPass = !showPass"
           outlined
           height="50"
         />
@@ -95,6 +101,7 @@ export default {
       email: null,
       password: null,
       loading: false,
+      showPass: false,
     };
   },
   validations: {
@@ -160,7 +167,7 @@ export default {
             datos.push(customerinfo);
             datos.push("success");
           }
-          console.log("===> respuesta square", squareResponse.customer);
+          // console.log("===> respuesta square", squareResponse.customer);
           // return datos
         })
         .catch((error) => {
@@ -201,10 +208,10 @@ export default {
         // alert(respuesta.alert);
       }
 
-      console.log(respuesta);
+      // console.log(respuesta);
     },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<!-- <style lang="scss" scoped></style> -->
