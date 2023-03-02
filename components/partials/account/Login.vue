@@ -9,6 +9,7 @@
                     :error-messages="usernameErrors"
                     @input="$v.username.$touch()"
                     placeholder="Usuario o correo"
+                    prepend-inner-icon="mdi-account"
                     height="50"
                     outlined
                 />
@@ -16,11 +17,14 @@
             <div class="form-group">
                 <v-text-field
                     v-model="password"
-                    type="password"
+                    :type="showPass ? 'text' : 'password'"
                     class="ps-text-field"
                     :error-messages="passwordErrors"
                     @input="$v.password.$touch()"
                     placeholder="Por favor ingrese su password"
+                    prepend-inner-icon="mdi-lock"
+                    :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="showPass = !showPass"
                     height="50"
                     outlined
                 />
@@ -71,6 +75,7 @@ export default {
     return {
       username: null,
       password: null,
+      showPass: false,
     };
   },
   validations: {
