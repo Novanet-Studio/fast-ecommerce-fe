@@ -5,9 +5,7 @@
             <div class="form-group">
                 <v-text-field
                     v-model="username"
-                    class="ps-text-field"
-                    :error-messages="usernameErrors"
-                    @input="$v.username.$touch()"
+                    :rules="[() => !!username || 'Éste campo es obligatorio']"
                     placeholder="Usuario o correo"
                     prepend-inner-icon="mdi-account"
                     height="50"
@@ -18,9 +16,7 @@
                 <v-text-field
                     v-model="password"
                     :type="showPass ? 'text' : 'password'"
-                    class="ps-text-field"
-                    :error-messages="passwordErrors"
-                    @input="$v.password.$touch()"
+                    :rules="[() => !!password || 'Éste campo es requerido']"
                     placeholder="Por favor ingrese su password"
                     prepend-inner-icon="mdi-lock"
                     :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
@@ -49,28 +45,28 @@
 
 <script>
 import { email, required } from "vuelidate/lib/validators";
-import { validationMixin } from "vuelidate";
+// import { validationMixin } from "vuelidate";
 
 export default {
   name: "Login",
-  computed: {
-    usernameErrors() {
-      const errors = [];
-      if (this.username) {
-        if (!this.$v.username.$dirty) return errors;
-        !this.$v.username.required && errors.push("This field is required");
-        return errors;
-      }
-    },
-    passwordErrors() {
-      const errors = [];
-      if (this.password) {
-        if (!this.$v.password.$dirty) return errors;
-        !this.$v.password.required && errors.push("This field is required");
-        return errors;
-      }
-    },
-  },
+  // computed: {
+  //   usernameErrors() {
+  //     const errors = [];
+  //     if (this.username) {
+  //       if (!this.$v.username.$dirty) return errors;
+  //       !this.$v.username.required && errors.push("This field is required");
+  //       return errors;
+  //     }
+  //   },
+  //   passwordErrors() {
+  //     const errors = [];
+  //     if (this.password) {
+  //       if (!this.$v.password.$dirty) return errors;
+  //       !this.$v.password.required && errors.push("This field is required");
+  //       return errors;
+  //     }
+  //   },
+  // },
   data() {
     return {
       username: null,
@@ -107,9 +103,9 @@ export default {
             title: 'Error!',
             text: `Los campos son incorrectos`
           });
-          console.log("No ha iniciado sesión");
+          // console.log("No ha iniciado sesión");
         }
-        console.log(respuesta);
+        // console.log(respuesta);
       }
     },
   },
