@@ -5,11 +5,9 @@
       <div class="form-group">
         <v-text-field
           v-model="username"
-          :error-messages="usernameErrors"
-          @input="$v.username.$touch()"
+          :rules="[rules.required]"
           placeholder="Usuario"
           prepend-inner-icon="mdi-account"
-          class="ps-text-field"
           outlined
           height="50"
         />
@@ -17,11 +15,9 @@
       <div class="form-group">
         <v-text-field
           v-model="email"
-          :error-messages="emailErrors"
-          @input="$v.email.$touch()"
+          :rules="[rules.required, rules.email]"
           prepend-inner-icon="mdi-email"
           placeholder="Email"
-          class="ps-text-field"
           outlined
           height="50"
         />
@@ -29,11 +25,9 @@
       <div class="form-group">
         <v-text-field
           v-model="password"
-          :error-messages="passwordErrors"
+          :rules="[rules.required]"
           :type="showPass ? 'text' : 'password'"
-          @input="$v.password.$touch()"
           placeholder="Contraseña"
-          class="ps-text-field"
           prepend-inner-icon="mdi-lock"
           :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
           @click:append="showPass = !showPass"
@@ -50,7 +44,7 @@
         >
           Registrar cuenta
         </button>
-        <template v-if="loading === true">
+        <template v-if="loading">
           <loading />
         </template>
       </div>
@@ -61,7 +55,7 @@
 
 <script>
 import { email, required } from "vuelidate/lib/validators";
-import { validationMixin } from "vuelidate";
+// import { validationMixin } from "vuelidate";
 import { v4 as uuidv4 } from "uuid";
 import Loading from "~/components/elements/commons/Loading";
 
@@ -102,6 +96,13 @@ export default {
       password: null,
       loading: false,
       showPass: false,
+      rules: {
+        required: value => !!value || 'Éste campo es requirido',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Email inválido'
+        }
+      }
     };
   },
   validations: {
