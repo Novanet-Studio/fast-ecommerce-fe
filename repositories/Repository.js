@@ -7,7 +7,7 @@ export const customHeaders = {
   Accept: "application/json",
 };
 
-export const baseUrl = `${baseDomain}`;
+export const baseUrl = `${baseDomain}/api`;
 
 export default axios.create({
   baseUrl,
