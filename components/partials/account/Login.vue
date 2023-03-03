@@ -43,29 +43,10 @@
 </template>
 
 <script>
-import { email, required } from "vuelidate/lib/validators";
-// import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "Login",
-  // computed: {
-  //   usernameErrors() {
-  //     const errors = [];
-  //     if (this.username) {
-  //       if (!this.$v.username.$dirty) return errors;
-  //       !this.$v.username.required && errors.push("This field is required");
-  //       return errors;
-  //     }
-  //   },
-  //   passwordErrors() {
-  //     const errors = [];
-  //     if (this.password) {
-  //       if (!this.$v.password.$dirty) return errors;
-  //       !this.$v.password.required && errors.push("This field is required");
-  //       return errors;
-  //     }
-  //   },
-  // },
   data() {
     return {
       username: null,
@@ -96,19 +77,14 @@ export default {
           this.$router.push("/");
           console.log("logeado");
         } else {
-          // alert(respuesta.alert);
           this.$notify({
             group: "all",
             title: "Error!",
             text: `Los campos son incorrectos`,
           });
-          // console.log("No ha iniciado sesión");
         }
-        // console.log(respuesta);
       }
     },
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

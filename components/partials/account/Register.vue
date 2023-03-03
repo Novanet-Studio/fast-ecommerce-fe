@@ -55,39 +55,12 @@
 
 <script>
 import { email, required } from "vuelidate/lib/validators";
-// import { validationMixin } from "vuelidate";
 import { v4 as uuidv4 } from "uuid";
 import Loading from "~/components/elements/commons/Loading";
 
 export default {
   name: "Register",
   components: { Loading },
-  computed: {
-    // usernameErrors() {
-    //   const errors = [];
-    //   if (this.username) {
-    //     if (!this.$v.username.$dirty) return errors;
-    //     !this.$v.username.required && errors.push("This field is required");
-    //     return errors;
-    //   }
-    // },
-    // emailErrors() {
-    //   const errors = [];
-    //   if (this.email) {
-    //     if (!this.$v.email.$dirty) return errors;
-    //     !this.$v.email.required && errors.push("This field is required");
-    //     return errors;
-    //   }
-    // },
-    // passwordErrors() {
-    //   const errors = [];
-    //   if (this.password) {
-    //     if (!this.$v.password.$dirty) return errors;
-    //     !this.$v.password.required && errors.push("This field is required");
-    //     return errors;
-    //   }
-    // },
-  },
   data() {
     return {
       username: null,
@@ -118,11 +91,9 @@ export default {
           const btn = document.getElementById("botonRegistro");
           btn.disabled = true;
           this.loading = true;
-          // return console.log(this.username, this.email)
           await this.createCustomer(this.username, this.email).then(
             async (res) => {
               const respuesta = res;
-              // return console.log(res)
               if (respuesta.length > 0) {
                 const customerid = respuesta[0].id;
                 if (customerid && respuesta[1] == "success") {
@@ -135,7 +106,6 @@ export default {
                   title: "Error!",
                   text: `Ha ocurrido un error`,
                 });
-                // alert("Ha ocurrido un error");
               }
             }
           );
@@ -167,8 +137,6 @@ export default {
             datos.push(customerinfo);
             datos.push("success");
           }
-          // console.log("===> respuesta square", squareResponse.customer);
-          // return datos
         })
         .catch((error) => {
           console.log(error);
@@ -198,20 +166,14 @@ export default {
           maxAge: 60 * 60 * 24 * 7,
         });
         this.$router.push("/");
-        // alert("Usuario registrado con éxito");
       } else {
         this.$notify({
           group: "all",
           title: "Error",
           text: `Hubo un error al registrar`,
         });
-        // alert(respuesta.alert);
       }
-
-      // console.log(respuesta);
     },
   },
 };
 </script>
-
-<!-- <style lang="scss" scoped></style> -->
