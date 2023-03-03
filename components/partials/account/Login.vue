@@ -1,46 +1,45 @@
 <template lang="html">
-    <form>
-        <div class="ps-form__content">
-            <h5>Inicia sesión en tu cuenta</h5>
-            <div class="form-group">
-                <v-text-field
-                    v-model="username"
-                    :rules="[() => !!username || 'Éste campo es obligatorio']"
-                    placeholder="Usuario o correo"
-                    prepend-inner-icon="mdi-account"
-                    height="50"
-                    outlined
-                />
-            </div>
-            <div class="form-group">
-                <v-text-field
-                    v-model="password"
-                    :type="showPass ? 'text' : 'password'"
-                    :rules="[() => !!password || 'Éste campo es requerido']"
-                    placeholder="Por favor ingrese su password"
-                    prepend-inner-icon="mdi-lock"
-                    :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="showPass = !showPass"
-                    height="50"
-                    outlined
-                />
-            </div>
-            <div class="form-group">
-                <v-checkbox label="Recordarme" color="warning" />
-            </div>
-            <div class="form-group submit">
-                <button
-                    type="submit"
-                    class="ps-btn ps-btn--fullwidth"
-                    @click.prevent="handleSubmit"
-                >
-                    Entrar
-                </button>
-            </div>
-        </div>
-        <div class="ps-form__footer">
-        </div>
-    </form>
+  <form>
+    <div class="ps-form__content">
+      <h5>Inicia sesión en tu cuenta</h5>
+      <div class="form-group">
+        <v-text-field
+          v-model="username"
+          :rules="[() => !!username || 'Éste campo es obligatorio']"
+          placeholder="Usuario o correo"
+          prepend-inner-icon="mdi-account"
+          height="50"
+          outlined
+        />
+      </div>
+      <div class="form-group">
+        <v-text-field
+          v-model="password"
+          :type="showPass ? 'text' : 'password'"
+          :rules="[() => !!password || 'Éste campo es requerido']"
+          placeholder="Por favor ingrese su password"
+          prepend-inner-icon="mdi-lock"
+          :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPass = !showPass"
+          height="50"
+          outlined
+        />
+      </div>
+      <div class="form-group">
+        <v-checkbox label="Recordarme" color="warning" />
+      </div>
+      <div class="form-group submit">
+        <button
+          type="submit"
+          class="ps-btn ps-btn--fullwidth"
+          @click.prevent="handleSubmit"
+        >
+          Entrar
+        </button>
+      </div>
+    </div>
+    <div class="ps-form__footer"></div>
+  </form>
 </template>
 
 <script>
@@ -99,9 +98,9 @@ export default {
         } else {
           // alert(respuesta.alert);
           this.$notify({
-            group: 'all',
-            title: 'Error!',
-            text: `Los campos son incorrectos`
+            group: "all",
+            title: "Error!",
+            text: `Los campos son incorrectos`,
           });
           // console.log("No ha iniciado sesión");
         }

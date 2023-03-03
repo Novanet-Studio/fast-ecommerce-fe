@@ -62,32 +62,31 @@ import Loading from "~/components/elements/commons/Loading";
 export default {
   name: "Register",
   components: { Loading },
-
   computed: {
-    usernameErrors() {
-      const errors = [];
-      if (this.username) {
-        if (!this.$v.username.$dirty) return errors;
-        !this.$v.username.required && errors.push("This field is required");
-        return errors;
-      }
-    },
-    emailErrors() {
-      const errors = [];
-      if (this.email) {
-        if (!this.$v.email.$dirty) return errors;
-        !this.$v.email.required && errors.push("This field is required");
-        return errors;
-      }
-    },
-    passwordErrors() {
-      const errors = [];
-      if (this.password) {
-        if (!this.$v.password.$dirty) return errors;
-        !this.$v.password.required && errors.push("This field is required");
-        return errors;
-      }
-    },
+    // usernameErrors() {
+    //   const errors = [];
+    //   if (this.username) {
+    //     if (!this.$v.username.$dirty) return errors;
+    //     !this.$v.username.required && errors.push("This field is required");
+    //     return errors;
+    //   }
+    // },
+    // emailErrors() {
+    //   const errors = [];
+    //   if (this.email) {
+    //     if (!this.$v.email.$dirty) return errors;
+    //     !this.$v.email.required && errors.push("This field is required");
+    //     return errors;
+    //   }
+    // },
+    // passwordErrors() {
+    //   const errors = [];
+    //   if (this.password) {
+    //     if (!this.$v.password.$dirty) return errors;
+    //     !this.$v.password.required && errors.push("This field is required");
+    //     return errors;
+    //   }
+    // },
   },
   data() {
     return {
@@ -97,12 +96,12 @@ export default {
       loading: false,
       showPass: false,
       rules: {
-        required: value => !!value || 'Éste campo es requirido',
-        email: value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return pattern.test(value) || 'Email inválido'
-        }
-      }
+        required: (value) => !!value || "Éste campo es requirido",
+        email: (value) => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Email inválido";
+        },
+      },
     };
   },
   validations: {
