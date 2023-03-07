@@ -8,7 +8,6 @@
         <label>Email<sup style="color: red">*</sup></label>
         <v-text-field
           v-model="email"
-          :rules="[rules.required, rules.email]"
           placeholder="Email"
           outlined
           height="50"
@@ -20,7 +19,6 @@
             <label>Nombre</label>
             <v-text-field
               v-model="name"
-              :rules="[rules.required]"
               class="info-input"
               placeholder="Nombre"
               outlined
@@ -33,7 +31,6 @@
             <label>Apellido</label>
             <v-text-field
               v-model="lastName"
-              :rules="[rules.required]"
               placeholder="Apellido"
               outlined
               height="50"
@@ -48,7 +45,6 @@
         <label>Dirección</label>
         <v-text-field
           v-model="address"
-          :rules="[rules.required]"
           placeholder="Dirección"
           outlined
           height="50"
@@ -58,7 +54,6 @@
         <label>Apartamento</label>
         <v-text-field
           v-model="home"
-          :rules="[rules.required]"
           placeholder="Apartamento, casa, etc."
           outlined
           height="50"
@@ -69,7 +64,6 @@
         <select
           class="form-control"
           v-model="country"
-          :rules="[rules.required]"
           placeholder="Pais"
           outlined
           height="50"
@@ -93,7 +87,6 @@
             <label>Ciudad</label>
             <v-text-field
               v-model="city"
-              :rules="[rules.required]"
               placeholder="Ciudad"
               outlined
               height="50"
@@ -105,7 +98,6 @@
             <label>Codigo Postal</label>
             <v-text-field
               v-model="zipCode"
-              :rules="[rules.required]"
               placeholder="Codigo Postal"
               outlined
               height="50"
@@ -117,7 +109,6 @@
             <label>Numero de contacto</label>
             <v-text-field
               v-model="phone"
-              :rules="[rules.required]"
               placeholder="Numero de contacto"
               outlined
               height="50"
@@ -148,7 +139,6 @@
 
 <script>
 import { email, required } from "vuelidate/lib/validators";
-// import { validationMixin } from "vuelidate";
 import countries from "~/static/data/countries.json";
 
 export default {
@@ -170,13 +160,6 @@ export default {
       country: null,
       phone: null,
       countries,
-      rules: {
-        required: (value) => !!value || "Éste campo es requirido",
-        email: (value) => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return pattern.test(value) || "Email inválido";
-        },
-      },
     };
   },
   validations: {
@@ -197,28 +180,29 @@ export default {
 
   methods: {
     async handleToShipping() {
-      // this.$v.$touch();
-      if (!this.$v.$invalid) {
-        const data = {
-          email: this.email,
-          name: this.name,
-          lastName: this.lastName,
-          address: this.address,
-          home: this.home,
-          city: this.city,
-          zipCode: this.zipCode,
-          phone: this.phone,
-          home: this.home,
-          country: this.country,
-        };
-        this.$store.dispatch("checkout/shippingInfo", data);
-
-        // console.log(this.$cookies.get('shippingInfo'))
-        this.$router.push("/account/shipping");
+      if (this.$v.$invalid) {
+        this.$notify({
+          group: "all",
+          title: "¡Error!",
+          text: "Por favor, rellene los campos obligatorios",
+        });
+        return;
       }
-      // else{
-      //     alert('todos los campos son obligatorios')
-      // }
+
+      const data = {
+        email: this.email,
+        name: this.name,
+        lastName: this.lastName,
+        address: this.address,
+        home: this.home,
+        city: this.city,
+        zipCode: this.zipCode,
+        phone: this.phone,
+        home: this.home,
+        country: this.country,
+      };
+      this.$store.dispatch("checkout/shippingInfo", data);
+      this.$router.push("/account/shipping");
     },
 
     async formInfoCookie() {
@@ -274,13 +258,5 @@ export default {
 <style lang="scss" scoped>
 .form-group {
   margin-bottom: 1rem;
-}
-
-.info-input
-  > .v-input__control
-  > .v-text-field__details
-  > .v-messages
-  > .v-messages__wrapper {
-  color: red !important;
 }
 </style>
