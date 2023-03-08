@@ -2,7 +2,7 @@
   <aside class="ps-widget--account-dashboard">
     <div class="ps-widget__header">
       <div>
-        <h3>¡Bienvendo {{ user.user.username }}!</h3>
+        <h3>¡Bienvendo {{ user?.user?.username }}!</h3>
       </div>
     </div>
     <div class="ps-widget__content">
