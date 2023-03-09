@@ -106,7 +106,7 @@
 }
 
 .btn--outline {
-  @apply flex justify-center border bg-transparent border-yellow-400 text-yellow-500 hover:(bg-yellow-400 border-transparent text-white);
+  @apply flex justify-center border !bg-transparent border-yellow-400 text-yellow-500 hover:(bg-yellow-400 border-transparent text-white);
 }
 
 .product-mini-cart {

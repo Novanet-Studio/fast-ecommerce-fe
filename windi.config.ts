@@ -4,6 +4,13 @@ export default defineConfig({
   darkMode: 'class', // or 'media'
   theme: {
     extend: {
+      colors: {
+        primary: '',
+        secondary: '',
+        tertiary: '',
+        'primary-alt': '',
+        'secondary-alt': '',
+      },
       screens: {
         'sm': '640px',
         'md': '768px',

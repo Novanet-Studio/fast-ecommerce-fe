@@ -45,7 +45,7 @@
 
 /* Button */
 .btn {
-  @apply w-full text-center inline-block px-[45px] py-[15px] text-base border-transparent rounded-sm bg-yellow-300 transition ease cursor-pointer hover:bg-yellow-500 active:bg-yellow-500;
+  @apply w-full text-center inline-block text-base border-transparent rounded-sm bg-yellow-300 transition ease cursor-pointer hover:bg-yellow-500 active:bg-yellow-500;
 }
 
 /* HomeBanner */
