@@ -7,6 +7,7 @@
           v-model="username"
           :rules="[() => !!username || 'Éste campo es obligatorio']"
           placeholder="Usuario o correo"
+          color="#979696"
           prepend-inner-icon="mdi-account"
           height="50"
           outlined
@@ -17,6 +18,7 @@
           v-model="password"
           :type="showPass ? 'text' : 'password'"
           :rules="[() => !!password || 'Éste campo es requerido']"
+          color="#979696"
           placeholder="Por favor ingrese su password"
           prepend-inner-icon="mdi-lock"
           :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"

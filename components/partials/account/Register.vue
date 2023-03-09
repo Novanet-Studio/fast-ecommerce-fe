@@ -6,6 +6,7 @@
         <v-text-field
           v-model="username"
           :rules="[rules.required]"
+          color="#979696"
           placeholder="Usuario"
           prepend-inner-icon="mdi-account"
           outlined
@@ -16,6 +17,7 @@
         <v-text-field
           v-model="email"
           :rules="[rules.required, rules.email]"
+          color="#979696"
           prepend-inner-icon="mdi-email"
           placeholder="Email"
           outlined
@@ -26,6 +28,7 @@
         <v-text-field
           v-model="password"
           :rules="[rules.required]"
+          color="#979696"
           :type="showPass ? 'text' : 'password'"
           placeholder="Contraseña"
           prepend-inner-icon="mdi-lock"
