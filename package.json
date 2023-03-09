@@ -51,7 +51,8 @@
     "devDependencies": {
         "@nuxt/types": "~0.7.0",
         "@nuxtjs/style-resources": "^1.0.0",
-        "@types/uuid": "^8.3.4"
+        "@types/uuid": "^8.3.4",
+        "rimraf": "^4.4.0"
     },
     "license": "MIT"
 }
