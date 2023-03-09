@@ -5,7 +5,8 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "clean": "rimraf node_modules .nuxt"
   },
   "devDependencies": {
     "@nuxt/image-edge": "1.0.0-27968280.9739e4d",
@@ -17,6 +18,7 @@
     "nuxt": "3.2.3",
     "nuxt-lodash": "^2.4.1",
     "nuxt-windicss": "^2.6.0",
+    "rimraf": "^4.4.0",
     "sass": "1.58.3"
   },
   "dependencies": {
