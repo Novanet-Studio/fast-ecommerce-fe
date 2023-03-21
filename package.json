@@ -3,23 +3,23 @@
   "version": "2.10.0",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev -p 4000",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "clean": "rimraf node_modules .nuxt"
   },
   "devDependencies": {
-    "@nuxt/image-edge": "1.0.0-27968280.9739e4d",
-    "@nuxtjs/strapi": "^1.8.1",
-    "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
+    "@nuxt/image-edge": "1.0.0-27990059.c3f31ce",
+    "@nuxtjs/strapi": "^1.9.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@rollup/plugin-graphql": "^2.0.3",
     "@sidebase/nuxt-pdf": "^0.1.1",
     "graphql": "^16.6.0",
-    "nuxt": "3.2.3",
+    "nuxt": "3.3.1",
     "nuxt-lodash": "^2.4.1",
     "nuxt-windicss": "^2.6.0",
     "rimraf": "^4.4.0",
-    "sass": "1.58.3"
+    "sass": "1.59.3"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -28,14 +28,14 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@kyvg/vue3-notification": "^2.9.0",
-    "@paypal/paypal-js": "^5.1.4",
+    "@paypal/paypal-js": "^5.1.5",
     "@pinia/nuxt": "^0.4.7",
-    "firebase": "^9.17.2",
+    "firebase": "^9.18.0",
     "gitart-vue-dialog": "^2.4.1",
     "slimeform": "^0.9.1",
-    "square": "^25.1.0",
-    "swiper": "^9.1.0",
-    "vue3-tabs-component": "^1.2.0",
+    "square": "^25.2.0",
+    "swiper": "^9.1.1",
+    "vue3-tabs-component": "^1.2.1",
     "yup": "^1.0.2"
   }
 }
