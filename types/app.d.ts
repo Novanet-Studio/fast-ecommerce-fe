@@ -9,14 +9,26 @@ interface CategoriesRequest {
   data: CategoriesRequestData;
 }
 
+interface InvoicesRequest {
+  data: InvoicesRequestData;
+}
+
 // API Request Data
 interface CategoriesRequestData {
   categories: Categories;
 }
 
+interface InvoicesRequestData {
+  invoices: Invoices;
+}
+
 // API Content
 interface Categories {
   data: CategoriesData[];
+}
+
+interface Invoices {
+  data: InvoicesData[];
 }
 
 interface Products {
@@ -27,6 +39,11 @@ interface Products {
 interface CategoriesData {
   id?: string;
   attributes: string;
+}
+
+interface InvoicesData {
+  id?: string;
+  attributes: InvoiceAtributes;
 }
 
 interface ProductsData {
@@ -41,6 +58,22 @@ interface CategoryAttributes {
 }
 
 interface ProductAttributes {}
+
+interface InvoiceAtributes {
+  paid: boolean;
+  amount: number;
+  products: ProductBuyed[];
+  payment_id: string;
+  order_id: string;
+  user_id: string;
+  shippingAddress: AddressDetail;
+  fullName: string;
+  cardType: string;
+  cardKind: string;
+  cardLast: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
 
 // Mappeds
 interface CategoriesMapped {
@@ -57,6 +90,10 @@ interface ProductsMapped {
   image: Image[];
   price: number;
   sale_price: number;
+}
+
+interface InvoicesMapped extends InvoiceAtributes {
+  id: string;
 }
 
 // Rest...
@@ -183,21 +220,21 @@ interface AddressDetail {
   zipCode: string;
 }
 
-interface InvoiceDetail {
-  paid: boolean;
-  amount: number;
-  products: ProductBuyed[];
-  payment_id: string;
-  order_id: string;
-  user_id: string;
-  shippingAddress: AddressDetail;
-  fullName: string;
-  cardType: string;
-  cardKind: string;
-  cardLast: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+// interface InvoiceDetail {
+//   paid: boolean;
+//   amount: number;
+//   products: ProductBuyed[];
+//   payment_id: string;
+//   order_id: string;
+//   user_id: string;
+//   shippingAddress: AddressDetail;
+//   fullName: string;
+//   cardType: string;
+//   cardKind: string;
+//   cardLast: string;
+//   createdAt?: Date;
+//   updatedAt?: Date;
+// }
 
 interface InvoiceTableDetail extends InvoiceDetail {
   id: string;

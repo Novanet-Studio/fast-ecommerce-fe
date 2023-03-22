@@ -1,5 +1,88 @@
 <template>
-  <div class="table-responsive">
+  <!-- component -->
+  <div class="flex flex-col">
+    <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full" v-if="state.invoiceExist">
+            <thead class="bg-yellow-100 border-b">
+              <tr>
+                <th
+                  scope="col"
+                  class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                >
+                  Nº
+                </th>
+                <th
+                  scope="col"
+                  class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                >
+                  Factura
+                </th>
+                <th
+                  scope="col"
+                  class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                >
+                  Fecha
+                </th>
+                <th
+                  scope="col"
+                  class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                >
+                  Monto
+                </th>
+                <th
+                  scope="col"
+                  class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                >
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                v-for="item in state.tableInvoices"
+                :key="item.id"
+                @click="goToInvoice(item.id_invoice_user.toString(), item)"
+              >
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900"
+                >
+                  {{ item.id_invoice_user }}
+                </td>
+                <td
+                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                >
+                  {{ item.payment_id }}
+                </td>
+                <td
+                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                >
+                  {{ item.date }}
+                </td>
+                <td
+                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                >
+                  ${{ item.amount }}
+                </td>
+                <td
+                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                >
+                  <span
+                    class="p-1 rounded-md text-xs"
+                    :class="item.paid ? 'bg-green-300' : 'bg-red-300'"
+                    >{{ item.status }}</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="table-responsive w-full">
     <table v-if="state.invoiceExist" class="table table-bordered">
       <thead>
         <tr>
@@ -64,7 +147,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script lang="ts" setup>

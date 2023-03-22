@@ -97,14 +97,18 @@ const checkBilling = async () => {
   }
 };
 
+type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
+
 const sendInvoiceEmail = async (products: any[], payment: any) => {
   try {
     let emailContent = '';
     const productItems = [];
     const created = new Date(payment.createdAt).toLocaleDateString();
     const amountPayed = `$${Number(payment.amountMoney.amount) / 100} USD`;
-    const sendReceiptEmail = $httpsCallable('sendReceiptEmail');
-    const sendMerchantEmail = $httpsCallable('sendMerchantEmail');
+    const sendReceiptEmail = $httpsCallable('sendReceiptEmail') as SendEmailFn;
+    const sendMerchantEmail = $httpsCallable(
+      'sendMerchantEmail'
+    ) as SendEmailFn;
 
     products.forEach((item) => {
       const productFinded = state.productMail.find(
@@ -137,6 +141,7 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
 
     const merchant = {
       payed: amountPayed,
+      // email: 'novanet@mailinator.com',
       email: auth.user.email,
       phone: checkout.phone,
       shipping: checkout.fullAddress,
@@ -148,24 +153,26 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
 
     const receipt = {
       payed: amountPayed,
-      email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
+      // email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
+      email: payment.buyerEmailAddress,
       nameCustomer: payment.note,
       date: created,
       content: emailContent,
       order_id: payment.orderId,
     };
 
-    console.log('merchant: ', merchant);
-    console.log('receipt: ', receipt);
+    const emailRequests = await Promise.all([
+      sendReceiptEmail(receipt),
+      sendMerchantEmail(merchant),
+    ]);
 
-    // const response = (await sendReceiptEmail(receipt)) as unknown as {
-    //   message: string;
-    //   status: number;
-    // };
+    // await sendReceiptEmail(receipt);
+    console.log({ emailRequests });
 
     // if (response.status === 200) {
     //   console.log('merchant: ', merchant);
-    //   await sendMerchantEmail(merchant);
+    //   setTimeout(async () => {
+    //   }, 2000);
     // }
 
     $notify({

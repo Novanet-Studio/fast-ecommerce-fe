@@ -47,6 +47,8 @@
 <script lang="ts" setup>
 const { $store } = useNuxtApp();
 const auth = $store.auth();
+const cart = $store.cart();
+const product = $store.product();
 const global = $store.global();
 const router = useRouter();
 
@@ -54,6 +56,9 @@ const isOpen = ref(false);
 
 const handleLogout = () => {
   auth.reset();
+  cart.clearCart();
+  cart.clearCartItems();
+  product.clearProducts();
   router.go(0);
 };
 </script>

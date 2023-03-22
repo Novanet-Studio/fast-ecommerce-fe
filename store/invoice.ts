@@ -6,21 +6,21 @@ import {
 import type { OrderResponseBody } from '@paypal/paypal-js';
 
 type InvoiceStore = {
-  invoices: Invoice[] | null;
+  invoices: InvoicesMapped[] | null;
   invoice: InvoiceTableDetail | null;
 };
 
 const invoiceMapperHelper = (
-  invoice: Invoice,
+  invoice: InvoicesMapped,
   index: number
 ): InvoiceTableDetail => {
   const invoices = {
     ...invoice,
     id_invoice_user: index + 1,
-    date: new Date(
-      invoice.attributes.createdAt as unknown as string
-    ).toLocaleDateString('es-VE'),
-    status: invoice.attributes.paid ? 'Pagado' : 'Cancelado',
+    date: new Date(invoice.createdAt as unknown as string).toLocaleDateString(
+      'es-VE'
+    ),
+    status: invoice.paid ? 'Pagado' : 'Cancelado',
   };
 
   return invoices as unknown as InvoiceTableDetail;
@@ -39,20 +39,22 @@ export const useInvoice = defineStore('invoice', {
     },
   },
   actions: {
-    async fetchInvoices(userId: string): Promise<Invoice[]> {
+    async fetchInvoices(userId: string): Promise<InvoicesMapped[]> {
       const graphql = useStrapiGraphQL();
       const id = +userId;
 
-      const {
-        data: { invoices },
-      } = await graphql<InvoicesResponse>(GetInvoicesByUserId, {
+      const response = await graphql<InvoicesRequest>(GetInvoicesByUserId, {
         id,
       });
 
-      if (!invoices?.data?.length) return [];
+      console.log('from fetchInvoices: ', response.data.invoices.data);
 
-      this.invoices = invoices.data;
-      return invoices.data;
+      if (!response.data.invoices?.data?.length) return [];
+
+      const mapped = mapperData<InvoicesMapped[]>(response.data.invoices.data);
+
+      this.invoices = mapped;
+      return mapped;
     },
     async createInvoice(order: OrderResponseBody, items: CartItem[]) {
       const { $store } = useNuxtApp();

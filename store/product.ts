@@ -51,8 +51,16 @@ export const useProduct = defineStore('product', {
       console.log('From addCartProducts', products);
       this.cartProducts = products;
     },
+    clearProducts() {
+      this.product = null;
+      this.products = null;
+      this.cartProducts = [];
+      this.wishlistItems = [];
+      this.categories = null;
+      this.loading = false;
+    },
   },
   persist: {
-    storage: persistedState.sessionStorage,
+    storage: persistedState.localStorage,
   },
 });

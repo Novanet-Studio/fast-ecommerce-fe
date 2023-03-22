@@ -949,8 +949,10 @@ export const sendReceiptEmail = functions.https.onRequest((req, res) => {
       await sgMail.send(msg);
 
       return res.status(200).json({
-        message: 'Mensaje enviado',
-        status: 200,
+        data: {
+          message: 'Email enviado',
+          status: 200,
+        },
       });
     } catch (error: any) {
       if (error.response) {
@@ -1702,8 +1704,10 @@ export const sendMerchantEmail = functions.https.onRequest((req, res) => {
       await sgMail.send(msg);
 
       return res.status(200).json({
-        message: 'Email enviado',
-        status: 200,
+        data: {
+          message: 'Email enviado',
+          status: 200,
+        },
       });
     } catch (error: any) {
       if (error.response) {
