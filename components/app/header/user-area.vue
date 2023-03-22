@@ -31,7 +31,13 @@
           </nuxt-link>
         </li>
         <li class="user-area__menu-logout">
-          <a href="#" @click.prevent="handleLogout"> Cerrar Sesión </a>
+          <a
+            href="#"
+            class="transition-colors ease hover:text-yellow-400"
+            @click.prevent="handleLogout"
+          >
+            Cerrar Sesión
+          </a>
         </li>
       </ul>
     </div>

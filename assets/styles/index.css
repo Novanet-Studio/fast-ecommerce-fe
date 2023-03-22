@@ -102,11 +102,11 @@
 }
 
 .btn {
-  @apply w-full text-center p-[12px] font-semibold bg-yellow-400 text-white transition ease hover:bg-yellow-500;
+  @apply w-full text-center p-[12px] font-semibold rounded-md bg-yellow-400 text-white transition ease hover:bg-yellow-500;
 }
 
 .btn--outline {
-  @apply flex justify-center border !bg-transparent border-yellow-400 text-yellow-500 hover:(bg-yellow-400 border-transparent text-white);
+  @apply flex justify-center border !bg-transparent rounded-md border-yellow-400 text-yellow-500 hover:(!bg-yellow-500 !border-transparent !text-white);
 }
 
 .product-mini-cart {
@@ -150,7 +150,7 @@
 }
 
 .user-area__menu-container {
-  @apply absolute min-w-[240px] right-0 z-30 pt-[10px] opacity-100 bg-white px-4 py-2 rounded-sm transition ease opacity-100;
+  @apply absolute min-w-[240px] right-0 z-30 pt-[10px] opacity-100 bg-white px-4 py-2 rounded-sm transition ease opacity-100 lg:p-4;
 }
 
 .user-area__icon {
@@ -166,7 +166,7 @@
 }
 
 .user-area__menu-link {
-  @apply pl-0 text-dark-500;
+  @apply pl-0 text-dark-500 transition-colors ease hover:text-yellow-400;
 }
 
 .user-area__menu-logout {
