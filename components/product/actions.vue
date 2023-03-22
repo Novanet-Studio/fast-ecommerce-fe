@@ -66,7 +66,14 @@ const handleAddToCart = async () => {
   );
 
   const itemsResult = await Promise.all(itemsList);
-  product.cartProducts = itemsResult;
+
+  const temp: any[] = [];
+
+  mapperData<any[]>(itemsResult).forEach((item) => {
+    temp.push(item.products[0]);
+  });
+
+  product.cartProducts = temp;
 
   $notify({
     group: 'all',

@@ -101,7 +101,7 @@ const { form, status, submitter, verify } = useForm({
           .string()
           .matches(
             PASSWORD_REGEX,
-            'Debe contener 8 carácteres, una letra mayúscula, una minúscula, un número y un carácter especial'
+            'Debe ser igual o mayor a 8 carácteres, una letra mayúscula, una minúscula, un número y un carácter especial'
           )
       ),
     ],

@@ -58,7 +58,11 @@
               </h3>
             </div>
           </div>
-          <app-button text="Proceder a la compra" class="mb-24" />
+          <app-button
+            text="Proceder a la compra"
+            class="mb-24"
+            @click="$router.push('/checkout')"
+          />
         </div>
       </div>
     </div>
@@ -120,6 +124,6 @@ const loadCartProducts = async () => {
 };
 
 onMounted(() => {
-  loadCartProducts();
+  // loadCartProducts();
 });
 </script>

@@ -39,7 +39,7 @@ const { $store } = useNuxtApp();
 const cart = $store.cart();
 const product = $store.product();
 
-cart.loadCartProducts();
+// cart.loadCartProducts();
 
 withDefaults(defineProps<Props>(), {
   shipping: false,

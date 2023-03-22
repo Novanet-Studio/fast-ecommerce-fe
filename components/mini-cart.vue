@@ -59,6 +59,8 @@ const isLoadingCart = computed(() => cartStore.loading);
 const cartItems = computed(() => cartStore.cartItems);
 const cartProducts = computed(() => productStore.cartProducts);
 
+console.log('from miniCart: ', cartProducts.value);
+
 const isOpen = ref(false);
 
 const loadCartProducts = async () => {
@@ -88,5 +90,5 @@ const loadCartProducts = async () => {
   }
 };
 
-onMounted(() => loadCartProducts());
+// onMounted(() => loadCartProducts());
 </script>
