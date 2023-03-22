@@ -19,13 +19,13 @@ export const useProduct = defineStore('product', {
     ({
       product: null,
       products: null,
-      searchResults: null,
+      // searchResults: null,
       cartProducts: null,
       wishlistItems: null,
-      compareItems: null,
-      brands: null,
+      // compareItems: null,
+      // brands: null,
       categories: null,
-      total: 0,
+      // total: 0,
       loading: false,
     } as ProductStore),
   actions: {
@@ -47,9 +47,12 @@ export const useProduct = defineStore('product', {
         this.loading = false;
       }
     },
-    saveCartProducts(products: ProductsMapped[]) {
+    addCartProducts(products: ProductsMapped[]) {
+      console.log('From addCartProducts', products);
       this.cartProducts = products;
     },
   },
-  persist: true,
+  persist: {
+    storage: persistedState.sessionStorage,
+  },
 });

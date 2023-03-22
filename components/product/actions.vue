@@ -73,7 +73,7 @@ const handleAddToCart = async () => {
     temp.push(item.products[0]);
   });
 
-  product.cartProducts = temp;
+  product.addCartProducts(temp);
 
   $notify({
     group: 'all',

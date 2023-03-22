@@ -174,9 +174,11 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
       text: '¡Gracias por preferirnos!',
     });
 
-    cart.clearCartItems();
-    state?.card?.destroy();
-    router.push('/');
+    setTimeout(() => {
+      cart.clearCartItems();
+      state?.card?.destroy();
+      router.push('/');
+    }, 2000);
   } catch (err) {
     console.log('sendInvoiceEmail Error: ', err);
     // $notify({

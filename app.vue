@@ -12,6 +12,7 @@ const auth = $store.auth();
 
 onMounted(() => {
   if (token.value) return;
+  if (!auth.token) return;
 
   setToken(auth.token);
   setUser({

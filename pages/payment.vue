@@ -19,6 +19,7 @@
         <order-summary :shipping="false" />
       </div>
     </div>
+    <notify />
   </div>
 </template>
 
