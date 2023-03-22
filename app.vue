@@ -11,7 +11,7 @@ const { $store } = useNuxtApp();
 const auth = $store.auth();
 
 onMounted(() => {
-  if (token) return;
+  if (token.value) return;
 
   setToken(auth.token);
   setUser({

@@ -152,9 +152,14 @@ const fillFormFromStorage = () => {
 
   if (!checkout.email) return;
 
-  form.email = checkout.email;
+  form.email = checkout.email || '';
   form.name = checkout.name || '';
   form.lastName = checkout.lastName || '';
+  form.address = checkout.address || '';
+  form.home = checkout.home || '';
+  form.city = checkout.city || '';
+  form.zipCode = checkout.zipCode || '';
+  form.phone = checkout.phone || '';
 };
 
 const fillFormFromStrapiShippingData = async () => {
@@ -196,7 +201,7 @@ const { submit } = submitter(async () => {
 });
 
 onMounted(() => {
-  fillFormFromStorage();
   fillFormFromStrapiShippingData();
+  fillFormFromStorage();
 });
 </script>
