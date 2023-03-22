@@ -205,4 +205,5 @@ export const useProduct = defineStore('product', {
     // return reponse;
     // },
   },
+  persist: true,
 });
