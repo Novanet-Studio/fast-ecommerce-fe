@@ -9,23 +9,16 @@
         </figcaption>
       </figure>
       <figure class="order-summary__figure">
-        <template
-          v-for="(productList, index) in product.cartProducts"
-          :key="index"
-        >
-          <template
-            v-for="(item, index) in productList.data.products.data"
-            :key="item.id"
+        <template v-for="(item, index) in product.cartProducts" :key="index">
+          <nuxt-link
+            :to="`/product/${item.id}`"
+            class="order-summary__link flex-1"
           >
-            <nuxt-link :to="`/product/${item.id}`" class="order-summary__link">
-              {{ item.attributes.name }}
-            </nuxt-link>
-            <p class="order-summary__price">
-              {{ cart.cartItems[index].quantity }} x ${{
-                item.attributes.price.toFixed(2)
-              }}
-            </p>
-          </template>
+            {{ item.name }}
+          </nuxt-link>
+          <p class="order-summary__price">
+            {{ cart.cartItems[index].quantity }} x ${{ item.price.toFixed(2) }}
+          </p>
         </template>
       </figure>
       <figure class="order-summary__figure">
@@ -46,7 +39,7 @@ const { $store } = useNuxtApp();
 const cart = $store.cart();
 const product = $store.product();
 
-useGetCartProducts();
+cart.loadCartProducts();
 
 withDefaults(defineProps<Props>(), {
   shipping: false,

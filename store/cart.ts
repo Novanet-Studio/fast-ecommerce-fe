@@ -1,3 +1,4 @@
+import { getProductById as GetProductById } from '~/graphql';
 import { defineStore } from 'pinia';
 
 type CartStore = {
@@ -41,6 +42,29 @@ export const useCart = defineStore('cart', {
     //   this.cartItems = cartItems;
     //   this.loading = loading;
     // },
+    async loadCartProducts() {
+      const graphql = useStrapiGraphQL();
+      const { $store } = useNuxtApp();
+      const cart = $store.cart();
+      const product = $store.product();
+      cart.loading = true;
+
+      const itemsId = cart.cartItems.map((item) => item.id);
+
+      if (!cart.cartItems.length) {
+        product.cartProducts = null;
+        return;
+      }
+
+      const productPromises = itemsId.map((id: string) =>
+        graphql<ProductsResponse>(GetProductById, { id })
+      );
+
+      const [response] = await Promise.all(productPromises);
+      const result = mapperData<ProductsMapped[]>(response.data.products.data);
+      product.cartProducts = result;
+      cart.loading = false;
+    },
     addItem(payload: CartItem) {
       if (!this.cartItems) {
         this.cartItems = [payload];
