@@ -229,4 +229,5 @@ export const useCheckout = defineStore('checkout', {
       };
     },
   },
+  persist: true,
 });

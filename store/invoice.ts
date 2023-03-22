@@ -101,4 +101,5 @@ export const useInvoice = defineStore('invoice', {
       return data;
     },
   },
+  persist: true,
 });
