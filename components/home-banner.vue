@@ -11,7 +11,11 @@
             :modules="[Navigation]"
           >
             <swiper-slide v-for="(image, index) in sliderImages" :key="index">
-              <nuxt-img class="banner__slider-image" :src="image" alt="" />
+              <nuxt-img
+                class="banner__slider-image"
+                :src="image"
+                alt="Products of the brand"
+              />
             </swiper-slide>
           </swiper>
         </div>
@@ -41,9 +45,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 const sliderImages = [
-  '/slider/home/1.jpg',
-  '/slider/home/2.jpg',
-  '/slider/home/3.jpg',
+  'img/slider/1.jpg',
+  'img/slider/2.jpg',
+  'img/slider/3.jpg',
 ];
 </script>
 
