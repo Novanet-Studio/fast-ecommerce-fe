@@ -83,7 +83,7 @@ const handleRemoveItemFromWishlist = (product: any) => {
   $notify({
     group: 'all',
     title: 'Eliminado',
-    text: `${product.attributes.name} ha sido eliminado de la lista de deseos!`,
+    text: `${product.name} ha sido eliminado de la lista de deseos!`,
   });
 };
 
