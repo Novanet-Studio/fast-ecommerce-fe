@@ -110,6 +110,7 @@ import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 import { getAddressByIdAndType as GetAddressByIdAndType } from '~/graphql';
+import { AddressType } from '~/types';
 
 const { $store } = useNuxtApp();
 const router = useRouter();
@@ -152,8 +153,8 @@ const fillFormFromStorage = () => {
   if (!checkout.email) return;
 
   form.email = checkout.email;
-  form.name = checkout.name;
-  form.lastName = checkout.lastName;
+  form.name = checkout.name || '';
+  form.lastName = checkout.lastName || '';
 };
 
 const fillFormFromStrapiShippingData = async () => {
@@ -168,7 +169,7 @@ const fillFormFromStrapiShippingData = async () => {
       body
     )) as any;
 
-    if (!data?.addresses.data.length) return;
+    if (!data?.addresses?.data.length) return;
 
     const response = data?.addresses?.data[0]?.attributes.address;
 
