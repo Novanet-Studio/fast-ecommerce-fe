@@ -68,7 +68,7 @@ const loadCartProducts = async () => {
 const handleRemoveProductFromCart = (product: any) => {
   const cartItem = cartItems.value.find((item) => item.id === product.id);
   cartStore.removeProductFromCart(cartItem);
-  cartStore.loading = true;
+  // cartStore.loading = true;
   // loadCartProducts();
 };
 </script>

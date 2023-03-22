@@ -28,6 +28,7 @@ import {
   getAddressByIdAndType as GetAddressByIdAndType,
 } from '~/graphql';
 import type { Payment } from 'square';
+import { AddressType } from '~/types';
 
 interface State {
   card: Square.Card;
@@ -154,24 +155,38 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
       order_id: payment.orderId,
     };
 
-    const response = (await sendReceiptEmail(receipt)) as unknown as {
-      message: string;
-      status: number;
-    };
+    console.log('merchant: ', merchant);
+    console.log('receipt: ', receipt);
 
-    response.status === 200 && (await sendMerchantEmail(merchant));
+    // const response = (await sendReceiptEmail(receipt)) as unknown as {
+    //   message: string;
+    //   status: number;
+    // };
+
+    // if (response.status === 200) {
+    //   console.log('merchant: ', merchant);
+    //   await sendMerchantEmail(merchant);
+    // }
 
     $notify({
       group: 'all',
-      title: 'Recibo - Fake',
+      title: 'Recibo - Test',
       text: '¡Gracias por preferirnos!',
     });
 
     cart.clearCartItems();
-    state.card.destroy();
+    state?.card?.destroy();
     router.push('/');
   } catch (err) {
     console.log('sendInvoiceEmail Error: ', err);
+    // $notify({
+    //   group: 'all',
+    //   title: 'Recibo - Test',
+    //   text: '¡Gracias por preferirnos!',
+    // });
+    // cart.clearCartItems();
+    // state.card.destroy();
+    // router.push('/');
   }
 };
 
@@ -235,11 +250,12 @@ const createPayment = async (paymentBody: any) => {
 
   const invoiceItems = cart.cartItems;
   // TODO: typings improvement
-  const {
-    createInvoice: { data: invoiceResult },
-  } = await createInvoice(data, invoiceItems);
+  // const {
+  //   createInvoice: { data: invoiceResult },
+  // } = await createInvoice(data, invoiceItems);
+  const response = await createInvoice(data, invoiceItems);
 
-  if (!invoiceResult.id) {
+  if (!response?.data?.createInvoice?.data?.id) {
     $notify({
       group: 'all',
       title: 'Error',
