@@ -143,7 +143,7 @@
 }
 
 .product-quick-view {
-  @apply mb-0 flex flex-col flex-wrap justify-center items-center lg:flex-nowrap;
+  @apply mb-0 flex flex-col flex-wrap justify-center items-center lg:(flex-nowrap flex-row);
 }
 
 .thumbnail-quick-view {
@@ -199,11 +199,11 @@
 }
 
 .info-quick-view__figcaption {
-  @apply mb-1 text-center lg:text-right;
+  @apply mb-1 text-center;
 }
 
 .info-quick-view__actions {
-  @apply flex border border-gray-400 p-2 w-full md:max-w-[7.1875rem];
+  @apply flex border border-gray-400 rounded-md p-2 w-full md:max-w-[7.1875rem];
 }
 
 .info-quick-view__actions-btn {
@@ -215,11 +215,11 @@
 }
 
 .info-quick-view__btn {
-  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-yellow-400 mx-7 mb-4 border transition ease md:w-full lg:(text-lg mb-0) hover:bg-yellow-500;
+  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-yellow-400 mx-7 mb-4 border rounded-md transition ease md:w-full lg:(text-lg mb-0) hover:bg-yellow-500;
 }
 
 .info-quick-view__btn-alt {
-  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease text-yellow-500 border border-yellow-500 md:w-auto lg:(text-lg mr-7) hover:(text-white border-transparent bg-yellow-400);
+  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease text-yellow-500 rounded-md border border-yellow-500 md:w-auto lg:(text-lg mr-7) hover:(text-white border-transparent bg-yellow-400);
 }
 
 .detail-description {

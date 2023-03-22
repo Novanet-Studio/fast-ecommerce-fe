@@ -33,7 +33,7 @@ const socialNetworks = [
   {
     link: '#',
     iconClass: 'fa-brands fa-whatsapp',
-    text: '+58-412-12345654',
+    text: '+58 412-12345654',
   },
   {
     link: '#',

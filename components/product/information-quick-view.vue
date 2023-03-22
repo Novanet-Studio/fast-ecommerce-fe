@@ -24,7 +24,7 @@
             class="info-quick-view__actions-btn"
             @click.prevent="handleDescreaseQuantity"
           >
-            <i class="fa fa-minus text-gray-500"></i>
+            <font-awesome icon="fa fa-minus" size="xs" class="text-gray-500" />
           </button>
           <input
             class="info-quick-view__actions-input"
@@ -36,7 +36,7 @@
             class="info-quick-view__actions-btn"
             @click.prevent="handleIncreaseQuantity"
           >
-            <i class="fa fa-plus text-gray-500"></i>
+            <font-awesome icon="fa fa-plus" size="xs" class="text-gray-500" />
           </button>
         </div>
       </figure>
