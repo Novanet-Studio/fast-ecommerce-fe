@@ -6,7 +6,7 @@
           <swiper-slide
             v-for="(image, index) in product.image"
             :key="index"
-            class="thumbnail-quick-view__slide"
+            class="thumbnail-quick-view__slide !flex"
           >
             <img :src="image.formats.thumbnail.url" />
           </swiper-slide>
@@ -24,3 +24,10 @@ import 'swiper/css/navigation';
 
 defineProps<{ product: ProductsMapped }>();
 </script>
+
+<style scoped>
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  --swiper-navigation-size: 2rem;
+}
+</style>

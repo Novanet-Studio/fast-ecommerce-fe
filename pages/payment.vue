@@ -25,5 +25,8 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: false,
+  pageTransition: {
+    name: 'page',
+  },
 });
 </script>

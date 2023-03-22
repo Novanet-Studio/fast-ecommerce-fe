@@ -8,7 +8,7 @@
       position="top right"
     >
       <template #body="props">
-        <div class="ps-notify" :class="props.className">
+        <div class="ps-notify" :class="props?.className || ''">
           <button class="ps-notify__close" @click="props.close">
             <i class="icon icon-cross"></i>
           </button>

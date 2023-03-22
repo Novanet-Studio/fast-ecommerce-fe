@@ -56,5 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-const { hasBilling, hasShipping } = useCheckAddressType();
+const { $store } = useNuxtApp();
+const checkout = $store.checkout();
+const { hasBilling, hasShipping } = checkout.checkAddressType();
 </script>

@@ -4,7 +4,7 @@
       class="border-b-2 border-b-gray-300"
       v-for="link in links"
       :key="link.text"
-      :class="$route.path === link?.url ? 'text-yellow-500' : ''"
+      :class="$route.path.includes(link?.name) ? 'text-yellow-500' : ''"
     >
       <nuxt-link
         :to="link.url"

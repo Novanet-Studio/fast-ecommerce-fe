@@ -17,13 +17,13 @@
         </div>
       </div>
       <div class="banner__right">
-        <nuxt-link to="/shop" class="flex-1 flex">
+        <nuxt-link class="flex-1 flex">
           <img
             src="~/assets/img/slider/home/promotion-1.jpeg"
             alt="Promotion 1"
           />
         </nuxt-link>
-        <nuxt-link to="/shop" class="h-full flex-1">
+        <nuxt-link class="h-full flex-1">
           <img
             src="~/assets/img/slider/home/promotion-2.jpeg"
             alt="Promotion 2"
@@ -49,8 +49,10 @@ const sliderImages = [
 
 <style lang="scss" scoped>
 /* Set color for swiper arrows */
+
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
-  color: #fbbf24 !important;
+  --swiper-navigation-size: 2rem;
+  --swiper-navigation-color: #fbbf24;
 }
 </style>

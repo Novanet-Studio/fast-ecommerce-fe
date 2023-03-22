@@ -110,7 +110,7 @@
 }
 
 .product-mini-cart {
-  @apply mb-8 flex flex-nowrap;
+  @apply mb-8 flex flex-nowrap h-16;
 }
 
 .product-mini-cart__image-wrapper {

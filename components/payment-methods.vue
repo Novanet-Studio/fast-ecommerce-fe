@@ -54,15 +54,15 @@ const methods: Methods[] = [
 }
 
 :deep(.tabs-component-tab) {
-  @apply p-4 border text-gray-400;
+  @apply px-4 py-3 rounded-md border text-gray-400;
 }
 
 :deep(.is-active:not(a)) {
-  @apply p-4 border border-yellow-500 text-yellow-500;
+  @apply px-4 py-3 rounded-md border border-yellow-500 text-yellow-500;
 }
 
 :deep(.is-disabled:not(a)) {
-  @apply p-4 border border-yellow-500 text-yellow-500;
+  @apply px-4 py-3 rounded-md border border-yellow-500 text-yellow-500;
 }
 
 :deep(.tabs-component-panels) {

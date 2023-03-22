@@ -11,7 +11,7 @@ import { getProductById as GetProductById } from '~/graphql';
 
 definePageMeta({
   pageTransition: {
-    name: 'zoom',
+    name: 'page',
   },
 });
 

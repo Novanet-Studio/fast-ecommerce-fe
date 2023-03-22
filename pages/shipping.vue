@@ -8,11 +8,8 @@
 <script lang="ts" setup>
 definePageMeta({
   middleware: 'authentication',
-  pageTransition: {
-    name: 'zoom',
-  },
   layoutTransition: {
-    name: 'zoom',
+    name: 'page',
   },
 });
 

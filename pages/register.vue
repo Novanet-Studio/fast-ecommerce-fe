@@ -18,10 +18,10 @@
 definePageMeta({
   layout: 'access',
   pageTransition: {
-    name: 'zoom',
+    name: 'page',
   },
   layoutTransition: {
-    name: 'zoom',
+    name: 'page',
   },
 });
 </script>

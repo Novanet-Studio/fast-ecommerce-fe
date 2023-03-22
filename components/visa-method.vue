@@ -1,6 +1,9 @@
 <template>
   <div>
     <form id="payment-form">
+      <div class="animate-pulse my-8" v-if="isLoadingCard">
+        <div class="w-full h-12 bg-gray-200 rounded-md"></div>
+      </div>
       <div id="card-container"></div>
       <div class="visa__terms-wrapper">
         <p class="visa__text">
@@ -51,6 +54,7 @@ const state = reactive<State & Record<any, any>>({
   cardButtonDisabled: false,
 });
 
+const isLoadingCard = ref(false);
 const btnRef = ref(null);
 
 const checkBilling = async () => {
@@ -324,16 +328,23 @@ const getProducts = async () => {
 };
 
 const loadSquareCard = async () => {
-  const payments = Square.payments(SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID);
+  try {
+    isLoadingCard.value = true;
+    const payments = Square.payments(SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID);
 
-  const card = await payments.card();
-  await card.attach('#card-container');
+    const card = await payments.card();
+    await card.attach('#card-container');
 
-  // @ts-ignore
-  btnRef.value.$ref.addEventListener('click', async () => {
-    const tokenResult = await card.tokenize();
-    makePayment(tokenResult);
-  });
+    // @ts-ignore
+    btnRef.value.$ref.addEventListener('click', async () => {
+      const tokenResult = await card.tokenize();
+      makePayment(tokenResult);
+    });
+  } catch (error) {
+    console.error('error: ', { error });
+  } finally {
+    isLoadingCard.value = false;
+  }
 };
 
 onMounted(async () => {

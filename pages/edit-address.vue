@@ -11,7 +11,7 @@ definePageMeta({
   middleware: 'authentication',
   layout: 'layout-account',
   pageTransition: {
-    name: 'zoom',
+    name: 'page',
   },
 });
 

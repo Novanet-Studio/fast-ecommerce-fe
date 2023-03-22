@@ -6,7 +6,7 @@ import {
 } from '~/graphql';
 import { AddressType } from '~/types';
 
-type ShippingInfo = {
+interface ShippingInfo {
   email?: string;
   name?: string;
   lastName?: string;
@@ -15,7 +15,15 @@ type ShippingInfo = {
   city?: string;
   zipCode?: string;
   phone?: string;
-};
+}
+
+interface Result {
+  hasBilling: Ref<boolean>;
+  hasShipping: Ref<boolean>;
+  isLoading: Ref<boolean>;
+}
+
+type Data = Record<string, string>;
 
 export const useCheckout = defineStore('checkout', {
   state: () =>
@@ -47,7 +55,7 @@ export const useCheckout = defineStore('checkout', {
       this.city = info.city;
       this.zipCode = info.zipCode;
     },
-    async createAddress(data: Record<string, string>) {
+    async createAddress(data: Data) {
       const { $notify } = useNuxtApp();
       const router = useRouter();
       const graphql = useStrapiGraphQL();
@@ -61,7 +69,7 @@ export const useCheckout = defineStore('checkout', {
 
       router.push('/addresses');
     },
-    async updateAddress(existId: string, data: Record<string, string>) {
+    async updateAddress(existId: string, data: Data) {
       const { $notify } = useNuxtApp();
       const graphql = useStrapiGraphQL();
       const router = useRouter();
@@ -141,11 +149,84 @@ export const useCheckout = defineStore('checkout', {
         body
       );
 
-      if (!data.addresses.data.length) return null;
+      if (!data?.addresses?.data?.length) return null;
 
       const [address] = data.addresses.data;
 
       return address;
+    },
+    checkAddressType(): Result {
+      const hasBilling = ref(false);
+      const hasShipping = ref(false);
+      const isLoading = ref(false);
+
+      const graphql = useStrapiGraphQL();
+
+      const { $store } = useNuxtApp();
+      const auth = $store.auth();
+
+      const id = Number(auth.user.id);
+
+      const checkBilling = async () => {
+        try {
+          const data = {
+            id,
+            type: AddressType.Billing,
+          };
+
+          const response = await graphql<AddressResponse>(
+            GetAddressByIdAndType,
+            data
+          );
+
+          if (!response?.data?.addresses?.data?.length) {
+            hasBilling.value = false;
+            return;
+          }
+
+          hasBilling.value = true;
+        } catch (error) {
+          hasBilling.value = false;
+          console.log('An error occurred while checkBilling: ', error);
+        }
+      };
+
+      const checkShipping = async () => {
+        try {
+          const data = {
+            id,
+            type: AddressType.Shipping,
+          };
+
+          const response = await graphql<AddressResponse>(
+            GetAddressByIdAndType,
+            data
+          );
+
+          if (!response?.data?.addresses?.data?.length) {
+            hasShipping.value = false;
+            return;
+          }
+
+          hasShipping.value = true;
+        } catch (error) {
+          hasShipping.value = false;
+          console.log('An error occurred while checkShipping: ', error);
+        }
+      };
+
+      onMounted(async () => {
+        if (!id) return;
+
+        await checkBilling();
+        await checkShipping();
+      });
+
+      return {
+        hasBilling,
+        hasShipping,
+        isLoading,
+      };
     },
   },
 });

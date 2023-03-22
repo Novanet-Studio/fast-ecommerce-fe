@@ -13,6 +13,7 @@ export default defineNuxtConfig({
         },
       ],
     },
+    pageTransition: { name: 'page' },
   },
 
   build: {
@@ -58,6 +59,7 @@ export default defineNuxtConfig({
       FIREBASE_MEASURENT_ID: process.env.FIREBASE_MEASURENT_ID,
       SQUARE_APPLICATION_ID: process.env.SQUARE_APPLICATION_ID,
       SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
+      // SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
       PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     },
   },

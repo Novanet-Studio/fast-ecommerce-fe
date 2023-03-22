@@ -8,11 +8,8 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: 'layout-account',
-  layoutTransition: {
-    name: 'zoom',
-  },
   pageTransition: {
-    name: 'zoom',
+    name: 'page',
   },
 });
 

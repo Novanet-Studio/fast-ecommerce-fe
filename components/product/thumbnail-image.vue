@@ -1,13 +1,16 @@
 <template>
-  <nuxt-link :to="`/product/${product.id}`">
+  <nuxt-link
+    class="flex h-full justify-center items-center"
+    :to="`/product/${product.id}`"
+  >
     <nuxt-img
       v-if="imageUrl"
       :src="imageUrl"
       :alt="product.name"
       :placeholder="[100, 50, 10]"
-      fit="cover"
-      width="800"
-      height="200"
+      sizes="sm:100vw md:50vw lg:200px"
+      fit="outside"
+      class="h-full object-contain"
     />
   </nuxt-link>
 </template>
@@ -18,5 +21,5 @@ type Props = {
 };
 
 const props = defineProps<Props>();
-const imageUrl = computed(() => props.product.image[0].formats?.small?.url);
+const imageUrl = computed(() => props?.product?.image[0]?.formats?.small?.url);
 </script>

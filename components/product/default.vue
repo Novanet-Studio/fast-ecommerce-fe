@@ -1,13 +1,13 @@
 <template>
-  <div class="product">
-    <div class="product__thumbnail">
+  <div class="product h-full">
+    <div class="product__thumbnail h-2/3">
       <product-thumbnail-image :product="product" />
       <product-actions :product="product" @quick-view="handleQuickView" />
     </div>
     <div class="product__container">
       <div class="product__content">
         <product-title :product="product" />
-        <product-price :product="product" />
+        <product-price class="!my-1" :product="product" />
       </div>
     </div>
     <modal v-model="state.quickView">

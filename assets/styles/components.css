@@ -45,7 +45,7 @@
 
 /* Button */
 .btn {
-  @apply w-full text-center inline-block text-base border-transparent rounded-sm bg-yellow-300 transition ease cursor-pointer hover:bg-yellow-500 active:bg-yellow-500;
+  @apply w-full text-center inline-block text-sm border-transparent rounded-md bg-yellow-300 transition ease cursor-pointer hover:bg-yellow-500 active:bg-yellow-500;
 }
 
 /* HomeBanner */
@@ -95,7 +95,7 @@
 }
 
 .landing__slide {
-  @apply !w-[260px];
+  @apply !w-[260px] !h-54;
 }
 
 .product {
@@ -110,7 +110,7 @@
   transform: translate(-50%, 0);
 }
 
-.product__continer {
+.product__container {
   @apply;
 }
 
@@ -123,7 +123,7 @@
 }
 
 .product-modal {
-  @apply p-4 relative lg:p-8;
+  @apply p-4 relative lg:p-6;
 }
 
 .product-modal__icon {
@@ -151,7 +151,7 @@
 }
 
 .thumbnail-quick-view__figure {
-  @apply relative block flex-basis-[100%] max-w-full m-0 lg:max-w-[calc(100%-60px)];
+  @apply relative block flex-basis-[100%] max-w-full m-0 lg:max-w-full;
 }
 
 .thumbnail-quick-view__content {
@@ -159,7 +159,7 @@
 }
 
 .thumbnail-quick-view__slide {
-  @apply flex justify-center;
+  @apply flex justify-center items-center;
 }
 
 .info-quick-view {
@@ -215,11 +215,11 @@
 }
 
 .info-quick-view__btn {
-  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-yellow-400 mx-7 mb-4 border rounded-md transition ease md:w-full lg:(text-lg mb-0) hover:bg-yellow-500;
+  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-yellow-400 mx-7 mb-4 border rounded-md transition ease md:w-full lg:(text-sm mb-0) hover:bg-yellow-500;
 }
 
 .info-quick-view__btn-alt {
-  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease text-yellow-500 rounded-md border border-yellow-500 md:w-auto lg:(text-lg mr-7) hover:(text-white border-transparent bg-yellow-400);
+  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease text-yellow-500 rounded-md border border-yellow-500 md:w-auto lg:(text-sm mr-7) hover:(text-white border-transparent bg-yellow-400);
 }
 
 .detail-description {

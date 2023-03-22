@@ -55,7 +55,7 @@ import { yupFieldRule } from 'slimeform/resolvers';
 
 definePageMeta({
   pageTransition: {
-    name: 'zoom',
+    name: 'page',
   },
 });
 

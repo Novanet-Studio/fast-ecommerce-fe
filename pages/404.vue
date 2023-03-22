@@ -8,12 +8,9 @@
             <nuxt-img src="/404.jpg" alt="" />
             <h3>Ohh! Page not found</h3>
             <p>
-              It seems we can't find what you're looking
-              for. Perhaps searching can help or go back
-              to
-              <nuxt-link class="text-black" to="/">
-                Homepage
-              </nuxt-link>
+              It seems we can't find what you're looking for. Perhaps searching
+              can help or go back to
+              <nuxt-link class="text-black" to="/"> Homepage </nuxt-link>
             </p>
           </figure>
         </div>
@@ -26,20 +23,18 @@
 definePageMeta({
   layout: false,
   pageTransition: {
-    appear: true,
-    appearActiveClass: 'zoom',
-    name: 'zoom',
-  }
+    name: 'page',
+  },
 });
 
 const breadcrumb = ref([
   {
     text: 'Home',
-    url: '/'
+    url: '/',
   },
   {
-    text: 'Page 404'
-  }
+    text: 'Page 404',
+  },
 ]);
 </script>
 

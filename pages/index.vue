@@ -14,11 +14,8 @@
 
 <script lang="ts" setup>
 definePageMeta({
-  layoutTransition: {
-    name: 'zoom',
-  },
   pageTransition: {
-    name: 'zoom',
+    name: 'page',
   },
 });
 

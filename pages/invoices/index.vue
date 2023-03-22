@@ -9,10 +9,10 @@ definePageMeta({
   layout: 'layout-account',
   middleware: 'authentication',
   pageTransition: {
-    name: 'zoom',
+    name: 'page',
   },
   layoutTransition: {
-    name: 'zoom',
+    name: 'page',
   },
 });
 </script>

@@ -1,7 +1,11 @@
 <template>
-  <ul class="menu" :class="className">
-    <li v-for="item in mainMenu" :key="item.text" class="first:pl-0">
-      <!-- TODO: highlight active link -->
+  <ul class="menu" :class="class">
+    <li
+      v-for="item in mainMenu"
+      :key="item.text"
+      class="first:pl-0"
+      :class="$route.path === item?.url ? 'text-yellow-400' : ''"
+    >
       <nuxt-link class="menu__item" :to="item.url">
         {{ item.text }}
       </nuxt-link>
@@ -11,11 +15,11 @@
 
 <script lang="ts" setup>
 type Props = {
-  className: string;
+  class: string;
 };
 
 withDefaults(defineProps<Props>(), {
-  className: 'menu',
+  class: 'menu',
 });
 
 const mainMenu = ref([

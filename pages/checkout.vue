@@ -9,22 +9,21 @@
 definePageMeta({
   middleware: 'authentication',
   pageTransition: {
-    name: 'zoom'
+    name: 'page',
   },
 });
 
 const breadCrumb = ref([
   {
     text: 'Inicio',
-    url: '/'
+    url: '/',
   },
   {
     text: 'Carrito de compra',
-    url: '/shopping-cart'
+    url: '/shopping-cart',
   },
   {
-    text: 'Información de compra'
-  }
+    text: 'Información de compra',
+  },
 ]);
-
 </script>

@@ -41,7 +41,7 @@ export const useInvoice = defineStore('invoice', {
   actions: {
     async fetchInvoices(userId: string): Promise<Invoice[]> {
       const graphql = useStrapiGraphQL();
-      const id = userId;
+      const id = +userId;
 
       const {
         data: { invoices },
@@ -49,7 +49,7 @@ export const useInvoice = defineStore('invoice', {
         id,
       });
 
-      if (!invoices.data.length) return [];
+      if (!invoices?.data?.length) return [];
 
       this.invoices = invoices.data;
       return invoices.data;

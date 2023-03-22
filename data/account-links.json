@@ -2,21 +2,25 @@
   "data": [
     {
       "text": "Ordenes",
+      "name": "invoices",
       "url": "/invoices",
       "icon": "icon-papers"
     },
     {
       "text": "Dirección",
+      "name": "address",
       "url": "/addresses",
       "icon": "icon-map-marker"
     },
     {
       "text": "Carrito",
+      "name": "shopping-cart",
       "url": "/shopping-cart",
       "icon": "icon-bag2"
     },
     {
       "text": "Wishlist",
+      "name": "wishlist",
       "url": "/wishlist",
       "icon": "icon-heart"
     }
