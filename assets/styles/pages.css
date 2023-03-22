@@ -449,15 +449,15 @@
 }
 
 .w-table__td-price {
-  @apply min-w-[200px] px-[10px] py-[30px] align-middle text-center lg:w-40;
+  @apply min-w-[200px] px-[10px] py-[30px] align-middle text-center lg:(w-32 min-w-44);
 }
 
 .w-table__td-action {
-  @apply min-w-[300px] px-[10px] py-[30px] lg:w-[35%];
+  @apply min-w-[300px] px-[10px] py-[30px] lg:(w-[25%] min-w-52);
 }
 
 .w-table__action-btn {
-  @apply inline-block px-8 py-3 rounded-sm transition ease bg-yellow-400 text-white active:bg-yellow-500 hover:bg-yellow-500;
+  @apply inline-block px-8 py-3 rounded-sm transition ease bg-yellow-400 text-sm text-white lg:px-6 active:bg-yellow-500 hover:bg-yellow-500;
 }
 
 .w-table__action-delete {
