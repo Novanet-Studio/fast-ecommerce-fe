@@ -70,6 +70,6 @@ const handleRemoveProductFromCart = (product: ProductsMapped) => {
   const cartItem = cart.cartItems.find((item) => item.id === product.id);
 
   cart.removeProductFromCart(cartItem as any);
-  loadCartProducts();
+  // loadCartProducts();
 };
 </script>

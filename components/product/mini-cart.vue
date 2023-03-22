@@ -69,7 +69,7 @@ const handleRemoveProductFromCart = (product: any) => {
   const cartItem = cartItems.value.find((item) => item.id === product.id);
   cartStore.removeProductFromCart(cartItem);
   cartStore.loading = true;
-  loadCartProducts();
+  // loadCartProducts();
 };
 </script>
 
