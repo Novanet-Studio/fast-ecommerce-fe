@@ -36,6 +36,16 @@ interface State {
   productsCart: ProductsMapped[];
 }
 
+interface CheckBillingResponse {
+  addressLine1: string;
+  locality: string;
+  postalCode: string;
+  country: string;
+}
+
+type GeneratePayment = (data: any) => Promise<{ data: Payment }>;
+type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
+
 const { $store, $notify, $httpsCallable } = useNuxtApp();
 const { SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID } = useRuntimeConfig().public;
 
@@ -45,6 +55,7 @@ const auth = $store.auth();
 const cart = $store.cart();
 const product = $store.product();
 const checkout = $store.checkout();
+const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const state = reactive<State & Record<any, any>>({
   card: null,
@@ -58,13 +69,6 @@ const state = reactive<State & Record<any, any>>({
 
 const isLoadingCard = ref(false);
 const btnRef = ref(null);
-
-interface CheckBillingResponse {
-  addressLine1: string;
-  locality: string;
-  postalCode: string;
-  country: string;
-}
 
 const checkBilling = async (): Promise<CheckBillingResponse> => {
   const defaultResponse = {
@@ -106,8 +110,6 @@ const checkBilling = async (): Promise<CheckBillingResponse> => {
   }
 };
 
-type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
-
 const sendInvoiceEmail = async (products: any[], payment: any) => {
   try {
     let emailContent = '';
@@ -115,10 +117,12 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
     const productItems: any[] = [];
     const created = new Date(payment.createdAt).toLocaleDateString();
     const amountPayed = `$${Number(payment.amountMoney.amount) / 100} USD`;
-    const sendReceiptEmail = $httpsCallable('sendReceiptEmail') as SendEmailFn;
-    const sendMerchantEmail = $httpsCallable(
+    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
+      'sendReceiptEmail'
+    );
+    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
       'sendMerchantEmail'
-    ) as SendEmailFn;
+    );
 
     products.forEach((item) => {
       const productFinded = state.productMail.find(
@@ -232,15 +236,15 @@ const createInvoice = async (payment: any, products: any[]) => {
     cardLast: payment.cardDetails.card.last4,
   };
 
-  const data = await graphql<Invoice>(CreateInvoice, { invoice: body });
+  const data = await graphql<CreateInvoiceResponse>(CreateInvoice, {
+    invoice: body,
+  });
 
   return data;
 };
 
-type GeneratePayment = (data: any) => Promise<{ data: Payment }>;
-
 const createPayment = async (paymentBody: any) => {
-  const generatePayment = $httpsCallable('payment') as GeneratePayment;
+  const generatePayment = httpsCallable<string, GeneratePayment>('payment');
   const { data } = await generatePayment(paymentBody);
 
   if (data.status !== 'COMPLETED') {

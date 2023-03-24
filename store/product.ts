@@ -4,11 +4,11 @@ import { getProductsByCategoryId } from '~/graphql';
 interface ProductStore {
   product: unknown | null;
   products: Product[] | null;
-  searchResults: unknown | null;
+  // searchResults: unknown | null;
   cartProducts: ProductsMapped[] | null;
   wishlistItems: ProductsMapped[] | null;
-  compareItems: unknown | null;
-  brands: unknown | null;
+  // compareItems: unknown | null;
+  // brands: unknown | null;
   categories: unknown | null;
   total: number;
   loading: boolean;

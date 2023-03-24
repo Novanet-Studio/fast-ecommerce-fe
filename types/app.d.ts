@@ -96,6 +96,14 @@ interface InvoicesMapped extends InvoiceAtributes {
   id: string;
 }
 
+interface CreateInvoiceResponse {
+  data: {
+    createInvoice: {
+      data: Invoice;
+    };
+  };
+}
+
 // Rest...
 
 interface Category {
