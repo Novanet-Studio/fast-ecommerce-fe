@@ -31,9 +31,9 @@ import type { Payment } from 'square';
 import { AddressType } from '~/types';
 
 interface State {
-  card: Square.Card;
-  productMail: Product[];
-  productsCart: Product[];
+  card: Square.Card | null;
+  productMail: ProductsMapped[];
+  productsCart: ProductsMapped[];
 }
 
 const { $store, $notify, $httpsCallable } = useNuxtApp();
@@ -43,33 +43,41 @@ const router = useRouter();
 const graphql = useStrapiGraphQL();
 const auth = $store.auth();
 const cart = $store.cart();
+const product = $store.product();
 const checkout = $store.checkout();
 
 const state = reactive<State & Record<any, any>>({
   card: null,
   isLoading: false,
   summary: '',
-  productMail: null,
+  productMail: [],
   productHtml: null,
-  productsCart: null,
+  productsCart: [],
   cardButtonDisabled: false,
 });
 
 const isLoadingCard = ref(false);
 const btnRef = ref(null);
 
-const checkBilling = async () => {
+interface CheckBillingResponse {
+  addressLine1: string;
+  locality: string;
+  postalCode: string;
+  country: string;
+}
+
+const checkBilling = async (): Promise<CheckBillingResponse> => {
+  const defaultResponse = {
+    addressLine1: 'no aplicable',
+    locality: 'no aplicable',
+    postalCode: '0000',
+    country: 'VE',
+  };
+
   try {
     const body = {
       id: +auth.user.id,
       type: AddressType.Billing,
-    };
-
-    const defaultResponse = {
-      addressLine1: 'no aplicable',
-      locality: 'no aplicable',
-      postalCode: '0000',
-      country: 'VE',
     };
 
     const { data } = await graphql<AddressResponse>(
@@ -84,16 +92,17 @@ const checkBilling = async () => {
       return defaultResponse;
     }
 
-    const { address } = data?.addresses?.data[0].attributes;
+    const { address } = data?.addresses?.data[0]?.attributes;
 
     return {
-      addressLine1: address.address,
-      locality: address.city,
-      postalCode: address.zipCode,
-      country: address.country,
+      addressLine1: address.address || defaultResponse.addressLine1,
+      locality: address.city || defaultResponse.locality,
+      postalCode: address.zipCode || defaultResponse.postalCode,
+      country: address.country || defaultResponse.country,
     };
   } catch (error) {
-    console.log(error);
+    console.log('error checking billing: ', error);
+    return defaultResponse;
   }
 };
 
@@ -102,7 +111,8 @@ type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
 const sendInvoiceEmail = async (products: any[], payment: any) => {
   try {
     let emailContent = '';
-    const productItems = [];
+    // TODO! improve types
+    const productItems: any[] = [];
     const created = new Date(payment.createdAt).toLocaleDateString();
     const amountPayed = `$${Number(payment.amountMoney.amount) / 100} USD`;
     const sendReceiptEmail = $httpsCallable('sendReceiptEmail') as SendEmailFn;
@@ -118,30 +128,35 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
       if (productFinded) {
         productItems.push({
           quantity: item.quantity,
-          name: productFinded.attributes.name,
+          name: productFinded.name,
           amount: item.price,
-          description: productFinded.attributes.description,
+          description: productFinded.description,
         });
 
-        if (emailContent) {
-          emailContent = emailTemplate({
-            name: productFinded.attributes.name,
-            price: item.price,
-            quantity: item.quantity,
-          });
-        } else {
-          emailContent += emailTemplate({
-            name: productFinded.attributes.name,
-            price: item.price,
-            quantity: item.quantity,
-          });
-        }
+        emailContent += emailTemplate({
+          name: productFinded.name,
+          price: item.price,
+          quantity: item.quantity,
+        });
+
+        // if (emailContent) {
+        //   emailContent = emailTemplate({
+        //     name: productFinded.name,
+        //     price: item.price,
+        //     quantity: item.quantity,
+        //   });
+        // } else {
+        //   emailContent += emailTemplate({
+        //     name: productFinded.name,
+        //     price: item.price,
+        //     quantity: item.quantity,
+        //   });
+        // }
       }
     });
 
     const merchant = {
       payed: amountPayed,
-      // email: 'novanet@mailinator.com',
       email: auth.user.email,
       phone: checkout.phone,
       shipping: checkout.fullAddress,
@@ -161,19 +176,7 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
       order_id: payment.orderId,
     };
 
-    const emailRequests = await Promise.all([
-      sendReceiptEmail(receipt),
-      sendMerchantEmail(merchant),
-    ]);
-
-    // await sendReceiptEmail(receipt);
-    console.log({ emailRequests });
-
-    // if (response.status === 200) {
-    //   console.log('merchant: ', merchant);
-    //   setTimeout(async () => {
-    //   }, 2000);
-    // }
+    await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
 
     $notify({
       group: 'all',
@@ -185,23 +188,20 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
       cart.clearCartItems();
       state?.card?.destroy();
       router.push('/');
-    }, 2000);
+    }, 1000);
   } catch (err) {
     console.log('sendInvoiceEmail Error: ', err);
-    // $notify({
-    //   group: 'all',
-    //   title: 'Recibo - Test',
-    //   text: '¡Gracias por preferirnos!',
-    // });
-    // cart.clearCartItems();
-    // state.card.destroy();
-    // router.push('/');
+    $notify({
+      group: 'all',
+      title: 'Error',
+      text: '¡Hubo un error al enviar el email!',
+    });
   }
 };
 
 const createInvoice = async (payment: any, products: any[]) => {
   const productName = state.productsCart;
-  const filterProducts = [];
+  const filterProducts: any[] = [];
 
   products.forEach((product) => {
     const find = productName.find((item) => item.id === product.id);
@@ -210,7 +210,7 @@ const createInvoice = async (payment: any, products: any[]) => {
       filterProducts.push({
         id_product: +product.id,
         quantity: Number(product.quantity),
-        name_product: find.attributes.name,
+        name_product: find.name,
       });
     }
   });
@@ -237,9 +237,11 @@ const createInvoice = async (payment: any, products: any[]) => {
   return data;
 };
 
+type GeneratePayment = (data: any) => Promise<{ data: Payment }>;
+
 const createPayment = async (paymentBody: any) => {
-  const generatePayment = $httpsCallable('payment');
-  const { data } = (await generatePayment(paymentBody)) as { data: Payment };
+  const generatePayment = $httpsCallable('payment') as GeneratePayment;
+  const { data } = await generatePayment(paymentBody);
 
   if (data.status !== 'COMPLETED') {
     $notify({
@@ -258,10 +260,6 @@ const createPayment = async (paymentBody: any) => {
   });
 
   const invoiceItems = cart.cartItems;
-  // TODO: typings improvement
-  // const {
-  //   createInvoice: { data: invoiceResult },
-  // } = await createInvoice(data, invoiceItems);
   const response = await createInvoice(data, invoiceItems);
 
   if (!response?.data?.createInvoice?.data?.id) {
@@ -334,22 +332,30 @@ const makePayment = async (tokenResult: Square.TokenResult) => {
 
 const getProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
+  const hasCartProducts = product.cartProducts?.length;
 
   if (!itemsId.length || !cart.cartItems.length) return;
 
-  const productPromises = itemsId.map((id: string) =>
-    graphql<ProductsResponse>(GetProductById, { id })
-  );
+  if (!hasCartProducts) {
+    // fill from server
+  }
 
-  const response = await Promise.all(productPromises);
-  let products: Product[] = [];
+  state.productMail = product.cartProducts as ProductsMapped[];
+  state.productsCart = product.cartProducts as ProductsMapped[];
 
-  response.forEach((res) => {
-    products = res.data.products.data;
-  });
+  // const productPromises = itemsId.map((id: string) =>
+  //   graphql<ProductsResponse>(GetProductById, { id })
+  // );
 
-  state.productMail = products;
-  state.productsCart = products;
+  // const response = await Promise.all(productPromises);
+  // let products: Product[] = [];
+
+  // response.forEach((res) => {
+  //   products = res.data.products.data;
+  // });
+
+  // state.productMail = products;
+  // state.productsCart = products;
 };
 
 const loadSquareCard = async () => {

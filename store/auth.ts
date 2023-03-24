@@ -111,7 +111,11 @@ export const useAuth = defineStore('auth', {
     },
     reset() {
       this.token = '';
-      Object.assign(this.user, initialState.user);
+      this.user.id = '';
+      this.user.email = '';
+      this.user.username = '';
+      this.user.customerId = '';
+      // Object.assign(this.user, initialState.user);
       this.authenticated = false;
     },
   },

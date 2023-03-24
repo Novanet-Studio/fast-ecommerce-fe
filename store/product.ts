@@ -48,7 +48,6 @@ export const useProduct = defineStore('product', {
       }
     },
     addCartProducts(products: ProductsMapped[]) {
-      console.log('From addCartProducts', products);
       this.cartProducts = products;
     },
     clearProducts() {
