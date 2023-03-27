@@ -17,7 +17,7 @@
             {{ item.name }}
           </nuxt-link>
           <p class="order-summary__price">
-            {{ cart.cartItems[index].quantity }} x ${{ item.price.toFixed(2) }}
+            {{ cart.cartItems[index]?.quantity }} x ${{ item.price.toFixed(2) }}
           </p>
         </template>
       </figure>
