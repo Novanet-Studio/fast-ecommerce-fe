@@ -76,6 +76,8 @@ interface AddressDetail {
   city: string;
   phone: string;
   address: string;
+  addressLine1?: string;
+  locality?: string;
   country: string;
   zipCode: string;
 }

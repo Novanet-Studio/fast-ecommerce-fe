@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <section class="mx-6 mx-auto">
     <invoices-detail />
     <notify />
-  </div>
+  </section>
 </template>
 
 <script lang="ts" setup>

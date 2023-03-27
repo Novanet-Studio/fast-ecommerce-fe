@@ -197,7 +197,7 @@ const setPageInvoice = (number: any) => console.log(number);
 const goToInvoice = (invoiceId: string, invoiceItem: any) => {
   // invoice.invoice = invoiceItem;
   invoice.invoice = invoiceItem;
-  router.push(`/invoice/${invoiceId}`);
+  router.push(`/invoices/${invoiceId}`);
 };
 
 const getPayments = async () => {

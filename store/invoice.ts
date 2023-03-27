@@ -2,12 +2,14 @@ import { defineStore } from 'pinia';
 import {
   createInvoice as CreateInvoice,
   getInvoicesByUserId as GetInvoicesByUserId,
+  getProductById as GetProductById,
 } from '~/graphql';
 import type { OrderResponseBody } from '@paypal/paypal-js';
 
 type InvoiceStore = {
   invoices: InvoicesMapped[] | null;
   invoice: InvoiceTableDetail | null;
+  products: ProductsMapped[] | null;
 };
 
 const invoiceMapperHelper = (
@@ -31,6 +33,7 @@ export const useInvoice = defineStore('invoice', {
     ({
       invoice: null,
       invoices: null,
+      products: [],
     } as InvoiceStore),
   getters: {
     getMappedInvoices(): InvoiceTableDetail[] {
@@ -101,6 +104,28 @@ export const useInvoice = defineStore('invoice', {
       });
 
       return data;
+    },
+    async loadInvoiceProducts() {
+      const graphql = useStrapiGraphQL();
+      const temp: ProductsMapped[] = [];
+
+      if (!this.invoice?.products.length) return [];
+
+      const itemsId = this.invoice.products.map(
+        (product) => product.id_product
+      );
+      const productPromises = itemsId.map((id) =>
+        graphql<ProductsResponse>(GetProductById, { id })
+      );
+
+      const response = await Promise.all(productPromises);
+      const result = mapperData<any[]>(response);
+
+      result.forEach((product) => {
+        temp.push(product.products[0]);
+      });
+
+      this.products = temp;
     },
   },
   persist: true,
