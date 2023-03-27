@@ -191,7 +191,7 @@ const sendInvoiceEmail = async (products: any[], payment: any) => {
     setTimeout(() => {
       cart.clearCartItems();
       state?.card?.destroy();
-      router.push('/');
+      router.push('/invoices');
     }, 1000);
   } catch (err) {
     console.log('sendInvoiceEmail Error: ', err);
