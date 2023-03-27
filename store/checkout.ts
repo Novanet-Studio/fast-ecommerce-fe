@@ -54,6 +54,7 @@ export const useCheckout = defineStore('checkout', {
       this.home = info.home;
       this.city = info.city;
       this.zipCode = info.zipCode;
+      this.phone = info.phone;
     },
     async createAddress(data: Data) {
       const { $notify } = useNuxtApp();
