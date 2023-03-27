@@ -20,14 +20,14 @@
 </template>
 
 <script lang="ts" setup>
-import { getProductById as GetProductById } from '~/graphql';
+// import { getProductById as GetProductById } from '~/graphql';
 
 const { $store } = useNuxtApp();
 
-const graphql = useStrapiGraphQL();
+// const graphql = useStrapiGraphQL();
 
 const cartStore = $store.cart();
-const productStore = $store.product();
+// const productStore = $store.product();
 const global = $store.global();
 
 const props = defineProps<{ product: ProductsMapped }>();
@@ -44,39 +44,37 @@ const quantity = computed(() => {
   return item.quantity;
 });
 
-const loadCartProducts = async () => {
-  try {
-    if (!cartItems.value.length) productStore.cartProducts = [];
-    if (productStore.cartProducts?.length) return;
+// const loadCartProducts = async () => {
+//   try {
+//     const temp: ProductsMapped[] = [];
+//     if (!cartItems.value.length) productStore.cartProducts = [];
+//     if (productStore.cartProducts?.length) return;
 
-    const itemsList = cartStore.cartItems.map((item) =>
-      graphql<ProductsResponse>(GetProductById, { id: item.id })
-    );
+//     const itemsList = cartStore.cartItems.map((item) =>
+//       graphql<ProductsResponse>(GetProductById, { id: item.id })
+//     );
 
-    const items = await Promise.all(itemsList);
+//     const items = await Promise.all(itemsList);
 
-    if (!items?.length) return;
+//     if (!items?.length) return;
 
-    productStore.cartProducts = items;
-  } catch (err) {
-    console.log(err);
-  } finally {
-    cartStore.loading = false;
-  }
-};
+//     items.forEach((item) => {
+//       const product = mapperData<any>(item.data.products.data);
+//       temp.push(product);
+//     });
+
+//     console.log({ temp });
+
+//     productStore.cartProducts = temp;
+//   } catch (err) {
+//     console.log(err);
+//   } finally {
+//     cartStore.loading = false;
+//   }
+// };
 
 const handleRemoveProductFromCart = (product: any) => {
   const cartItem = cartItems.value.find((item) => item.id === product.id);
-  cartStore.removeProductFromCart(cartItem);
-  // cartStore.loading = true;
-  // loadCartProducts();
+  cartStore.removeProductFromCart(cartItem as CartItem);
 };
 </script>
-
-<style lang="scss" scoped>
-.ps-product__remove {
-  padding: 1rem;
-  border: 1px solid rgb(176, 62, 62);
-  border-radius: 4px;
-}
-</style>

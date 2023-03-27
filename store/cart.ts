@@ -109,6 +109,15 @@ export const useCart = defineStore('cart', {
         this.total = 0;
       }
     },
+    removeFromProductStore(payload: CartItem) {
+      const { $store } = useNuxtApp();
+      const product = $store.product();
+      const index = product.cartProducts?.findIndex(
+        (item) => item.id === payload.id
+      );
+
+      product.cartProducts?.splice(index as number, 1);
+    },
     increaseItemQuantity(payload: Product) {
       let selectedItem = this.cartItems.find((item) => item.id === payload.id);
       if (selectedItem) {
@@ -138,6 +147,7 @@ export const useCart = defineStore('cart', {
 
     removeProductFromCart(payload: CartItem) {
       this.removeItem(payload);
+      this.removeFromProductStore(payload);
     },
 
     increaseCartItemQuantity(payload: Product) {
