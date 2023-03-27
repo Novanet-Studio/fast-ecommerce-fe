@@ -9,17 +9,17 @@
     "clean": "rimraf node_modules .nuxt"
   },
   "devDependencies": {
-    "@nuxt/image-edge": "1.0.0-27990059.c3f31ce",
+    "@nuxt/image-edge": "1.0.0-27991759.1a5eea1",
     "@nuxtjs/strapi": "^1.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@rollup/plugin-graphql": "^2.0.3",
     "@sidebase/nuxt-pdf": "^0.1.1",
     "graphql": "^16.6.0",
-    "nuxt": "3.3.1",
+    "nuxt": "3.3.2",
     "nuxt-lodash": "^2.4.1",
     "nuxt-windicss": "^2.6.0",
-    "rimraf": "^4.4.0",
-    "sass": "1.59.3"
+    "rimraf": "^4.4.1",
+    "sass": "1.60.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
