@@ -8,8 +8,5 @@
 definePageMeta({
   layout: 'layout-account',
   middleware: 'authentication',
-  pageTransition: {
-    name: 'page',
-  },
 });
 </script>

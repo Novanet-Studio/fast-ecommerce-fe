@@ -4,7 +4,7 @@
       <header class="wishlist__header">
         <h1 class="wishlist__title">Lista de deseos</h1>
       </header>
-      <div v-if="!product.wishlistItems">
+      <div v-if="!productStore.wishlistItems">
         <header class="wishlist__center">
           <h3 class="wishlist__subtitle">
             No tienes articulos en tu lista de deseos
@@ -21,13 +21,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in product.wishlistItems" :key="item.id">
+            <tr v-for="item in productStore.wishlistItems" :key="item.id">
               <td class="w-table__td-product">
                 <product-shopping-cart :product="item" />
               </td>
               <td class="w-table__td-price">$ {{ item.price.toFixed(2) }}</td>
               <td class="w-table__td-action">
-                <button class="w-table__action-btn" @click="handleAddToCart">
+                <button
+                  class="w-table__action-btn"
+                  @click="handleAddToCart(item)"
+                >
                   Añadir al carrito
                 </button>
                 <a
@@ -51,29 +54,41 @@ import { getProductById as GetProductById } from '~/graphql';
 
 definePageMeta({
   layout: 'layout-account',
-  pageTransition: {
-    name: 'page',
-  },
 });
 
 const { $notify, $store } = useNuxtApp();
 const graphql = useStrapiGraphQL();
 const wishlist = $store.wishlist();
-const product = $store.product();
+const productStore = $store.product();
 const cart = $store.cart();
 
-const handleAddToCart = (product: any) => {
+const handleAddToCart = async (product: any) => {
   const item = {
     id: product.id,
     quantity: 1,
-    price: product.attributes.price,
+    price: product.price,
   };
 
   cart.addProductToCart(item);
+
+  const itemsList = cart.cartItems.map((item) =>
+    graphql<ProductsResponse>(GetProductById, { id: item.id })
+  );
+
+  const itemsResult = await Promise.all(itemsList);
+
+  const temp: any[] = [];
+
+  mapperData<any[]>(itemsResult).forEach((item) => {
+    temp.push(item.products[0]);
+  });
+
+  productStore.addCartProducts(temp);
+
   $notify({
     group: 'all',
     title: 'Exito!',
-    text: `${product.attributes.name} ha sido agregado al carrito!`,
+    text: `${product.name} ha sido agregado al carrito!`,
   });
 };
 
@@ -91,7 +106,7 @@ const loadWishlist = async () => {
   const temp: any[] = [];
 
   if (!wishlist?.items?.length) {
-    product.wishlistItems = null;
+    productStore.wishlistItems = null;
     return;
   }
 
@@ -106,7 +121,7 @@ const loadWishlist = async () => {
     temp.push(item.products[0]);
   });
 
-  product.wishlistItems = temp;
+  productStore.wishlistItems = temp;
 };
 
 onMounted(() => {

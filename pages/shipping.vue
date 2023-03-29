@@ -8,9 +8,6 @@
 <script lang="ts" setup>
 definePageMeta({
   middleware: 'authentication',
-  layoutTransition: {
-    name: 'page',
-  },
 });
 
 // const breadcrumb = ref([

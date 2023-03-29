@@ -87,7 +87,7 @@ const { form, status, submitter, verify } = useForm({
       yupFieldRule(
         yup.string().required('El nombre de usuario es obligatorio')
       ),
-      yupFieldRule(yup.string().nullable(false)),
+      yupFieldRule(yup.string().nonNullable()),
       yupFieldRule(yup.string().min(2, 'El nombre de usuario es muy corto')),
       yupFieldRule(yup.string().max(15, 'El nombre de usuario es muy largo')),
     ],
@@ -164,10 +164,10 @@ const { submit } = submitter(async () => {
     if (!success) return;
 
     setTimeout(() => {
-      if (product.cartProducts?.length) {
-        router.push('/checkout');
-        return;
-      }
+      // if (product.cartProducts?.length) {
+      //   router.push('/checkout');
+      //   return;
+      // }
 
       router.push('/');
     }, 1000);

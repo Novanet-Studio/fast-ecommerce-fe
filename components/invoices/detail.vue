@@ -51,7 +51,7 @@
               </figure>
             </div>
           </div>
-          <div class="flex flex-col">
+          <div class="flex flex-col" v-if="!isLoading">
             <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
               <div class="py-2 inline-block min-w-full sm:px-6 lg:px-0">
                 <div class="overflow-hidden">
@@ -155,8 +155,15 @@ const {
 } = $store.invoice();
 
 const pdfSection = ref<HTMLElement | undefined>(undefined);
+const isLoading = ref(false);
 
-onMounted(() => {
-  loadInvoiceProducts();
+onMounted(async () => {
+  isLoading.value = true;
+  try {
+    await loadInvoiceProducts();
+  } catch (error) {
+  } finally {
+    isLoading.value = false;
+  }
 });
 </script>
