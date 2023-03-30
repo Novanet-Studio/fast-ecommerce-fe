@@ -131,22 +131,185 @@ const getProducts = async () => {
   productsMail.value = products;
 };
 
+// const loadPaypal = async () => {
+//   let $paypal: PayPalNamespace;
+//   try {
+//     await loadScript({
+//       'client-id': PAYPAL_CLIENT_ID,
+//       currency: 'USD',
+//       'data-namespace': '$paypal',
+//       'disable-funding': 'credit,card',
+//     });
+
+//     paypal.value = window.paypal as PayPalNamespace;
+//     $paypal = window.paypal as PayPalNamespace;
+
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+//   try {
+//     // await (paypal.value as PayPalNamespace)
+//     //   .Buttons({
+//     //     createOrder: (_, actions) =>
+//     //       actions.order.create({
+//     //         purchase_units: [
+//     //           {
+//     //             description: 'Compra desde la app',
+//     //             amount: {
+//     //               currency_code: 'USD',
+//     //               value: cart.amount.toString(),
+//     //             },
+//     //             shipping: {
+//     //               address: {
+//     //                 address_line_1: checkout.address,
+//     //                 admin_area_1: checkout.home,
+//     //                 admin_area_2: checkout.city,
+//     //                 country_code: 'VE',
+//     //                 postal_code: checkout.zipCode,
+//     //               },
+//     //               options: [],
+//     //             },
+//     //             invoice_id: crypto.randomUUID(),
+//     //           },
+//     //         ],
+//     //       }),
+//     //     onApprove: async (_, actions) => {
+//     //       try {
+//     //         const result = await actions.order?.capture();
+//     //         const container = document.getElementById('paypal-container');
+//     //         container!.innerHTML = '';
+//     //         container!.innerHTML = `<h4 class="text-center">Por favor, espere</h4>`;
+
+//     //         if (result?.status !== 'COMPLETED') {
+//     //           $notify({
+//     //             group: 'all',
+//     //             title: 'Un error ha ocurrido',
+//     //             text: 'Hubo un error al aprovar el pago',
+//     //           });
+//     //           return;
+//     //         }
+
+//     //         const { cartItems } = cart;
+//     //         $notify({
+//     //           group: 'all',
+//     //           title: '¡Proceso exitoso!',
+//     //           text: 'El pago se ha realizado con éxito',
+//     //         });
+
+//     //         await invoice.createInvoice(result, cartItems);
+//     //         $notify({
+//     //           group: 'all',
+//     //           title: 'Recibo creado',
+//     //           text: 'Se encuentra disponible en sus ordenes',
+//     //         });
+
+//     //         await sendInvoiceEmail(result, cartItems);
+//     //       } catch (error) {
+//     //         $notify({
+//     //           group: 'all',
+//     //           title: 'Pagos paypal',
+//     //           text: `Hubo un error al procesar el pago!`,
+//     //         });
+//     //       }
+//     //     },
+//     //     onError: () =>
+//     //       $notify({
+//     //         group: 'all',
+//     //         title: 'Pagos paypal',
+//     //         text: `Hubo un error, no se puede procesar el pago en estos momentos!`,
+//     //       }),
+//     //   })
+//     //   .render('#paypal-container');
+
+//     console.log({ $paypal });
+
+//     await $paypal!.Buttons({
+//         createOrder: (_, actions) =>
+//           actions.order.create({
+//             purchase_units: [
+//               {
+//                 description: 'Compra desde la app',
+//                 amount: {
+//                   currency_code: 'USD',
+//                   value: cart.amount.toString(),
+//                 },
+//                 shipping: {
+//                   address: {
+//                     address_line_1: checkout.address,
+//                     admin_area_1: checkout.home,
+//                     admin_area_2: checkout.city,
+//                     country_code: 'VE',
+//                     postal_code: checkout.zipCode,
+//                   },
+//                   options: [],
+//                 },
+//                 invoice_id: crypto.randomUUID(),
+//               },
+//             ],
+//           }),
+//         onApprove: async (_, actions) => {
+//           try {
+//             const result = await actions.order?.capture();
+//             const container = document.getElementById('paypal-container');
+//             container!.innerHTML = '';
+//             container!.innerHTML = `<h4 class="text-center">Por favor, espere</h4>`;
+
+//             if (result?.status !== 'COMPLETED') {
+//               $notify({
+//                 group: 'all',
+//                 title: 'Un error ha ocurrido',
+//                 text: 'Hubo un error al aprovar el pago',
+//               });
+//               return;
+//             }
+
+//             const { cartItems } = cart;
+//             $notify({
+//               group: 'all',
+//               title: '¡Proceso exitoso!',
+//               text: 'El pago se ha realizado con éxito',
+//             });
+
+//             await invoice.createInvoice(result, cartItems);
+//             $notify({
+//               group: 'all',
+//               title: 'Recibo creado',
+//               text: 'Se encuentra disponible en sus ordenes',
+//             });
+
+//             await sendInvoiceEmail(result, cartItems);
+//           } catch (error) {
+//             $notify({
+//               group: 'all',
+//               title: 'Pagos paypal',
+//               text: `Hubo un error al procesar el pago!`,
+//             });
+//           }
+//         },
+//         onError: () =>
+//           $notify({
+//             group: 'all',
+//             title: 'Pagos paypal',
+//             text: `Hubo un error, no se puede procesar el pago en estos momentos!`,
+//           }),
+//       })
+//       .render('#paypal-container');
+//   } catch (error) {
+//     console.log('An error occurred when trying render button: ', error);
+//   }
+// };
+
 const loadPaypal = async () => {
   try {
-    await loadScript({
+    const $paypal = await loadScript({
       'client-id': PAYPAL_CLIENT_ID,
       currency: 'USD',
       'data-namespace': '$paypal',
       'disable-funding': 'credit,card',
     });
 
-    paypal.value = window.$paypal as PayPalNamespace;
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
-    await (paypal.value as PayPalNamespace)
+    await $paypal
       .Buttons({
         createOrder: (_, actions) =>
           actions.order.create({
@@ -165,9 +328,16 @@ const loadPaypal = async () => {
                     country_code: 'VE',
                     postal_code: checkout.zipCode,
                   },
-                  options: [],
+                  options: [
+                    {
+                      id: crypto.randomUUID(),
+                      label: 'Pago con tarjeta de crédito',
+                      selected: true,
+                    },
+                  ],
                 },
                 invoice_id: crypto.randomUUID(),
+                custom_id: crypto.randomUUID(),
               },
             ],
           }),
