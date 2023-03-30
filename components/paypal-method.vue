@@ -17,6 +17,7 @@ const router = useRouter();
 const graphql = useStrapiGraphQL();
 const auth = $store.auth();
 const cart = $store.cart();
+const product = $store.product();
 const checkout = $store.checkout();
 const invoice = $store.invoice();
 const paypalRef = ref();
@@ -364,7 +365,18 @@ const loadPaypal = async () => {
               text: 'El pago se ha realizado con éxito',
             });
 
-            await invoice.createInvoice(result, cartItems);
+            const items = cartItems.map((item) => ({
+              id: item.id,
+              quantity: item.quantity,
+              id_product: Number(
+                product.cartProducts?.find((prod) => prod.id === item.id)?.id
+              ),
+              name_product: product.cartProducts?.find(
+                (prod) => prod.id === item.id
+              )?.name,
+            }));
+
+            await invoice.createInvoice(result, items);
             $notify({
               group: 'all',
               title: 'Recibo creado',

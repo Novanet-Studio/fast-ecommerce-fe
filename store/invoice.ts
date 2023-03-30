@@ -59,7 +59,7 @@ export const useInvoice = defineStore('invoice', {
       this.invoices = mapped;
       return mapped;
     },
-    async createInvoice(order: OrderResponseBody, items: CartItem[]) {
+    async createInvoice(order: OrderResponseBody, items: any[]) {
       const { $store } = useNuxtApp();
       const graphql = useStrapiGraphQL();
       const auth = $store.auth();
@@ -83,20 +83,22 @@ export const useInvoice = defineStore('invoice', {
         fecha_pago: order.create_time,
       };
 
+      console.log('items', items);
+
       const body = {
-        amount: order.purchase_units[0].amount.value,
+        amount: +order.purchase_units[0].amount.value,
         order_id: order.purchase_units[0].invoice_id,
         paid: true,
         payment_id: order.id,
         products: items,
-        user_id: auth.user.id,
+        user_id: +auth.user.id,
         shippingAddress: address,
         fullName: checkout.fullName,
         cardType: 'no aplica',
         cardKind: 'no aplica',
         cardLast: 'no aplica',
-        payment_info: [paymentInfo],
-        payment_method: 'paypal',
+        // payment_info: [paymentInfo],
+        // payment_method: 'paypal',
       };
 
       const { data } = await graphql<InvoiceResponse>(CreateInvoice, {
