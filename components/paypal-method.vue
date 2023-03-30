@@ -388,7 +388,6 @@ const loadPaypal = async () => {
             });
 
             const items = cartItems.map((item) => ({
-              id: item.id,
               quantity: item.quantity,
               id_product: Number(
                 product.cartProducts?.find((prod) => prod.id === item.id)?.id
