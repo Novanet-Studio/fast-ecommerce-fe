@@ -9,6 +9,10 @@ import {
   type PayPalNamespace,
 } from '@paypal/paypal-js';
 import { getProductById as GetProductById } from '~/graphql';
+
+type GeneratePayment = (data: any) => Promise<{ data: any }>;
+type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
+
 const { $store, $notify, $httpsCallable } = useNuxtApp();
 
 const { PAYPAL_CLIENT_ID } = useRuntimeConfig().public;
@@ -21,8 +25,10 @@ const product = $store.product();
 const checkout = $store.checkout();
 const invoice = $store.invoice();
 const paypalRef = ref();
-const paypal = ref();
-const productsMail = ref<Product[]>();
+// const paypal = ref();
+const productsMail = ref<ProductsMapped[]>();
+
+const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const sendInvoiceEmail = async (
   order: OrderResponseBody,
@@ -31,34 +37,30 @@ const sendInvoiceEmail = async (
   try {
     let emailContent = '';
     const productItems = [];
-    const sendReceiptEmail = $httpsCallable('sendReceiptEmail');
-    const sendMerchantEmail = $httpsCallable('sendMerchantEmail');
+    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
+      'sendReceiptEmail'
+    );
+    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
+      'sendMerchantEmail'
+    );
     const created = new Date(order.create_time).toLocaleDateString();
     const amountPayed = `$${order.purchase_units[0].amount.value.toString()} USD`;
 
     items.forEach((item) => {
-      const finded = productsMail.value!.find(
-        (product: Product) => product.id === item.id
-      ) as Product;
+      const productFound = productsMail.value!.find(
+        (product: ProductsMapped) => product.id === item.id
+      );
 
-      if (!finded) return;
-
-      productItems.push({
-        quantity: item.quantity,
-        name: finded.attributes.name,
-        amount: item.price,
-        description: finded.attributes.description,
-      });
-
-      if (emailContent) {
-        emailContent = emailTemplate({
-          name: finded.attributes.name,
-          price: item.price,
+      if (productFound) {
+        productItems.push({
           quantity: item.quantity,
+          name: productFound.name,
+          amount: item.price,
+          description: productFound.description,
         });
-      } else {
+
         emailContent += emailTemplate({
-          name: finded.attributes.name,
+          name: productFound.name,
           price: item.price,
           quantity: item.quantity,
         });
@@ -76,21 +78,19 @@ const sendInvoiceEmail = async (
       order_id: order.id,
     };
 
+    console.log({ order });
+
     const receipt = {
       payed: amountPayed,
       email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
+      // email: order.purchase_units[0],
       nameCustomer: checkout.fullName,
       date: created,
       content: emailContent,
       order_id: order.id,
     };
 
-    const response = (await sendReceiptEmail(receipt)) as unknown as {
-      message: string;
-      status: number;
-    };
-
-    response.status === 200 && (await sendMerchantEmail(merchant));
+    await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
 
     $notify({
       group: 'all',
@@ -112,24 +112,46 @@ const sendInvoiceEmail = async (
   }
 };
 
+// const getProducts = async () => {
+//   const itemsId = cart.cartItems.map((item) => item.id);
+
+//   if (!itemsId.length || !cart.cartItems.length) return;
+
+//   const productPromises = itemsId.map((id: string) =>
+//     graphql<ProductsResponse>(GetProductById, { id })
+//   );
+
+//   const response = await Promise.all(productPromises);
+
+//   let products: Product[] = [];
+
+//   response.forEach((res) => {
+//     products = res.data.products.data;
+//   });
+
+//   productsMail.value = products;
+// };
+
 const getProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
+  const hasCartProducts = product.cartProducts?.length;
 
   if (!itemsId.length || !cart.cartItems.length) return;
 
-  const productPromises = itemsId.map((id: string) =>
-    graphql<ProductsResponse>(GetProductById, { id })
-  );
+  if (hasCartProducts) {
+    // TODO! fetch products from server
+    // const productPromises = itemsId.map((id: string) =>
+    //   graphql<ProductsResponse>(GetProductById, { id })
+    // );
+    // const response = await Promise.all(productPromises);
+    // let products: Product[] = [];
+    // response.forEach((res) => {
+    //   products = res.data.products.data;
+    // });
+    // productsMail.value = products;
+  }
 
-  const response = await Promise.all(productPromises);
-
-  let products: Product[] = [];
-
-  response.forEach((res) => {
-    products = res.data.products.data;
-  });
-
-  productsMail.value = products;
+  productsMail.value = product.cartProducts as ProductsMapped[];
 };
 
 // const loadPaypal = async () => {
