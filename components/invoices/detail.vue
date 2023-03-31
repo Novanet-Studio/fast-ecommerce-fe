@@ -4,7 +4,7 @@
       <div ref="pdfSection">
         <div class="ps-section__header py-3">
           <h3 class="text-xl flex items-center gap-2">
-            Factura #{{ invoice?.id_invoice_user }} -
+            Factura #{{ invoiceStore.invoice?.id_invoice_user }} -
             <!-- <strong>Successful delivery PPU</strong> -->
             <strong class="text-xs">Entrega exitosa PPU</strong>
           </h3>
@@ -16,15 +16,15 @@
                 <figcaption>Dirección</figcaption>
                 <div class="ps-block__content">
                   <strong>
-                    {{ invoice?.fullName }}
+                    {{ invoiceStore.invoice?.fullName }}
                   </strong>
-                  <p v-if="invoice?.shippingAddress">
+                  <p v-if="invoiceStore.invoice?.shippingAddress">
                     Dirección:
-                    {{ invoice.shippingAddress.addressLine1 }},
-                    <!-- {{ invoice.attributes.shippingAddress.addressLine1 }}, -->
-                    <!-- {{ invoice.shippingAddress.locality }}, ??? -->
-                    {{ invoice.shippingAddress.locality }},
-                    {{ invoice.shippingAddress.country }}
+                    {{ invoiceStore.invoice.shippingAddress.addressLine1 }},
+                    <!-- {{ invoiceStore.invoice.attributes.shippingAddress.addressLine1 }}, -->
+                    <!-- {{ invoiceStore.invoice.shippingAddress.locality }}, ??? -->
+                    {{ invoiceStore.invoice.shippingAddress.locality }},
+                    {{ invoiceStore.invoice.shippingAddress.country }}
                   </p>
                 </div>
               </figure>
@@ -33,10 +33,10 @@
               <figure class="ps-block--invoice">
                 <figcaption class="border-b pb-2 font-bold">Estado</figcaption>
                 <div class="ps-block__content flex gap-2 items-center">
-                  <p v-if="invoice?.paid">Pagado</p>
+                  <p v-if="invoiceStore.invoice?.paid">Pagado</p>
                   <p v-else>No pagado</p>
                   <p class="text-xs">
-                    {{ invoice?.date }}
+                    {{ invoiceStore.invoice?.date }}
                   </p>
                 </div>
               </figure>
@@ -45,17 +45,25 @@
               <figure class="ps-block--invoice">
                 <figcaption class="border-b pb-2 font-bold">Pago</figcaption>
                 <div class="ps-block__content">
-                  <p>Pago: {{ invoice?.cardKind }} {{ invoice?.cardType }},</p>
-                  <p>Ultimos Cuatro digitos: {{ invoice?.cardLast }}</p>
+                  <p>
+                    Pago: {{ invoiceStore.invoice?.cardKind }},
+                    {{ invoiceStore.invoice?.cardType }},
+                  </p>
+                  <p>
+                    Ultimos Cuatro digitos: {{ invoiceStore.invoice?.cardLast }}
+                  </p>
                 </div>
               </figure>
             </div>
           </div>
-          <div class="flex flex-col" v-if="!isLoading">
+          <div class="flex flex-col">
             <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
               <div class="py-2 inline-block min-w-full sm:px-6 lg:px-0">
                 <div class="overflow-hidden">
-                  <table class="min-w-full">
+                  <template v-if="invoiceStore.loading">
+                    <loading />
+                  </template>
+                  <table class="min-w-full" v-else>
                     <thead class="bg-yellow-100 border-b">
                       <tr>
                         <th
@@ -87,7 +95,7 @@
                     <tbody>
                       <tr
                         class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                        v-for="(product, index) in invoiceProducts"
+                        v-for="(product, index) in invoiceStore.products"
                       >
                         <td
                           class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900"
@@ -102,7 +110,7 @@
                         <td
                           class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                         >
-                          {{ invoice?.products[index].quantity }}
+                          {{ invoiceStore.invoice?.products[index].quantity }}
                         </td>
                         <td
                           class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
@@ -123,7 +131,7 @@
                         <td
                           class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right"
                         >
-                          ${{ invoice?.amount }}
+                          ${{ invoiceStore.invoice?.amount }}
                         </td>
                       </tr>
                     </tbody>
@@ -148,22 +156,10 @@
 
 <script lang="ts" setup>
 const { $store } = useNuxtApp();
-const {
-  invoice,
-  loadInvoiceProducts,
-  products: invoiceProducts,
-} = $store.invoice();
-
+const invoiceStore = $store.invoice();
 const pdfSection = ref<HTMLElement | undefined>(undefined);
-const isLoading = ref(false);
 
-onMounted(async () => {
-  isLoading.value = true;
-  try {
-    await loadInvoiceProducts();
-  } catch (error) {
-  } finally {
-    isLoading.value = false;
-  }
+onMounted(() => {
+  invoiceStore.loadInvoiceProducts();
 });
 </script>

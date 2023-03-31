@@ -7,6 +7,7 @@ import {
 import type { OrderResponseBody } from '@paypal/paypal-js';
 
 type InvoiceStore = {
+  loading: boolean;
   invoices: InvoicesMapped[] | null;
   invoice: InvoiceTableDetail | null;
   products: ProductsMapped[] | null;
@@ -31,6 +32,7 @@ const invoiceMapperHelper = (
 export const useInvoice = defineStore('invoice', {
   state: () =>
     ({
+      loading: false,
       invoice: null,
       invoices: null,
       products: [],
@@ -108,26 +110,33 @@ export const useInvoice = defineStore('invoice', {
       return data;
     },
     async loadInvoiceProducts() {
-      const graphql = useStrapiGraphQL();
-      const temp: ProductsMapped[] = [];
+      try {
+        this.loading = true;
+        const graphql = useStrapiGraphQL();
+        const temp: ProductsMapped[] = [];
 
-      if (!this.invoice?.products.length) return [];
+        if (!this.invoice?.products.length) return [];
 
-      const itemsId = this.invoice.products.map(
-        (product) => product.id_product
-      );
-      const productPromises = itemsId.map((id) =>
-        graphql<ProductsResponse>(GetProductById, { id })
-      );
+        const itemsId = this.invoice.products.map(
+          (product) => product.id_product
+        );
+        const productPromises = itemsId.map((id) =>
+          graphql<ProductsResponse>(GetProductById, { id })
+        );
 
-      const response = await Promise.all(productPromises);
-      const result = mapperData<any[]>(response);
+        const response = await Promise.all(productPromises);
+        const result = mapperData<any[]>(response);
 
-      result.forEach((product) => {
-        temp.push(product.products[0]);
-      });
+        result.forEach((product) => {
+          temp.push(product.products[0]);
+        });
 
-      this.products = temp;
+        this.products = temp;
+      } catch (error: any) {
+        throw new Error(error);
+      } finally {
+        this.loading = false;
+      }
     },
   },
   persist: true,
