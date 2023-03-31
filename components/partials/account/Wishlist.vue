@@ -103,7 +103,7 @@ export default {
         parseJSON: true,
       });
       // return console.log(wishlistItemsOnCookie)
-      if (wishlistItemsOnCookie.items.length > 0) {
+      if (wishlistItemsOnCookie?.items?.length > 0) {
         const queries = getListOfProductId(wishlistItemsOnCookie.items);
         // return queries
         if (queries.length >= 0) {
