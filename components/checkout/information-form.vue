@@ -91,6 +91,13 @@
         </div>
       </div>
 
+      <div class="form__group">
+        <app-checkbox
+          label="Guardar informacion"
+          v-model="checkout.saveInformation"
+        />
+      </div>
+
       <div class="form__btn-group">
         <app-button btn-type="submit" text="Continuar" @click="submit" />
       </div>
@@ -155,6 +162,9 @@ const fillFormFromStorage = () => {
   form.email = checkout.email || '';
   form.name = checkout.name || '';
   form.lastName = checkout.lastName || '';
+
+  if (!checkout.saveInformation) return;
+
   form.address = checkout.address || '';
   form.home = checkout.home || '';
   form.city = checkout.city || '';

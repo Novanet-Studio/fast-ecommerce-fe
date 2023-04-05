@@ -17,6 +17,10 @@ interface ShippingInfo {
   phone?: string;
 }
 
+interface CheckoutStore extends ShippingInfo {
+  saveInformation: boolean;
+}
+
 interface Result {
   hasBilling: Ref<boolean>;
   hasShipping: Ref<boolean>;
@@ -36,7 +40,8 @@ export const useCheckout = defineStore('checkout', {
       city: '',
       zipCode: '',
       phone: '',
-    } as ShippingInfo),
+      saveInformation: false,
+    } as CheckoutStore),
   getters: {
     fullName(): string {
       return `${this.name} ${this.lastName}`;
