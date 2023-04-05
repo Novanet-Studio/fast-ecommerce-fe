@@ -21,7 +21,7 @@ type Props = {
   isError?: boolean | undefined;
   errorMessage?: string | undefined;
   class?: string | undefined;
-  type?: 'text' | 'password' | 'email';
+  type?: 'text' | 'password' | 'email' | 'date' | 'number';
 };
 
 type Emits = {

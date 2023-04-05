@@ -1,5 +1,4 @@
 <template>
-  <!-- ps-block--methods -->
   <div class="payment-methods">
     <Tabs :options="{ useUrlFragmet: false }">
       <tab name="Square up">
@@ -8,40 +7,24 @@
       <tab name="Paypal">
         <paypal-method />
       </tab>
+      <tab name="Pago movil">
+        <pago-movil />
+      </tab>
+      <tab name="Trans BoFa">
+        <trans-bofa />
+      </tab>
+      <tab name="Zelle">
+        <zelle-method />
+      </tab>
+      <tab name="Venmo">
+        <venmo-method />
+      </tab>
     </Tabs>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { Tabs, Tab } from 'vue3-tabs-component';
-type Methods = {
-  text: string;
-  enabled?: boolean;
-  active?: boolean;
-};
-
-const methods: Methods[] = [
-  {
-    text: 'Square Up',
-    enabled: true,
-    active: true,
-  },
-  {
-    text: 'Zelle',
-    enabled: false,
-    active: false,
-  },
-  {
-    text: 'Pago móvil',
-    enabled: false,
-    active: false,
-  },
-  {
-    text: 'Paypal',
-    enabled: false,
-    active: false,
-  },
-];
 </script>
 
 <style scoped>

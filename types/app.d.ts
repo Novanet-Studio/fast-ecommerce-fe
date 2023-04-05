@@ -4,6 +4,14 @@ declare module '*.gql' {
   export = Schema;
 }
 
+declare module 'vue3-tabs-component' {
+  import { Component } from 'vue';
+  const Tabs: Component;
+  const Tab: Component;
+
+  export { Tabs, Tab };
+}
+
 // API Request
 interface CategoriesRequest {
   data: CategoriesRequestData;
@@ -101,6 +109,20 @@ interface CreateInvoiceResponse {
     createInvoice: {
       data: Invoice;
     };
+  };
+}
+
+interface BCVSource {
+  name: string;
+  quote: string;
+  last_retrieved: string;
+}
+
+interface BcvUsdResponse {
+  name: string;
+  pair: string;
+  sources: {
+    BCV: BCVSource;
   };
 }
 
