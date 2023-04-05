@@ -33,7 +33,7 @@
 
 <script lang="ts" setup>
 type Props = {
-  shipping: boolean;
+  shipping?: boolean;
 };
 const { $store } = useNuxtApp();
 const cart = $store.cart();
