@@ -90,11 +90,16 @@ const handleAddToCart = async (product: any) => {
     title: 'Exito!',
     text: `${product.name} ha sido agregado al carrito!`,
   });
+
+  handleRemoveItemFromWishlist(product, false);
 };
 
-const handleRemoveItemFromWishlist = (product: any) => {
+const handleRemoveItemFromWishlist = (product: any, notify = true) => {
   wishlist.removeItemFromWishlist(product);
   loadWishlist();
+
+  if (!notify) return;
+
   $notify({
     group: 'all',
     title: 'Eliminado',
