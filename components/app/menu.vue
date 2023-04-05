@@ -1,5 +1,5 @@
 <template>
-  <ul class="menu" :class="class">
+  <ul class="menu">
     <li
       v-for="item in mainMenu"
       :key="item.text"
@@ -14,13 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-type Props = {
-  class: string;
-};
 
-withDefaults(defineProps<Props>(), {
-  class: 'menu',
-});
 
 const mainMenu = ref([
   {
