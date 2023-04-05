@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- ps-form__heading -->
     <h3 class="information-form-title">Información de contacto</h3>
     <form>
       <div class="form__group">
@@ -101,13 +100,6 @@
       <div class="form__btn-group">
         <app-button btn-type="submit" text="Continuar" @click="submit" />
       </div>
-      <!-- <div class="ps-form__submit">
-        <div class="ps-block__footer">
-          <button class="ps-btn" @click.prevent="onSubmit(handleToShipping)">
-            Continuar
-          </button>
-        </div>
-      </div> -->
     </form>
   </div>
 </template>
@@ -172,6 +164,7 @@ const fillFormFromStorage = () => {
   form.phone = checkout.phone || '';
 };
 
+// TODO! Check this database request
 const fillFormFromStrapiShippingData = async () => {
   try {
     const body = {
@@ -189,13 +182,6 @@ const fillFormFromStrapiShippingData = async () => {
     const response = data?.addresses?.data[0]?.attributes.address;
 
     Object.assign(form, response);
-
-    // form.address = response.address;
-    // form.city = response.city;
-    // form.zipCode = response.zipcode;
-    // form.phone = response.phone;
-    // form.home = response.home;
-    // form.country = response.country;
   } catch (err) {
     console.log(err);
   }
