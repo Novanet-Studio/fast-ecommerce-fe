@@ -9,7 +9,7 @@
         >
         <app-input
           v-model="form.email"
-          placeholder="john@doe.com"
+          placeholder="correo@mail.com"
           :is-error="status.email.isError"
           :error-message="status.email.message"
         />
@@ -21,7 +21,7 @@
             <label class="form__label">Nombre</label>
             <app-input
               v-model="form.name"
-              placeholder="John"
+              placeholder="Juan"
               :is-error="status.name.isError"
               :error-message="status.name.message"
             />
@@ -32,7 +32,7 @@
             <label class="form__label">Apellido</label>
             <app-input
               v-model="form.lastName"
-              placeholder="Doe"
+              placeholder="Pérez"
               :is-error="status.lastName.isError"
               :error-message="status.lastName.message"
             />
@@ -46,7 +46,7 @@
         <label class="form__label">Dirección</label>
         <app-input
           v-model="form.address"
-          placeholder="Venezuela, dto capital"
+          placeholder="Av. Principal con calle Secundaria"
           :is-error="status.address.isError"
           :error-message="status.address.message"
         />
@@ -55,7 +55,7 @@
         <label class="form__label">Apartamento</label>
         <app-input
           v-model="form.home"
-          placeholder="Apartamento nro 12"
+          placeholder="11E"
           :is-error="status.home.isError"
           :error-message="status.home.message"
         />
@@ -75,7 +75,7 @@
           <label class="form__label">Código Postal</label>
           <app-input
             v-model="form.zipCode"
-            placeholder="1073"
+            placeholder="1050"
             :is-error="status.zipCode.isError"
             :error-message="status.zipCode.message"
           />
@@ -84,7 +84,7 @@
           <label class="form__label">Numero de contacto</label>
           <app-input
             v-model="form.phone"
-            placeholder="04122349782"
+            placeholder="04120000102"
             :is-error="status.phone.isError"
             :error-message="status.phone.message"
           />

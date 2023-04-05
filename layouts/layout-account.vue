@@ -1,4 +1,5 @@
 <template>
+  <div>
   <client-only>
     <div class="account">
       <div class="account__wrapper">
@@ -27,6 +28,7 @@
       </div>
     </div>
   </client-only>
+</div>
 </template>
 
 <script lang="ts" setup>

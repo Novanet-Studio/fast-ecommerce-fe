@@ -28,7 +28,7 @@
 
 /* Input */
 .input {
-  @apply w-full border border-gray-300 rounded-md p-4 focus:border-yellow-400 outline-transparent;
+  @apply w-full border border-gray-300 rounded-md p-4;
 }
 
 .input--error {

@@ -5,10 +5,10 @@ export default defineConfig({
   theme: {
     extend: {
       colors: {
-        primary: '',
+        primary: '#FBBF24',
         secondary: '',
         tertiary: '',
-        'primary-alt': '',
+        'primary-alt': '#D1D5DB',
         'secondary-alt': '',
       },
       screens: {

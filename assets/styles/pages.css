@@ -43,10 +43,10 @@
 }
 
 .address__figcaption {
-  @apply mb-8 pb-3 text-xl font-semibold text-[#e36d65] border-b-[1px] border-b-[#e36d65];
+  @apply mb-8 pb-3 text-xl font-semibold text-primary border-b-[1px] border-b-primary-alt;
 }
 .address__text {
-  @apply mb-4 text-[#e36d65] text-sm;
+  @apply mb-4 text-black text-sm;
 }
 
 .address__link {
@@ -433,15 +433,15 @@
 }
 
 .w-table__th-name {
-  @apply border-b-2 border-b-gray-100 border-t-2 border-t-gray-100 bg-white uppercase text-[#e36d65] align-middle text-center font-semibold text-sm;
+  @apply border-b-2 border-b-gray-100 border-t-2 border-t-gray-100 bg-white uppercase text-blach align-middle text-center font-semibold text-sm;
 }
 
 .w-table__th-price {
-  @apply border-b-2 border-b-gray-100 border-t-2 border-t-gray-100 bg-white uppercase text-[#e36d65] text-center py-3 font-semibold text-sm;
+  @apply border-b-2 border-b-gray-100 border-t-2 border-t-gray-100 bg-white uppercase text-blach text-center py-3 font-semibold text-sm;
 }
 
 .w-table__th-action {
-  @apply border-b-2 border-b-gray-100 border-t-2 border-t-gray-100 bg-white uppercase text-[#e36d65] text-center font-semibold text-sm align-middle;
+  @apply border-b-2 border-b-gray-100 border-t-2 border-t-gray-100 bg-white uppercase text-blach text-center font-semibold text-sm align-middle;
 }
 
 .w-table__td-product {

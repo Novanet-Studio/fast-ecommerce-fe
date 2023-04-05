@@ -14,7 +14,7 @@
           <nuxt-link to="/payment" class="ps-btn">
             <!-- TODO: add slot in app-button component -->
             <app-button
-              text="Continuar para el pago"
+              text="Continuar con el pago"
               @click="$router.push('/payment')"
             />
           </nuxt-link>
