@@ -111,9 +111,6 @@ const cart = $store.cart();
 const auth = $store.auth();
 const checkout = $store.checkout();
 const product = $store.product();
-const bcvUsd = ref<number>(0);
-const amountRate = ref<number>(0);
-const loadingBcvUsd = ref<boolean>(false);
 const sending = ref<boolean>(false);
 const productsCart = ref<ProductsMapped[]>([]);
 const productsMail = ref<ProductsMapped[]>([]);
@@ -224,7 +221,7 @@ const { submit } = submitter(async () => {
       $notify({
         group: 'all',
         title: 'Error!',
-        text: `El monto del pago debe ser de ${amountRate.value} y la fecha debe concordar con el dia de hoy!`,
+        text: `El monto del pago no es valido o la fecha no concuerda con el dia de hoy`,
       });
       return;
     }
@@ -261,7 +258,7 @@ async function sendInvoiceEmail(products: any[], payment: any) {
     // TODO! improve types
     const productItems: any[] = [];
     const created = new Date(payment.date).toLocaleDateString();
-    const amountPayed = `$${Number(payment.amount) / amountRate.value} USD`;
+    const amountPayed = `$${Number(payment.amount)} USD`;
     const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
       'sendReceiptEmail'
     );
@@ -335,29 +332,6 @@ async function sendInvoiceEmail(products: any[], payment: any) {
   }
 }
 
-const calculateAmountToPay = () => {
-  const amount = bcvUsd.value * cart.amount;
-  amountRate.value = amount;
-};
-
-const getBCVUsd = async () => {
-  const url = 'https://api.exchangedyn.com/markets/quotes/usdves/bcv';
-  loadingBcvUsd.value = true;
-  try {
-    const response = await fetch(url);
-    const data: BcvUsdResponse = await response.json();
-    const mount = data.sources.BCV.quote.substring(0, 5);
-
-    bcvUsd.value = parseFloat(mount);
-
-    calculateAmountToPay();
-  } catch (error) {
-    console.log('Was an error fetching bcv usd dollar value');
-  } finally {
-    loadingBcvUsd.value = false;
-  }
-};
-
 const getProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
   const hasCartProducts = product.cartProducts?.length;
@@ -387,7 +361,6 @@ const getProducts = async () => {
 };
 
 onMounted(() => {
-  getBCVUsd();
   getProducts();
 });
 </script>
