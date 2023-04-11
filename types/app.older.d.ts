@@ -82,29 +82,6 @@ interface AddressDetail {
   zipCode: string;
 }
 
-interface InvoiceDetail {
-  paid: boolean;
-  amount: number;
-  products: ProductBuyed[];
-  payment_id: string;
-  order_id: string;
-  user_id: string;
-  shippingAddress: AddressDetail;
-  fullName: string;
-  cardType: string;
-  cardKind: string;
-  cardLast: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-interface InvoiceTableDetail extends InvoiceDetail {
-  id: string;
-  id_invoice_user: number;
-  date: string;
-  status: string;
-}
-
 interface Product {
   id: string;
   attributes: {

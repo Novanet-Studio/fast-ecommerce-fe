@@ -20,6 +20,15 @@ query GetInvoicesByUserId($id: Int!) {
         cardKind
         cardLast
         createdAt
+        payment_method
+        payment_info {
+          name
+          email
+          amount
+          lastname
+          confirmation
+          payment_date
+        }
       }
     }
   }

@@ -79,6 +79,8 @@ interface InvoiceAtributes {
   cardType: string;
   cardKind: string;
   cardLast: string;
+  payment_method: string;
+  payment_info: InvoicePaymentInfo[];
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -102,6 +104,15 @@ interface ProductsMapped {
 
 interface InvoicesMapped extends InvoiceAtributes {
   id: string;
+}
+
+interface InvoicePaymentInfo {
+  name: string;
+  email: string;
+  amount: string;
+  lastname: string;
+  confirmation: string;
+  payment_date: string;
 }
 
 interface CreateInvoiceResponse {
@@ -164,6 +175,13 @@ interface ImageMetadata {
 interface ProviderMetadata {
   public_id: string;
   resource_type: string;
+}
+
+interface InvoiceTableDetail extends InvoiceAtributes {
+  id: string;
+  id_invoice_user: number;
+  date: string;
+  status: string;
 }
 
 // ------------------------------------------------------------
@@ -266,12 +284,12 @@ interface AddressDetail {
 //   updatedAt?: Date;
 // }
 
-interface InvoiceTableDetail extends InvoiceDetail {
-  id: string;
-  id_invoice_user: number;
-  date: string;
-  status: string;
-}
+// interface InvoiceTableDetail extends InvoiceDetail {
+//   id: string;
+//   id_invoice_user: number;
+//   date: string;
+//   status: string;
+// }
 
 interface Product {
   id: string;

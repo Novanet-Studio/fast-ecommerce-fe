@@ -1,24 +1,29 @@
 <template>
   <div class="ps-section__content">
-    <div class="ps-section--account-setting border p-8">
-      <div ref="pdfSection">
-        <div class="ps-section__header py-3">
-          <h3 class="text-xl flex items-center gap-2">
+    <div class="ps-section--account-setting">
+      <div ref="pdfSection" class="p-4 text-sm">
+        <div class="ps-section__header py-3 border-b">
+          <h3 class="text-xl flex items-center gap-2 text-yellow-400">
             Factura #{{ invoiceStore.invoice?.id_invoice_user }} -
             <!-- <strong>Successful delivery PPU</strong> -->
-            <strong class="text-xs">Entrega exitosa PPU</strong>
+            <strong class="text-sm">Entrega exitosa PPU</strong>
           </h3>
         </div>
-        <div class="ps-section__content">
-          <div class="row">
+        <div class="ps-section__content mt-4 p-4 bg-light-300">
+          <div class="row flex gap-6 w-full">
             <div class="col-md-4 col-12">
-              <figure class="ps-block--invoice border p-4 rounded-md">
-                <figcaption>Dirección</figcaption>
-                <div class="ps-block__content">
-                  <strong>
+              <figure class="ps-block--invoice">
+                <figcaption class="border-b pb-2 font-bold text-yellow-400">
+                  Dirección
+                </figcaption>
+                <div class="ps-block__content mt-3">
+                  <strong class="text-sm">
                     {{ invoiceStore.invoice?.fullName }}
                   </strong>
-                  <p v-if="invoiceStore.invoice?.shippingAddress">
+                  <p
+                    class="text-sm"
+                    v-if="invoiceStore.invoice?.shippingAddress"
+                  >
                     Dirección:
                     {{ invoiceStore.invoice.shippingAddress.addressLine1 }},
                     <!-- {{ invoiceStore.invoice.attributes.shippingAddress.addressLine1 }}, -->
@@ -29,12 +34,14 @@
                 </div>
               </figure>
             </div>
-            <div class="col-md-4 col-12 py-6">
+            <div class="col-md-4 col-12">
               <figure class="ps-block--invoice">
-                <figcaption class="border-b pb-2 font-bold">Estado</figcaption>
-                <div class="ps-block__content flex gap-2 items-center">
-                  <p v-if="invoiceStore.invoice?.paid">Pagado</p>
-                  <p v-else>No pagado</p>
+                <figcaption class="border-b pb-2 font-bold text-yellow-400">
+                  Estado
+                </figcaption>
+                <div class="ps-block__content flex flex-col">
+                  <p v-if="invoiceStore.invoice?.paid" class="mb-0">Pagado</p>
+                  <p class="mb-0" v-else>Pendiente en aprobación</p>
                   <p class="text-xs">
                     {{ invoiceStore.invoice?.date }}
                   </p>
@@ -43,14 +50,31 @@
             </div>
             <div class="col-md-4 col-12">
               <figure class="ps-block--invoice">
-                <figcaption class="border-b pb-2 font-bold">Pago</figcaption>
-                <div class="ps-block__content">
-                  <p>
+                <figcaption class="border-b pb-2 font-bold text-yellow-400">
+                  Pago
+                </figcaption>
+                <div
+                  class="ps-block__content"
+                  v-if="invoiceStore.invoice?.cardKind !== 'no aplica'"
+                >
+                  <p class="text-sm">
                     Pago: {{ invoiceStore.invoice?.cardKind }},
                     {{ invoiceStore.invoice?.cardType }},
                   </p>
-                  <p>
+                  <p class="text-sm">
                     Ultimos Cuatro digitos: {{ invoiceStore.invoice?.cardLast }}
+                  </p>
+                </div>
+                <div class="ps-block__content" v-else>
+                  <p class="text-sm">
+                    Pago: {{ invoiceStore.invoice?.payment_method || '---' }}
+                  </p>
+                  <p class="text-sm">
+                    Confirmacion de pago:
+                    {{
+                      invoiceStore.invoice?.payment_info[0]?.confirmation ||
+                      '---'
+                    }}
                   </p>
                 </div>
               </figure>
@@ -58,35 +82,35 @@
           </div>
           <div class="flex flex-col">
             <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
-              <div class="py-2 inline-block min-w-full sm:px-6 lg:px-0">
+              <div class="py-2 inline-block min-w-full">
                 <div class="overflow-hidden">
                   <template v-if="invoiceStore.loading">
                     <loading />
                   </template>
                   <table class="min-w-full" v-else>
-                    <thead class="bg-yellow-100 border-b">
+                    <thead class="bg-gray-100 border-b">
                       <tr>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                          class="text-sm font-bold text-yellow-400 px-6 py-4 text-left"
                         >
                           Productos
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                          class="text-sm font-bold text-yellow-400 px-6 py-4 text-left"
                         >
                           Precio
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                          class="text-sm font-bold text-yellow-400 px-6 py-4 text-left"
                         >
                           Cantidad
                         </th>
                         <th
                           scope="col"
-                          class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
+                          class="text-sm font-bold text-yellow-400 px-6 py-4 text-left"
                         >
                           Monto
                         </th>
@@ -98,38 +122,38 @@
                         v-for="(product, index) in invoiceStore.products"
                       >
                         <td
-                          class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900"
+                          class="px-6 py-4 whitespace-nowrap text-xs font-bold text-gray-900"
                         >
                           {{ product.name }}
                         </td>
                         <td
-                          class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                          class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
                         >
                           {{ product.price }}
                         </td>
                         <td
-                          class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                          class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
                         >
                           {{ invoiceStore.invoice?.products[index].quantity }}
                         </td>
                         <td
-                          class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                          class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
                         >
-                          <!-- ${{ product.price }} -->
+                          ${{ product.price }}
                         </td>
                       </tr>
                       <tr
                         class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
                       >
                         <td
-                          class="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900"
+                          class="px-6 py-4 whitespace-nowrap text-xs font-bold text-gray-900"
                         >
                           MONTO TOTAL
                         </td>
                         <td></td>
                         <td></td>
                         <td
-                          class="text-sm text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right"
+                          class="text-xs text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right"
                         >
                           ${{ invoiceStore.invoice?.amount }}
                         </td>
@@ -146,7 +170,22 @@
         <nuxt-link to="/invoices">
           <a class="btn btn--outline">regresar</a>
         </nuxt-link>
-        <button @click="exportToPDF('invoices.pdf', pdfSection)" class="btn">
+        <button
+          @click="
+            exportToPDF(
+              `factura-${invoiceStore.invoice?.id_invoice_user}`,
+              pdfSection,
+              { format: 'a4', unit: 'px' },
+              {
+                margin: 10,
+                image: { type: 'jpeg', quality: 8 },
+                width: 600,
+                windowWidth: 780,
+              }
+            )
+          "
+          class="btn"
+        >
           Generar PDF
         </button>
       </div>
