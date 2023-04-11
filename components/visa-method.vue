@@ -222,6 +222,15 @@ const createInvoice = async (payment: any, products: any[]) => {
   payment.shippingAddress.phone = checkout.phone;
   payment.shippingAddress.home = checkout.home;
 
+  const paymentInfo = {
+    name: checkout.name,
+    lastname: checkout.lastName,
+    email: payment.buyerEmailAddress,
+    confirmation: payment.id,
+    amount: payment.totalMoney.amount / 100,
+    payment_date: new Date(),
+  };
+
   const body = {
     amount: payment.totalMoney.amount / 100,
     order_id: payment.orderId,
@@ -234,6 +243,8 @@ const createInvoice = async (payment: any, products: any[]) => {
     cardType: payment.cardDetails.card.cardBrand,
     cardKind: payment.cardDetails.card.cardType,
     cardLast: payment.cardDetails.card.last4,
+    payment_info: [paymentInfo],
+    payment_method: 'squareup',
   };
 
   const data = await graphql<CreateInvoiceResponse>(CreateInvoice, {
