@@ -73,8 +73,8 @@
                   class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                 >
                   <span
-                    class="p-1 rounded-md text-xs"
-                    :class="item.paid ? 'bg-green-300' : 'bg-red-300'"
+                    class="p-2 rounded-md text-xs"
+                    :class="item.paid ? 'bg-green-300' : 'bg-yellow-200'"
                     >{{ item.status }}</span
                   >
                 </td>
@@ -167,7 +167,7 @@ type State = {
   page: boolean;
   pages: any[];
   number: string | null;
-  invoicesList: InvoiceDetail[] | null;
+  invoicesList: InvoicesData[] | null;
 };
 
 const state = reactive<State>({

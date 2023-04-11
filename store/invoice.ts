@@ -23,7 +23,7 @@ const invoiceMapperHelper = (
     date: new Date(invoice.createdAt as unknown as string).toLocaleDateString(
       'es-VE'
     ),
-    status: invoice.paid ? 'Pagado' : 'Cancelado',
+    status: invoice.paid ? 'Pagado' : 'Pendiente',
   };
 
   return invoices as unknown as InvoiceTableDetail;
