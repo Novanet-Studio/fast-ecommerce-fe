@@ -9,7 +9,7 @@
         :error-message="status.user.message"
       >
         <template #left>
-          <ph-user :size="20" weight="light" class="text-gray-500" />
+          <ph-user :size="20" weight="light" class="text-gray-400" />
         </template>
       </app-input2>
       <app-input2
@@ -20,20 +20,20 @@
         :error-message="status.password.message"
       >
         <template #left>
-          <ph-lock :size="20" weight="light" class="text-gray-500" />
+          <ph-lock :size="20" weight="light" class="text-gray-400" />
         </template>
         <template #right>
-          <div @click="handleIconClick">
+          <div @click="handleIconClick" class="hover:cursor-pointer group">
             <ph-eye
               :size="20"
               weight="light"
-              class="text-gray-500"
+              class="transition text-gray-400 group-hover:text-gray-500"
               v-if="!showPassword"
             />
             <ph-eye-slash
               :size="20"
               weight="light"
-              class="text-gray-500"
+              class="transition text-gray-400 group-hover:text-gray-500"
               v-else
             />
           </div>
