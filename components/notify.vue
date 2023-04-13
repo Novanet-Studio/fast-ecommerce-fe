@@ -24,7 +24,7 @@
   </client-only>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .ps-notify {
   margin-bottom: 10px;
   position: relative;
@@ -34,41 +34,37 @@
   border: 1px solid #f9f9f9;
   border-bottom: 3px solid #feeed7;
   box-shadow: 0 1px 5px 1px rgba(#ccc, 0.5);
+}
 
-  p {
-    margin-bottom: 10px;
-  }
+.ps-notify p {
+  margin-bottom: 10px;
+}
 
-  &__close {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    transition: all 0.4s ease;
+.ps-notify__close {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
 
-    &:hover {
-      box-shadow: 0 0 10px rgba(#ccc, 1);
-      background-color: #fff;
-      transform-origin: 50% 50%;
-      transform: translateY(-50%) rotate(180deg);
+.ps-notify__close:hover {
+  box-shadow: 0 0 10px rgba(#ccc, 1);
+  background-color: #fff;
+  transform-origin: 50% 50%;
+  transform: translateY(-50%) rotate(180deg);
+}
 
-      .ps-icon--cross {
-        &:before,
-        &:after {
-          background-color: #e36d65;
-        }
-      }
-    }
-  }
+.ps-notify__close:hover .ps-icon--cross::before,
+.ps-notify__close:hover .ps-icon--cross::after {
+  background-color: #e36d65;
+}
 
-  &__header {
-    span {
-      font-weight: 600;
-    }
-  }
+.ps-notify__header span {
+  font-weight: 600;
 }
 
 .fade-left-enter-active,

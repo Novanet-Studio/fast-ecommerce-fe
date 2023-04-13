@@ -222,7 +222,7 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .status-color {
   background-color: rgba(216, 255, 154, 0.603);
 }

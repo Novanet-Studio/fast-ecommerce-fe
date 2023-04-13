@@ -51,7 +51,7 @@ const sliderImages = [
 ];
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 /* Set color for swiper arrows */
 
 :global(.swiper-button-next),

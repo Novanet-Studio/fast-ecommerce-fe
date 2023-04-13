@@ -38,7 +38,7 @@ const breadcrumb = ref([
 ]);
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .text-black {
   color: #e36d65;
 }
