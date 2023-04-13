@@ -15,7 +15,7 @@
     "@rollup/plugin-graphql": "^2.0.3",
     "@sidebase/nuxt-pdf": "^0.1.1",
     "graphql": "^16.6.0",
-    "nuxt": "3.3.2",
+    "nuxt": "^3.4.1",
     "nuxt-lodash": "^2.4.1",
     "nuxt-windicss": "^2.6.0",
     "rimraf": "^5.0.0",
