@@ -55,7 +55,7 @@
 }
 
 .header-actions__icon {
-  @apply text-3xl;
+  @apply text-4xl;
 }
 
 .header-actions__indicator-wrapper {
@@ -154,7 +154,7 @@
 }
 
 .user-area__icon {
-  @apply text-3xl;
+  @apply text-4xl;
 }
 
 .user-area__menu-list {

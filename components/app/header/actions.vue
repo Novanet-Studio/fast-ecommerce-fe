@@ -4,7 +4,8 @@
       class="header-actions__link header-actions__link--mx"
       to="/wishlist"
     >
-      <i class="header-actions__icon icon-heart"></i>
+      <!-- <i class="header-actions__icon icon-heart"></i> -->
+      <ph-heart weight="light" class="header-actions__icon" />
       <span class="header-actions__indicator-wrapper" v-if="total">
         <i class="header-actions__indicator">{{ total }}</i>
       </span>
@@ -15,6 +16,7 @@
 </template>
 
 <script lang="ts" setup>
+import { PhHeart } from '@phosphor-icons/vue';
 const { $store } = useNuxtApp();
 const wishlistStore = $store.wishlist();
 const total = computed(() => wishlistStore?.total ?? 0);

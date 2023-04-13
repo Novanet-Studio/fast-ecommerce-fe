@@ -2,7 +2,8 @@
   <div v-if="!auth.authenticated" class="user-area">
     <div class="user-area__icon-wrapper">
       <nuxt-link to="/login">
-        <i class="user-area__icon icon-user"></i>
+        <!-- <i class="user-area__icon icon-user"></i> -->
+        <ph-user class="user-area__icon" weight="light" />
       </nuxt-link>
     </div>
 
@@ -18,7 +19,7 @@
     @mouseover="isOpen = true"
     @mouseleave="isOpen = false"
   >
-    <i class="user-area__icon icon-user"></i>
+    <ph-user class="user-area__icon" weight="light" />
     <div class="user-area__menu-container" v-if="isOpen">
       <ul class="user-area__menu-list">
         <li
@@ -45,6 +46,7 @@
 </template>
 
 <script lang="ts" setup>
+import { PhUser } from '@phosphor-icons/vue';
 const { $store } = useNuxtApp();
 const auth = $store.auth();
 const cart = $store.cart();
