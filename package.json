@@ -30,6 +30,7 @@
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@kyvg/vue3-notification": "^2.9.0",
     "@paypal/paypal-js": "^5.1.5",
+    "@phosphor-icons/vue": "^2.0.1",
     "@pinia/nuxt": "^0.4.7",
     "@unocss/reset": "^0.51.4",
     "firebase": "^9.18.0",
