@@ -30,7 +30,6 @@ export default defineNuxtConfig({
 
   css: [
     '@unocss/reset/tailwind.css',
-    '~/static/Linearicons/Font/demo-files/demo.css',
     '~/assets/styles/index.css',
     '~/assets/styles/components.css',
     '~/assets/styles/pages.css',
