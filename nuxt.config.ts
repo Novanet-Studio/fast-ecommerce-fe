@@ -18,15 +18,6 @@ export default defineNuxtConfig({
     layoutTransition: { name: 'page' },
   },
 
-  build: {
-    transpile: [
-      '@fortawesome/vue-fontawesome',
-      '@fortawesome/fontawesome-svg-core',
-      '@fortawesome/free-solid-svg-icons',
-      '@fortawesome/free-brands-svg-icons',
-    ],
-  },
-
   modules: [
     // Modules
     '@pinia/nuxt',
@@ -44,7 +35,6 @@ export default defineNuxtConfig({
     // 'virtual:windi.css',
     // 'virtual:windi-devtools',
     '@unocss/reset/tailwind.css',
-    '@fortawesome/fontawesome-svg-core/styles.css',
     '~/static/Linearicons/Font/demo-files/demo.css',
     '~/assets/styles/index.css',
     '~/assets/styles/components.css',

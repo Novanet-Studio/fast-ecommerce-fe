@@ -22,10 +22,6 @@
     "rimraf": "^5.0.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-brands-svg-icons": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@kyvg/vue3-notification": "^2.9.0",
     "@paypal/paypal-js": "^5.1.5",
