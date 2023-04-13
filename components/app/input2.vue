@@ -4,22 +4,11 @@
       class="flex items-center border p-4 rounded-md"
       :class="[error && 'input--error', focus && 'border-yellow-400']"
     >
-      <div
-        v-if="iconLeft"
-        class="flex-0 mr-3"
-        :class="
-          typeof onClickLeftIcon !== 'undefined' && 'cursor-pointer group'
-        "
-        @click="onClickLeftIcon"
-      >
-        <font-awesome
-          :icon="iconLeft"
-          :size="iconSize"
-          class="text-gray-400 transition group-hover:text-gray-500"
-        />
+      <div class="flex-0 mr-3" v-if="$slots.left">
+        <slot name="left" />
       </div>
       <input
-        class="flex-1 outline-transparent"
+        class="flex-1 outline-transparent focus-visible:(outline-transparent ring-transparent)"
         :type="type"
         v-model="value"
         @focus="focus = true"
@@ -27,18 +16,8 @@
         :placeholder="placeholder"
         height="50"
       />
-      <div
-        v-if="iconRight"
-        :class="
-          typeof onClickRightIcon !== 'undefined' && 'cursor-pointer group'
-        "
-        @click="onClickRightIcon"
-      >
-        <font-awesome
-          :icon="iconRight"
-          :size="iconSize"
-          class="text-gray-400 transition group-hover:text-gray-500"
-        />
+      <div v-if="$slots.right">
+        <slot name="right" />
       </div>
     </div>
     <div class="">

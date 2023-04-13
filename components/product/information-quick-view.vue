@@ -24,7 +24,8 @@
             class="info-quick-view__actions-btn"
             @click.prevent="handleDescreaseQuantity"
           >
-            <font-awesome icon="fa fa-minus" size="xs" class="text-gray-500" />
+            <!-- <font-awesome icon="fa fa-minus" size="xs" class="text-gray-500" /> -->
+            <ph-minus :size="12" class="text-gray-500" />
           </button>
           <input
             class="info-quick-view__actions-input"
@@ -36,7 +37,8 @@
             class="info-quick-view__actions-btn"
             @click.prevent="handleIncreaseQuantity"
           >
-            <font-awesome icon="fa fa-plus" size="xs" class="text-gray-500" />
+            <!-- <font-awesome icon="fa fa-plus" size="xs" class="text-gray-500" /> -->
+            <ph-plus :size="12" class="text-gray-500" />
           </button>
         </div>
       </figure>
@@ -55,6 +57,7 @@
 </template>
 
 <script lang="ts" setup>
+import { PhPlus, PhMinus } from '@phosphor-icons/vue';
 const { $store, $notify } = useNuxtApp();
 const router = useRouter();
 const props = defineProps<{ product: ProductsMapped }>();

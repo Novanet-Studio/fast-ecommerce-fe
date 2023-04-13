@@ -7,18 +7,38 @@
         placeholder="john o john@doe.com"
         :error="status.user.isError"
         :error-message="status.user.message"
-        icon-left="fa fa-user"
-      />
+      >
+        <template #left>
+          <ph-user :size="20" weight="light" class="text-gray-500" />
+        </template>
+      </app-input2>
       <app-input2
         v-model="form.password"
         placeholder="Ingrese su contraseña"
         :type="showPassword ? 'text' : 'password'"
         :error="status.password.isError"
         :error-message="status.password.message"
-        icon-left="fa fa-lock"
-        :icon-right="!showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
-        @click-right-icon="handleIconClick"
-      />
+      >
+        <template #left>
+          <ph-lock :size="20" weight="light" class="text-gray-500" />
+        </template>
+        <template #right>
+          <div @click="handleIconClick">
+            <ph-eye
+              :size="20"
+              weight="light"
+              class="text-gray-500"
+              v-if="!showPassword"
+            />
+            <ph-eye-slash
+              :size="20"
+              weight="light"
+              class="text-gray-500"
+              v-else
+            />
+          </div>
+        </template>
+      </app-input2>
       <div class="auth-form__footer">
         <template v-if="state.isLoading">
           <loading />
@@ -35,6 +55,7 @@
 </template>
 
 <script lang="ts" setup>
+import { PhUser, PhLock, PhEye, PhEyeSlash } from '@phosphor-icons/vue';
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
