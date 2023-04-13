@@ -31,6 +31,7 @@
     "@kyvg/vue3-notification": "^2.9.0",
     "@paypal/paypal-js": "^5.1.5",
     "@pinia/nuxt": "^0.4.7",
+    "@unocss/reset": "^0.51.4",
     "firebase": "^9.18.0",
     "gitart-vue-dialog": "^3.0.2",
     "slimeform": "^0.9.1",

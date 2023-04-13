@@ -32,7 +32,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/strapi',
-    'nuxt-windicss',
+    // 'nuxt-windicss',
+    '@unocss/nuxt',
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/image-edge',
     '@sidebase/nuxt-pdf',
@@ -40,8 +41,9 @@ export default defineNuxtConfig({
   ],
 
   css: [
-    'virtual:windi.css',
-    'virtual:windi-devtools',
+    // 'virtual:windi.css',
+    // 'virtual:windi-devtools',
+    '@unocss/reset/tailwind.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
     '~/static/Linearicons/Font/demo-files/demo.css',
     '~/assets/styles/index.css',
