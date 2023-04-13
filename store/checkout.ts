@@ -29,19 +29,22 @@ interface Result {
 
 type Data = Record<string, string>;
 
+const defaultState = {
+  email: '',
+  name: '',
+  lastName: '',
+  address: '',
+  home: '',
+  city: '',
+  zipCode: '',
+  phone: '',
+  saveInformation: false,
+};
+
 export const useCheckout = defineStore('checkout', {
-  state: () =>
-    ({
-      email: '',
-      name: '',
-      lastName: '',
-      address: '',
-      home: '',
-      city: '',
-      zipCode: '',
-      phone: '',
-      saveInformation: false,
-    } as CheckoutStore),
+  state: (): CheckoutStore => ({
+    ...defaultState,
+  }),
   getters: {
     fullName(): string {
       return `${this.name} ${this.lastName}`;
@@ -233,6 +236,17 @@ export const useCheckout = defineStore('checkout', {
         hasShipping,
         isLoading,
       };
+    },
+    reset() {
+      this.email = '';
+      this.name = '';
+      this.lastName = '';
+      this.address = '';
+      this.home = '';
+      this.city = '';
+      this.zipCode = '';
+      this.phone = '';
+      this.saveInformation = false;
     },
   },
   persist: true,

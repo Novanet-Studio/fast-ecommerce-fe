@@ -149,6 +149,12 @@ const fillFormFromStorage = () => {
     form.email = auth.user.email;
   }
 
+  if (auth.user.email !== checkout.email) {
+    checkout.reset();
+    checkout.email = auth.user.email;
+    return;
+  }
+
   if (!checkout.email) return;
 
   form.email = checkout.email || '';
