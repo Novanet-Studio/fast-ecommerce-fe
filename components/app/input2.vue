@@ -8,7 +8,7 @@
         <slot name="left" />
       </div>
       <input
-        class="flex-1 outline-transparent focus-visible:(outline-transparent ring-transparent)"
+        class="flex-1 outline-none"
         :type="type"
         v-model="value"
         @focus="focus = true"
