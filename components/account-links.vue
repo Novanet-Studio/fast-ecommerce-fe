@@ -10,7 +10,7 @@
         :to="link.url"
         class="flex items-center px-5 py-4 font-medium uppercase"
       >
-        <i class="mr-3" :class="link.icon"></i>
+        <span class="mr-3"><component :is="getIcon(link.name)" /></span>
         {{ link.text }}
       </nuxt-link>
     </li>
@@ -20,7 +20,8 @@
         href="#"
         @click.prevent="handleLogout"
       >
-        <i class="mr-3 icon-power-switch"></i>
+        <!-- <i class="mr-3 icon-power-switch"></i> -->
+        <ph-power weight="light" class="mr-3" />
         Cerrar Sesión
       </a>
     </li>
@@ -28,6 +29,13 @@
 </template>
 
 <script lang="ts" setup>
+import {
+  PhPower,
+  PhMapPin,
+  PhReceipt,
+  PhBag,
+  PhHeart,
+} from '@phosphor-icons/vue';
 const { $store } = useNuxtApp();
 const global = $store.global();
 const auth = $store.auth();
@@ -45,5 +53,16 @@ const handleLogout = () => {
   auth.authenticated = false;
   cart.clearCart();
   router.push('/');
+};
+
+const getIcon = (icon: string) => {
+  const icons: { [key: string]: any } = {
+    invoices: PhReceipt,
+    address: PhMapPin,
+    'shopping-cart': PhBag,
+    wishlist: PhHeart,
+  };
+
+  return icons[icon];
 };
 </script>
