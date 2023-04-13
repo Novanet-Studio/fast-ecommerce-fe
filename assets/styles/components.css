@@ -207,7 +207,7 @@
 }
 
 .info-quick-view__actions-btn {
-  @apply block w-14 h-5 max-w-14 lg:(w-5 h-5 max-w-5);
+  @apply flex items-center justify-center pt-1 w-14 h-5 max-w-14 lg:(w-5 h-5 max-w-5);
 }
 
 .info-quick-view__actions-input {
