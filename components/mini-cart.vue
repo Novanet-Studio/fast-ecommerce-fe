@@ -2,11 +2,13 @@
   <div class="relative">
     <div @mouseover="isOpen = true" @mouseleave="isOpen = false">
       <a class="header-actions__link" href="#" @click="loadCartProducts">
-        <i class="header-actions__icon icon-bag2"></i>
+        <!-- <i class="header-actions__icon icon-bag2"></i> -->
+        <ph-bag class="header-actions__icon" weight="light" />
         <span class="header-actions__indicator-wrapper">
           <i class="header-actions__indicator">{{ total }}</i>
         </span>
       </a>
+      <!-- Menu -->
       <div v-if="isOpen && total > 0" class="mini-cart">
         <div class="mini-cart__body">
           <template v-if="isLoadingCart">
@@ -45,6 +47,7 @@
 </template>
 
 <script lang="ts" setup>
+import { PhBag } from '@phosphor-icons/vue';
 import { getProductById as GetProductById } from '~/graphql';
 
 const { $store } = useNuxtApp();

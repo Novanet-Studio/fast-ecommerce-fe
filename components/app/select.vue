@@ -7,15 +7,19 @@
       <div class="flex-0 mr-3" v-if="$slots.left">
         <slot name="left" />
       </div>
-      <input
-        class="flex-1 outline-none"
-        :type="type"
+      <select
+        class="flex-1 outline-none !bg-transparent"
         v-model="value"
         @focus="focus = true"
         @blur="focus = false"
         :placeholder="placeholder"
         height="50"
-      />
+      >
+        <option class="form-control" selected disabled v-if="defaultMessage">
+          <!-- -- Selecciona un pais -- -->
+          {{ defaultMessage }}
+        </option>
+      </select>
       <div v-if="$slots.right">
         <slot name="right" />
       </div>
@@ -35,13 +39,7 @@ type Props = {
   error?: boolean | undefined;
   errorMessage?: string | undefined;
   class?: string | undefined;
-  type?: 'text' | 'password' | 'email';
-  iconLeft?: string;
-  iconSize?: string;
-  iconClass?: string;
-  iconRight?: string;
-  onClickRightIcon?: () => void;
-  onClickLeftIcon?: () => void;
+  defaultMessage?: string | undefined;
 };
 
 type Emits = {

@@ -12,6 +12,7 @@ interface ShippingInfo {
   lastName?: string;
   address?: string;
   home?: string;
+  country?: string;
   city?: string;
   zipCode?: string;
   phone?: string;
@@ -35,6 +36,7 @@ const defaultState = {
   lastName: '',
   address: '',
   home: '',
+  country: '',
   city: '',
   zipCode: '',
   phone: '',
@@ -52,6 +54,9 @@ export const useCheckout = defineStore('checkout', {
     fullAddress(): string {
       return `${this.address}, ${this.city}, ${this.zipCode}`;
     },
+    shippingAddress(): string {
+      return `${this.address} ${this.home}, ${this.city}. Zip Code: ${this.zipCode}. ${this.country}`;
+    },
   },
   actions: {
     shippingInfo(info: ShippingInfo) {
@@ -60,6 +65,7 @@ export const useCheckout = defineStore('checkout', {
       this.lastName = info.lastName;
       this.address = info.address;
       this.home = info.home;
+      this.country = info.country;
       this.city = info.city;
       this.zipCode = info.zipCode;
       this.phone = info.phone;
@@ -243,6 +249,7 @@ export const useCheckout = defineStore('checkout', {
       this.lastName = '';
       this.address = '';
       this.home = '';
+      this.country = '';
       this.city = '';
       this.zipCode = '';
       this.phone = '';

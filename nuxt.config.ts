@@ -1,5 +1,3 @@
-// import { defineNuxtConfig } from 'nuxt';
-import { resolve } from 'path';
 import gql from '@rollup/plugin-graphql';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -18,21 +16,13 @@ export default defineNuxtConfig({
     layoutTransition: { name: 'page' },
   },
 
-  build: {
-    transpile: [
-      '@fortawesome/vue-fontawesome',
-      '@fortawesome/fontawesome-svg-core',
-      '@fortawesome/free-solid-svg-icons',
-      '@fortawesome/free-brands-svg-icons',
-    ],
-  },
-
   modules: [
     // Modules
     '@pinia/nuxt',
+    '@vueuse/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/strapi',
-    'nuxt-windicss',
+    '@unocss/nuxt',
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/image-edge',
     '@sidebase/nuxt-pdf',
@@ -40,10 +30,7 @@ export default defineNuxtConfig({
   ],
 
   css: [
-    'virtual:windi.css',
-    'virtual:windi-devtools',
-    '@fortawesome/fontawesome-svg-core/styles.css',
-    '~/static/Linearicons/Font/demo-files/demo.css',
+    '@unocss/reset/tailwind.css',
     '~/assets/styles/index.css',
     '~/assets/styles/components.css',
     '~/assets/styles/pages.css',
@@ -63,14 +50,6 @@ export default defineNuxtConfig({
       SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
       // SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
       PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
-    },
-  },
-
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        types: ['nuxt-windicss'],
-      },
     },
   },
 

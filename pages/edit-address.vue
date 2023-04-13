@@ -1,6 +1,13 @@
 <template>
   <section class="edit-address" v-if="type">
-    <edit-address-content :type="type" />
+    <div class="edit-address__wrapper">
+      <header class="edit-address__header">
+        <h3 class="edit-address__title">Direcciones</h3>
+      </header>
+      <div class="edit-address__content">
+        <edit-address-form :type="type" />
+      </div>
+    </div>
   </section>
 </template>
 
@@ -10,22 +17,9 @@ import { AddressType } from '~/types';
 definePageMeta({
   middleware: 'authentication',
   layout: 'layout-account',
-  pageTransition: {
-    name: 'page',
-  },
 });
 
 const route = useRoute();
-// const router = useRouter();
-// const breadCrumb = ref([
-//   {
-//     text: 'Home',
-//     url: '/'
-//   },
-//   {
-//     text: 'Edit Address'
-//   }
-// ]);
 
 const type = computed(() => {
   const type = route.fullPath.split('?')[1];

@@ -1,6 +1,5 @@
 <template>
   <div class="ps-page--single">
-    <bread-crumb :breadcrumb="breadcrumb" />
     <div class="ps-page--404">
       <div class="container">
         <div class="ps-section__content">
@@ -22,23 +21,10 @@
 <script lang="ts" setup>
 definePageMeta({
   layout: false,
-  pageTransition: {
-    name: 'page',
-  },
 });
-
-const breadcrumb = ref([
-  {
-    text: 'Home',
-    url: '/',
-  },
-  {
-    text: 'Page 404',
-  },
-]);
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .text-black {
   color: #e36d65;
 }

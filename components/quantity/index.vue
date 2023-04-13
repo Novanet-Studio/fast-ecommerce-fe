@@ -1,16 +1,18 @@
 <template>
   <div class="quantity">
     <button class="quantity__btn" @click.prevent="handleIncreaseQuantity">
-      <font-awesome icon="fa fa-plus" />
+      <ph-plus weight="light" />
     </button>
     <input class="quantity__input" v-model="quantity" type="text" disabled />
     <button class="quantity__btn" @click.prevent="handleDescreaseQuantity">
-      <font-awesome icon="fa fa-minus" />
+      <ph-minus weight="light" />
     </button>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { PhPlus, PhMinus } from '@phosphor-icons/vue';
+
 type Props = {
   product: ProductsMapped;
 };

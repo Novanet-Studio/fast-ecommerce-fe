@@ -71,7 +71,7 @@ const sendInvoiceEmail = async (
       payed: amountPayed,
       email: auth.user.email,
       phone: checkout.phone,
-      shipping: checkout.fullAddress,
+      shipping: checkout.shippingAddress,
       nameCustomer: checkout.fullName,
       date: created,
       content: emailContent,

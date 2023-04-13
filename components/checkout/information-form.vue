@@ -60,6 +60,19 @@
         />
       </div>
 
+      <div class="form__group">
+        <label class="form__label">Pais</label>
+        <app-custom-select
+          v-model="form.country"
+          label="name"
+          value-key="code"
+          :options="countries"
+          placeholder="Selecciona una opcion"
+          :error="status.country.isError"
+          :error-message="status.country.message"
+        />
+      </div>
+
       <div class="form__grid">
         <div class="form__group-alt">
           <label class="form__label">Ciudad</label>
@@ -110,6 +123,7 @@ import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 import { getAddressByIdAndType as GetAddressByIdAndType } from '~/graphql';
 import { AddressType } from '~/types';
+import countries from '~/data/countries.json';
 
 const { $store } = useNuxtApp();
 const router = useRouter();
@@ -123,6 +137,7 @@ const { form, status, submitter, verify } = useForm({
     lastName: '',
     email: '',
     address: '',
+    country: '',
     home: '',
     city: '',
     zipCode: '',
@@ -136,6 +151,7 @@ const { form, status, submitter, verify } = useForm({
       yupFieldRule(yup.string().email('Formato de email inválido')),
     ],
     address: yupFieldRule(yup.string().required('El campo es obligatorio')),
+    country: yupFieldRule(yup.string().required('El campo es obligatorio')),
     home: yupFieldRule(yup.string().required('El campo es obligatorio')),
     city: yupFieldRule(yup.string().required('El campo es obligatorio')),
     zipCode: yupFieldRule(yup.string().required('El campo es obligatorio')),

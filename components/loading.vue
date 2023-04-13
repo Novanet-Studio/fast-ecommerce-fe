@@ -9,8 +9,7 @@
   </div>
 </template>
 
-
-<style lang="scss" scoped>
+<style scoped>
 .lds-ellipsis {
   display: inline-block;
   position: relative;

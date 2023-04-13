@@ -66,7 +66,7 @@ const setThumbsSwiper = (swiper: any) => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .swiper {
   width: 100%;
   height: 100%;

@@ -22,7 +22,10 @@
           />
         </svg>
       </button>
-      <div class="navigation__content" :class="[isOpen ? 'flex' : 'hidden']">
+      <div
+        class="navigation__content lg:flex"
+        :class="[isOpen ? 'flex' : 'hidden']"
+      >
         <app-menu />
       </div>
     </div>

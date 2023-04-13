@@ -10,10 +10,13 @@
         <label class="address-form__label"
           >País<sup class="address-form__required">*</sup></label
         >
-        <app-input
+        <app-custom-select
           v-model="form.country"
-          placeholder="Venezuela"
-          :is-error="status.country.isError"
+          label="name"
+          value-key="code"
+          :options="countries"
+          placeholder="Selecciona una opcion"
+          :error="status.country.isError"
           :error-message="status.country.message"
         />
       </div>
@@ -62,6 +65,7 @@ import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 import { AddressType } from '~/types';
+import countries from '~/data/countries.json';
 
 const props = defineProps<{ type: AddressType }>();
 

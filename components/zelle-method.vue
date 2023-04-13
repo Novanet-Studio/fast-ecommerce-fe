@@ -174,7 +174,7 @@ async function createInvoice(payment: any, products: any[]) {
   const addressData = {
     phone: checkout.phone,
     home: checkout.home,
-    // country: checkout.country,
+    country: checkout.country,
     locality: checkout.city,
     postalCode: checkout.zipCode,
     addressLine1: checkout.address,
@@ -293,7 +293,7 @@ async function sendInvoiceEmail(products: any[], payment: any) {
       payed: amountPayed,
       email: auth.user.email,
       phone: checkout.phone,
-      shipping: checkout.fullAddress,
+      shipping: checkout.shippingAddress,
       nameCustomer: checkout.fullName,
       date: created,
       content: emailContent,

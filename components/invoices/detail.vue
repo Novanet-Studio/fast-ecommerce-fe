@@ -30,6 +30,10 @@
                     <!-- {{ invoiceStore.invoice.shippingAddress.locality }}, ??? -->
                     {{ invoiceStore.invoice.shippingAddress.locality }},
                     {{ invoiceStore.invoice.shippingAddress.country }}
+                    <br />
+                    {{ invoiceStore.invoice.shippingAddress.zipCode }}
+                    <b>Apt, casa: </b>
+                    {{ invoiceStore.invoice.shippingAddress.home }}
                   </p>
                 </div>
               </figure>

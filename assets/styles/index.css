@@ -39,7 +39,7 @@
 }
 
 .header__content {
-  @apply flex flex-col justify-center flex-basis-[55%] sm:max-w-60 md:(max-w-[23.125rem] flex-basis-[auto]);
+  @apply flex flex-col justify-center flex-basis-[55%] sm:max-w-60 md:(max-w-[23.125rem] flex-basis-[auto]) lg:max-w-80;
 }
 
 .header-actions {
@@ -47,7 +47,7 @@
 }
 
 .header-actions__link {
-  @apply inline-block relative w-[30px] h-[42px] transition ease;
+  @apply flex relative transition ease;
 }
 
 .header-actions__link--mx {
@@ -55,7 +55,7 @@
 }
 
 .header-actions__icon {
-  @apply text-3xl;
+  @apply text-4xl;
 }
 
 .header-actions__indicator-wrapper {
@@ -154,7 +154,7 @@
 }
 
 .user-area__icon {
-  @apply text-3xl;
+  @apply text-4xl;
 }
 
 .user-area__menu-list {
