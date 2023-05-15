@@ -3,19 +3,12 @@ import { register as registerQuery } from '~/graphql';
 import { HttpsCallable } from '~/types';
 import { login as loginQuery } from '~/graphql';
 
-type RegisterPaylod = {
+type RegisterPayload = {
   email: string;
   username: string;
   password: string;
   customerId: string;
 };
-
-interface User {
-  id: string;
-  email: string;
-  username: string;
-  customerId: string;
-}
 
 interface AuthState {
   token: string;
@@ -69,12 +62,12 @@ export const useAuth = defineStore('auth', {
 
       return true;
     },
-    async register(body: RegisterPaylod): Promise<boolean> {
+    async register(body: RegisterPayload): Promise<boolean> {
       const { $notify } = useNuxtApp();
       const { setToken } = useStrapiAuth();
       const graphql = useStrapiGraphQL();
 
-      const { data } = await graphql<RegisterResponse>(registerQuery, body);
+      const { data } = await graphql<RegisterRequest>(registerQuery, body);
 
       if (!data) {
         $notify({
@@ -99,7 +92,10 @@ export const useAuth = defineStore('auth', {
     },
     async createCustomer(user: string, email: string) {
       const { $httpsCallable } = useNuxtApp();
-      const customerId = $httpsCallable(HttpsCallable.CreateCustomer);
+      const httpsCallable = $httpsCallable as HttpsCallableHelper;
+      const customerId = httpsCallable<HttpsCallable.CreateCustomer, any>(
+        HttpsCallable.CreateCustomer
+      );
       const idempotencyKey = crypto.randomUUID();
       const data = {
         idempotencyKey,
@@ -110,13 +106,16 @@ export const useAuth = defineStore('auth', {
       return customerId(data);
     },
     reset() {
+      const { logout } = useStrapiAuth();
+
       this.token = '';
       this.user.id = '';
       this.user.email = '';
       this.user.username = '';
       this.user.customerId = '';
-      // Object.assign(this.user, initialState.user);
       this.authenticated = false;
+      Object.assign(this.user, initialState.user);
+      logout();
     },
   },
   persist: true,

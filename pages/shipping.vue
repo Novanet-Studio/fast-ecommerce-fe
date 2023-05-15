@@ -1,12 +1,12 @@
 <template>
   <section class="block">
-    <header class="block__header">
-      <h1 class="block__title">Shipping Information</h1>
+    <header class="b-header">
+      <h1 class="b-title">Shipping Information</h1>
     </header>
     <div class="block__content">
-      <div class="block__left">
+      <div class="b-left">
         <resume-information />
-        <div class="block__link-wrapper">
+        <div class="b-link-wrapper">
           <nuxt-link to="/checkout">
             <i class="icon-arrow-left mr-2"></i>
             Regresar
@@ -20,7 +20,7 @@
           </nuxt-link>
         </div>
       </div>
-      <div class="block__right">
+      <div class="b-right">
         <order-summary :shipping="false" />
       </div>
     </div>

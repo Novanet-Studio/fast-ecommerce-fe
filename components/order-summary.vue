@@ -45,3 +45,33 @@ withDefaults(defineProps<Props>(), {
   shipping: false,
 });
 </script>
+
+<style scoped>
+.order-summary__title {
+  @apply font-semibold mb-3 text-yellow-400 text-2xl;
+}
+
+.order-summary__content {
+  @apply px-5 py-8 mb-3 rounded-sm border border-light-600;
+}
+
+.order-summary__figure {
+  @apply mb-6 pb-6 border-b-2 border-b-light-600;
+}
+
+.order-summary__figcaption {
+  @apply flex justify-between font-normal;
+}
+
+.order-summary__strong-text {
+  @apply text-sm text-dark-200 font-semibold uppercase;
+}
+
+.order-summary__link {
+  @apply py-3 flex justify-between w-full;
+}
+
+.order-summary__price {
+  @apply text-sm text-dark-100;
+}
+</style>

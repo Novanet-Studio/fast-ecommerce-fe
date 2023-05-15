@@ -42,3 +42,29 @@ const socialNetworks = [
   },
 ];
 </script>
+
+<style scoped>
+.widgets {
+  @apply pb-7 mx-4 lg:container lg:mx-auto;
+}
+
+.widgets__wrapper {
+  @apply max-w-full w-full relative pb-5 mb-5;
+}
+
+.widgets__title {
+  @apply text-xl mb-[10px] font-bold text-yellow-400;
+}
+
+.widgets__list {
+  @apply mt-7;
+}
+
+.widgets__item {
+  @apply relative inline-block mr-[20px] align-top;
+}
+
+.widgets__link {
+  @apply text-yellow-400 inline-block text-lg;
+}
+</style>

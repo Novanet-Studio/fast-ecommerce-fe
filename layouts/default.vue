@@ -19,3 +19,22 @@
     </client-only>
   </div>
 </template>
+
+<style scoped>
+.default {
+  @apply flex relative;
+}
+.default__container {
+  @apply flex flex-1 max-w-full transition animate-ease-[cubic-bezier(0.4,0,0.2,1)];
+}
+
+.default__wrapper {
+  @apply flex-auto backface-hidden flex flex-col min-h-screen max-w-full relative;
+}
+.default__content {
+  @apply flex-auto max-w-full relative;
+}
+.default__main {
+  @apply lg:container lg:mx-auto;
+}
+</style>

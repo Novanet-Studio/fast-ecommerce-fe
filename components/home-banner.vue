@@ -53,10 +53,33 @@ const sliderImages = [
 
 <style scoped>
 /* Set color for swiper arrows */
-
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
   --swiper-navigation-size: 2rem;
   --swiper-navigation-color: #fbbf24;
+}
+
+.banner {
+  @apply pt-8 mb-8;
+}
+
+.banner__wrapper {
+  @apply flex flex-col flex-nowrap max-w-[1650px] mx-auto lg:flex-row;
+}
+
+.banner__left {
+  @apply w-full min-h-full mb-4 lg:max-w-[calc(100%-390px)];
+}
+
+.banner__slider {
+  @apply min-h-full relative;
+}
+
+.banner__slider-image {
+  @apply block w-full h-80 bg-center bg-cover lg:(h-full min-h-xl);
+}
+
+.banner__right {
+  @apply w-full flex justify-between gap-4 text-white lg:(max-w-[390px] ml-8 flex-col gap-8);
 }
 </style>

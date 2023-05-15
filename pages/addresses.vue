@@ -69,3 +69,24 @@ const { $store } = useNuxtApp();
 const checkout = $store.checkout();
 const { hasBilling, hasShipping } = checkout.checkAddressType();
 </script>
+
+<style scoped>
+.address {
+  @apply flex flex-col gap-10 p-5 lg:(flex-row gap-5);
+}
+
+.address__content {
+  @apply max-w-full flex-[0_0_100%] md:(max-w-[50%] flex-[0_0_50%]);
+}
+
+.address__figcaption {
+  @apply mb-8 pb-3 text-xl font-semibold text-primary border-b-[1px] border-b-primary-alt;
+}
+.address__text {
+  @apply mb-4 text-black text-sm;
+}
+
+.address__link {
+  @apply text-base text-yellow-400 transition ease hover:text-yellow-500;
+}
+</style>

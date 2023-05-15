@@ -1,6 +1,7 @@
 <template>
   <nuxt-link
-    class="flex h-full justify-center items-center"
+    class="flex h-32 justify-center items-center"
+    :class="class"
     :to="`/product/${product.id}`"
   >
     <nuxt-img
@@ -16,9 +17,10 @@
 </template>
 
 <script lang="ts" setup>
-type Props = {
+interface Props {
   product: ProductsMapped;
-};
+  class?: string;
+}
 
 const props = defineProps<Props>();
 const imageUrl = computed(() => props?.product?.image[0]?.formats?.small?.url);

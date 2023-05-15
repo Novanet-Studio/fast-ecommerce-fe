@@ -1,5 +1,5 @@
 <template>
-  <div class="payment-methods">
+  <div class="w-full">
     <Tabs :options="{ useUrlFragmet: false }">
       <tab name="Square up">
         <visa-method />

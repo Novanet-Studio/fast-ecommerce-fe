@@ -32,3 +32,25 @@ const type = computed(() => {
   return type as AddressType.None;
 });
 </script>
+
+<style scoped>
+.edit-address {
+  @apply w-full lg:ml-8;
+}
+
+.edit-address__wrapper {
+  @apply w-full;
+}
+
+.edit-address__header {
+  @apply mb-8 pb-3 border-b border-b-light-800;
+}
+
+.edit-address__title {
+  @apply text-2xl font-semibold text-yellow-400;
+}
+
+.edit-address__content {
+  @apply p-5;
+}
+</style>

@@ -10,13 +10,16 @@ type WishlistStore = {
   loading: boolean;
 };
 
+const defaultValues = {
+  items: [],
+  total: 0,
+  loading: false,
+};
+
 export const useWishList = defineStore('wishlist', {
-  state: () =>
-    ({
-      items: [],
-      total: 0,
-      loading: false,
-    } as WishlistStore),
+  state: (): WishlistStore => ({
+    ...defaultValues,
+  }),
   actions: {
     initWishList(payload: { items: { id: string }[]; total: number }): void {
       this.items = payload.items;

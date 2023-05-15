@@ -9,7 +9,7 @@
         href="#"
         @click.prevent="handleRemoveProductFromCart(product)"
       >
-        <i class="icon-cross"></i>
+        <ph-x weight="light" class="text-yellow-400" />
       </a>
       <product-title :product="product" />
       <small v-if="quantity !== null">
@@ -21,7 +21,7 @@
 
 <script lang="ts" setup>
 // import { getProductById as GetProductById } from '~/graphql';
-
+import { PhX } from '@phosphor-icons/vue';
 const { $store } = useNuxtApp();
 
 // const graphql = useStrapiGraphQL();
@@ -78,3 +78,21 @@ const handleRemoveProductFromCart = (product: any) => {
   cartStore.removeProductFromCart(cartItem as CartItem);
 };
 </script>
+
+<style scoped>
+.product-mini-cart {
+  @apply mb-8 flex flex-nowrap h-16;
+}
+
+.product-mini-cart__image-wrapper {
+  @apply max-w-14 w-full flex-auto;
+}
+
+.product-mini-cart__body {
+  @apply relative pr-8 pl-5 flex-1;
+}
+
+.product-mini-cart__icon-wrapper {
+  @apply absolute top-0 right-0;
+}
+</style>

@@ -8,7 +8,7 @@
       :placeholder="placeholder"
       height="50"
     />
-    <div class="input__error" v-if="isError && errorMessage">
+    <div class="input-error" v-if="isError && errorMessage">
       {{ errorMessage }}
     </div>
   </div>
@@ -39,3 +39,13 @@ const value = computed({
   set: (val: string) => emits('update:modelValue', val),
 });
 </script>
+
+<style scoped>
+.input {
+  @apply w-full border border-gray-300 rounded-md p-4;
+}
+
+.input-error {
+  @apply text-sm pt-3 text-red-500;
+}
+</style>

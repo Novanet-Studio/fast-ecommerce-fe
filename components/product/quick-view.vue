@@ -12,3 +12,9 @@ type Props = {
 
 defineProps<Props>();
 </script>
+
+<style scoped>
+.product-quick-view {
+  @apply mb-0 flex flex-col flex-wrap justify-center items-center lg:(flex-nowrap flex-row);
+}
+</style>

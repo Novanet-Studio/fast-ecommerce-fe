@@ -152,3 +152,33 @@ onMounted(() => {
   getLastAddress();
 });
 </script>
+
+<style scoped>
+.address-form {
+  @apply;
+}
+
+.address-form__header {
+  @apply mb-8 pb-3 border-b border-b-light-800;
+}
+
+.address-form__title {
+  @apply text-2xl font-semibold text-yellow-400;
+}
+
+.address-form__group {
+  @apply mb-10;
+}
+
+.address-form__label {
+  @apply mb-6 text-dark-800;
+}
+
+.address-form__required {
+  @apply ml-1 text-red-500;
+}
+
+.address-form__group-btn {
+  @apply mb-10 md:w-[25%];
+}
+</style>

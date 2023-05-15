@@ -22,14 +22,17 @@ const calculateAmount = (items: CartItem[]): number => {
   return Number(result);
 };
 
+const defaultValues = {
+  total: 0,
+  amount: 0,
+  cartItems: [],
+  loading: false,
+};
+
 export const useCart = defineStore('cart', {
-  state: () =>
-    ({
-      total: 0,
-      amount: 0,
-      cartItems: [],
-      loading: false,
-    } as CartStore),
+  state: (): CartStore => ({
+    ...defaultValues,
+  }),
   actions: {
     // initCart(
     //   total = 0,

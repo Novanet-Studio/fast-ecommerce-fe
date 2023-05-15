@@ -138,3 +138,65 @@ const handleBuyNow = (isBuyNow: boolean) => {
 //     cart.loading = false;
 // }
 </script>
+
+<style scoped>
+.info-quick-view {
+  @apply max-w-full lg:(max-w-[57%] pl-8);
+}
+
+.info-quick-view__title {
+  @apply mb-[10px] text-xl lg:text-2xl;
+}
+
+.info-quick-view__meta {
+  @apply flex flex-nowrap items-center mb-5 pb-[6px] border-b-2 border-b-gray-200 text-sm lg:text-base;
+}
+
+.info-quick-view__text {
+  @apply relative inline-block mb-0 mr-[10px] pr-[10px] leading-5;
+}
+
+.info-quick-view__link {
+  @apply text-yellow-500 ml-2 text-capitalize;
+}
+
+.info-quick-view__price {
+  @apply mb-5 text-xl text-dark-800 font-semibold lg:text-2xl;
+}
+
+.info-quick-view__divition {
+  @apply mt-2 mb-4 border-b-2 border-b-gray-200;
+}
+
+.info-quick-view__shopping {
+  @apply flex flex-col items-center mb-12 pb-8 border-b-2 border-b-gray-200 lg:(items-end flex-row flex-nowrap);
+}
+
+.info-quick-view__figure {
+  @apply mb-4 lg:mb-0;
+}
+
+.info-quick-view__figcaption {
+  @apply mb-1 text-center;
+}
+
+.info-quick-view__actions {
+  @apply flex border border-gray-400 rounded-md p-2 w-full md:max-w-[7.1875rem];
+}
+
+.info-quick-view__actions-btn {
+  @apply flex items-center justify-center pt-1 w-14 h-5 max-w-14 lg:(w-5 h-5 max-w-5);
+}
+
+.info-quick-view__actions-input {
+  @apply w-14 text-center text-red-500 lg:w-[40px];
+}
+
+.info-quick-view__btn {
+  @apply w-full font-bold p-4 rounded-sm flex items-center justify-center max-h-12 text-white bg-yellow-400 mx-7 mb-4 border rounded-md transition ease md:w-full lg:(text-sm mb-0) hover:bg-yellow-500;
+}
+
+.info-quick-view__btn-alt {
+  @apply font-bold p-4 rounded-sm flex items-center justify-center max-h-12 w-full transition ease text-yellow-500 rounded-md border border-yellow-500 md:w-auto lg:(text-sm mr-7) hover:(text-white border-transparent bg-yellow-400);
+}
+</style>

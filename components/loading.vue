@@ -1,13 +1,19 @@
 <template>
   <div class="w-full flex items-center justify-center">
     <div class="lds-ellipsis">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div :class="class"></div>
+      <div :class="class"></div>
+      <div :class="class"></div>
+      <div :class="class"></div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+withDefaults(defineProps<{ color?: string; class?: string }>(), {
+  color: 'rgb(116, 116, 116)',
+});
+</script>
 
 <style scoped>
 .lds-ellipsis {
@@ -23,7 +29,7 @@
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: rgb(116, 116, 116);
+  background: v-bind(color);
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 

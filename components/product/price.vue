@@ -1,5 +1,7 @@
 <template>
-  <p class="product__price" :class="class">${{ product.price }}</p>
+  <p class="relative text-base text-dark-200" :class="class">
+    ${{ product.price }}
+  </p>
 </template>
 
 <script lang="ts" setup>
@@ -10,3 +12,5 @@ type Props = {
 
 defineProps<Props>();
 </script>
+
+<style scoped></style>

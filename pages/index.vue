@@ -13,11 +13,5 @@
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
-  pageTransition: {
-    name: 'page',
-  },
-});
-
 const { categories, isLoading } = useCategory({ ordered: true });
 </script>

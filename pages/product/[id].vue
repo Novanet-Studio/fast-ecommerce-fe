@@ -1,7 +1,9 @@
 <template>
   <div class="flex w-full min-h-full mt-12">
-    <div class="product2">
-      <product-detail-fullwidth v-if="state.product" :product="state.product" />
+    <div class="mx-auto lg:w-full">
+      <transition name="page">
+        <product-detail v-if="state.product" :product="state.product" />
+      </transition>
     </div>
   </div>
 </template>
@@ -36,7 +38,7 @@ const loadProductById = async () => {
   try {
     state.pageLoading = true;
 
-    const { data } = await graphql<ProductsResponse>(GetProductById, {
+    const { data } = await graphql<ProductRequest>(GetProductById, {
       id: state.productId,
     });
 

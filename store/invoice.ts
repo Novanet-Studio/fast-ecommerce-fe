@@ -6,12 +6,25 @@ import {
 } from '~/graphql';
 import type { OrderResponseBody } from '@paypal/paypal-js';
 
-type InvoiceStore = {
+interface InvoiceStore {
   loading: boolean;
   invoices: InvoicesMapped[] | null;
   invoice: InvoiceTableDetail | null;
   products: ProductsMapped[] | null;
-};
+}
+
+interface FetchInvoicesReturn {
+  data: InvoicesMapped[] | undefined;
+  meta: Meta | null;
+}
+
+interface Options {
+  page: number;
+  pageSize: number;
+}
+
+const PAGE_LIMIT = 10;
+const DEFAULT_PAGE = 1;
 
 const invoiceMapperHelper = (
   invoice: InvoicesMapped,
@@ -29,37 +42,54 @@ const invoiceMapperHelper = (
   return invoices as unknown as InvoiceTableDetail;
 };
 
+const defaultValues = {
+  loading: false,
+  invoice: null,
+  invoices: null,
+  products: [],
+};
+
 export const useInvoice = defineStore('invoice', {
-  state: () =>
-    ({
-      loading: false,
-      invoice: null,
-      invoices: null,
-      products: [],
-    } as InvoiceStore),
+  state: (): InvoiceStore => ({
+    ...defaultValues,
+  }),
   getters: {
-    getMappedInvoices(): InvoiceTableDetail[] {
+    mapped(): InvoiceTableDetail[] {
       if (!this.invoices) return [];
       return this.invoices?.map(invoiceMapperHelper);
     },
   },
   actions: {
-    async fetchInvoices(userId: string): Promise<InvoicesMapped[]> {
+    async fetchInvoices(
+      userId: string,
+      options?: Options
+    ): Promise<FetchInvoicesReturn> {
       const graphql = useStrapiGraphQL();
-      const id = +userId;
+      const id = Number(userId);
 
       const response = await graphql<InvoicesRequest>(GetInvoicesByUserId, {
         id,
+        page: options?.page ?? DEFAULT_PAGE,
+        pageSize: options?.pageSize ?? PAGE_LIMIT,
       });
 
       console.log('from fetchInvoices: ', response.data.invoices.data);
 
-      if (!response.data.invoices?.data?.length) return [];
+      if (!response.data.invoices?.data?.length) {
+        return {
+          data: [],
+          meta: null,
+        };
+      }
 
       const mapped = mapperData<InvoicesMapped[]>(response.data.invoices.data);
 
       this.invoices = mapped;
-      return mapped;
+
+      return {
+        data: mapped,
+        meta: response.data.invoices.meta,
+      };
     },
     async createInvoice(order: OrderResponseBody, items: any[]) {
       const { $store } = useNuxtApp();

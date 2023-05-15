@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="information-form-title">Información de contacto</h3>
+    <h3 class="title">Información de contacto</h3>
     <form>
       <div class="form__group">
         <label class="form__label"
@@ -223,3 +223,33 @@ onMounted(() => {
   fillFormFromStorage();
 });
 </script>
+
+<style scoped>
+.title {
+  @apply font-semibold mb-3 text-yellow-300 text-2xl;
+}
+
+.form__title {
+  @apply font-semibold mb-8 text-yellow-300 text-2xl md:mb-3;
+}
+
+.form__group-alt {
+  @apply mb-4 lg:mb-6;
+}
+
+.form__container {
+  @apply flex flex-col justify-between md:flex-row;
+}
+
+.form__grid {
+  @apply grid grid-cols-1 gap-4 md:grid-cols-2;
+}
+
+.form__left {
+  @apply flex-[0_0_100%] gap-4 md:flex-[0_0_calc(50%-1rem)];
+}
+
+.form__right {
+  @apply flex-[0_0_100%] md:flex-[0_0_calc(50%-1rem)];
+}
+</style>

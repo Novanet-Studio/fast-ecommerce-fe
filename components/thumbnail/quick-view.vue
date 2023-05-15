@@ -30,4 +30,20 @@ defineProps<{ product: ProductsMapped }>();
 :global(.swiper-button-prev) {
   --swiper-navigation-size: 2rem;
 }
+
+.thumbnail-quick-view {
+  @apply max-w-full w-full flex flex-row-reverse flex-nowrap justify-center items-center mb-12 mt-12 lg:max-w-[43%];
+}
+
+.thumbnail-quick-view__figure {
+  @apply relative block flex-basis-[100%] max-w-full m-0 lg:max-w-full;
+}
+
+.thumbnail-quick-view__content {
+  @apply relative lg:pl-1;
+}
+
+.thumbnail-quick-view__slide {
+  @apply flex justify-center items-center;
+}
 </style>

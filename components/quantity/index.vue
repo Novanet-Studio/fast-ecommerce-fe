@@ -39,3 +39,17 @@ const handleDescreaseQuantity = () => {
   cart.decreaseCartItemQuantity(props.product);
 };
 </script>
+
+<style scoped>
+.quantity {
+  @apply max-w-[6.25rem] flex items-center justify-between border border-gray-300;
+}
+
+.quantity__btn {
+  @apply p-2;
+}
+
+.quantity__input {
+  @apply h-9 w-6 text-center;
+}
+</style>

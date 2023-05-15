@@ -4,30 +4,25 @@ import { getProductsByCategoryId } from '~/graphql';
 interface ProductStore {
   product: unknown | null;
   products: Product[] | null;
-  // searchResults: unknown | null;
   cartProducts: ProductsMapped[] | null;
   wishlistItems: ProductsMapped[] | null;
-  // compareItems: unknown | null;
-  // brands: unknown | null;
   categories: unknown | null;
-  total: number;
   loading: boolean;
 }
 
+const defaultValues = {
+  product: null,
+  products: null,
+  cartProducts: null,
+  wishlistItems: null,
+  categories: null,
+  loading: false,
+};
+
 export const useProduct = defineStore('product', {
-  state: () =>
-    ({
-      product: null,
-      products: null,
-      // searchResults: null,
-      cartProducts: null,
-      wishlistItems: null,
-      // compareItems: null,
-      // brands: null,
-      categories: null,
-      // total: 0,
-      loading: false,
-    } as ProductStore),
+  state: (): ProductStore => ({
+    ...defaultValues,
+  }),
   actions: {
     async getProductsByCategory(
       categoryId: string

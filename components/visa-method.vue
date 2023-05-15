@@ -398,3 +398,17 @@ onMounted(async () => {
   await loadSquareCard();
 });
 </script>
+
+<style scoped>
+.visa__terms-wrapper {
+  @apply text-dark-200;
+}
+
+.visa__text {
+  @apply text-sm mb-8;
+}
+
+.visa__link {
+  @apply text-yellow-500;
+}
+</style>

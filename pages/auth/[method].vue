@@ -34,3 +34,21 @@ onMounted(() => {
   isLogin.value = false;
 });
 </script>
+
+<style scoped>
+.auth__links {
+  @apply p-4 flex justify-center;
+}
+
+.auth__link {
+  @apply text-2xl font-bold text-dark-50 first:mr-8;
+}
+
+.auth__link--active {
+  @apply text-yellow-500;
+}
+
+.auth__content {
+  @apply mt-4;
+}
+</style>

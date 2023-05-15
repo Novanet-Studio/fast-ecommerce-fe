@@ -14,8 +14,6 @@
 </template>
 
 <script lang="ts" setup>
-
-
 const mainMenu = ref([
   {
     text: 'Inicio',
@@ -37,3 +35,13 @@ const mainMenu = ref([
   },
 ]);
 </script>
+
+<style scoped>
+.menu {
+  @apply flex flex-col mb-2 lg:flex-row;
+}
+
+.menu__item {
+  @apply block py-[10px] pr-12 pl-0;
+}
+</style>
