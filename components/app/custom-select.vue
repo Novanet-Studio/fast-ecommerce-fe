@@ -143,6 +143,8 @@ interface Emits {
   (e: 'update:modelValue', value: string): void;
 }
 
+const DELAY_UNWATCH_INTERVAL = 1000;
+
 const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 const isObjectData = ref(false);
@@ -206,4 +208,24 @@ watch(selected, (val: string | ObjectValue) => {
 
   value.value = val;
 });
+
+const unwatch = watchEffect(() => {
+  if (props.modelValue) {
+    const options = props.options.map((opt: { [key: string] }) => ({
+      label: opt[props.label as string],
+      value: opt[props.valueKey as string],
+    }));
+
+    const [result] = options.filter(
+      (option) => option.value === props.modelValue
+    );
+
+    selected.value = result;
+    return;
+  }
+});
+
+setTimeout(() => {
+  unwatch();
+}, DELAY_UNWATCH_INTERVAL);
 </script>
