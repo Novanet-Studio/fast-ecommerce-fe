@@ -18,7 +18,7 @@
     "@vueuse/core": "^10.1.2",
     "@vueuse/nuxt": "^10.1.2",
     "graphql": "^16.6.0",
-    "nuxt": "^3.5.1",
+    "nuxt": "^3.5.2",
     "nuxt-lodash": "^2.4.1",
     "rimraf": "^5.0.1"
   },

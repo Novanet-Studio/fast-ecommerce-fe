@@ -6,17 +6,17 @@
 
 export function mapperData<T>(data: any): T {
   // Single
-  if (_has(data, 'attributes')) {
+  if ($has(data, 'attributes')) {
     return mapperData(removeObjectKey(data, 'attributes'));
   }
 
   // collection
-  if (isArray(data) && data.length && _has(_first(data), 'attributes')) {
+  if (isArray(data) && data.length && $has($first(data), 'attributes')) {
     return data.map((el: any) => mapperData(el)) as T;
   }
 
   // Fields
-  _each(data, (value, key) => {
+  $each(data, (value, key) => {
     if (!value) return;
 
     // single
@@ -30,7 +30,7 @@ export function mapperData<T>(data: any): T {
     }
 
     // relation(s)
-    if (_has(value, 'data')) {
+    if ($has(value, 'data')) {
       let relation = null;
 
       // single
@@ -47,22 +47,22 @@ export function mapperData<T>(data: any): T {
     }
 
     // single component
-    if (_has(value, 'id')) {
+    if ($has(value, 'id')) {
       data[key] = mapperData(value);
     }
 
     // repeatable component & dynamic zone
-    if (isArray(value) && _has(_first(value), 'id')) {
+    if (isArray(value) && $has($first(value), 'id')) {
       data[key] = value.map((p) => mapperData(p));
     }
 
     // single media
-    if (_has(value, 'provider')) {
+    if ($has(value, 'provider')) {
       return;
     }
 
     // multiple media
-    if (isArray(value) && _has(_first(value), 'provider')) {
+    if (isArray(value) && $has($first(value), 'provider')) {
       return;
     }
   });

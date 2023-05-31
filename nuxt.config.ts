@@ -31,6 +31,14 @@ export default defineNuxtConfig({
 
   css: ['@unocss/reset/tailwind.css'],
 
+  pinia: {
+    autoImports: ['defineStore'],
+  },
+
+  imports: {
+    dirs: ['stores'],
+  },
+
   runtimeConfig: {
     public: {
       FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
@@ -53,7 +61,7 @@ export default defineNuxtConfig({
   },
 
   lodash: {
-    prefix: '_',
+    prefix: '$',
     upperAfterPrefix: false,
   },
 
@@ -92,6 +100,14 @@ export default defineNuxtConfig({
       xl: 1280,
       xxl: 1536,
       '2xl': 1536,
+    },
+  },
+
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        types: ['~/types/app.d.ts'],
+      },
     },
   },
 });
