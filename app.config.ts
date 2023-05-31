@@ -6,6 +6,9 @@ import {
 } from '@phosphor-icons/vue';
 
 export default defineAppConfig({
+  header: {
+    logo: '~/assets/img/logo.png',
+  },
   footer: {
     copyright: {
       site: 'fast-ecommerce.com',
