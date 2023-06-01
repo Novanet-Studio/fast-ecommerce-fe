@@ -121,3 +121,15 @@ interface CartItem {
   quantity: number;
   price: number;
 }
+
+interface ShippingInfo {
+  email?: string;
+  name?: string;
+  lastName?: string;
+  address?: string;
+  home?: string;
+  country?: string;
+  city?: string;
+  zipCode?: string;
+  phone?: string;
+}
