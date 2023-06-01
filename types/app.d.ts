@@ -14,9 +14,11 @@ declare module 'vue3-tabs-component' {
   export { Tabs, Tab };
 }
 
-type User = import('@nuxtjs/strapi/dist/runtime/types').StrapiUser & {
+interface UserExtra {
   customerId: string;
-};
+}
+
+type User = import('@nuxtjs/strapi/dist/runtime/types').StrapiUser & UserExtra;
 
 enum AddressType {
   Billing = 'billing',
