@@ -59,6 +59,7 @@ type MetaInfo = { meta: Meta };
 type LoginRequest = DataWrapper<LoginRequestData>;
 type RegisterRequest = DataWrapper<RegisterRequestData>;
 type ProductRequest = DataWrapper<ProductRequestData>;
+type InvoicesRequest = DataWrapper<InvoicesRequestData>;
 
 // =====================
 // REQUEST DATA
@@ -76,6 +77,10 @@ interface ProductRequestData {
   products: Products;
 }
 
+interface InvoicesRequestData {
+  invoices: Invoices;
+}
+
 // =====================
 // API CONTENT
 // =====================
@@ -85,11 +90,14 @@ interface UserData {
 }
 
 type Products = DataWrapper<ProductsData[]>;
+type Invoices = DataWrapper<InvoicesData[]> & MetaInfo;
+type InvoiceContent = DataWrapper<InvoicesData>;
 
 // =====================
 // API DATA
 // =====================
 type ProductsData = StrapiDataWrapper<ProductAttributes>;
+type InvoicesData = StrapiDataWrapper<InvoiceAtributes>;
 
 // =====================
 // DATA ATTRIBUTES
@@ -104,11 +112,28 @@ interface ProductAttributes {
   category: CategoryAttributes;
 }
 
+interface InvoiceAtributes {
+  paid: boolean;
+  amount: number;
+  products: ProductBuyed[];
+  payment_id: string;
+  order_id: string;
+  shipment_address: AddressDetail;
+  payment_method: string;
+  payment_info: InvoicePaymentInfo[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 // =====================
 // MAPPED DATA
 // =====================
 
 interface Product extends ProductAttributes {
+  id: string;
+}
+
+interface Invoice extends InvoiceAtributes {
   id: string;
 }
 
@@ -132,4 +157,37 @@ interface ShippingInfo {
   city?: string;
   zipCode?: string;
   phone?: string;
+}
+
+interface ProductBuyed {
+  id: string;
+  quantity: number;
+  product_id: number;
+  product_name: string;
+}
+
+interface AddressDetail {
+  home: string;
+  city: string;
+  phone: string;
+  address: string;
+  addressLine1?: string;
+  country: string;
+  zipCode: string;
+}
+
+interface InvoiceTableDetail extends InvoiceAtributes {
+  id: string;
+  id_invoice_user: number;
+  date: string;
+  status: string;
+}
+
+interface InvoicePaymentInfo {
+  first_name: string;
+  last_name: string;
+  email: string;
+  amount: string;
+  confirmation_id: string;
+  payment_date: string;
 }

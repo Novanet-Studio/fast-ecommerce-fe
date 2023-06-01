@@ -1,0 +1,44 @@
+query GetInvoicesByUserId($id: Int!, $page: Int, $pageSize: Int) {
+  invoices(
+    filters: { user_id: { eq: $id } }
+    pagination: { page: $page, pageSize: $pageSize }
+  ) {
+    data {
+      id
+      attributes {
+        paid
+        amount
+        products {
+          id
+          quantity
+          id_product
+          name_product
+        }
+        payment_id
+        order_id
+        user_id
+        shippingAddress
+        fullName
+        cardType
+        cardKind
+        cardLast
+        createdAt
+        payment_method
+        payment_info {
+          name
+          email
+          amount
+          lastname
+          confirmation
+          payment_date
+        }
+      }
+    }
+    meta {
+      pagination {
+        total
+        pageCount
+      }
+    }
+  }
+}
