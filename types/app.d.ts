@@ -58,6 +58,7 @@ type MetaInfo = { meta: Meta };
 
 type LoginRequest = DataWrapper<LoginRequestData>;
 type RegisterRequest = DataWrapper<RegisterRequestData>;
+type ProductRequest = DataWrapper<ProductRequestData>;
 
 // =====================
 // REQUEST DATA
@@ -71,6 +72,10 @@ interface RegisterRequestData {
   register: UserData;
 }
 
+interface ProductRequestData {
+  products: Products;
+}
+
 // =====================
 // API CONTENT
 // =====================
@@ -79,18 +84,30 @@ interface UserData {
   user: User;
 }
 
-// =====================
-// API CONTENT
-// =====================
+type Products = DataWrapper<ProductsData[]>;
 
 // =====================
 // API DATA
 // =====================
+type ProductsData = StrapiDataWrapper<ProductAttributes>;
 
 // =====================
 // DATA ATTRIBUTES
 // =====================
+interface ProductAttributes {
+  name: string;
+  description: string;
+  images: any;
+  size: string;
+  materials: string;
+  price: number;
+  category: CategoryAttributes;
+}
 
 // =====================
 // MAPPED DATA
 // =====================
+
+interface Product extends ProductAttributes {
+  id: string;
+}

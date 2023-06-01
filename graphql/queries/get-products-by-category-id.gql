@@ -1,0 +1,30 @@
+query GetProductsByCategoryId($id: ID!) {
+  products(filters: { category: { id: { eq: $id } } }) {
+    data {
+      id
+      attributes {
+        name
+        description
+        price
+        sale_price
+        image {
+          data {
+            attributes {
+              name
+              alternativeText
+              formats
+            }
+          }
+        }
+        category {
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
