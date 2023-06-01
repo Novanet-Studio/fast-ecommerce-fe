@@ -4,7 +4,7 @@
       <div class="header__container">
         <div class="header__brand">
           <nuxt-link class="header__link" to="/">
-            <img src="~/assets/img/logo.png" alt="Fastecommerce logo" />
+            <img src="~/assets/img/logo.png" alt="Fast ecommerce logo" />
           </nuxt-link>
         </div>
         <div class="header__content">
@@ -22,11 +22,11 @@ const appConfig = useAppConfig();
 
 <style scoped>
 .header__wrapper {
-  @apply px-6 py-8 bg-yellow-200 border-b border-b-yellow-300;
+  @apply px-4 py-8 bg-color-1 border-b border-color-1 md:px-6;
 }
 
 .header__container {
-  @apply flex items-center justify-between flex-nowrap lg:container lg:mx-auto gap-4 md:gap-0;
+  @apply flex items-center justify-between flex-nowrap gap-4 md:gap-0 lg:(mx-auto px-24);
 }
 
 .header__brand {
@@ -38,6 +38,6 @@ const appConfig = useAppConfig();
 }
 
 .header__content {
-  @apply flex flex-col justify-center flex-basis-[55%] sm:max-w-60 md:(max-w-[23.125rem] flex-basis-[auto]) lg:max-w-80;
+  @apply lg:w-[15%];
 }
 </style>
