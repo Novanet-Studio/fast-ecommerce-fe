@@ -111,3 +111,13 @@ interface ProductAttributes {
 interface Product extends ProductAttributes {
   id: string;
 }
+
+// =====================
+// REST
+// =====================
+
+interface CartItem {
+  id: string;
+  quantity: number;
+  price: number;
+}
