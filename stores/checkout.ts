@@ -155,6 +155,10 @@ export const useCheckoutStore = defineStore(
       router.push('/addresses');
     }
 
+    function reset() {
+      Object.assign(info, defaultState);
+    }
+
     return {
       ...toRefs(info),
       fullName,
@@ -165,6 +169,7 @@ export const useCheckoutStore = defineStore(
       checkAddressType,
       createAddress,
       updateAddress,
+      reset,
     };
   },
   {
