@@ -4,7 +4,7 @@
       <div class="default__wrapper">
         <div class="default__container">
           <div class="default__content">
-            <!-- <app-header /> -->
+            <app-header />
             <main class="default__main">
               <nuxt-page />
             </main>

@@ -4,11 +4,11 @@
       <div class="header__container">
         <div class="header__brand">
           <nuxt-link class="header__link" to="/">
-            <img :src="appConfig.header.logo" alt="Fastecommerce logo" />
+            <img src="~/assets/img/logo.png" alt="Fastecommerce logo" />
           </nuxt-link>
         </div>
         <div class="header__content">
-          <!-- <app-header-actions /> -->
+          <app-header-actions />
         </div>
       </div>
     </div>

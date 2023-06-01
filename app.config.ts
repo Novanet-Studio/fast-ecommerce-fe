@@ -7,7 +7,7 @@ import {
 
 export default defineAppConfig({
   header: {
-    logo: '~/assets/img/logo.png',
+    logo: 'logo.png',
   },
   footer: {
     copyright: {
