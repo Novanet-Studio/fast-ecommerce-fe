@@ -3,25 +3,18 @@
     <div class="banner__wrapper">
       <div class="banner__left">
         <div class="banner__slider">
-          <swiper
-            :slides-per-view="1"
-            :space-between="1"
-            loop
-            navigation
-            :modules="[Navigation]"
-          >
-            <swiper-slide v-for="(image, index) in sliderImages" :key="index">
-              <img
-                class="banner__slider-image"
-                :src="image"
-                alt="Products of the brand"
-              />
-            </swiper-slide>
-          </swiper>
+          <app-slider :images="appConfig.home.slider" />
         </div>
       </div>
       <div class="banner__right">
-        <img
+        <nuxt-img
+          v-for="(image, index) in appConfig.home.promotions"
+          :src="image"
+          alt=""
+          class="h-full"
+          :key="index"
+        />
+        <!-- <img
           src="~/assets/img/slider/home/promotion-1.jpeg"
           class="max-w-[50%] lg:max-w-full"
           alt="Promotion 1"
@@ -30,23 +23,14 @@
           src="~/assets/img/slider/home/promotion-2.jpeg"
           alt="Promotion 2"
           class="max-w-[50%] lg:max-w-full"
-        />
+        /> -->
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-const sliderImages = [
-  'img/slider/1.jpg',
-  'img/slider/2.jpg',
-  'img/slider/3.jpg',
-];
+const appConfig = useAppConfig();
 </script>
 
 <style scoped>

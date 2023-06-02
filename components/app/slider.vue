@@ -6,7 +6,7 @@
     navigation
     :modules="[Navigation]"
   >
-    <swiper-slide v-for="(image, index) in slider" :key="index">
+    <swiper-slide v-for="(image, index) in images" :key="index">
       <nuxt-img
         class="slider__image"
         :src="image"
@@ -23,7 +23,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 type Props = {
-  slider?: string[];
+  images?: string[];
 };
 
 defineProps<Props>();
