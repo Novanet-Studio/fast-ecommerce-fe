@@ -4,7 +4,7 @@
       <div class="thumbnail-quick-view__content">
         <swiper :centered-slides="true" navigation :modules="[Navigation]">
           <swiper-slide
-            v-for="(image, index) in images"
+            v-for="(image, index) in product.image"
             :key="index"
             class="thumbnail-quick-view__slide !flex"
           >
@@ -25,7 +25,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-defineProps<{ images: Image[] }>();
+const product = inject('product') as Product;
 </script>
 
 <style scoped>

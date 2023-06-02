@@ -1,12 +1,8 @@
 <template>
   <div class="product h-full">
     <div class="product__thumbnail">
-      <product-thumbnail-image :id="product.id" :image="product.image[0]" />
-      <product-actions
-        :id="product.id"
-        :price="product.price"
-        @quick-view="handleQuickView"
-      />
+      <product-thumbnail-image />
+      <product-actions @quick-view="handleQuickView" />
     </div>
     <div class="product__container">
       <div class="product__content">
@@ -15,12 +11,12 @@
       </div>
     </div>
     <product-modal v-model="state.quickView">
-      <!-- <product-quick-view :product="product" /> -->
+      <product-quick-view />
     </product-modal>
   </div>
 </template>
 <script lang="ts" setup>
-defineProps<{ product: Product }>();
+const props = defineProps<{ product: Product }>();
 
 const state = reactive({
   modal: false,
@@ -28,6 +24,8 @@ const state = reactive({
   isImageLoaded: false,
   quickView: false,
 });
+
+provide('product', props.product);
 
 const handleQuickView = (open: boolean) => (state.quickView = open);
 </script>

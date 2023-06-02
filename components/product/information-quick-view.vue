@@ -13,7 +13,7 @@
     </div>
     <h4 class="info-quick-view__price">${{ product.price }}</h4>
 
-    <!-- <product-detail-description :product="product" /> -->
+    <product-detail-description />
     <div class="info-quick-view__divition"></div>
 
     <div class="info-quick-view__shopping">
@@ -56,13 +56,13 @@
 <script lang="ts" setup>
 import { PhPlus, PhMinus } from '@phosphor-icons/vue';
 
-const props = defineProps<{ product: Product }>();
+const product = inject('product') as Product;
 
 const { $notify } = useNuxtApp();
 const router = useRouter();
 
 const cart = useCartStore();
-const productStore = useProductStore();
+// const productStore = useProductStore();
 
 const quantity = ref(1);
 
@@ -78,15 +78,15 @@ const addItemToCart = async (payload: CartItem) => {
   $notify({
     group: 'all',
     title: 'Exito!',
-    text: `${props.product.name} ha sido agregado al carrito!`,
+    text: `${product.name} ha sido agregado al carrito!`,
   });
 };
 
 const handleAddToCart = () => {
   const productItem = {
-    id: props.product.id,
+    id: product.id,
     quantity,
-    price: props.product.price,
+    price: product.price,
   };
 
   // @ts-ignore
@@ -94,19 +94,17 @@ const handleAddToCart = () => {
   $notify({
     group: 'all',
     title: '¡Éxito!',
-    text: `${props.product.name} ha sido agregado al carrito!`,
+    text: `${product.name} ha sido agregado al carrito!`,
   });
 };
 
 const handleBuyNow = (isBuyNow: boolean) => {
-  const existentItem = cart.cartItems.find(
-    (item) => item.id === props.product.id
-  );
+  const existentItem = cart.cartItems.find((item) => item.id === product.id);
 
   const item = {
-    id: props.product.id,
+    id: product.id,
     quantity: quantity.value,
-    price: props.product.price,
+    price: product.price,
   };
 
   if (!existentItem) {

@@ -12,6 +12,10 @@
       "webRoot": "${workspaceFolder}",
       "pathMappings": [
         {
+          "url": "http://localhost:4000/_nuxt/",
+          "path": "${workspaceFolder}/"
+        },
+        {
           "url": "http://localhost:4000/_nuxt/components",
           "path": "${workspaceFolder}/components"
         }

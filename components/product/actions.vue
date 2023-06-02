@@ -35,30 +35,27 @@
 import { PhBag, PhEye, PhHeart } from '@phosphor-icons/vue';
 import { GetProductById } from '~/graphql/queries';
 
-type Props = {
-  id: string;
-  price: number;
-};
-
 type Emits = {
   (e: 'quickView', open: boolean): void;
 };
 
+defineEmits<Emits>();
+
 const { $notify } = useNuxtApp();
-const props = defineProps<Props>();
-const emit = defineEmits<Emits>();
 const graphql = useStrapiGraphQL();
 
+const product = inject('product') as Product;
+
 const cart = useCartStore();
-const product = useProductStore();
+const productStore = useProductStore();
 const wishList = useWishlistStore();
 
 const handleAddToCart = async () => {
   const temp: Product[] = [];
   const newProduct: CartItem = {
-    id: props.id,
+    id: product.id,
     quantity: 1,
-    price: props.price,
+    price: product.price,
   };
 
   cart.addProductToCart(newProduct);
@@ -73,7 +70,7 @@ const handleAddToCart = async () => {
     temp.push(item.products[0]);
   });
 
-  product.addCartProducts(temp);
+  productStore.addCartProducts(temp);
 
   $notify({
     group: 'all',
@@ -84,7 +81,7 @@ const handleAddToCart = async () => {
 
 const handleAddItemToWishlist = () => {
   const item = {
-    id: props.id,
+    id: product.id,
   };
 
   wishList.addItem(item);
@@ -92,7 +89,7 @@ const handleAddItemToWishlist = () => {
   $notify({
     group: 'all',
     title: '¡Éxito!',
-    text: `Producto ${props.id} ha sido agregado a la lista de deseos!`,
+    text: `Producto ${product.id} ha sido agregado a la lista de deseos!`,
   });
 };
 </script>
