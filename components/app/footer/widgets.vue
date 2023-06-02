@@ -9,7 +9,10 @@
           class="widgets__item"
         >
           <a class="widgets__link" :href="item.link">
-            <component :is="item.icon" v-bind="{ class: 'lg:text-3xl' }" />
+            <component
+              :is="item.icon"
+              v-bind="{ class: 'lg:text-3xl text-color-2' }"
+            />
           </a>
           {{ item.text }}
         </li>
@@ -24,7 +27,7 @@ const appConfig = useAppConfig();
 
 <style scoped>
 .widgets {
-  @apply pb-7 mx-4 lg:container lg:mx-auto;
+  @apply pb-7 lg:(mx-4 mx-auto);
 }
 
 .widgets__wrapper {
@@ -32,18 +35,18 @@ const appConfig = useAppConfig();
 }
 
 .widgets__title {
-  @apply text-xl mb-[10px] font-bold text-yellow-400;
+  @apply text-3xl pb-4 font-bold text-color-2;
 }
 
 .widgets__list {
-  @apply mt-7;
+  @apply mt-7 w-full;
 }
 
 .widgets__item {
-  @apply relative inline-block mr-[20px] align-top;
+  @apply relative inline-flex items-center mr-[20px] gap-1 md:mr-2;
 }
 
 .widgets__link {
-  @apply text-yellow-400 inline-block text-lg;
+  @apply flex text-lg;
 }
 </style>

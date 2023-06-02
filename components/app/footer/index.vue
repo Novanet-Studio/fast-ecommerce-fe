@@ -13,6 +13,6 @@
 }
 
 .footer__wrapper {
-  @apply mx-auto px-4 md:(px-8 max-w-full);
+  @apply mx-auto px-4 md:(px-8) lg:max-w-[1700px];
 }
 </style>

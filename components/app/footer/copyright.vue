@@ -27,11 +27,11 @@ const appConfig = useAppConfig();
 
 <style scoped>
 .copyright {
-  @apply py-9 flex flex-wrap justify-between border-t border-t-light-200 text-center lg:(flex-row);
+  @apply py-12 flex flex-wrap justify-between border-t border-t-color-7 text-center lg:(flex-row);
 }
 
 .copyright__site {
-  @apply block w-full mb-0 leading-8 text-sm lg:w-auto;
+  @apply block w-full mb-0 leading-8 text-sm text-color-4 lg:w-auto;
 }
 
 .copyright__payment {
@@ -39,7 +39,7 @@ const appConfig = useAppConfig();
 }
 
 .copyright__payment-title {
-  @apply block pb-[10px] lg:(pb-0 pr-2);
+  @apply block text-color-4 pb-[10px] lg:(pb-0 pr-2);
 }
 
 .copyright__author {
@@ -47,6 +47,6 @@ const appConfig = useAppConfig();
 }
 
 .copyright__author-text {
-  @apply mr-2;
+  @apply mr-2 text-color-4;
 }
 </style>
