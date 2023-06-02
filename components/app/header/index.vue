@@ -16,10 +16,6 @@
   </header>
 </template>
 
-<script lang="ts" setup>
-const appConfig = useAppConfig();
-</script>
-
 <style scoped>
 .header__wrapper {
   @apply px-4 py-8 bg-color-1 border-b border-color-1 md:px-6;
