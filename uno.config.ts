@@ -40,7 +40,6 @@ export default defineConfig({
     btn: 'w-full text-center text-color-2 font-bold py-4 inline-block text-sm border-transparent rounded-md bg-color-1 transition ease cursor-pointer hover:(bg-opacity-80) active:( bg-opacity-80)',
     'btn--outline':
       'flex justify-center border !bg-transparent rounded-md border-color-2 text-color-2 hover:(!bg-color-2 !border-transparent !text-white)',
-    'header-actions': 'flex items-center justify-between',
     'header-actions__link': 'flex relative transition ease',
     'header-actions__icon': 'text-4xl text-[2.45rem]',
     'header-actions__indicator-wrapper':
