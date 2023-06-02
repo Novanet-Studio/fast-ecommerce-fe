@@ -27,7 +27,7 @@ export const useProductStore = defineStore(
       }
     }
 
-    function addCartProduct(product: Partial<Product[]>) {
+    function addCartProducts(product: Partial<Product[]>) {
       cartProducts.value = product;
     }
 
@@ -46,7 +46,7 @@ export const useProductStore = defineStore(
       wishlistItems,
       loading,
       getByCategory,
-      addCartProduct,
+      addCartProducts,
       clear,
     };
   },

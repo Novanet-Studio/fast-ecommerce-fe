@@ -1,5 +1,3 @@
-// import type { StrapiUser } from '@nuxtjs/strapi/dist/runtime/types';
-
 declare module '*.gql' {
   import { DocumentNode } from 'graphql';
   const Schema: DocumentNode;
@@ -62,6 +60,7 @@ type LoginRequest = DataWrapper<LoginRequestData>;
 type RegisterRequest = DataWrapper<RegisterRequestData>;
 type ProductRequest = DataWrapper<ProductRequestData>;
 type InvoicesRequest = DataWrapper<InvoicesRequestData>;
+type CategoriesRequest = DataWrapper<CategoriesRequestData>;
 
 // =====================
 // REQUEST DATA
@@ -83,6 +82,10 @@ interface InvoicesRequestData {
   invoices: Invoices;
 }
 
+interface CategoriesRequestData {
+  categories: Categories;
+}
+
 // =====================
 // API CONTENT
 // =====================
@@ -94,12 +97,14 @@ interface UserData {
 type Products = DataWrapper<ProductsData[]>;
 type Invoices = DataWrapper<InvoicesData[]> & MetaInfo;
 type InvoiceContent = DataWrapper<InvoicesData>;
+type Categories = DataWrapper<CategoriesData[]>;
 
 // =====================
 // API DATA
 // =====================
 type ProductsData = StrapiDataWrapper<ProductAttributes>;
 type InvoicesData = StrapiDataWrapper<InvoiceAtributes>;
+type CategoriesData = StrapiDataWrapper<CategoryAttributes>;
 
 // =====================
 // DATA ATTRIBUTES
@@ -107,7 +112,7 @@ type InvoicesData = StrapiDataWrapper<InvoiceAtributes>;
 interface ProductAttributes {
   name: string;
   description: string;
-  images: any;
+  image: Image[];
   size: string;
   materials: string;
   price: number;
@@ -127,6 +132,11 @@ interface InvoiceAtributes {
   updatedAt?: Date;
 }
 
+interface CategoryAttributes {
+  name: string;
+  products: ProductAttributes[];
+}
+
 // =====================
 // MAPPED DATA
 // =====================
@@ -136,6 +146,10 @@ interface Product extends ProductAttributes {
 }
 
 interface Invoice extends InvoiceAtributes {
+  id: string;
+}
+
+interface Category extends CategoryAttributes {
   id: string;
 }
 
@@ -192,4 +206,37 @@ interface InvoicePaymentInfo {
   amount: string;
   confirmation_id: string;
   payment_date: string;
+}
+
+interface Image {
+  id?: string;
+  name: string;
+  formats: Formats;
+  alternativeText: string;
+  url: string;
+  caption?: string;
+}
+
+interface Formats {
+  medium: ImageMetadata;
+  small: ImageMetadata;
+  thumbnail: ImageMetadata;
+}
+
+interface ImageMetadata {
+  ext: string;
+  url: string;
+  hash: string;
+  height: number;
+  mime: string;
+  name: string;
+  path?: string | null;
+  size: number;
+  width: number;
+  provider_metadata: ProviderMetadata;
+}
+
+interface ProviderMetadata {
+  public_id: string;
+  resource_type: string;
 }

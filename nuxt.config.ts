@@ -102,12 +102,4 @@ export default defineNuxtConfig({
       '2xl': 1536,
     },
   },
-
-  typescript: {
-    tsConfig: {
-      compilerOptions: {
-        types: ['~/types/app.d.ts'],
-      },
-    },
-  },
 });
