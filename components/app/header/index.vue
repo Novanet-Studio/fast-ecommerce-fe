@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <!-- <app-navigation /> -->
+    <app-header-navigation />
   </header>
 </template>
 
