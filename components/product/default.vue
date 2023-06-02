@@ -42,12 +42,4 @@ const handleQuickView = (open: boolean) => (state.quickView = open);
 .product__thumbnail:hover > ul {
   transform: translate(-50%, 0);
 }
-
-.product-modal {
-  @apply p-4 relative lg:p-6;
-}
-
-.product-modal__icon {
-  @apply absolute top-3 right-4 cursor-pointer;
-}
 </style>

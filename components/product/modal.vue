@@ -5,7 +5,6 @@
         <ph-x weight="light" />
       </a>
       <slot />
-      <!-- <product-quick-view :product="product" /> -->
     </div>
   </app-modal>
 </template>
@@ -21,3 +20,13 @@ const active = computed({
   set: (val) => emit('update:modelValue', val),
 });
 </script>
+
+<style>
+.product-modal {
+  @apply p-4 relative lg:p-6;
+}
+
+.product-modal__icon {
+  @apply absolute top-3 right-4 cursor-pointer;
+}
+</style>

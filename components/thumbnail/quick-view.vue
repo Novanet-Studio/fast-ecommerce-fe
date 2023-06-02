@@ -1,5 +1,5 @@
 <template>
-  <div class="thumbnail-quick-view">
+  <div class="thumbnail-quick-view w100 h100">
     <figure class="thumbnail-quick-view__figure">
       <div class="thumbnail-quick-view__content">
         <swiper :centered-slides="true" navigation :modules="[Navigation]">
@@ -9,8 +9,9 @@
             class="thumbnail-quick-view__slide !flex"
           >
             <img
-              class="object-cover max-h-auto"
-              :src="image.formats.medium.url"
+              v-if="image.formats?.thumbnail.url"
+              class="object-contain max-h-auto"
+              :src="image.formats.thumbnail.url"
             />
           </swiper-slide>
         </swiper>
