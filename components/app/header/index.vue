@@ -4,7 +4,7 @@
       <div class="header__container">
         <div class="header__brand">
           <nuxt-link class="header__link" to="/">
-            <img src="~/assets/img/logo.png" alt="Fast ecommerce logo" />
+            <img src="/img/logo.png" alt="Fast ecommerce logo" />
           </nuxt-link>
         </div>
         <div class="header__content">
