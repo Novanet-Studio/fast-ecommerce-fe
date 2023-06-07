@@ -13,7 +13,7 @@
     </div>
     <h4 class="info-quick-view__price">${{ product.price }}</h4>
 
-    <product-detail-description />
+    <product-detail-description :description="product.description" />
 
     <div class="info-quick-view__shopping">
       <figure class="info-quick-view__figure">

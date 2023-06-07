@@ -2,14 +2,14 @@
   <div class="detail-description">
     <ul>
       <li class="detail-description__item">
-        {{ product.description }}
+        {{ description }}
       </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
-const product = inject('product') as Product;
+defineProps<{ description: string }>();
 </script>
 
 <style scoped>
