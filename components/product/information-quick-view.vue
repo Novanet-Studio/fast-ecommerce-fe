@@ -14,7 +14,6 @@
     <h4 class="info-quick-view__price">${{ product.price }}</h4>
 
     <product-detail-description />
-    <div class="info-quick-view__divition"></div>
 
     <div class="info-quick-view__shopping">
       <figure class="info-quick-view__figure">
