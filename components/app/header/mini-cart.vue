@@ -22,7 +22,7 @@
               </template>
               <template v-else-if="cartProducts?.length">
                 <div v-for="(product, index) in cartProducts" :key="index">
-                  <product-mini-cart :product="product" />
+                  <product-mini-cart :product="product!" />
                 </div>
               </template>
             </div>
@@ -56,21 +56,18 @@
 
 <script lang="ts" setup>
 import { PhBag } from '@phosphor-icons/vue';
-// import { getProductById as GetProductById } from '~/graphql';
+import { GetProductById } from '~/graphql/queries';
 
-const { $store } = useNuxtApp();
 const graphql = useStrapiGraphQL();
 
-// const cartStore = $store.cart();
-// const productStore = $store.product();
+const cartStore = useCartStore();
+const productStore = useProductStore();
 
-// const total = computed(() => cartStore.total);
-const total = ref(0);
 const isLoadingCart = ref(true);
-// const amount = computed(() => cartStore.amount);
-// const isLoadingCart = computed(() => cartStore.loading);
-// const cartItems = computed(() => cartStore.cartItems);
-// const cartProducts = computed(() => productStore.cartProducts);
+const total = computed(() => cartStore.total);
+const amount = computed(() => cartStore.amount);
+const cartItems = computed(() => cartStore.cartItems);
+const cartProducts = computed(() => productStore.cartProducts);
 
 const isOpen = ref(false);
 
@@ -79,7 +76,7 @@ const isOpen = ref(false);
 //     cartStore.loading = true;
 
 //     const itemsList = cartStore.cartItems.map((item) =>
-//       graphql<ProductsResponse>(GetProductById, { id: item.id })
+//       graphql<ProductRequest>(GetProductById, { id: item.id })
 //     );
 
 //     if (!cartItems.value.length) {
