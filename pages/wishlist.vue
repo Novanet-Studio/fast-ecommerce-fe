@@ -11,78 +11,72 @@
           </h3>
         </header>
       </div>
-      <div class="flex flex-col" v-else>
-        <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden rounded-md">
-              <table class="min-w-full">
-                <thead class="border-b">
-                  <tr>
-                    <th
-                      scope="col"
-                      class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-                    >
-                      Nombre
-                    </th>
-                    <th
-                      scope="col"
-                      class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-                    >
-                      Precio por unidad
-                    </th>
-                    <th
-                      scope="col"
-                      class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-                    >
-                      Acciones
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    class="border-b transition duration-300 ease-in-out hover:bg-color-8 group"
-                    v-for="item in productStore.wishlistItems"
-                    :key="item?.id"
-                  >
-                    <td
-                      class="px-6 py-4 text-sm font-bold text-color-6 p-2 lg:text-base"
-                    >
-                      <product-shopping-cart
-                        image-class="!h-24"
-                        :id="item!.id"
-                        :title="item!.name"
-                        :product="item!"
-                      />
-                    </td>
-                    <td
-                      class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
-                    >
-                      $ {{ item?.price.toFixed(2) }}
-                    </td>
-                    <td
-                      class="text-sm text-color-6 font-light px-6 py-4 lg:text-base lg:flex items-center h-full"
-                    >
-                      <app-button
-                        class="!w-48 !mt-14"
-                        @click="handleAddToCart(item!)"
-                      >
-                        Añadir al carrito
-                      </app-button>
-                      <a
-                        href="#"
-                        class="text-color-2 ml-2 !mt-12"
-                        @click.prevent="handleRemoveItemFromWishlist(item)"
-                      >
-                        <ph-x weight="light" />
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+      <table-wrapper v-else>
+        <table class="min-w-full">
+          <thead class="border-b">
+            <tr>
+              <th
+                scope="col"
+                class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+              >
+                Nombre
+              </th>
+              <th
+                scope="col"
+                class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+              >
+                Precio por unidad
+              </th>
+              <th
+                scope="col"
+                class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
+              >
+                Acciones
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="border-b transition duration-300 ease-in-out hover:bg-color-8 group"
+              v-for="item in productStore.wishlistItems"
+              :key="item?.id"
+            >
+              <td
+                class="px-6 py-4 text-sm font-bold text-color-6 p-2 lg:text-base"
+              >
+                <product-shopping-cart
+                  image-class="!h-24"
+                  :id="item!.id"
+                  :title="item!.name"
+                  :product="item!"
+                />
+              </td>
+              <td
+                class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
+              >
+                $ {{ item?.price.toFixed(2) }}
+              </td>
+              <td
+                class="text-sm text-color-6 font-light px-6 py-4 lg:text-base lg:flex items-center h-full"
+              >
+                <app-button
+                  class="!w-48 !mt-14"
+                  @click="handleAddToCart(item!)"
+                >
+                  Añadir al carrito
+                </app-button>
+                <a
+                  href="#"
+                  class="text-color-2 ml-2 !mt-12"
+                  @click.prevent="handleRemoveItemFromWishlist(item)"
+                >
+                  <ph-x weight="light" />
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </table-wrapper>
     </div>
   </section>
 </template>
