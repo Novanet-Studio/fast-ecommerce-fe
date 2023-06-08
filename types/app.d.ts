@@ -62,6 +62,7 @@ type ProductRequest = DataWrapper<ProductRequestData>;
 type InvoicesRequest = DataWrapper<InvoicesRequestData>;
 type CategoriesRequest = DataWrapper<CategoriesRequestData>;
 type AddressRequest = DataWrapper<AddressRequestData>;
+type CreateInvoiceRequest = DataWrapper<CreateInvoiceRequestData>;
 
 // =====================
 // REQUEST DATA
@@ -91,6 +92,10 @@ interface AddressRequestData {
   addresses: Addresses;
 }
 
+interface CreateInvoiceRequestData {
+  createInvoice: CreateInvoice;
+}
+
 // =====================
 // API CONTENT
 // =====================
@@ -104,6 +109,7 @@ type Invoices = DataWrapper<InvoicesData[]> & MetaInfo;
 type InvoiceContent = DataWrapper<InvoicesData>;
 type Categories = DataWrapper<CategoriesData[]>;
 type Addresses = DataWrapper<AddressesData[]>;
+type CreateInvoice = DataWrapper<InvoicesData>;
 
 // =====================
 // API DATA
@@ -250,4 +256,18 @@ interface ImageMetadata {
 interface ProviderMetadata {
   public_id: string;
   resource_type: string;
+}
+
+interface BcvUsdResponse {
+  name: string;
+  pair: string;
+  sources: {
+    BCV: BCVSource;
+  };
+}
+
+interface BCVSource {
+  name: string;
+  quote: string;
+  last_retrieved: string;
 }

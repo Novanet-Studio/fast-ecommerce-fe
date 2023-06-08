@@ -35,7 +35,7 @@ type Props = {
   error?: boolean | undefined;
   errorMessage?: string | undefined;
   class?: string | undefined;
-  type?: 'text' | 'password' | 'email';
+  type?: 'text' | 'password' | 'email' | 'date';
   iconLeft?: string;
   iconSize?: string;
   iconClass?: string;
