@@ -18,7 +18,7 @@
           <div v-if="total > 0" class="mini-cart">
             <div class="mini-cart__body">
               <template v-if="isLoadingCart">
-                <loading />
+                <app-loader />
               </template>
               <template v-else-if="cartProducts?.length">
                 <div v-for="(product, index) in cartProducts" :key="index">
