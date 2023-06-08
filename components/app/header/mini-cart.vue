@@ -63,7 +63,7 @@ const graphql = useStrapiGraphQL();
 const cartStore = useCartStore();
 const productStore = useProductStore();
 
-const isLoadingCart = ref(true);
+const isLoadingCart = ref(false);
 const total = computed(() => cartStore.total);
 const amount = computed(() => cartStore.amount);
 const cartItems = computed(() => cartStore.cartItems);
