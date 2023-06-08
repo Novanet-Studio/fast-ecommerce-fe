@@ -61,6 +61,7 @@ type RegisterRequest = DataWrapper<RegisterRequestData>;
 type ProductRequest = DataWrapper<ProductRequestData>;
 type InvoicesRequest = DataWrapper<InvoicesRequestData>;
 type CategoriesRequest = DataWrapper<CategoriesRequestData>;
+type AddressRequest = DataWrapper<AddressRequestData>;
 
 // =====================
 // REQUEST DATA
@@ -86,6 +87,10 @@ interface CategoriesRequestData {
   categories: Categories;
 }
 
+interface AddressRequestData {
+  addresses: Addresses;
+}
+
 // =====================
 // API CONTENT
 // =====================
@@ -98,6 +103,7 @@ type Products = DataWrapper<ProductsData[]>;
 type Invoices = DataWrapper<InvoicesData[]> & MetaInfo;
 type InvoiceContent = DataWrapper<InvoicesData>;
 type Categories = DataWrapper<CategoriesData[]>;
+type Addresses = DataWrapper<AddressesData[]>;
 
 // =====================
 // API DATA
@@ -105,6 +111,7 @@ type Categories = DataWrapper<CategoriesData[]>;
 type ProductsData = StrapiDataWrapper<ProductAttributes>;
 type InvoicesData = StrapiDataWrapper<InvoiceAtributes>;
 type CategoriesData = StrapiDataWrapper<CategoryAttributes>;
+type AddressesData = StrapiDataWrapper<AddressAttributes>;
 
 // =====================
 // DATA ATTRIBUTES
@@ -135,6 +142,10 @@ interface InvoiceAtributes {
 interface CategoryAttributes {
   name: string;
   products: ProductAttributes[];
+}
+
+interface AddressAttributes {
+  address: any;
 }
 
 // =====================
