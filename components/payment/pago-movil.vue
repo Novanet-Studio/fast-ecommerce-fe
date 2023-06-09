@@ -33,7 +33,7 @@
         <app-input
           v-model="formData.name"
           placeholder="john"
-          :is-error="status.name.isError"
+          :error="status.name.isError"
           :error-message="status.name.message"
         />
       </div>
@@ -46,7 +46,7 @@
         <app-input
           v-model="formData.lastName"
           placeholder="doe"
-          :is-error="status.lastName.isError"
+          :error="status.lastName.isError"
           :error-message="status.lastName.message"
         />
       </div>
@@ -57,7 +57,7 @@
         <app-input
           v-model="formData.date"
           type="date"
-          :is-error="status.date.isError"
+          :error="status.date.isError"
           :error-message="status.date.message"
         />
       </div>
@@ -73,7 +73,7 @@
         </p>
         <app-input
           v-model="formData.amountPayed"
-          :is-error="status.amountPayed.isError"
+          :error="status.amountPayed.isError"
           :error-message="status.amountPayed.message"
         />
       </div>
@@ -83,7 +83,7 @@
         >
         <app-input
           v-model="formData.confirmation"
-          :is-error="status.confirmation.isError"
+          :error="status.confirmation.isError"
           :error-message="status.confirmation.message"
         />
       </div>

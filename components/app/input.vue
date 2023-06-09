@@ -2,7 +2,7 @@
   <div class="input-group" :class="class">
     <div
       class="flex items-center border p-4 rounded-md"
-      :class="[error && 'input--error', focus && 'border-[#e36d65]']"
+      :class="[error && 'border-red-5', focus && 'border-[#e36d65]']"
     >
       <div class="mr-3" v-if="$slots.left">
         <slot name="left" />
