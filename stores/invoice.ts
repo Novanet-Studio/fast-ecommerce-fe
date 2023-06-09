@@ -15,7 +15,17 @@ interface Options {
   pageSize: number;
 }
 
+interface EmailObjectParams {
+  payed: string;
+  date: string;
+  content: string;
+  orderId: string;
+}
+
 type PaymentMethod = 'pago_movil' | 'trans_bofa' | 'zelle' | 'venmo';
+type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
+
+const DELAY_REDIRECT = 500;
 
 export const useInvoiceStore = defineStore(
   'ecommerce-invoice',
@@ -31,11 +41,16 @@ export const useInvoiceStore = defineStore(
       return invoices.value.map(invoiceMapper);
     });
 
+    const { $httpsCallable, $notify } = useNuxtApp();
+
+    const router = useRouter();
     const graphql = useStrapiGraphQL();
     const authStore = useAuthStore();
     const checkout = useCheckoutStore();
     const productsCart = useProductStore();
     const cart = useCartStore();
+
+    const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
     async function fetchInvoices(
       userId: string,
@@ -202,6 +217,108 @@ export const useInvoiceStore = defineStore(
       });
 
       return result;
+    }
+
+    function getEmailTemplate(products: any[]): string {
+      let emailContent = '';
+      const productList = [];
+
+      products.forEach((item) => {
+        const productFinded = productsCart.cartProducts!.find(
+          (product) => product!.id == item.id
+        );
+
+        if (productFinded) {
+          productList.push({
+            quantity: item.quantity,
+            name: productFinded.name,
+            amount: item.price,
+            description: productFinded.description,
+          });
+
+          emailContent += emailTemplate({
+            name: productFinded.name,
+            price: item.price,
+            quantity: item.quantity,
+          });
+        }
+      });
+
+      return emailContent;
+    }
+
+    const getMerchantObject = ({
+      payed,
+      date,
+      content,
+      orderId,
+    }: EmailObjectParams) => ({
+      payed,
+      date,
+      content,
+      email: authStore.user.email,
+      phone: checkout.phone,
+      shipping: checkout.shippingAddress,
+      nameCustomer: checkout.fullName,
+      order_id: orderId,
+    });
+
+    const getReceiptObject = ({
+      payed,
+      date,
+      content,
+      orderId,
+    }: EmailObjectParams) => ({
+      payed,
+      date,
+      content,
+      email: authStore.user.email,
+      nameCustomer: checkout.fullName,
+      order_id: orderId,
+    });
+
+    async function sendEmail(products: any[], payment: any) {
+      const emailContent = getEmailTemplate(products);
+      const createdDate = new Date(payment.fetha_pago).toLocaleDateString();
+      const amountPayed = `$${Number(payment.monto)} USD`;
+      const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
+
+      const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
+        'sendReceiptEmail'
+      );
+      const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
+        'sendMerchantEmail'
+      );
+
+      const merchant = getMerchantObject({
+        orderId,
+        payed: amountPayed,
+        date: createdDate,
+        content: emailContent,
+      });
+
+      const receipt = getReceiptObject({
+        orderId,
+        payed: amountPayed,
+        date: createdDate,
+        content: emailContent,
+      });
+
+      await Promise.all([
+        sendReceiptEmail(receipt),
+        sendMerchantEmail(merchant),
+      ]);
+
+      $notify({
+        group: 'all',
+        title: 'Orden de compra generada',
+        text: '¡Gracias por preferirnos!',
+      });
+
+      setTimeout(() => {
+        cart.clear();
+        router.push('/invoices');
+      }, DELAY_REDIRECT);
     }
 
     return {
