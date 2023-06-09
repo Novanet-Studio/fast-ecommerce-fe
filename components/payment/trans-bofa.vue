@@ -101,25 +101,17 @@
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
-import { CreateInvoice } from '~/graphql/mutations';
 import { SendInvoiceEmailError, PaymentReportError } from '~/errors';
 
-const { $notify, $httpsCallable } = useNuxtApp();
-const router = useRouter();
-const graphql = useStrapiGraphQL();
+const { $notify } = useNuxtApp();
 
 const cart = useCartStore();
-const auth = useAuthStore();
-const checkout = useCheckoutStore();
 const product = useProductStore();
 const invoice = useInvoiceStore();
 
 const sending = ref<boolean>(false);
 const productsCart = ref<Product[]>([]);
 const productsMail = ref<Product[]>([]);
-
-type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
-const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const {
   form: formData,
@@ -158,62 +150,6 @@ const {
   defaultMessage: '',
 });
 
-// async function createInvoice(payment: any, products: any[]) {
-//   const productName = productsCart.value;
-//   const filterProducts: any[] = [];
-
-//   products.forEach((product) => {
-//     const found = productName.find((item) => item.id === product.id);
-
-//     if (found) {
-//       filterProducts.push({
-//         id_product: +product.id,
-//         quantity: Number(product.quantity),
-//         name_product: found.name,
-//       });
-//     }
-//   });
-
-//   const addressData = {
-//     phone: checkout.phone,
-//     home: checkout.home,
-//     country: checkout.country,
-//     locality: checkout.city,
-//     postalCode: checkout.zipCode,
-//     addressLine1: checkout.address,
-//   };
-
-//   const paymentInfo = {
-//     ...payment,
-//     confirmacion: payment.confirmacion,
-//     email: checkout.email,
-//   };
-
-//   delete paymentInfo.orderId;
-
-//   const data = {
-//     amount: cart.amount,
-//     order_id: payment.orderId,
-//     paid: false,
-//     payment_id: payment.confirmacion,
-//     products: filterProducts,
-//     user_id: +auth.user.id,
-//     shippingAddress: addressData,
-//     fullName: checkout.fullName,
-//     cardType: 'no aplica',
-//     cardKind: 'no aplica',
-//     cardLast: 'no aplica',
-//     payment_info: [paymentInfo],
-//     payment_method: 'trans_bofa',
-//   };
-
-//   const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
-//     invoice: data,
-//   });
-
-//   return result;
-// }
-
 const { submit } = submitter(async () => {
   if (!verify()) return;
 
@@ -247,7 +183,7 @@ const { submit } = submitter(async () => {
       text: 'La orden se ha generado, se encuentra pendiente en aprobación',
     });
 
-    sendInvoiceEmail(invoiceItems, paymentData);
+    await invoice.sendEmail(invoiceItems, paymentData);
   } catch (error) {
     if (error instanceof PaymentReportError) {
       $notify({
@@ -268,86 +204,6 @@ const { submit } = submitter(async () => {
     sending.value = false;
   }
 });
-
-async function sendInvoiceEmail(products: any[], payment: any) {
-  try {
-    let emailContent = '';
-    // TODO! improve types
-    const productItems: any[] = [];
-    const created = new Date(payment.fetha_pago).toLocaleDateString();
-    const amountPayed = `$${Number(payment.monto)} USD`;
-    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-      'sendReceiptEmail'
-    );
-    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-      'sendMerchantEmail'
-    );
-
-    products.forEach((item) => {
-      const productFinded = productsMail.value.find(
-        (mailProduct) => mailProduct.id == item.id
-      );
-
-      if (productFinded) {
-        productItems.push({
-          quantity: item.quantity,
-          name: productFinded.name,
-          amount: item.price,
-          description: productFinded.description,
-        });
-
-        emailContent += emailTemplate({
-          name: productFinded.name,
-          price: item.price,
-          quantity: item.quantity,
-        });
-      }
-    });
-
-    const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
-
-    const merchant = {
-      payed: amountPayed,
-      email: auth.user.email,
-      phone: checkout.phone,
-      shipping: checkout.shippingAddress,
-      nameCustomer: checkout.fullName,
-      date: created,
-      content: emailContent,
-      order_id: orderId,
-    };
-
-    const receipt = {
-      payed: amountPayed,
-      // email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
-      email: auth.user.email,
-      nameCustomer: checkout.fullName,
-      date: created,
-      content: emailContent,
-      order_id: orderId,
-    };
-
-    await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
-
-    $notify({
-      group: 'all',
-      title: 'Orden de compra generada',
-      text: '¡Gracias por preferirnos!',
-    });
-
-    setTimeout(() => {
-      cart.clear();
-      router.push('/invoices');
-    }, 1000);
-  } catch (err) {
-    console.log('sendInvoiceEmail Error: ', err);
-    $notify({
-      group: 'all',
-      title: 'Error',
-      text: '¡Hubo un error al enviar el email!',
-    });
-  }
-}
 
 const getProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
