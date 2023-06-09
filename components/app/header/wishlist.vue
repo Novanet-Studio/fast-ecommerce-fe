@@ -9,8 +9,6 @@
 
 <script lang="ts" setup>
 import { PhHeart } from '@phosphor-icons/vue';
-// const { $store } = useNuxtApp();
-// const wishlistStore = $store.wishlist();
-// const total = computed(() => wishlistStore?.total ?? 0);
-const total = ref(0);
+const wishlistStore = useWishlistStore();
+const total = computed(() => wishlistStore?.total ?? 0);
 </script>
