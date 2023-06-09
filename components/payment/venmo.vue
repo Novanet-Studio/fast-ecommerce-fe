@@ -99,7 +99,7 @@ import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 import { CreateInvoice } from '~/graphql/mutations';
 
-const { $store, $notify, $httpsCallable } = useNuxtApp();
+const { $notify, $httpsCallable } = useNuxtApp();
 const router = useRouter();
 const graphql = useStrapiGraphQL();
 
@@ -107,6 +107,7 @@ const cart = useCartStore();
 const auth = useAuthStore();
 const checkout = useCheckoutStore();
 const product = useProductStore();
+const invoice = useInvoiceStore();
 
 const sending = ref<boolean>(false);
 const productsCart = ref<Product[]>([]);
@@ -152,61 +153,61 @@ const {
   defaultMessage: '',
 });
 
-async function createInvoice(payment: any, products: any[]) {
-  const productName = productsCart.value;
-  const filterProducts: any[] = [];
+// async function createInvoice(payment: any, products: any[]) {
+//   const productName = productsCart.value;
+//   const filterProducts: any[] = [];
 
-  products.forEach((product) => {
-    const found = productName.find((item) => item.id === product.id);
+//   products.forEach((product) => {
+//     const found = productName.find((item) => item.id === product.id);
 
-    if (found) {
-      filterProducts.push({
-        id_product: +product.id,
-        quantity: Number(product.quantity),
-        name_product: found.name,
-      });
-    }
-  });
+//     if (found) {
+//       filterProducts.push({
+//         id_product: +product.id,
+//         quantity: Number(product.quantity),
+//         name_product: found.name,
+//       });
+//     }
+//   });
 
-  const addressData = {
-    phone: checkout.phone,
-    home: checkout.home,
-    country: checkout.country,
-    locality: checkout.city,
-    postalCode: checkout.zipCode,
-    addressLine1: checkout.address,
-  };
+//   const addressData = {
+//     phone: checkout.phone,
+//     home: checkout.home,
+//     country: checkout.country,
+//     locality: checkout.city,
+//     postalCode: checkout.zipCode,
+//     addressLine1: checkout.address,
+//   };
 
-  const paymentInfo = {
-    ...payment,
-    confirmacion: payment.confirmacion,
-    email: checkout.email,
-  };
+//   const paymentInfo = {
+//     ...payment,
+//     confirmacion: payment.confirmacion,
+//     email: checkout.email,
+//   };
 
-  delete paymentInfo.orderId;
+//   delete paymentInfo.orderId;
 
-  const data = {
-    amount: cart.amount,
-    order_id: payment.orderId,
-    paid: false,
-    payment_id: payment.confirmacion,
-    products: filterProducts,
-    user_id: +auth.user.id,
-    shippingAddress: addressData,
-    fullName: checkout.fullName,
-    cardType: 'no aplica',
-    cardKind: 'no aplica',
-    cardLast: 'no aplica',
-    payment_info: [paymentInfo],
-    payment_method: 'venmo',
-  };
+//   const data = {
+//     amount: cart.amount,
+//     order_id: payment.orderId,
+//     paid: false,
+//     payment_id: payment.confirmacion,
+//     products: filterProducts,
+//     user_id: +auth.user.id,
+//     shippingAddress: addressData,
+//     fullName: checkout.fullName,
+//     cardType: 'no aplica',
+//     cardKind: 'no aplica',
+//     cardLast: 'no aplica',
+//     payment_info: [paymentInfo],
+//     payment_method: 'venmo',
+//   };
 
-  const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
-    invoice: data,
-  });
+//   const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
+//     invoice: data,
+//   });
 
-  return result;
-}
+//   return result;
+// }
 
 const { submit } = submitter(async () => {
   if (!verify()) return;
@@ -233,7 +234,7 @@ const { submit } = submitter(async () => {
     };
 
     const invoiceItems = cart.cartItems;
-    await createInvoice(paymentData, invoiceItems);
+    await invoice.createInvoiceReport(paymentData, invoiceItems, 'venmo');
 
     $notify({
       group: 'all',

@@ -15,6 +15,8 @@ interface Options {
   pageSize: number;
 }
 
+type PaymentMethod = 'pago_movil' | 'trans_bofa' | 'zelle' | 'venmo';
+
 export const useInvoiceStore = defineStore(
   'ecommerce-invoice',
   () => {
@@ -29,8 +31,11 @@ export const useInvoiceStore = defineStore(
       return invoices.value.map(invoiceMapper);
     });
 
+    const graphql = useStrapiGraphQL();
     const authStore = useAuthStore();
     const checkout = useCheckoutStore();
+    const productsCart = useProductStore();
+    const cart = useCartStore();
 
     async function fetchInvoices(
       userId: string,
@@ -138,6 +143,67 @@ export const useInvoiceStore = defineStore(
       return data;
     }
 
+    async function createInvoiceReport(
+      payment: any,
+      products: any[],
+      method: PaymentMethod
+    ) {
+      const productList = productsCart.cartProducts;
+      const productsFiltered: any[] = [];
+
+      products.forEach((product) => {
+        const found = productList?.find((item) => item?.id === product.id);
+
+        if (found) {
+          productsFiltered.push({
+            id_product: +product.id,
+            quantity: Number(product.quantity),
+            name_product: found.name,
+          });
+        }
+      });
+
+      const addressData = {
+        phone: checkout.phone,
+        home: checkout.home,
+        country: checkout.country,
+        locality: checkout.city,
+        postalCode: checkout.zipCode,
+        addressLine1: checkout.address,
+      };
+
+      const paymentInfo = {
+        ...payment,
+        confirmacion: payment.confirmacion,
+        email: checkout.email,
+      };
+
+      delete paymentInfo.orderId;
+
+      const data = {
+        // Amount in USD
+        amount: cart.amount,
+        order_id: payment.orderId,
+        paid: false,
+        payment_id: payment.confirmacion,
+        products: productsFiltered,
+        user_id: +authStore.user.id,
+        shippingAddress: addressData,
+        fullName: checkout.fullName,
+        cardType: 'no aplica',
+        cardKind: 'no aplica',
+        cardLast: 'no aplica',
+        payment_info: [paymentInfo],
+        payment_method: method,
+      };
+
+      const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
+        invoice: data,
+      });
+
+      return result;
+    }
+
     return {
       invoice,
       invoices,
@@ -146,6 +212,7 @@ export const useInvoiceStore = defineStore(
       fetchInvoices,
       loadInvoiceProducts,
       createInvoice,
+      createInvoiceReport,
     };
   },
   {
