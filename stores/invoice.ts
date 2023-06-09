@@ -1,6 +1,7 @@
 import { CreateInvoice } from '~/graphql/mutations';
 import { GetProductById, GetInvoicesByUserId } from '~/graphql/queries';
 import type { OrderResponseBody } from '@paypal/paypal-js';
+import { PaymentReportError, SendInvoiceEmailError } from '~/errors';
 
 const PAGE_LIMIT = 10;
 const DEFAULT_PAGE = 1;
@@ -163,60 +164,64 @@ export const useInvoiceStore = defineStore(
       products: any[],
       method: PaymentMethod
     ) {
-      const productList = productsCart.cartProducts;
-      const productsFiltered: any[] = [];
+      try {
+        const productList = productsCart.cartProducts;
+        const productsFiltered: any[] = [];
 
-      products.forEach((product) => {
-        const found = productList?.find((item) => item?.id === product.id);
+        products.forEach((product) => {
+          const found = productList?.find((item) => item?.id === product.id);
 
-        if (found) {
-          productsFiltered.push({
-            id_product: +product.id,
-            quantity: Number(product.quantity),
-            name_product: found.name,
-          });
-        }
-      });
+          if (found) {
+            productsFiltered.push({
+              id_product: +product.id,
+              quantity: Number(product.quantity),
+              name_product: found.name,
+            });
+          }
+        });
 
-      const addressData = {
-        phone: checkout.phone,
-        home: checkout.home,
-        country: checkout.country,
-        locality: checkout.city,
-        postalCode: checkout.zipCode,
-        addressLine1: checkout.address,
-      };
+        const addressData = {
+          phone: checkout.phone,
+          home: checkout.home,
+          country: checkout.country,
+          locality: checkout.city,
+          postalCode: checkout.zipCode,
+          addressLine1: checkout.address,
+        };
 
-      const paymentInfo = {
-        ...payment,
-        confirmation: payment.confirmation,
-        email: checkout.email,
-      };
+        const paymentInfo = {
+          ...payment,
+          confirmation: payment.confirmation,
+          email: checkout.email,
+        };
 
-      delete paymentInfo.orderId;
+        delete paymentInfo.orderId;
 
-      const data = {
-        // Amount in USD
-        amount: cart.amount,
-        order_id: payment.orderId,
-        paid: false,
-        payment_id: payment.confirmation,
-        products: productsFiltered,
-        user_id: +authStore.user.id,
-        shippingAddress: addressData,
-        fullName: checkout.fullName,
-        cardType: 'no aplica',
-        cardKind: 'no aplica',
-        cardLast: 'no aplica',
-        payment_info: [paymentInfo],
-        payment_method: method,
-      };
+        const data = {
+          // Amount in USD
+          amount: cart.amount,
+          order_id: payment.orderId,
+          paid: false,
+          payment_id: payment.confirmation,
+          products: productsFiltered,
+          user_id: +authStore.user.id,
+          shippingAddress: addressData,
+          fullName: checkout.fullName,
+          cardType: 'no aplica',
+          cardKind: 'no aplica',
+          cardLast: 'no aplica',
+          payment_info: [paymentInfo],
+          payment_method: method,
+        };
 
-      const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
-        invoice: data,
-      });
+        const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
+          invoice: data,
+        });
 
-      return result;
+        return result;
+      } catch (error) {
+        throw new PaymentReportError('An error occurred while sending report');
+      }
     }
 
     function getEmailTemplate(products: any[]): string {
@@ -278,47 +283,51 @@ export const useInvoiceStore = defineStore(
     });
 
     async function sendEmail(products: any[], payment: any) {
-      const emailContent = getEmailTemplate(products);
-      const createdDate = new Date(payment.fetha_pago).toLocaleDateString();
-      const amountPayed = `$${Number(payment.monto)} USD`;
-      const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
+      try {
+        const emailContent = getEmailTemplate(products);
+        const createdDate = new Date(payment.fetha_pago).toLocaleDateString();
+        const amountPayed = `$${Number(payment.monto)} USD`;
+        const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
 
-      const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-        'sendReceiptEmail'
-      );
-      const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-        'sendMerchantEmail'
-      );
+        const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
+          'sendReceiptEmail'
+        );
+        const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
+          'sendMerchantEmail'
+        );
 
-      const merchant = getMerchantObject({
-        orderId,
-        payed: amountPayed,
-        date: createdDate,
-        content: emailContent,
-      });
+        const merchant = getMerchantObject({
+          orderId,
+          payed: amountPayed,
+          date: createdDate,
+          content: emailContent,
+        });
 
-      const receipt = getReceiptObject({
-        orderId,
-        payed: amountPayed,
-        date: createdDate,
-        content: emailContent,
-      });
+        const receipt = getReceiptObject({
+          orderId,
+          payed: amountPayed,
+          date: createdDate,
+          content: emailContent,
+        });
 
-      await Promise.all([
-        sendReceiptEmail(receipt),
-        sendMerchantEmail(merchant),
-      ]);
+        await Promise.all([
+          sendReceiptEmail(receipt),
+          sendMerchantEmail(merchant),
+        ]);
 
-      $notify({
-        group: 'all',
-        title: 'Orden de compra generada',
-        text: '¡Gracias por preferirnos!',
-      });
+        $notify({
+          group: 'all',
+          title: 'Orden de compra generada',
+          text: '¡Gracias por preferirnos!',
+        });
 
-      setTimeout(() => {
-        cart.clear();
-        router.push('/invoices');
-      }, DELAY_REDIRECT);
+        setTimeout(() => {
+          cart.clear();
+          router.push('/invoices');
+        }, DELAY_REDIRECT);
+      } catch (error) {
+        throw new SendInvoiceEmailError('¡Hubo un error al enviar el email!');
+      }
     }
 
     return {
@@ -330,6 +339,7 @@ export const useInvoiceStore = defineStore(
       loadInvoiceProducts,
       createInvoice,
       createInvoiceReport,
+      sendEmail,
     };
   },
   {

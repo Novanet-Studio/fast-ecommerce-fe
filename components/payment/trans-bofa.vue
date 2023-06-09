@@ -102,6 +102,7 @@ import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 import { CreateInvoice } from '~/graphql/mutations';
+import { SendInvoiceEmailError, PaymentReportError } from '~/errors';
 
 const { $notify, $httpsCallable } = useNuxtApp();
 const router = useRouter();
@@ -248,7 +249,21 @@ const { submit } = submitter(async () => {
 
     sendInvoiceEmail(invoiceItems, paymentData);
   } catch (error) {
-    console.log('Was an error while sending payment report');
+    if (error instanceof PaymentReportError) {
+      $notify({
+        group: 'all',
+        title: 'Error',
+        text: '¡Hubo un error al reportar tu pago!',
+      });
+    }
+
+    if (error instanceof SendInvoiceEmailError) {
+      $notify({
+        group: 'all',
+        title: 'Error',
+        text: '¡Hubo un error al enviar el email!',
+      });
+    }
   } finally {
     sending.value = false;
   }
