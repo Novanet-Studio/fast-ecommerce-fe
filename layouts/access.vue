@@ -11,7 +11,7 @@
         </nuxt-link>
       </header>
       <nuxt-page />
-      <notify />
+      <app-notify />
     </div>
     <div class="mt-20"><app-footer-copyright /></div>
   </div>

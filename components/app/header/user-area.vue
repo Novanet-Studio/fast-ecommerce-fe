@@ -36,7 +36,7 @@
           <li class="user-area__menu-logout">
             <a
               href="#"
-              class="transition-colors ease hover:text-yellow-400"
+              class="transition-colors ease"
               @click.prevent="handleLogout"
             >
               Cerrar Sesión
@@ -50,7 +50,6 @@
 
 <script lang="ts" setup>
 import { PhUser } from '@phosphor-icons/vue';
-// const { $store } = useNuxtApp();
 const auth = useAuthStore();
 const global = useGlobalStore();
 // const auth = $store.auth();
@@ -104,7 +103,7 @@ const handleLogout = () => {
 }
 
 .user-area__menu-link {
-  @apply pl-0 text-dark-500 transition-colors ease hover:text-yellow-400;
+  @apply pl-0 text-dark-500 transition-colors ease;
 }
 
 .user-area__menu-logout {

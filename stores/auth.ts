@@ -5,94 +5,102 @@ type User = StrapiUser & {
   customerId: string;
 };
 
-export const useAuthStore = defineStore('ecommerce-auth', () => {
-  const { $notify, $httpsCallable } = useNuxtApp();
-  const { setToken } = useStrapiAuth();
-  const graphql = useStrapiGraphQL();
+export const useAuthStore = defineStore(
+  'ecommerce-auth',
+  () => {
+    const { $notify, $httpsCallable } = useNuxtApp();
+    const { setToken } = useStrapiAuth();
+    const graphql = useStrapiGraphQL();
 
-  const token = ref('');
-  const user = reactive<User>({
-    id: 0,
-    customerId: '',
-  });
-
-  const authenticated = ref(false);
-
-  async function login(user: string, password: string): Promise<boolean> {
-    const { data } = await graphql<LoginRequest>(LoginQuery, {
-      identifier: user,
-      password,
+    const token = ref('');
+    const user = reactive<User>({
+      id: 0,
+      customerId: '',
     });
 
-    if (!data) {
+    const authenticated = ref(false);
+
+    async function login(
+      identifier: string,
+      password: string
+    ): Promise<boolean> {
+      const { data } = await graphql<LoginRequest>(LoginQuery, {
+        identifier,
+        password,
+      });
+
+      if (!data) {
+        $notify({
+          group: 'all',
+          title: 'Error!',
+          text: 'Usuario o Contraseña inválidos',
+        });
+        return false;
+      }
+
+      setToken(data.login.jwt);
+      authenticated.value = true;
+      token.value = data.login.jwt;
+      console.log(data.login.user);
+      Object.assign(user, data.login.user);
+
       $notify({
         group: 'all',
-        title: 'Error!',
-        text: 'Usuario o Contraseña inválidos',
+        title: 'Success!',
+        text: `Inicio de sesión con éxito!`,
       });
-      return false;
+
+      return true;
     }
 
-    setToken(data.login.jwt);
-    authenticated.value = true;
-    token.value = data.login.jwt;
-    Object.assign(user, data.login.user);
+    async function register(user: Partial<User>): Promise<boolean> {
+      const { data } = await graphql<RegisterRequest>(RegisterQuery, user);
 
-    $notify({
-      group: 'all',
-      title: 'Success!',
-      text: `Inicio de sesión con éxito!`,
-    });
+      if (!data) {
+        $notify({
+          group: 'all',
+          title: 'Oops',
+          text: 'El usuario o email ya existen',
+        });
+        return false;
+      }
 
-    return true;
-  }
+      setToken(data.register.jwt);
+      authenticated.value = true;
+      Object.assign(user, data.register.user);
 
-  async function register(user: Partial<User>): Promise<boolean> {
-    const { data } = await graphql<RegisterRequest>(RegisterQuery, user);
-
-    if (!data) {
       $notify({
         group: 'all',
-        title: 'Oops',
-        text: 'El usuario o email ya existen',
+        title: 'Hey!',
+        text: 'Te has registrado exitosamente!',
       });
-      return false;
+
+      return true;
     }
 
-    setToken(data.register.jwt);
-    authenticated.value = true;
-    Object.assign(user, data.register.user);
+    async function createCustomer(user: string, email: string) {
+      const httpsCallable = $httpsCallable as HttpsCallableHelper;
+      const customerId = httpsCallable<HttpsCallable.CreateCustomer, any>(
+        HttpsCallable.CreateCustomer
+      );
+      const idempotencyKey = crypto.randomUUID();
+      const data = {
+        idempotencyKey,
+        givenName: user,
+        emailAddress: email,
+      };
 
-    $notify({
-      group: 'all',
-      title: 'Hey!',
-      text: 'Te has registrado exitosamente!',
-    });
+      return customerId(data);
+    }
 
-    return true;
-  }
-
-  async function createCustomer(user: string, email: string) {
-    const httpsCallable = $httpsCallable as HttpsCallableHelper;
-    const customerId = httpsCallable<HttpsCallable.CreateCustomer, any>(
-      HttpsCallable.CreateCustomer
-    );
-    const idempotencyKey = crypto.randomUUID();
-    const data = {
-      idempotencyKey,
-      givenName: user,
-      emailAddress: email,
+    return {
+      token,
+      user,
+      authenticated,
+      login,
+      register,
+      createCustomer,
     };
-
-    return customerId(data);
-  }
-
-  return {
-    token,
-    user,
-    authenticated,
-    login,
-    register,
-    createCustomer,
-  };
-});
+  },
+  { persist: true }
+);

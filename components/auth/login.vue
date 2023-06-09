@@ -55,7 +55,7 @@ import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 
-const { $notify, $store } = useNuxtApp();
+const { $notify } = useNuxtApp();
 
 const router = useRouter();
 const auth = useAuthStore();
