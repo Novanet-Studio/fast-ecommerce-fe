@@ -7,33 +7,22 @@
         </h3>
       </div>
       <div class="landing__content">
-        <swiper
-          navigation
-          :modules="modules"
+        <app-slider
+          :items="products"
           :slides-per-view="5"
           :space-between="0"
+          v-if="products.length"
         >
-          <swiper-slide
-            v-for="product in products"
-            :key="product.id"
-            class="landing__slide"
-          >
+          <template #default="{ product }">
             <product-default :product="product" />
-          </swiper-slide>
-        </swiper>
+          </template>
+        </app-slider>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Autoplay, Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
 type Props = {
   category: Category;
 };
@@ -42,7 +31,6 @@ const props = defineProps<Props>();
 const productStore = useProductStore();
 
 const products = ref<Product[] | null>(null);
-const modules = [Autoplay, Navigation, Pagination];
 
 onMounted(async () => {
   const result = await productStore.getByCategory(props.category.id);

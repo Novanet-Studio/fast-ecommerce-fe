@@ -3,7 +3,7 @@
     <div class="banner__wrapper">
       <div class="banner__left">
         <div class="banner__slider">
-          <app-slider :images="appConfig.home.slider" />
+          <app-slider :items="appConfig.home.slider" />
         </div>
       </div>
       <div class="banner__right">
