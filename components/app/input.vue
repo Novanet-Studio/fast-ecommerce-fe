@@ -20,10 +20,8 @@
         <slot name="right" />
       </div>
     </div>
-    <div class="">
-      <div class="text-xs pt-1 text-red-500" v-if="error && errorMessage">
-        {{ errorMessage }}
-      </div>
+    <div class="text-xs pt-1 text-red-500" v-if="error && errorMessage">
+      {{ errorMessage }}
     </div>
   </div>
 </template>
@@ -61,5 +59,3 @@ const value = computed({
   set: (val: string) => emits('update:modelValue', val),
 });
 </script>
-
-<style scoped></style>

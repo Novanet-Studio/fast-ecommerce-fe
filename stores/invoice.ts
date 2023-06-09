@@ -174,7 +174,7 @@ export const useInvoiceStore = defineStore(
 
       const paymentInfo = {
         ...payment,
-        confirmacion: payment.confirmacion,
+        confirmation: payment.confirmation,
         email: checkout.email,
       };
 
@@ -185,7 +185,7 @@ export const useInvoiceStore = defineStore(
         amount: cart.amount,
         order_id: payment.orderId,
         paid: false,
-        payment_id: payment.confirmacion,
+        payment_id: payment.confirmation,
         products: productsFiltered,
         user_id: +authStore.user.id,
         shippingAddress: addressData,

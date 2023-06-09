@@ -51,7 +51,7 @@ defineExpose({
 
 <style>
 .btn {
-  @apply w-full text-center text-color-2 font-bold py-4 inline-block text-sm border-transparent rounded-md bg-color-1 transition ease cursor-pointer hover:(bg-opacity-80) active:( bg-opacity-80);
+  @apply w-full text-center text-color-2 font-bold py-4 inline-block text-sm border-transparent rounded-md bg-color-1 transition ease cursor-pointer hover:(bg-opacity-80) active:( bg-opacity-80) disabled:(opacity-70 text-gray cursor-not-allowed);
 }
 
 .btn--outline {
