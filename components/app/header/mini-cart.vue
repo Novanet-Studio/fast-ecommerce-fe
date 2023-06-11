@@ -39,7 +39,7 @@
                 </div>
                 <div class="mini-cart__right">
                   <nuxt-link to="/checkout" class="btn btn--outline">
-                    Checkout
+                    Pagar
                   </nuxt-link>
                 </div>
               </figure>

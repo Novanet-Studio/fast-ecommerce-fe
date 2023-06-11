@@ -151,7 +151,6 @@ const isObjectData = ref(false);
 const value = computed({
   get: () => props.modelValue,
   set: (val: string) => {
-    console.log('setting value: ' + val);
     emit('update:modelValue', val);
   },
 });
