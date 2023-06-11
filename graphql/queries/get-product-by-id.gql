@@ -7,7 +7,7 @@ query GetProductById($id: ID!) {
         description
         price
         sale_price
-        image {
+        images {
           data {
             attributes {
               name

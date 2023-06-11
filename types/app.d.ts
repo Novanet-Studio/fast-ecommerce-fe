@@ -125,7 +125,7 @@ type AddressesData = StrapiDataWrapper<AddressAttributes>;
 interface ProductAttributes {
   name: string;
   description: string;
-  image: Image[];
+  images: Image[];
   size: string;
   materials: string;
   price: number;
