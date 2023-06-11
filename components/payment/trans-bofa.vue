@@ -165,13 +165,13 @@ const { submit } = submitter(async () => {
       return;
     }
 
-    const paymentData = {
+    const paymentData: PaymentObject = {
       orderId: crypto.randomUUID(),
-      nombre: formData.name,
-      apellido: formData.lastName,
-      confirmacion: formData.confirmation.toString(),
-      monto: formData.amountPayed,
-      fecha_pago: formData.date,
+      name: formData.name,
+      lastname: formData.lastName,
+      confirmation: formData.confirmation,
+      amount: formData.amountPayed,
+      paymentDate: formData.date,
     };
 
     const invoiceItems = cart.cartItems;
