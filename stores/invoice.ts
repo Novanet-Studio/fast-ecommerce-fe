@@ -200,7 +200,7 @@ export const useInvoiceStore = defineStore(
           paid: false,
           payment_id: payment.confirmation,
           products: productsFiltered,
-          user: +authStore.user.id,
+          user: authStore.user.id.toString(),
           shippingAddress: addressData,
           fullName: checkout.fullName,
           cardType: 'no aplica',

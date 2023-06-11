@@ -41,7 +41,6 @@ export const useAuthStore = defineStore(
       setToken(data.login.jwt);
       authenticated.value = true;
       token.value = data.login.jwt;
-      console.log(data.login.user);
       Object.assign(user, data.login.user);
 
       $notify({
