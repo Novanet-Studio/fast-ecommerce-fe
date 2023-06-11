@@ -182,17 +182,17 @@ const { submit } = submitter(async () => {
       return;
     }
 
-    const paymentData = {
+    const paymentData: PaymentObject = {
       orderId: crypto.randomUUID(),
       name: formData.name,
       lastname: formData.lastName,
       confirmation: formData.confirmation.toString(),
       amount: formData.amountPayed,
-      payment_date: formData.date,
+      paymentDate: formData.date,
+      amountRate: amountRate.value,
     };
 
     const invoiceItems = cart.cartItems;
-    // await createInvoice(paymentData, invoiceItems);
     await invoice.createInvoiceReport(paymentData, invoiceItems, 'pago_movil');
 
     $notify({

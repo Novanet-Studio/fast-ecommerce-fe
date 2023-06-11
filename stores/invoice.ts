@@ -16,13 +16,6 @@ interface Options {
   pageSize: number;
 }
 
-interface EmailObjectParams {
-  payed: string;
-  date: string;
-  content: string;
-  orderId: string;
-}
-
 type PaymentMethod = 'pago_movil' | 'trans_bofa' | 'zelle' | 'venmo';
 type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
 
@@ -160,7 +153,7 @@ export const useInvoiceStore = defineStore(
     }
 
     async function createInvoiceReport(
-      payment: any,
+      payment: PaymentObject,
       products: any[],
       method: PaymentMethod
     ) {
@@ -191,6 +184,7 @@ export const useInvoiceStore = defineStore(
 
         const paymentInfo = {
           ...payment,
+          payment_date: payment.paymentDate,
           confirmation: payment.confirmation,
           email: checkout.email,
         };
