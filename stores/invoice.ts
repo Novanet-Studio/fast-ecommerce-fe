@@ -278,11 +278,15 @@ export const useInvoiceStore = defineStore(
       order_id: orderId,
     });
 
-    async function sendEmail(products: any[], payment: any) {
+    async function sendEmail(products: any[], payment: PaymentObject) {
       try {
         const emailContent = getEmailTemplate(products);
-        const createdDate = new Date(payment.fetha_pago).toLocaleDateString();
-        const amountPayed = `$${Number(payment.monto)} USD`;
+        const createdDate = new Date(payment.paymentDate).toLocaleDateString();
+        const amountPayed = `$${
+          payment?.amountRate
+            ? Number(payment.amount) / payment.amountRate
+            : Number(payment.amount)
+        } USD`;
         const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
 
         const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
