@@ -110,13 +110,13 @@ import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
 // import { CreateInvoice } from '~/graphql/mutations';
 
-const { $notify, $httpsCallable } = useNuxtApp();
-const router = useRouter();
+const { $notify } = useNuxtApp();
+// const router = useRouter();
 // const graphql = useStrapiGraphQL();
 
 const cart = useCartStore();
-const auth = useAuthStore();
-const checkout = useCheckoutStore();
+// const auth = useAuthStore();
+// const checkout = useCheckoutStore();
 const product = useProductStore();
 const invoice = useInvoiceStore();
 
@@ -127,8 +127,8 @@ const sending = ref<boolean>(false);
 const productsCart = ref<Product[]>([]);
 const productsMail = ref<Product[]>([]);
 
-type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
-const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
+// type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
+// const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const {
   form: formData,
@@ -201,7 +201,8 @@ const { submit } = submitter(async () => {
       text: 'La orden se ha generado, se encuentra pendiente en aprobación',
     });
 
-    sendInvoiceEmail(invoiceItems, paymentData);
+    // sendInvoiceEmail(invoiceItems, paymentData);
+    await invoice.sendEmail(invoiceItems, paymentData);
   } catch (error) {
     console.log('Was an error while sending payment report');
   } finally {
@@ -209,85 +210,85 @@ const { submit } = submitter(async () => {
   }
 });
 
-async function sendInvoiceEmail(products: any[], payment: any) {
-  try {
-    let emailContent = '';
-    // TODO! improve types
-    const productItems: any[] = [];
-    const created = new Date(payment.fecha_pago).toLocaleDateString();
-    const amountPayed = `$${Number(payment.monto) / amountRate.value} USD`;
-    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-      'sendReceiptEmail'
-    );
-    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-      'sendMerchantEmail'
-    );
+// async function sendInvoiceEmail(products: any[], payment: any) {
+//   try {
+//     let emailContent = '';
+//     // TODO! improve types
+//     const productItems: any[] = [];
+//     const created = new Date(payment.fecha_pago).toLocaleDateString();
+//     const amountPayed = `$${Number(payment.monto) / amountRate.value} USD`;
+//     const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
+//       'sendReceiptEmail'
+//     );
+//     const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
+//       'sendMerchantEmail'
+//     );
 
-    products.forEach((item) => {
-      const productFinded = productsMail.value.find(
-        (mailProduct) => mailProduct.id == item.id
-      );
+//     products.forEach((item) => {
+//       const productFinded = productsMail.value.find(
+//         (mailProduct) => mailProduct.id == item.id
+//       );
 
-      if (productFinded) {
-        productItems.push({
-          quantity: item.quantity,
-          name: productFinded.name,
-          amount: item.price,
-          description: productFinded.description,
-        });
+//       if (productFinded) {
+//         productItems.push({
+//           quantity: item.quantity,
+//           name: productFinded.name,
+//           amount: item.price,
+//           description: productFinded.description,
+//         });
 
-        emailContent += emailTemplate({
-          name: productFinded.name,
-          price: item.price,
-          quantity: item.quantity,
-        });
-      }
-    });
+//         emailContent += emailTemplate({
+//           name: productFinded.name,
+//           price: item.price,
+//           quantity: item.quantity,
+//         });
+//       }
+//     });
 
-    const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
+//     const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
 
-    const merchant = {
-      payed: amountPayed,
-      email: auth.user.email,
-      phone: checkout.phone,
-      shipping: checkout.shippingAddress,
-      nameCustomer: checkout.fullName,
-      date: created,
-      content: emailContent,
-      order_id: orderId,
-    };
+//     const merchant = {
+//       payed: amountPayed,
+//       email: auth.user.email,
+//       phone: checkout.phone,
+//       shipping: checkout.shippingAddress,
+//       nameCustomer: checkout.fullName,
+//       date: created,
+//       content: emailContent,
+//       order_id: orderId,
+//     };
 
-    const receipt = {
-      payed: amountPayed,
-      // email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
-      email: auth.user.email,
-      nameCustomer: checkout.fullName,
-      date: created,
-      content: emailContent,
-      order_id: orderId,
-    };
+//     const receipt = {
+//       payed: amountPayed,
+//       // email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
+//       email: auth.user.email,
+//       nameCustomer: checkout.fullName,
+//       date: created,
+//       content: emailContent,
+//       order_id: orderId,
+//     };
 
-    await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
+//     await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
 
-    $notify({
-      group: 'all',
-      title: 'Orden de compra generada',
-      text: '¡Gracias por preferirnos!',
-    });
+//     $notify({
+//       group: 'all',
+//       title: 'Orden de compra generada',
+//       text: '¡Gracias por preferirnos!',
+//     });
 
-    setTimeout(() => {
-      cart.clear();
-      router.push('/invoices');
-    }, 1000);
-  } catch (err) {
-    console.log('sendInvoiceEmail Error: ', err);
-    $notify({
-      group: 'all',
-      title: 'Error',
-      text: '¡Hubo un error al enviar el email!',
-    });
-  }
-}
+//     setTimeout(() => {
+//       cart.clear();
+//       router.push('/invoices');
+//     }, 1000);
+//   } catch (err) {
+//     console.log('sendInvoiceEmail Error: ', err);
+//     $notify({
+//       group: 'all',
+//       title: 'Error',
+//       text: '¡Hubo un error al enviar el email!',
+//     });
+//   }
+// }
 
 const calculateAmountToPay = () => {
   const amount = bcvUsd.value * cart.amount;
@@ -301,7 +302,6 @@ const getBCVUsd = async () => {
     const response = await fetch(url);
     const data: BcvUsdResponse = await response.json();
     const mount = data.sources.BCV.quote.substring(0, 5);
-    console.log(data.sources.BCV.quote);
 
     bcvUsd.value = parseFloat(mount);
 
