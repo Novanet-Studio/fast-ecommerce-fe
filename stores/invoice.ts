@@ -84,9 +84,7 @@ export const useInvoiceStore = defineStore(
 
         if (!invoice.value?.products.length) return [];
 
-        const itemsId = invoice.value.products.map(
-          (product) => product.product_id
-        );
+        const itemsId = invoice.value.products.map((product) => product.id);
 
         const productPromises = itemsId.map((id) =>
           graphql<ProductRequest>(GetProductById, { id })
@@ -159,18 +157,29 @@ export const useInvoiceStore = defineStore(
     ) {
       try {
         const productList = productsCart.cartProducts;
-        const productsFiltered: any[] = [];
+        const productsFiltered: ProductBuyed[] = [];
 
         products.forEach((product) => {
           const found = productList?.find((item) => item?.id === product.id);
 
           if (found) {
             productsFiltered.push({
-              id_product: +product.id,
+              product: product.id,
               quantity: Number(product.quantity),
-              name_product: found.name,
+              // name_product: found.name,
             });
           }
+        });
+
+        const mapperToStrapiObject = (
+          payment: PaymentObject
+        ): PaymentStrapi => ({
+          name: payment.name,
+          lastname: payment.lastname,
+          confirmation: payment.confirmation,
+          amount: +payment.amount,
+          payment_date: payment.paymentDate,
+          email: checkout.email,
         });
 
         const addressData = {
@@ -182,14 +191,7 @@ export const useInvoiceStore = defineStore(
           addressLine1: checkout.address,
         };
 
-        const paymentInfo = {
-          ...payment,
-          payment_date: payment.paymentDate,
-          confirmation: payment.confirmation,
-          email: checkout.email,
-        };
-
-        delete paymentInfo.orderId;
+        const paymentInfo = mapperToStrapiObject(payment);
 
         const data = {
           // Amount in USD
@@ -198,7 +200,7 @@ export const useInvoiceStore = defineStore(
           paid: false,
           payment_id: payment.confirmation,
           products: productsFiltered,
-          user_id: +authStore.user.id,
+          user: +authStore.user.id,
           shippingAddress: addressData,
           fullName: checkout.fullName,
           cardType: 'no aplica',

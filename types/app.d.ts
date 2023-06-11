@@ -138,6 +138,7 @@ interface InvoiceAtributes {
   products: ProductBuyed[];
   payment_id: string;
   order_id: string;
+  user: User;
   shipment_address: AddressDetail;
   payment_method: string;
   payment_info: InvoicePaymentInfo[];
@@ -193,10 +194,11 @@ interface ShippingInfo {
 }
 
 interface ProductBuyed {
-  id: string;
+  id?: string;
   quantity: number;
-  product_id: number;
-  product_name: string;
+  product: Product | string;
+  // product_id: number;
+  // product_name: string;
 }
 
 interface AddressDetail {

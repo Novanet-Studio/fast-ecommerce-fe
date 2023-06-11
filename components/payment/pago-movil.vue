@@ -121,7 +121,7 @@ const product = useProductStore();
 const invoice = useInvoiceStore();
 
 const bcvUsd = ref<number>(0);
-const amountRate = ref<string>('');
+const amountRate = ref(0);
 const loadingBcvUsd = ref<boolean>(false);
 const sending = ref<boolean>(false);
 const productsCart = ref<Product[]>([]);
@@ -186,7 +186,7 @@ const { submit } = submitter(async () => {
       orderId: crypto.randomUUID(),
       name: formData.name,
       lastname: formData.lastName,
-      confirmation: formData.confirmation.toString(),
+      confirmation: formData.confirmation,
       amount: formData.amountPayed,
       paymentDate: formData.date,
       amountRate: amountRate.value,
@@ -291,8 +291,7 @@ async function sendInvoiceEmail(products: any[], payment: any) {
 
 const calculateAmountToPay = () => {
   const amount = bcvUsd.value * cart.amount;
-  const [value, decimal] = amount.toString().split('.');
-  amountRate.value = `${value},${decimal}`;
+  amountRate.value = amount;
 };
 
 const getBCVUsd = async () => {
@@ -302,6 +301,7 @@ const getBCVUsd = async () => {
     const response = await fetch(url);
     const data: BcvUsdResponse = await response.json();
     const mount = data.sources.BCV.quote.substring(0, 5);
+    console.log(data.sources.BCV.quote);
 
     bcvUsd.value = parseFloat(mount);
 

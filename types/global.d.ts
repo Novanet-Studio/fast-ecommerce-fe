@@ -5,6 +5,15 @@ interface EmailObjectParams {
   orderId: string;
 }
 
+interface PaymentStrapi {
+  name: string;
+  lastname: string;
+  confirmation: string;
+  amount: number;
+  payment_date: string;
+  email: string;
+}
+
 interface PaymentObject {
   orderId?: string;
   name: string;
@@ -15,5 +24,5 @@ interface PaymentObject {
   /**
    * If this field is set, it means that the payment method is 'pago movil'
    */
-  amountRate?: string;
+  amountRate?: number;
 }
