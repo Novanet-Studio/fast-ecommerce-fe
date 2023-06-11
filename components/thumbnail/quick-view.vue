@@ -4,7 +4,7 @@
       <div class="thumbnail-quick-view__content">
         <swiper :centered-slides="true" navigation :modules="[Navigation]">
           <swiper-slide
-            v-for="(image, index) in product.image"
+            v-for="(image, index) in product.images"
             :key="index"
             class="thumbnail-quick-view__slide !flex"
           >

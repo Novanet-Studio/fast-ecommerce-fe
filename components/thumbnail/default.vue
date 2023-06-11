@@ -12,7 +12,7 @@
               :modules="modules"
               :thumbs="{ swiper: thumbsSwiper }"
             >
-              <swiper-slide v-for="image in product.image" :key="image.id">
+              <swiper-slide v-for="image in product.images" :key="image.id">
                 <img :src="image.url" :alt="image.alternativeText" />
               </swiper-slide>
             </swiper>
@@ -30,7 +30,7 @@
           watch-slides-progress
           :modules="modules"
         >
-          <swiper-slide v-for="image in product.image" :key="image.id">
+          <swiper-slide v-for="image in product.images" :key="image.id">
             <img
               class="object-contain"
               :src="image.url"
