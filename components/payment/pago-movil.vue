@@ -111,6 +111,7 @@ import { yupFieldRule } from 'slimeform/resolvers';
 // import { CreateInvoice } from '~/graphql/mutations';
 
 const { $notify } = useNuxtApp();
+const { amountRate, bcvUsd } = await useGetBcvUsd();
 // const router = useRouter();
 // const graphql = useStrapiGraphQL();
 
@@ -120,9 +121,9 @@ const cart = useCartStore();
 const product = useProductStore();
 const invoice = useInvoiceStore();
 
-const bcvUsd = ref<number>(0);
-const amountRate = ref(0);
-const loadingBcvUsd = ref<boolean>(false);
+// const bcvUsd = ref<number>(0);
+// const amountRate = ref(0);
+// const loadingBcvUsd = ref<boolean>(false);
 const sending = ref<boolean>(false);
 const productsCart = ref<Product[]>([]);
 const productsMail = ref<Product[]>([]);
@@ -290,28 +291,28 @@ const { submit } = submitter(async () => {
 //   }
 // }
 
-const calculateAmountToPay = () => {
-  const amount = bcvUsd.value * cart.amount;
-  amountRate.value = amount;
-};
+// const calculateAmountToPay = () => {
+//   const amount = bcvUsd.value * cart.amount;
+//   amountRate.value = amount;
+// };
 
-const getBCVUsd = async () => {
-  const url = 'https://api.exchangedyn.com/markets/quotes/usdves/bcv';
-  loadingBcvUsd.value = true;
-  try {
-    const response = await fetch(url);
-    const data: BcvUsdResponse = await response.json();
-    const mount = data.sources.BCV.quote.substring(0, 5);
+// const getBCVUsd = async () => {
+//   const url = 'https://api.exchangedyn.com/markets/quotes/usdves/bcv';
+//   loadingBcvUsd.value = true;
+//   try {
+//     const response = await fetch(url);
+//     const data: BcvUsdResponse = await response.json();
+//     const mount = data.sources.BCV.quote.substring(0, 5);
 
-    bcvUsd.value = parseFloat(mount);
+//     bcvUsd.value = parseFloat(mount);
 
-    calculateAmountToPay();
-  } catch (error) {
-    console.log('Was an error fetching bcv usd dollar value');
-  } finally {
-    loadingBcvUsd.value = false;
-  }
-};
+//     calculateAmountToPay();
+//   } catch (error) {
+//     console.log('Was an error fetching bcv usd dollar value');
+//   } finally {
+//     loadingBcvUsd.value = false;
+//   }
+// };
 
 const getProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
@@ -342,7 +343,7 @@ const getProducts = async () => {
 };
 
 onMounted(() => {
-  getBCVUsd();
+  // getBCVUsd();
   getProducts();
 });
 </script>
