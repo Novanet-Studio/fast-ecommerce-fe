@@ -46,6 +46,14 @@ export const useInvoiceStore = defineStore(
 
     const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
+    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
+      'sendReceiptEmail'
+    );
+
+    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
+      'sendMerchantEmail'
+    );
+
     async function fetchInvoices(
       userId: string,
       options?: Options
@@ -105,8 +113,10 @@ export const useInvoiceStore = defineStore(
       }
     }
 
-    // TODO: Is necessary enable this function to be called in all payment methods
-    async function createInvoice(order: OrderResponseBody, items: unknown[]) {
+    async function createPaypalInvoice(
+      order: OrderResponseBody,
+      items: unknown[]
+    ) {
       const graphql = useStrapiGraphQL();
       const orderAddress = order.purchase_units[0].shipping?.address;
       const address = {
@@ -133,7 +143,7 @@ export const useInvoiceStore = defineStore(
         paid: true,
         payment_id: order.id,
         products: items,
-        user_id: +authStore.user.id,
+        user: authStore.user.id.toString(),
         shippingAddress: address,
         fullName: checkout.fullName,
         cardType: 'no aplica',
@@ -289,13 +299,6 @@ export const useInvoiceStore = defineStore(
         } USD`;
         const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
 
-        const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-          'sendReceiptEmail'
-        );
-        const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-          'sendMerchantEmail'
-        );
-
         const merchant = getMerchantObject({
           orderId,
           payed: amountPayed,
@@ -330,6 +333,49 @@ export const useInvoiceStore = defineStore(
       }
     }
 
+    async function sendPaypalEmail(
+      order: OrderResponseBody,
+      items: CartItem[]
+    ) {
+      try {
+        const emailContent = getEmailTemplate(items);
+        const created = new Date(order.create_time).toLocaleDateString();
+        const amountPayed = `$${order.purchase_units[0].amount.value.toString()} USD`;
+
+        const merchant = getMerchantObject({
+          orderId: order.id,
+          payed: amountPayed,
+          date: created,
+          content: emailContent,
+        });
+
+        const receipt = getReceiptObject({
+          orderId: order.id,
+          payed: amountPayed,
+          date: created,
+          content: emailContent,
+        });
+
+        await Promise.all([
+          sendReceiptEmail(receipt),
+          sendMerchantEmail(merchant),
+        ]);
+
+        $notify({
+          group: 'all',
+          title: 'Orden de compra generada',
+          text: '¡Gracias por preferirnos!',
+        });
+
+        setTimeout(() => {
+          cart.clear();
+          router.push('/invoices');
+        }, DELAY_REDIRECT);
+      } catch (error) {
+        throw new SendInvoiceEmailError('¡Hubo un error al enviar el email!');
+      }
+    }
+
     return {
       invoice,
       invoices,
@@ -337,9 +383,10 @@ export const useInvoiceStore = defineStore(
       mapped,
       fetchInvoices,
       loadInvoiceProducts,
-      createInvoice,
+      createPaypalInvoice,
       createInvoiceReport,
       sendEmail,
+      sendPaypalEmail,
     };
   },
   {

@@ -5,21 +5,21 @@
 <script lang="ts" setup>
 import {
   loadScript,
-  type OrderResponseBody,
+  // type OrderResponseBody,
   type PayPalNamespace,
 } from '@paypal/paypal-js';
 // import { GetProductById } from '~/graphql/queries';
 
 // type GeneratePayment = (data: any) => Promise<{ data: any }>;
-type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
+// type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
 
-const { $notify, $httpsCallable } = useNuxtApp();
+const { $notify } = useNuxtApp();
 
 const { PAYPAL_CLIENT_ID } = useRuntimeConfig().public;
 
-const router = useRouter();
+// const router = useRouter();
 
-const auth = useAuthStore();
+// const auth = useAuthStore();
 const cart = useCartStore();
 const product = useProductStore();
 const checkout = useCheckoutStore();
@@ -27,89 +27,87 @@ const invoice = useInvoiceStore();
 const paypalRef = ref();
 const productsMail = ref<Product[]>();
 
-const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
+// const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
-const sendInvoiceEmail = async (
-  order: OrderResponseBody,
-  items: CartItem[]
-) => {
-  try {
-    let emailContent = '';
-    const productItems = [];
-    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-      'sendReceiptEmail'
-    );
-    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-      'sendMerchantEmail'
-    );
-    const created = new Date(order.create_time).toLocaleDateString();
-    const amountPayed = `$${order.purchase_units[0].amount.value.toString()} USD`;
+// const sendInvoiceEmail = async (
+//   order: OrderResponseBody,
+//   items: CartItem[]
+// ) => {
+//   try {
+//     let emailContent = '';
+//     const productItems = [];
+//     const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
+//       'sendReceiptEmail'
+//     );
+//     const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
+//       'sendMerchantEmail'
+//     );
+//     const created = new Date(order.create_time).toLocaleDateString();
+//     const amountPayed = `$${order.purchase_units[0].amount.value.toString()} USD`;
 
-    items.forEach((item) => {
-      const productFound = productsMail.value!.find(
-        (product: Product) => product.id === item.id
-      );
+//     items.forEach((item) => {
+//       const productFound = productsMail.value!.find(
+//         (product: Product) => product.id === item.id
+//       );
 
-      if (productFound) {
-        productItems.push({
-          quantity: item.quantity,
-          name: productFound.name,
-          amount: item.price,
-          description: productFound.description,
-        });
+//       if (productFound) {
+//         productItems.push({
+//           quantity: item.quantity,
+//           name: productFound.name,
+//           amount: item.price,
+//           description: productFound.description,
+//         });
 
-        emailContent += emailTemplate({
-          name: productFound.name,
-          price: item.price,
-          quantity: item.quantity,
-        });
-      }
-    });
+//         emailContent += emailTemplate({
+//           name: productFound.name,
+//           price: item.price,
+//           quantity: item.quantity,
+//         });
+//       }
+//     });
 
-    const merchant = {
-      payed: amountPayed,
-      email: auth.user.email,
-      phone: checkout.phone,
-      shipping: checkout.shippingAddress,
-      nameCustomer: checkout.fullName,
-      date: created,
-      content: emailContent,
-      order_id: order.id,
-    };
+//     const merchant = {
+//       payed: amountPayed,
+//       email: auth.user.email,
+//       phone: checkout.phone,
+//       shipping: checkout.shippingAddress,
+//       nameCustomer: checkout.fullName,
+//       date: created,
+//       content: emailContent,
+//       order_id: order.id,
+//     };
 
-    console.log({ order });
+//     const receipt = {
+//       payed: amountPayed,
+//       email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
+//       // email: order.purchase_units[0],
+//       nameCustomer: checkout.fullName,
+//       date: created,
+//       content: emailContent,
+//       order_id: order.id,
+//     };
 
-    const receipt = {
-      payed: amountPayed,
-      email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
-      // email: order.purchase_units[0],
-      nameCustomer: checkout.fullName,
-      date: created,
-      content: emailContent,
-      order_id: order.id,
-    };
+//     await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
 
-    await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
-
-    $notify({
-      group: 'all',
-      title: 'Orden de compra generada',
-      text: '¡Gracias por preferirnos!',
-    });
-    cart.clear();
-    router.push({
-      path: '/',
-      replace: true,
-    });
-  } catch (error) {
-    $notify({
-      group: 'all',
-      title: '¡Error!',
-      text: 'Hubo un error al enviar el correo',
-    });
-    console.log('sendInvoiceEmail Error: ', error);
-  }
-};
+//     $notify({
+//       group: 'all',
+//       title: 'Orden de compra generada',
+//       text: '¡Gracias por preferirnos!',
+//     });
+//     cart.clear();
+//     router.push({
+//       path: '/',
+//       replace: true,
+//     });
+//   } catch (error) {
+//     $notify({
+//       group: 'all',
+//       title: '¡Error!',
+//       text: 'Hubo un error al enviar el correo',
+//     });
+//     console.log('sendInvoiceEmail Error: ', error);
+//   }
+// };
 
 const getProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
@@ -197,24 +195,21 @@ const loadPaypal = async () => {
               text: 'El pago se ha realizado con éxito',
             });
 
-            const items = cartItems.map((item) => ({
-              quantity: item.quantity,
-              id_product: Number(
-                product.cartProducts?.find((prod) => prod!.id === item.id)?.id
-              ),
-              name_product: product.cartProducts?.find(
-                (prod) => prod!.id === item.id
-              )?.name,
-            }));
+            // const items = cartItems.map((item) => ({
+            //   ...item,
+            //   id: Number(
+            //     product.cartProducts?.find((prod) => prod!.id === item.id)?.id
+            //   ),
+            // }));
 
-            await invoice.createInvoice(result, items);
+            await invoice.createPaypalInvoice(result, cartItems);
             $notify({
               group: 'all',
               title: 'Recibo creado',
               text: 'Se encuentra disponible en sus ordenes',
             });
 
-            await sendInvoiceEmail(result, cartItems);
+            await invoice.sendPaypalEmail(result, cartItems);
           } catch (error) {
             $notify({
               group: 'all',
