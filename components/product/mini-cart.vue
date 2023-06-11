@@ -32,8 +32,6 @@ const global = useGlobalStore();
 
 const props = defineProps<{ product: Product }>();
 
-console.log('props => ', props.product);
-
 provide('product', props.product);
 
 const cartItems = computed(() => cartStore.cartItems);
