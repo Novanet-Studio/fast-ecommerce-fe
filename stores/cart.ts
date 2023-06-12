@@ -32,20 +32,20 @@ export const useCartStore = defineStore(
       loading.value = false;
     }
 
-    function addProductToCart(item: CartItem) {
+    function addProductToCart(payload: CartItem) {
       if (!cartItems.value.length) {
-        cartItems.value = [item];
+        cartItems.value = [payload];
         total.value = 1;
         amount.value = calculateAmount(cartItems.value);
         return;
       }
 
-      const itemFound = cartItems.value.find((item) => item.id === item.id);
+      const itemFound = cartItems.value.find((item) => item.id === payload.id);
 
       if (!itemFound) {
-        cartItems.value.push(item);
+        cartItems.value.push(payload);
       } else {
-        item.quantity += item.quantity;
+        itemFound.quantity += payload.quantity;
       }
 
       total.value++;
