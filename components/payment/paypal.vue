@@ -3,111 +3,17 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  loadScript,
-  // type OrderResponseBody,
-  type PayPalNamespace,
-} from '@paypal/paypal-js';
-// import { GetProductById } from '~/graphql/queries';
-
-// type GeneratePayment = (data: any) => Promise<{ data: any }>;
-// type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
+import { loadScript, type PayPalNamespace } from '@paypal/paypal-js';
 
 const { $notify } = useNuxtApp();
-
 const { PAYPAL_CLIENT_ID } = useRuntimeConfig().public;
 
-// const router = useRouter();
-
-// const auth = useAuthStore();
 const cart = useCartStore();
 const product = useProductStore();
 const checkout = useCheckoutStore();
 const invoice = useInvoiceStore();
 const paypalRef = ref();
 const productsMail = ref<Product[]>();
-
-// const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
-
-// const sendInvoiceEmail = async (
-//   order: OrderResponseBody,
-//   items: CartItem[]
-// ) => {
-//   try {
-//     let emailContent = '';
-//     const productItems = [];
-//     const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-//       'sendReceiptEmail'
-//     );
-//     const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-//       'sendMerchantEmail'
-//     );
-//     const created = new Date(order.create_time).toLocaleDateString();
-//     const amountPayed = `$${order.purchase_units[0].amount.value.toString()} USD`;
-
-//     items.forEach((item) => {
-//       const productFound = productsMail.value!.find(
-//         (product: Product) => product.id === item.id
-//       );
-
-//       if (productFound) {
-//         productItems.push({
-//           quantity: item.quantity,
-//           name: productFound.name,
-//           amount: item.price,
-//           description: productFound.description,
-//         });
-
-//         emailContent += emailTemplate({
-//           name: productFound.name,
-//           price: item.price,
-//           quantity: item.quantity,
-//         });
-//       }
-//     });
-
-//     const merchant = {
-//       payed: amountPayed,
-//       email: auth.user.email,
-//       phone: checkout.phone,
-//       shipping: checkout.shippingAddress,
-//       nameCustomer: checkout.fullName,
-//       date: created,
-//       content: emailContent,
-//       order_id: order.id,
-//     };
-
-//     const receipt = {
-//       payed: amountPayed,
-//       email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
-//       // email: order.purchase_units[0],
-//       nameCustomer: checkout.fullName,
-//       date: created,
-//       content: emailContent,
-//       order_id: order.id,
-//     };
-
-//     await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
-
-//     $notify({
-//       group: 'all',
-//       title: 'Orden de compra generada',
-//       text: '¡Gracias por preferirnos!',
-//     });
-//     cart.clear();
-//     router.push({
-//       path: '/',
-//       replace: true,
-//     });
-//   } catch (error) {
-//     $notify({
-//       group: 'all',
-//       title: '¡Error!',
-//       text: 'Hubo un error al enviar el correo',
-//     });
-//     console.log('sendInvoiceEmail Error: ', error);
-//   }
-// };
 
 const getProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
@@ -194,13 +100,6 @@ const loadPaypal = async () => {
               title: '¡Proceso exitoso!',
               text: 'El pago se ha realizado con éxito',
             });
-
-            // const items = cartItems.map((item) => ({
-            //   ...item,
-            //   id: Number(
-            //     product.cartProducts?.find((prod) => prod!.id === item.id)?.id
-            //   ),
-            // }));
 
             await invoice.createPaypalInvoice(result, cartItems);
             $notify({

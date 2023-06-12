@@ -108,28 +108,17 @@
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';
-// import { CreateInvoice } from '~/graphql/mutations';
 
 const { $notify } = useNuxtApp();
 const { amountRate, bcvUsd } = await useGetBcvUsd();
-// const router = useRouter();
-// const graphql = useStrapiGraphQL();
 
 const cart = useCartStore();
-// const auth = useAuthStore();
-// const checkout = useCheckoutStore();
 const product = useProductStore();
 const invoice = useInvoiceStore();
 
-// const bcvUsd = ref<number>(0);
-// const amountRate = ref(0);
-// const loadingBcvUsd = ref<boolean>(false);
 const sending = ref<boolean>(false);
 const productsCart = ref<Product[]>([]);
 const productsMail = ref<Product[]>([]);
-
-// type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
-// const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const {
   form: formData,
@@ -202,7 +191,6 @@ const { submit } = submitter(async () => {
       text: 'La orden se ha generado, se encuentra pendiente en aprobación',
     });
 
-    // sendInvoiceEmail(invoiceItems, paymentData);
     await invoice.sendEmail(invoiceItems, paymentData);
   } catch (error) {
     console.log('Was an error while sending payment report');
@@ -210,109 +198,6 @@ const { submit } = submitter(async () => {
     sending.value = false;
   }
 });
-
-// async function sendInvoiceEmail(products: any[], payment: any) {
-//   try {
-//     let emailContent = '';
-//     // TODO! improve types
-//     const productItems: any[] = [];
-//     const created = new Date(payment.fecha_pago).toLocaleDateString();
-//     const amountPayed = `$${Number(payment.monto) / amountRate.value} USD`;
-//     const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-//       'sendReceiptEmail'
-//     );
-//     const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-//       'sendMerchantEmail'
-//     );
-
-//     products.forEach((item) => {
-//       const productFinded = productsMail.value.find(
-//         (mailProduct) => mailProduct.id == item.id
-//       );
-
-//       if (productFinded) {
-//         productItems.push({
-//           quantity: item.quantity,
-//           name: productFinded.name,
-//           amount: item.price,
-//           description: productFinded.description,
-//         });
-
-//         emailContent += emailTemplate({
-//           name: productFinded.name,
-//           price: item.price,
-//           quantity: item.quantity,
-//         });
-//       }
-//     });
-
-//     const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
-
-//     const merchant = {
-//       payed: amountPayed,
-//       email: auth.user.email,
-//       phone: checkout.phone,
-//       shipping: checkout.shippingAddress,
-//       nameCustomer: checkout.fullName,
-//       date: created,
-//       content: emailContent,
-//       order_id: orderId,
-//     };
-
-//     const receipt = {
-//       payed: amountPayed,
-//       // email: 'novanet@mailinator.com', // payment.buyerEmailAddress,
-//       email: auth.user.email,
-//       nameCustomer: checkout.fullName,
-//       date: created,
-//       content: emailContent,
-//       order_id: orderId,
-//     };
-
-//     await Promise.all([sendReceiptEmail(receipt), sendMerchantEmail(merchant)]);
-
-//     $notify({
-//       group: 'all',
-//       title: 'Orden de compra generada',
-//       text: '¡Gracias por preferirnos!',
-//     });
-
-//     setTimeout(() => {
-//       cart.clear();
-//       router.push('/invoices');
-//     }, 1000);
-//   } catch (err) {
-//     console.log('sendInvoiceEmail Error: ', err);
-//     $notify({
-//       group: 'all',
-//       title: 'Error',
-//       text: '¡Hubo un error al enviar el email!',
-//     });
-//   }
-// }
-
-// const calculateAmountToPay = () => {
-//   const amount = bcvUsd.value * cart.amount;
-//   amountRate.value = amount;
-// };
-
-// const getBCVUsd = async () => {
-//   const url = 'https://api.exchangedyn.com/markets/quotes/usdves/bcv';
-//   loadingBcvUsd.value = true;
-//   try {
-//     const response = await fetch(url);
-//     const data: BcvUsdResponse = await response.json();
-//     const mount = data.sources.BCV.quote.substring(0, 5);
-
-//     bcvUsd.value = parseFloat(mount);
-
-//     calculateAmountToPay();
-//   } catch (error) {
-//     console.log('Was an error fetching bcv usd dollar value');
-//   } finally {
-//     loadingBcvUsd.value = false;
-//   }
-// };
 
 const getProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
@@ -326,24 +211,9 @@ const getProducts = async () => {
 
   productsMail.value = product.cartProducts as Product[];
   productsCart.value = product.cartProducts as Product[];
-
-  // const productPromises = itemsId.map((id: string) =>
-  //   graphql<ProductsResponse>(GetProductById, { id })
-  // );
-
-  // const response = await Promise.all(productPromises);
-  // let products: Product[] = [];
-
-  // response.forEach((res) => {
-  //   products = res.data.products.data;
-  // });
-
-  // state.productMail = products;
-  // state.productsCart = products;
 };
 
 onMounted(() => {
-  // getBCVUsd();
   getProducts();
 });
 </script>

@@ -217,20 +217,6 @@ const getProducts = async () => {
 
   productsMail.value = product.cartProducts as Product[];
   productsCart.value = product.cartProducts as Product[];
-
-  // const productPromises = itemsId.map((id: string) =>
-  //   graphql<ProductsResponse>(GetProductById, { id })
-  // );
-
-  // const response = await Promise.all(productPromises);
-  // let products: Product[] = [];
-
-  // response.forEach((res) => {
-  //   products = res.data.products.data;
-  // });
-
-  // state.productMail = products;
-  // state.productsCart = products;
 };
 
 onMounted(() => {
