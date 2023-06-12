@@ -2,6 +2,7 @@ query GetInvoicesByUserId($id: ID!, $page: Int, $pageSize: Int) {
   invoices(
     filters: { user: { id: { eq: $id } } }
     pagination: { page: $page, pageSize: $pageSize }
+    sort: "id:asc"
   ) {
     data {
       id

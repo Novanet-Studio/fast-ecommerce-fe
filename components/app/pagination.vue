@@ -109,7 +109,7 @@ watch(activePage, (newVal, oldVal) => {
 
 <style>
 :root {
-  --primary-color: #e4c749;
+  --primary-color: #ceb085;
   --pg-item-width: 40px;
   --pg-item-height: 40px;
   --pg-item-border-radius: 50%;

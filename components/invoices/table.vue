@@ -121,7 +121,7 @@ const hasInvoices = ref(false);
 
 const { data, total, page, perPage, changePage } =
   usePagination<InvoiceTableDetail>(pagination, {
-    perPage: 3,
+    perPage: 10,
   });
 
 const goToInvoice = (invoiceId: string, invoiceItem: any) => {
