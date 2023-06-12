@@ -45,27 +45,34 @@ import { PhX } from '@phosphor-icons/vue';
   margin-bottom: 10px;
 }
 
+.ps-notify svg {
+  transition: transform 0.4s ease;
+}
+
 .ps-notify__close {
   position: absolute;
-  top: 50%;
-  right: 10px;
+  top: 20%;
+  right: 0;
   transform: translateY(-50%);
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  transition: all 0.4s ease;
+  transition: transform 0.4s ease;
 }
 
-.ps-notify__close:hover {
+.ps-notify__close:hover svg {
   box-shadow: 0 0 10px rgba(#ccc, 1);
   background-color: #fff;
-  transform-origin: 50% 50%;
-  transform: translateY(-50%) rotate(180deg);
+  transform-origin: center;
+  transform: rotate(180deg);
+  /* transform-origin: 50% 50%; */
+  /* transform-origin: 50% 50%; */
+  /* transform: translateY(-50%) rotate(180deg); */
 }
 
-.ps-notify__close:hover .ps-icon--cross::before,
-.ps-notify__close:hover .ps-icon--cross::after {
-  background-color: #e36d65;
+.ps-notify__close:hover svg,
+.ps-notify__close:hover svg {
+  /* background-color: #e36d65; */
 }
 
 .ps-notify__header span {
