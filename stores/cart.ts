@@ -77,7 +77,7 @@ export const useCartStore = defineStore(
       removeFromProductStore(payload);
     }
 
-    function increaseCartItemQuantity(payload: Product) {
+    function increaseCartItemQuantity(payload: CartItem) {
       let selectedItem = cartItems.value.find((item) => item.id === payload.id);
       if (selectedItem) {
         selectedItem.quantity++;

@@ -59,12 +59,16 @@
           <td
             class="text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg:text-base"
           >
-            <quantity class="group-hover:bg-white" :product="product" />
+            <quantity class="group-hover:bg-white" :id="product!.id" />
           </td>
           <td
             class="text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg:text-base"
           >
-            <total-quantity class="!border-none" :product="product" />
+            <total-quantity
+              class="!border-none"
+              :id="product!.id"
+              :price="product!.price"
+            />
           </td>
           <td
             class="text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg:text-base"
