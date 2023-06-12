@@ -3,6 +3,8 @@ interface EmailObjectParams {
   date: string;
   content: string;
   orderId: string;
+  email?: string;
+  nameCustomer?: string;
 }
 
 interface PaymentStrapi {

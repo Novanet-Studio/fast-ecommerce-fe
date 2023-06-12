@@ -2,6 +2,7 @@ import { CreateInvoice } from '~/graphql/mutations';
 import { GetProductById, GetInvoicesByUserId } from '~/graphql/queries';
 import type { OrderResponseBody } from '@paypal/paypal-js';
 import { PaymentReportError, SendInvoiceEmailError } from '~/errors';
+import { Payment } from 'square';
 
 const PAGE_LIMIT = 10;
 const DEFAULT_PAGE = 1;
@@ -230,6 +231,66 @@ export const useInvoiceStore = defineStore(
       }
     }
 
+    async function createVisaInvoice(payment: Payment, products: CartItem[]) {
+      try {
+        const productList = productsCart.cartProducts;
+        const productsFiltered: ProductBuyed[] = [];
+
+        products.forEach((product) => {
+          const find = productList!.find((item) => item!.id === product.id);
+
+          if (find) {
+            productsFiltered.push({
+              product: product.id,
+              quantity: Number(product.quantity),
+            });
+          }
+        });
+
+        const addressData = {
+          phone: checkout.phone,
+          home: checkout.home,
+          country: payment.shippingAddress?.country,
+          locality: payment.shippingAddress?.locality,
+          postalCode: payment.shippingAddress?.postalCode,
+          addressLine1: payment.shippingAddress?.addressLine1,
+        };
+
+        const paymentInfo: PaymentStrapi = {
+          name: checkout.name,
+          lastname: checkout.lastName,
+          email: payment.buyerEmailAddress as string,
+          confirmation: payment.id as string,
+          amount: Number(payment!.totalMoney!.amount) / 100,
+          payment_date: new Date().toString(),
+        };
+
+        const data = {
+          amount: Number(payment!.totalMoney!.amount) / 100,
+          order_id: payment.orderId,
+          paid: true,
+          payment_id: payment.id,
+          products: productsFiltered,
+          user: authStore.user.id.toString(),
+          shippingAddress: addressData,
+          fullName: payment.note,
+          cardType: payment?.cardDetails?.card?.cardBrand,
+          cardKind: payment?.cardDetails?.card?.cardType,
+          cardLast: payment?.cardDetails?.card?.last4,
+          payment_info: [paymentInfo],
+          payment_method: 'squareup',
+        };
+
+        const result = await graphql<CreateInvoiceRequest>(CreateInvoice, {
+          invoice: data,
+        });
+
+        return result;
+      } catch (error) {
+        throw new PaymentReportError('An error occurred while sending report');
+      }
+    }
+
     function getEmailTemplate(products: any[]): string {
       let emailContent = '';
       const productList = [];
@@ -279,12 +340,14 @@ export const useInvoiceStore = defineStore(
       date,
       content,
       orderId,
+      email,
+      nameCustomer,
     }: EmailObjectParams) => ({
       payed,
       date,
       content,
-      email: authStore.user.email,
-      nameCustomer: checkout.fullName,
+      email: email ?? authStore.user.email,
+      nameCustomer: nameCustomer ?? checkout.fullName,
       order_id: orderId,
     });
 
@@ -376,6 +439,50 @@ export const useInvoiceStore = defineStore(
       }
     }
 
+    async function sendVisaEmail(products: CartItem[], payment: Payment) {
+      try {
+        const emailContent = getEmailTemplate(products);
+        const created = new Date(payment?.createdAt ?? '').toLocaleDateString();
+        const amountPayed = `$${
+          Number(payment!.amountMoney!.amount) / 100
+        } USD`;
+
+        const merchant = getMerchantObject({
+          orderId: payment.id as string,
+          payed: amountPayed,
+          date: created,
+          content: emailContent,
+        });
+
+        const receipt = getReceiptObject({
+          orderId: payment.id as string,
+          payed: amountPayed,
+          date: created,
+          content: emailContent,
+          email: payment.buyerEmailAddress,
+          nameCustomer: payment.note,
+        });
+
+        await Promise.all([
+          sendReceiptEmail(receipt),
+          sendMerchantEmail(merchant),
+        ]);
+
+        $notify({
+          group: 'all',
+          title: 'Orden de compra generada',
+          text: '¡Gracias por preferirnos!',
+        });
+
+        setTimeout(() => {
+          cart.clear();
+          router.push('/invoices');
+        }, DELAY_REDIRECT);
+      } catch (error) {
+        throw new SendInvoiceEmailError('¡Hubo un error al enviar el email!');
+      }
+    }
+
     return {
       invoice,
       invoices,
@@ -385,8 +492,10 @@ export const useInvoiceStore = defineStore(
       loadInvoiceProducts,
       createPaypalInvoice,
       createInvoiceReport,
+      createVisaInvoice,
       sendEmail,
       sendPaypalEmail,
+      sendVisaEmail,
     };
   },
   {
