@@ -124,7 +124,7 @@ const loadPaypal = async () => {
             text: `Hubo un error, no se puede procesar el pago en estos momentos!`,
           }),
       })
-      .render('#paypal-container');
+      .render(paypalRef.value);
   } catch (error) {
     console.log('An error occurred when trying render button: ', error);
   }

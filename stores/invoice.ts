@@ -116,9 +116,22 @@ export const useInvoiceStore = defineStore(
 
     async function createPaypalInvoice(
       order: OrderResponseBody,
-      items: unknown[]
+      items: CartItem[]
     ) {
-      const graphql = useStrapiGraphQL();
+      const productList = productsCart.cartProducts;
+      const productsFiltered: ProductBuyed[] = [];
+
+      items.forEach((product) => {
+        const found = productList?.find((item) => item?.id === product.id);
+
+        if (found) {
+          productsFiltered.push({
+            product: product.id,
+            quantity: Number(product.quantity),
+          });
+        }
+      });
+
       const orderAddress = order.purchase_units[0].shipping?.address;
       const address = {
         phone: checkout.phone,
@@ -134,8 +147,8 @@ export const useInvoiceStore = defineStore(
         lastname: order.payer.name?.surname,
         email: order.payer.email_address,
         confirmation: order.id,
-        amount: order.purchase_units[0].amount.value,
-        payment_date: order.create_time,
+        amount: +order.purchase_units[0].amount.value,
+        payment_date: getDate(order.create_time),
       };
 
       const body = {
@@ -143,7 +156,7 @@ export const useInvoiceStore = defineStore(
         order_id: order.purchase_units[0].invoice_id,
         paid: true,
         payment_id: order.id,
-        products: items,
+        products: productsFiltered,
         user: authStore.user.id.toString(),
         shippingAddress: address,
         fullName: checkout.fullName,
