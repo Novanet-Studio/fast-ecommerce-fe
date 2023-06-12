@@ -262,7 +262,7 @@ export const useInvoiceStore = defineStore(
           email: payment.buyerEmailAddress as string,
           confirmation: payment.id as string,
           amount: Number(payment!.totalMoney!.amount) / 100,
-          payment_date: new Date().toString(),
+          payment_date: getDate(),
         };
 
         const data = {
