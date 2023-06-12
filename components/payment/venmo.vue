@@ -61,7 +61,7 @@
           >Monto del pago en USD<sup class="form__required">*</sup></label
         >
         <app-input
-          v-model.number="formData.amountPayed"
+          v-model="formData.amountPayed"
           :error="status.amountPayed.isError"
           :error-message="status.amountPayed.message"
         />
@@ -71,7 +71,7 @@
           >Payment ID<sup class="form__required">*</sup></label
         >
         <app-input
-          v-model.number="formData.confirmation"
+          v-model="formData.confirmation"
           :error="status.confirmation.isError"
           :error-message="status.confirmation.message"
         />
