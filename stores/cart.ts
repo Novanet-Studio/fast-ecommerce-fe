@@ -1,7 +1,7 @@
 import { GetProductById } from '~/graphql/queries';
 
 export const useCartStore = defineStore(
-  'ecommerce-store',
+  'ecommerce-cart',
   () => {
     const total = ref(0);
     const amount = ref(0);

@@ -368,11 +368,8 @@ export const useInvoiceStore = defineStore(
       try {
         const emailContent = getEmailTemplate(products);
         const createdDate = new Date(payment.paymentDate).toLocaleDateString();
-        const amountPayed = `$${
-          payment?.amountRate
-            ? Number(payment.amount) / payment.amountRate
-            : Number(payment.amount)
-        } USD`;
+        const realAmount = payment?.amountRate ? cart.amount : payment.amount;
+        const amountPayed = `$${realAmount} USD`;
         const orderId = `${payment.orderId} (PENDIENTE EN APROBACION)`;
 
         const merchant = getMerchantObject({
