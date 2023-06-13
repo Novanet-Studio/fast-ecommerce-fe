@@ -59,15 +59,12 @@
               <td
                 class="text-sm text-color-6 font-light px-6 py-4 lg:text-base lg:flex items-center h-full"
               >
-                <app-button
-                  class="!w-48 !mt-14"
-                  @click="handleAddToCart(item!)"
-                >
+                <app-button class="!w-48" @click="handleAddToCart(item!)">
                   Añadir al carrito
                 </app-button>
                 <a
                   href="#"
-                  class="text-color-2 ml-2 !mt-12"
+                  class="text-color-2 ml-4"
                   @click.prevent="handleRemoveItemFromWishlist(item)"
                 >
                   <ph-x weight="light" />
