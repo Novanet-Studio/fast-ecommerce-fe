@@ -14,16 +14,6 @@
           class="h-full"
           :key="index"
         />
-        <!-- <img
-          src="~/assets/img/slider/home/promotion-1.jpeg"
-          class="max-w-[50%] lg:max-w-full"
-          alt="Promotion 1"
-        />
-        <img
-          src="~/assets/img/slider/home/promotion-2.jpeg"
-          alt="Promotion 2"
-          class="max-w-[50%] lg:max-w-full"
-        /> -->
       </div>
     </div>
   </div>

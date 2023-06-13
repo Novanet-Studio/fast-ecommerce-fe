@@ -21,7 +21,7 @@ const active = computed({
 });
 </script>
 
-<style>
+<style scoped>
 .product-modal {
   @apply p-4 relative lg:p-6;
 }

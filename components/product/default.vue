@@ -1,5 +1,5 @@
 <template>
-  <div class="product h-full">
+  <div class="product">
     <div class="product__thumbnail">
       <product-thumbnail-image />
       <product-actions @quick-view="handleQuickView" />
@@ -32,7 +32,7 @@ const handleQuickView = (open: boolean) => (state.quickView = open);
 
 <style scoped>
 .product {
-  @apply box-border lg:p-[20px_20px_0] max-w-[168px] relative block box-border border border-transparent transition ease hover:(border border-gray-300) lg:max-w-[250px];
+  @apply h-full box-border lg:p-[20px_20px_0] max-w-[168px] relative block box-border border border-transparent transition ease hover:(border border-gray-300) lg:max-w-[250px];
 }
 
 .product__thumbnail {
