@@ -22,13 +22,10 @@
 </template>
 
 <script lang="ts" setup>
-// import { getProductById as GetProductById } from '~/graphql';
 import { injectKeys } from '~/config/constants';
 import { PhX } from '@phosphor-icons/vue';
-// const graphql = useStrapiGraphQL();
 
 const cartStore = useCartStore();
-// const productStore = $store.product();
 const global = useGlobalStore();
 
 const props = defineProps<{ product: Product }>();
@@ -46,35 +43,6 @@ const quantity = computed(() => {
 
   return item.quantity;
 });
-
-// const loadCartProducts = async () => {
-//   try {
-//     const temp: ProductsMapped[] = [];
-//     if (!cartItems.value.length) productStore.cartProducts = [];
-//     if (productStore.cartProducts?.length) return;
-
-//     const itemsList = cartStore.cartItems.map((item) =>
-//       graphql<ProductsResponse>(GetProductById, { id: item.id })
-//     );
-
-//     const items = await Promise.all(itemsList);
-
-//     if (!items?.length) return;
-
-//     items.forEach((item) => {
-//       const product = mapperData<any>(item.data.products.data);
-//       temp.push(product);
-//     });
-
-//     console.log({ temp });
-
-//     productStore.cartProducts = temp;
-//   } catch (err) {
-//     console.log(err);
-//   } finally {
-//     cartStore.loading = false;
-//   }
-// };
 
 const handleRemoveProductFromCart = (product: any) => {
   const cartItem = cartItems.value.find((item) => item.id === product.id);
