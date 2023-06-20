@@ -30,16 +30,10 @@
 type Props = {
   modelValue: string;
   placeholder?: string;
-  error?: boolean | undefined;
-  errorMessage?: string | undefined;
-  class?: string | undefined;
+  error?: boolean;
+  errorMessage?: string;
+  class?: string;
   type?: 'text' | 'password' | 'email' | 'date';
-  iconLeft?: string;
-  iconSize?: string;
-  iconClass?: string;
-  iconRight?: string;
-  onClickRightIcon?: () => void;
-  onClickLeftIcon?: () => void;
 };
 
 type Emits = {
