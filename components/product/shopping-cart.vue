@@ -12,6 +12,8 @@
 </template>
 
 <script lang="ts" setup>
+import { injectKeys } from '~/config/constants';
+
 const props = defineProps<{
   id: string;
   title: string;
@@ -19,7 +21,7 @@ const props = defineProps<{
   product: Product;
 }>();
 
-provide('product', props.product);
+provide(injectKeys.product, props.product);
 </script>
 
 <style scoped>

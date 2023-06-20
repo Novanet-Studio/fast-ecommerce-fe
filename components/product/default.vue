@@ -16,6 +16,8 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { injectKeys } from '~/config/constants';
+
 const props = defineProps<{ product: Product }>();
 
 const state = reactive({
@@ -25,7 +27,7 @@ const state = reactive({
   quickView: false,
 });
 
-provide('product', props.product);
+provide(injectKeys.product, props.product);
 
 const handleQuickView = (open: boolean) => (state.quickView = open);
 </script>

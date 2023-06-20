@@ -23,6 +23,7 @@
 
 <script lang="ts" setup>
 // import { getProductById as GetProductById } from '~/graphql';
+import { injectKeys } from '~/config/constants';
 import { PhX } from '@phosphor-icons/vue';
 // const graphql = useStrapiGraphQL();
 
@@ -32,7 +33,7 @@ const global = useGlobalStore();
 
 const props = defineProps<{ product: Product }>();
 
-provide('product', props.product);
+provide(injectKeys.product, props.product);
 
 const cartItems = computed(() => cartStore.cartItems);
 const currency = computed(() => global.currency);

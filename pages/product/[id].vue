@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts" setup>
+import { injectKeys } from '~/config/constants';
 import { GetProductById } from '~/graphql/queries';
 
 definePageMeta({
@@ -45,7 +46,7 @@ const loadProductById = async () => {
   }
 };
 
-provide('product-detail', product);
+provide(injectKeys.productDetail, product as Ref<Product>);
 
 onMounted(() => {
   loadProductById();
