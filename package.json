@@ -9,14 +9,14 @@
     "clean": "rimraf node_modules .nuxt"
   },
   "devDependencies": {
-    "@nuxt/image-edge": "1.0.0-rc.1-28105270.a3967a7",
+    "@nuxt/image-edge": "1.0.0-rc.1-28119537.bfe30ab",
     "@nuxtjs/strapi": "^1.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@rollup/plugin-graphql": "^2.0.3",
     "@sidebase/nuxt-pdf": "^0.1.1",
     "@unocss/nuxt": "^0.53.1",
-    "@vueuse/core": "^10.1.2",
-    "@vueuse/nuxt": "^10.1.2",
+    "@vueuse/core": "^10.2.0",
+    "@vueuse/nuxt": "^10.2.0",
     "graphql": "^16.6.0",
     "nuxt": "^3.5.3",
     "nuxt-lodash": "^2.4.1",
@@ -32,8 +32,8 @@
     "firebase": "^9.22.2",
     "gitart-vue-dialog": "^3.1.0",
     "slimeform": "^0.9.1",
-    "square": "^28.0.0",
-    "swiper": "^9.3.2",
+    "square": "^28.0.1",
+    "swiper": "^9.4.1",
     "vue3-tabs-component": "^1.2.1",
     "yup": "^1.0.2"
   }
