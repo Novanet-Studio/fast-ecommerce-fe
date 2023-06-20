@@ -78,7 +78,6 @@
 </template>
 
 <script lang="ts" setup>
-// TODO!: Need refactor
 import { PhArrowLeft } from '@phosphor-icons/vue';
 import { GetProductById } from '~/graphql/queries';
 
@@ -97,9 +96,6 @@ const loadCartProducts = async () => {
   const itemsId = cart.cartItems.map((item) => item.id);
 
   if (!itemsId.length) return;
-
-  // TODO: move this to store
-  // await product.getCartProducts(itemsId);
 
   if (!cart.cartItems.length) {
     product.cartProducts = null;

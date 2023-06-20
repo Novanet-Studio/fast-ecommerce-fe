@@ -12,38 +12,21 @@
         </header>
       </div>
       <table-wrapper v-else>
-        <table class="min-w-full">
-          <thead class="border-b">
+        <table class="table">
+          <thead class="">
             <tr>
-              <th
-                scope="col"
-                class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-              >
-                Nombre
-              </th>
-              <th
-                scope="col"
-                class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-              >
-                Precio por unidad
-              </th>
-              <th
-                scope="col"
-                class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-              >
-                Acciones
-              </th>
+              <th scope="col" class="table-th">Nombre</th>
+              <th scope="col" class="table-th">Precio por unidad</th>
+              <th scope="col" class="table-th">Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr
-              class="border-b transition duration-300 ease-in-out hover:bg-color-8 group"
+              class="table-tr"
               v-for="item in productStore.wishlistItems"
               :key="item?.id"
             >
-              <td
-                class="px-6 py-4 text-sm font-bold text-color-6 p-2 lg:text-base"
-              >
+              <td class="product-td">
                 <product-shopping-cart
                   image-class="!h-24"
                   :id="item!.id"
@@ -51,14 +34,8 @@
                   :product="item!"
                 />
               </td>
-              <td
-                class="text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base"
-              >
-                $ {{ item?.price.toFixed(2) }}
-              </td>
-              <td
-                class="text-sm text-color-6 font-light px-6 py-4 lg:text-base lg:flex items-center h-full"
-              >
+              <td class="price-td">$ {{ item?.price.toFixed(2) }}</td>
+              <td class="actions-td">
                 <app-button class="!w-48" @click="handleAddToCart(item!)">
                   Añadir al carrito
                 </app-button>
@@ -165,6 +142,34 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.table {
+  @apply min-w-full;
+}
+
+.t-head {
+  @apply border-b;
+}
+
+.table-th {
+  @apply text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base;
+}
+
+.table-tr {
+  @apply border-b transition duration-300 ease-in-out hover:bg-color-8 group;
+}
+
+.product-td {
+  @apply px-6 py-4 text-sm font-bold text-color-6 p-2 lg:text-base;
+}
+
+.price-td {
+  @apply text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base;
+}
+
+.actions-td {
+  @apply text-sm text-color-6 font-light px-6 py-4 lg:text-base lg:flex items-center h-full;
+}
+
 .wishlist {
   @apply mt-4 max-w-sm sm:(max-w-lg mb-24) md:max-w-2xl lg:(px-7 mt-0 max-w-full);
 }

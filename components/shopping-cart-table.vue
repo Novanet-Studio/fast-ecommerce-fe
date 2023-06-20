@@ -1,49 +1,18 @@
 <template>
   <table-wrapper>
-    <table class="min-w-full">
-      <thead class="border-b">
+    <table class="table">
+      <thead class="table__thead">
         <tr>
-          <th
-            scope="col"
-            class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-          >
-            Producto
-          </th>
-          <th
-            scope="col"
-            class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-          >
-            Precio
-          </th>
-          <th
-            scope="col"
-            class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-          >
-            Cantidad
-          </th>
-          <th
-            scope="col"
-            class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-          >
-            Total
-          </th>
-          <th
-            scope="col"
-            class="text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base"
-          >
-            Acciones
-          </th>
+          <th scope="col" class="table__th">Producto</th>
+          <th scope="col" class="table__th">Precio</th>
+          <th scope="col" class="table__th">Cantidad</th>
+          <th scope="col" class="table__th">Total</th>
+          <th scope="col" class="table__th">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          class="border-b transition duration-300 ease-in-out hover:bg-color-8 group"
-          v-for="product in products"
-          :key="product!.id"
-        >
-          <td
-            class="px-6 py-4 whitespace-nowrap text-sm font-bold text-color-6 p-2 lg:text-base"
-          >
+        <tr class="table__tr" v-for="product in products" :key="product!.id">
+          <td class="product-td">
             <product-shopping-cart
               image-class="!h-auto !w-18"
               :id="product!.id"
@@ -51,28 +20,18 @@
               :product="product!"
             />
           </td>
-          <td
-            class="text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg:text-base"
-          >
-            ${{ product!.price }}
-          </td>
-          <td
-            class="text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg:text-base"
-          >
+          <td class="base-td">${{ product!.price }}</td>
+          <td class="quantity-td">
             <quantity class="group-hover:bg-white" :id="product!.id" />
           </td>
-          <td
-            class="text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg:text-base"
-          >
+          <td class="base-td">
             <total-quantity
               class="!border-none"
               :id="product!.id"
               :price="product!.price"
             />
           </td>
-          <td
-            class="text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg:text-base"
-          >
+          <td class="base-td">
             <a
               href="#"
               class="cart-table__link"
@@ -122,31 +81,31 @@ const handleRemoveProductFromCart = (product?: Product) => {
 </script>
 
 <style scoped>
-.cart-table-container {
-  @apply overflow-auto;
+.table {
+  @apply min-w-full;
 }
 
-.cart-table {
-  @apply w-full mb-4 text-dark-200;
+.table__thead {
+  @apply border-b;
 }
 
-.cart-table__thead {
-  @apply align-bottom;
+.table__th {
+  @apply text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base;
 }
 
-.cart-table__th {
-  @apply px-5 py-4 uppercase text-dark-300 font-semibold bg-light-200 align-bottom;
+.table__tr {
+  @apply border-b transition duration-300 ease-in-out hover:bg-color-8 group;
 }
 
-.cart-table__td {
-  @apply px-[10px] py-[20px] align-middle text-base w-[22.5rem] border-t-2 border-t-gray-200 md:text-center;
+.product-td {
+  @apply px-6 py-4 whitespace-nowrap text-sm font-bold text-color-6 p-2 lg:text-base;
 }
 
-.cart-table__td-product {
-  @apply min-w-52 px-[10px] py-[20px] align-middle text-base w-[22.5rem] border-t-2 border-t-gray-200 md:text-center lg:min-w-auto;
+.base-td {
+  @apply text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg:text-base;
 }
 
-.cart-table__link {
-  @apply text-2xl text-right;
+.quantity-td {
+  @apply text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg:text-base;
 }
 </style>

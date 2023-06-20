@@ -5,7 +5,6 @@
         <div class="ps-section__header py-3 border-b">
           <h3 class="text-xl flex items-center gap-2 text-color-2">
             Factura #{{ invoiceStore.invoice?.id_invoice_user }} -
-            <!-- <strong>Successful delivery PPU</strong> -->
             <strong class="text-sm">Entrega exitosa PPU</strong>
           </h3>
         </div>
@@ -88,7 +87,7 @@
             <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
               <div class="py-2 inline-block min-w-full">
                 <div class="overflow-hidden">
-                  <template v-if="invoiceStore.loading">
+                  <template v-if="isLoading">
                     <loading />
                   </template>
                   <table class="min-w-full" v-else>
@@ -200,8 +199,15 @@
 <script lang="ts" setup>
 const invoiceStore = useInvoiceStore();
 const pdfSection = ref<HTMLElement | undefined>(undefined);
+const isLoading = ref(false);
 
-onMounted(() => {
-  invoiceStore.loadInvoiceProducts();
+onMounted(async () => {
+  try {
+    isLoading.value = false;
+    await invoiceStore.loadInvoiceProducts();
+  } catch (e) {
+  } finally {
+    isLoading.value = false;
+  }
 });
 </script>

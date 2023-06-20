@@ -61,7 +61,6 @@ const { $notify } = useNuxtApp();
 const router = useRouter();
 
 const cart = useCartStore();
-// const productStore = useProductStore();
 
 const quantity = ref(1);
 
@@ -73,7 +72,6 @@ const goToCheckout = () => setTimeout(() => router.push('/checkout'), 500);
 
 const addItemToCart = async (payload: CartItem) => {
   cart.addProductToCart(payload);
-  // await productStore.getCartProducts(cart.cartItems);
   $notify({
     group: 'all',
     title: 'Exito!',
@@ -128,14 +126,6 @@ const handleBuyNow = (isBuyNow: boolean) => {
   addItemToCart(item);
   goToCheckout();
 };
-
-// const getCartProducts = async (products: any[]) => {
-//   const productsId = products.map((item) => item.id);
-//   const response = await product.getCartProducts(productsId);
-
-//   if (response)
-//     cart.loading = false;
-// }
 </script>
 
 <style scoped>

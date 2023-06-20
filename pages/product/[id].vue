@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex justify-center w-full min-h-full md:justify-start lg:(mt-12)"
-  >
+  <div class="wrapper">
     <transition name="page">
       <product-detail v-if="product" />
     </transition>
@@ -52,3 +50,9 @@ onMounted(() => {
   loadProductById();
 });
 </script>
+
+<style scoped>
+.wrapper {
+  @apply flex justify-center w-full min-h-full md:justify-start lg:(mt-12);
+}
+</style>

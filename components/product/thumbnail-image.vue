@@ -13,12 +13,14 @@
 </template>
 
 <script lang="ts" setup>
+import { injectKeys } from '~/config/constants';
+
 interface Props {
   class?: string;
 }
 
 defineProps<Props>();
 
-const product = inject('product') as Product;
+const product = inject(injectKeys.product) as Product;
 const imageUrl = computed(() => product?.images[0].formats?.small?.url);
 </script>

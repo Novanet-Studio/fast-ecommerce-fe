@@ -44,7 +44,6 @@ import { PhMinus, PhPlus, PhHeart } from '@phosphor-icons/vue';
 
 const { $notify } = useNuxtApp();
 const cart = useCartStore();
-// const productStore = useProductStore();
 const wishlist = useWishlistStore();
 const router = useRouter();
 const quantity = ref<number>(1);
@@ -55,15 +54,10 @@ const handleIncreaseQuantity = () => quantity.value++;
 const handleDescreaseQuantity = () =>
   quantity.value > 1 ? quantity.value-- : quantity;
 
-// TODO: add typings
-const addItemToCart = async (payload: any) => {
+const addItemToCart = async (payload: CartItem) => {
   cart.addProductToCart(payload);
 
   if (!cart.cartItems.length) return;
-
-  const itemsId = cart.cartItems.map((item) => item.id);
-
-  // await productStore.getCartProducts(itemsId);
 
   $notify({
     group: 'all',
@@ -71,21 +65,6 @@ const addItemToCart = async (payload: any) => {
     text: `${product.value.name} ha sido agregado al carrito!`,
   });
 };
-
-// const getCartProduct = async (products: any[]) => {
-//   const itemsId = products.map((item) => item.id);
-//   await product.getCartProducts(itemsId);
-// }
-
-// const loadCartProducts = async () => {
-//   if (!cart.cartItems.length) {
-//     product.cartProducts = null;
-//     return;
-//   }
-
-//   const itemsId = cart.cartItems.map((item) => item.id);
-//   await product.getCartProducts(itemsId);
-// }
 
 const goToCheckout = () => setTimeout(() => router.push('/checkout'), 500);
 

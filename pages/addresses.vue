@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full lg:(ml-8)">
+  <div class="wrapper">
     <div class="address">
       <div class="address__content">
         <figure>
@@ -70,6 +70,9 @@ const { hasBilling, hasShipping } = checkout.checkAddressType();
 </script>
 
 <style scoped>
+.wrapper {
+  @apply w-full lg:(ml-8);
+}
 .address {
   @apply flex flex-col gap-10 p-5 bg-white lg:(flex-row gap-5);
 }

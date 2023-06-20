@@ -25,7 +25,7 @@ const DELAY_REDIRECT = 500;
 export const useInvoiceStore = defineStore(
   'ecommerce-invoice',
   () => {
-    const invoice = ref<Invoice>();
+    const invoice = ref<any>();
     const invoices = ref<Invoice[]>([]);
     const products = ref<Product[]>([]);
     const loading = ref<boolean>(false);
@@ -93,9 +93,11 @@ export const useInvoiceStore = defineStore(
 
         if (!invoice.value?.products.length) return [];
 
-        const itemsId = invoice.value.products.map((product) => product.id);
+        const itemsId = invoice.value.products.map(
+          (product: Product) => product.id
+        );
 
-        const productPromises = itemsId.map((id) =>
+        const productPromises = itemsId.map((id: string) =>
           graphql<ProductRequest>(GetProductById, { id })
         );
 

@@ -59,7 +59,6 @@ const { $notify } = useNuxtApp();
 
 const router = useRouter();
 const auth = useAuthStore();
-// const product = $store.product();
 
 const state = reactive({
   isLoading: false,
@@ -113,11 +112,6 @@ const { submit } = submitter(async () => {
     if (!success) return;
 
     setTimeout(() => {
-      // if (product.cartProducts?.length) {
-      //   router.push('/checkout');
-      //   return;
-      // }
-
       router.push('/');
     }, LEAVE_TIMEOUT);
   } catch (error: any) {

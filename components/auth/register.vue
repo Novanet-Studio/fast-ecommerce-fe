@@ -63,7 +63,6 @@ const router = useRouter();
 const { $notify } = useNuxtApp();
 
 const auth = useAuthStore();
-// const product = $store.product();
 
 const LEAVE_TIMEOUT = 500;
 
@@ -174,11 +173,6 @@ const { submit } = submitter(async () => {
     if (!success) return;
 
     setTimeout(() => {
-      // if (product.cartProducts?.length) {
-      //   router.push('/checkout');
-      //   return;
-      // }
-
       router.push('/');
     }, LEAVE_TIMEOUT);
   } catch (error: any) {

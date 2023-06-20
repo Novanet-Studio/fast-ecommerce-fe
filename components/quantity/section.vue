@@ -11,7 +11,6 @@ type Props = {
 const props = defineProps<Props>();
 const cart = useCartStore();
 
-// TODO: Quantity refactor, move to one store as method
 const quantity = computed(() => {
   if (!cart.cartItems.length) return null;
 

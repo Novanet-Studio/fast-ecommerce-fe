@@ -75,13 +75,6 @@ export default function usePagination<T>(
           pageCount.value = res.pageCount;
         });
       }
-
-      // callback({
-      //   total,
-      //   perPage,
-      //   page,
-      //   pageCount,
-      // });
     } catch (error) {
       throw new Error(
         'An unexpected error occurred while executing the callback'

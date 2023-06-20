@@ -9,5 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-const product = inject('product-detail') as Ref<Product>;
+import { injectKeys } from '~/config/constants';
+const product = inject(injectKeys.productDetail) as Ref<Product>;
 </script>
