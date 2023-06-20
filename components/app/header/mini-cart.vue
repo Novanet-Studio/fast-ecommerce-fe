@@ -56,49 +56,15 @@
 
 <script lang="ts" setup>
 import { PhBag } from '@phosphor-icons/vue';
-import { GetProductById } from '~/graphql/queries';
-
-const graphql = useStrapiGraphQL();
-
 const cartStore = useCartStore();
 const productStore = useProductStore();
 
 const isLoadingCart = ref(false);
 const total = computed(() => cartStore.total);
 const amount = computed(() => cartStore.amount);
-const cartItems = computed(() => cartStore.cartItems);
 const cartProducts = computed(() => productStore.cartProducts);
 
 const isOpen = ref(false);
-
-// const loadCartProducts = async () => {
-//   try {
-//     cartStore.loading = true;
-
-//     const itemsList = cartStore.cartItems.map((item) =>
-//       graphql<ProductRequest>(GetProductById, { id: item.id })
-//     );
-
-//     if (!cartItems.value.length) {
-//       productStore.cartProducts = [];
-//       return;
-//     }
-
-//     // If doesnt exist in the local storage
-//     // then load from database
-//     if (!productStore.cartProducts?.length) {
-//       const [response] = await Promise.all(itemsList);
-//       productStore.cartProducts = mapperData(response.data.products.data);
-//       return;
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   } finally {
-//     cartStore.loading = false;
-//   }
-// };
-
-// onMounted(() => loadCartProducts());
 </script>
 
 <style scoped>

@@ -6,18 +6,12 @@
     :disabled="disabled"
     ref="$ref"
   >
-    <template v-if="text">
-      {{ text }}
-    </template>
-    <template v-else>
-      <slot />
-    </template>
+    <slot />
   </button>
 </template>
 
 <script lang="ts" setup>
 type Props = {
-  text?: string;
   type?: 'submit' | 'button';
   class?: string;
   disabled?: boolean;

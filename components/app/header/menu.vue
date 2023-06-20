@@ -3,10 +3,10 @@
     <li
       v-for="item in mainMenu"
       :key="item.text"
-      class="transition first:pl-0 hover:text-color-4"
+      class="menu__item"
       :class="$route.path === item?.url ? 'text-color-4' : 'text-color-2'"
     >
-      <nuxt-link class="menu__item" :to="item.url">
+      <nuxt-link class="menu__link" :to="item.url">
         {{ item.text }}
       </nuxt-link>
     </li>
@@ -36,6 +36,10 @@ const mainMenu = ref([
 }
 
 .menu__item {
+  @apply transition first:pl-0 hover:text-color-4;
+}
+
+.menu__link {
   @apply block py-[10px] pr-12 pl-0;
 }
 </style>

@@ -58,7 +58,7 @@
         </div>
 
         <div class="form__btn-group">
-          <app-button btn-type="submit" text="Enviar" @click="submit" />
+          <app-button type="submit" @click="submit">Enviar</app-button>
         </div>
       </form>
     </div>

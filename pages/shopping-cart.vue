@@ -22,7 +22,9 @@
                 Cupon de descuento
               </figcaption>
               <app-input v-model="discount" />
-              <app-button text="Aplicar" class="shopping-cart__btn" outline />
+              <app-button class="shopping-cart__btn" outline>
+                Aplicar
+              </app-button>
             </figure>
           </div>
           <div></div>
@@ -55,11 +57,9 @@
                 </h3>
               </div>
             </div>
-            <app-button
-              text="Proceder a la compra"
-              class="mb-24"
-              @click="$router.push('/checkout')"
-            />
+            <app-button class="mb-24" @click="$router.push('/checkout')">
+              Proceder a la compra
+            </app-button>
           </div>
         </div>
       </div>

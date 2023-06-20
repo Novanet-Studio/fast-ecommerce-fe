@@ -10,11 +10,9 @@
           By making this purchase you agree to
           <a href="#" class="visa__link">our terms and conditions</a>.
         </p>
-        <app-button
-          :text="state.isLoading ? '...' : 'Pagar'"
-          :disabled="state.cardButtonDisabled"
-          ref="btnRef"
-        />
+        <app-button :disabled="state.cardButtonDisabled" ref="btnRef">
+          {{ state.isLoading ? '...' : 'Pagar' }}
+        </app-button>
       </div>
     </form>
     <div id="payment-status-container"></div>

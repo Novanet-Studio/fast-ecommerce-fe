@@ -86,11 +86,12 @@
       </p>
       <div class="form__btn-group mt-4">
         <app-button
-          btn-type="submit"
-          text="Enviar"
+          type="submit"
           @click="submit"
           :disabled="isError || !verify()"
-        />
+        >
+          Enviar
+        </app-button>
       </div>
     </form>
   </section>

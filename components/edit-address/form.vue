@@ -54,7 +54,7 @@
         />
       </div>
       <div class="address-form__group-btn">
-        <app-button btn-type="submit" text="Guardar" @click="submit" />
+        <app-button type="submit" @click="submit">Guardar</app-button>
       </div>
     </div>
   </form>

@@ -52,20 +52,20 @@
 import { PhUser } from '@phosphor-icons/vue';
 const auth = useAuthStore();
 const global = useGlobalStore();
-// const auth = $store.auth();
-// const cart = $store.cart();
-// const product = $store.product();
-// const global = $store.global();
+const cart = useCartStore();
+const product = useProductStore();
 const router = useRouter();
 
 const isOpen = ref(false);
 
 const handleLogout = () => {
-  // auth.reset();
-  // cart.clearCart();
-  // cart.clearCartItems();
-  // product.clearProducts();
-  router.go(0);
+  auth.$reset();
+  cart.$reset();
+  product.$reset();
+  router.push({
+    path: '/',
+    force: true,
+  });
 };
 </script>
 
