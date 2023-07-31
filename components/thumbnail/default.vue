@@ -9,7 +9,7 @@
               class="main-swiper"
               :space-between="10"
               :navigation="true"
-              :modules="modules"
+              :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination, SwiperThumbs, SwiperFreeMode]"
               :thumbs="{ swiper: thumbsSwiper }"
             >
               <swiper-slide v-for="image in product.images" :key="image.id">
@@ -28,7 +28,7 @@
           :slides-per-view="4"
           free-mode
           watch-slides-progress
-          :modules="modules"
+          :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination, SwiperThumbs, SwiperFreeMode]"
         >
           <swiper-slide v-for="image in product.images" :key="image.id">
             <img
@@ -44,17 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Autoplay, Navigation, Pagination, Thumbs, FreeMode } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/free-mode';
-
 const product = inject('product-detail') as Ref<Product>;
-
-const modules = ref([Autoplay, Navigation, Pagination, Thumbs, FreeMode]);
-
 const thumbsSwiper = ref(null);
 
 const setThumbsSwiper = (swiper: any) => {

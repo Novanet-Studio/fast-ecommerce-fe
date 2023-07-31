@@ -2,7 +2,7 @@
   <div class="thumbnail-quick-view w100 h100">
     <figure class="thumbnail-quick-view__figure">
       <div class="thumbnail-quick-view__content">
-        <swiper :centered-slides="true" navigation :modules="[Navigation]">
+        <swiper :centered-slides="true" navigation :modules="[SwiperNavigation]">
           <swiper-slide
             v-for="(image, index) in product.images"
             :key="index"
@@ -21,11 +21,6 @@
 </template>
 
 <script lang="ts" setup>
-import { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
-
 const product = inject('product') as Product;
 </script>
 
@@ -33,15 +28,6 @@ const product = inject('product') as Product;
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
   --swiper-navigation-size: 2rem;
-}
-
-.thumbnail-quick-view {
-}
-
-.thumbnail-quick-view__figure {
-}
-
-.thumbnail-quick-view__content {
 }
 
 .thumbnail-quick-view__slide {
