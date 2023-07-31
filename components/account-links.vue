@@ -11,7 +11,7 @@
         class="flex items-center px-5 py-4"
         :class="hasText(link?.name) ? 'font-bold' : 'font-medium'"
       >
-        <span class="mr-3" :class="hasText(link.name) ? getIcon(link.name).replace('light', 'fill') : getIcon(link.name)" />
+        <div class="mr-3" :class="hasText(link.name) ? getIcon(link.name).active : getIcon(link.name).inactive" />
         {{ link.text }}
       </nuxt-link>
     </li>
@@ -21,7 +21,7 @@
         href="#"
         @click.prevent="handleLogout"
       >
-        <ph-power weight="light" class="mr-3" />
+        <div class="i-ph-power-light mr-3" />
         Cerrar Sesión
       </a>
     </li>
@@ -45,11 +45,23 @@ const handleLogout = () => {
 };
 
 const getIcon = (icon: string) => {
-  const icons: { [key: string]: string } = {
-    invoices: 'i-ph-receipt-light',
-    address: 'i-ph-map-pin-light',
-    'shopping-cart': 'i-ph-bag-light',
-    wishlist: 'i-ph-heart-light',
+  const icons: { [key: string]: any } = {
+    invoices: {
+      active: 'i-ph-receipt-fill',
+      inactive: 'i-ph-receipt-light',
+    },
+    address: {
+      active: 'i-ph-map-pin-fill',
+      inactive: 'i-ph-map-pin-light',
+    },
+    'shopping-cart': {
+      active: 'i-ph-bag-fill',
+      inactive: 'i-ph-bag-light',
+    },
+    wishlist: {
+      active: 'i-ph-heart-fill',
+      inactive: 'i-ph-heart-light',
+    },
   };
 
   return icons[icon];
