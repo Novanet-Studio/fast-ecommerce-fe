@@ -23,7 +23,7 @@
             class="info-quick-view__actions-btn"
             @click.prevent="handleDescreaseQuantity"
           >
-            <ph-minus :size="12" class="text-gray-500" />
+            <span class="i-ph-minus-light text-xs text-gray-500" />
           </button>
           <input
             class="info-quick-view__actions-input"
@@ -35,7 +35,7 @@
             class="info-quick-view__actions-btn"
             @click.prevent="handleIncreaseQuantity"
           >
-            <ph-plus :size="12" class="text-gray-500" />
+            <span class="i-ph-plus-light text-xs text-gray-500" />
           </button>
         </div>
       </figure>
@@ -53,8 +53,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhPlus, PhMinus } from '@phosphor-icons/vue';
-
 const product = inject('product') as Product;
 
 const { $notify } = useNuxtApp();

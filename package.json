@@ -9,6 +9,7 @@
     "clean": "rimraf node_modules .nuxt"
   },
   "devDependencies": {
+    "@iconify-json/ph": "^1.1.5",
     "@nuxt/devtools": "^0.7.2",
     "@nuxt/image-edge": "1.0.0-rc.1-28180077.d51e794",
     "@nuxtjs/strapi": "^1.9.0",
@@ -16,6 +17,7 @@
     "@rollup/plugin-graphql": "^2.0.3",
     "@sidebase/nuxt-pdf": "^0.1.1",
     "@unocss/nuxt": "^0.54.1",
+    "@unocss/preset-icons": "^0.54.1",
     "@vueuse/core": "^10.3.0",
     "@vueuse/nuxt": "^10.3.0",
     "graphql": "^16.7.1",
@@ -27,7 +29,6 @@
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@kyvg/vue3-notification": "^2.9.1",
     "@paypal/paypal-js": "^6.0.1",
-    "@phosphor-icons/vue": "^2.1.6",
     "@pinia/nuxt": "^0.4.11",
     "@unocss/reset": "^0.54.1",
     "firebase": "^10.1.0",

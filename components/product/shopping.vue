@@ -7,7 +7,7 @@
           class="shopping__actions-btn"
           @click.prevent="handleIncreaseQuantity"
         >
-          <ph-minus :size="12" class="text-gray-500" />
+          <span class="i-ph-minus-light text-xs text-gray-5" />
         </button>
         <input
           v-model="quantity"
@@ -19,7 +19,7 @@
           class="shopping__actions-btn"
           @click.prevent="handleDescreaseQuantity"
         >
-          <ph-plus :size="12" class="text-gray-500" />
+          <span class="i-ph-plus-light text-xs text-gray-5" />
         </button>
       </div>
     </figure>
@@ -34,14 +34,12 @@
       title="Add to wishlist"
       @click.prevent="handleAddItemToWishlist()"
     >
-      <ph-heart :size="24" class="text-color-2" />
+      <span class="i-ph-heart-light text-[24px] text-color-2" />
     </button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { PhMinus, PhPlus, PhHeart } from '@phosphor-icons/vue';
-
 const { $notify } = useNuxtApp();
 const cart = useCartStore();
 const wishlist = useWishlistStore();

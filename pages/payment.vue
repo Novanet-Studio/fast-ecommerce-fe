@@ -10,7 +10,7 @@
         <payment-methods />
         <div class="b-link-wrapper">
           <nuxt-link class="flex items-center" to="/shipping">
-            <ph-arrow-left class="mr-2" weight="light" />
+            <span class="i-ph-arrow-left-light mr-2"></span>
             Return to shipping
           </nuxt-link>
         </div>
@@ -22,7 +22,3 @@
     <app-notify />
   </div>
 </template>
-
-<script lang="ts" setup>
-import { PhArrowLeft } from '@phosphor-icons/vue';
-</script>

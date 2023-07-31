@@ -8,7 +8,7 @@
         <resume-information />
         <div class="b-link-wrapper">
           <nuxt-link to="/checkout" class="flex items-center">
-            <ph-arrow-left class="mr-2" weight="light" />
+            <span class="i-ph-arrow-left-light mr-2" />
             Regresar
           </nuxt-link>
           <nuxt-link to="/payment" class="ps-btn">
@@ -26,7 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhArrowLeft } from '@phosphor-icons/vue';
 definePageMeta({
   middleware: 'authentication',
 });

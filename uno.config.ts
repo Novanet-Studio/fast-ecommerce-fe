@@ -5,9 +5,10 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss';
+import presetIcons from '@unocss/preset-icons'
 
 export default defineConfig({
-  presets: [presetUno(), presetAttributify()],
+  presets: [presetUno(), presetAttributify(), presetIcons()],
   transformers: [transformerDirectives(), transformerVariantGroup()],
   theme: {
     colors: {

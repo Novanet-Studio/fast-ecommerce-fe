@@ -7,7 +7,7 @@
       @click.prevent="isOpen = !isOpen"
     >
       <div class="header-actions__link">
-        <ph-bag class="header-actions__icon" weight="light" />
+        <span class="i-ph-bag-light header-actions__icon"></span>
         <span class="header-actions__indicator-wrapper">
           <i class="header-actions__indicator">{{ total }}</i>
         </span>
@@ -55,7 +55,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhBag } from '@phosphor-icons/vue';
 const cartStore = useCartStore();
 const productStore = useProductStore();
 

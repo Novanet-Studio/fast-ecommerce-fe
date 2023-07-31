@@ -11,7 +11,7 @@
       <template #body="props">
         <div class="ps-notify" :class="props?.className || ''">
           <button class="ps-notify__close" @click="props.close">
-            <ph-x size="16" weight="light" />
+            <span class="i-ph-x-light"></span>
           </button>
           <div class="ps-notify__header">
             <span>{{ props.item.title }}</span>
@@ -24,10 +24,6 @@
     </notifications>
   </client-only>
 </template>
-
-<script lang="ts" setup>
-import { PhX } from '@phosphor-icons/vue';
-</script>
 
 <style scoped>
 .ps-notify {

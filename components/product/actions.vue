@@ -6,7 +6,7 @@
         title="Add to cart"
         @click.prevent="handleAddToCart"
       >
-        <ph-bag weight="light" />
+        <span class="i-ph-bag-light"></span>
       </button>
     </li>
 
@@ -16,7 +16,7 @@
         title="Quick View"
         @click.prevent="$emit('quickView', true)"
       >
-        <ph-eye weight="light" />
+        <span class="i-ph-eye-light"></span>
       </button>
     </li>
     <li class="product-actions__item">
@@ -25,14 +25,13 @@
         title="Add to wishlist"
         @click.prevent="handleAddItemToWishlist"
       >
-        <ph-heart weight="light" />
+        <span class="i-ph-heart-light"></span>
       </button>
     </li>
   </ul>
 </template>
 
 <script lang="ts" setup>
-import { PhBag, PhEye, PhHeart } from '@phosphor-icons/vue';
 import { GetProductById } from '~/graphql/queries';
 
 type Emits = {

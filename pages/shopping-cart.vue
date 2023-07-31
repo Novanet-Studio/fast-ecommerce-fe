@@ -10,7 +10,7 @@
           <p v-else>Carrito vacio</p>
           <div class="shopping-cart__link-wrapper">
             <nuxt-link to="#" class="shopping-cart__link">
-              <ph-arrow-left weight="light" class="mr-2" />
+              <span class="i-ph-arrow-left-light mr-2"></span>
               Regresar
             </nuxt-link>
           </div>
@@ -78,7 +78,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhArrowLeft } from '@phosphor-icons/vue';
 import { GetProductById } from '~/graphql/queries';
 
 definePageMeta({

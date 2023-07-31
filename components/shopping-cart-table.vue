@@ -37,7 +37,7 @@
               class="cart-table__link"
               @click.prevent="handleRemoveProductFromCart(product)"
             >
-              <ph-x weight="light" />
+              <span class="i-ph-x-light"></span>
             </a>
           </td>
         </tr>
@@ -47,7 +47,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhX } from '@phosphor-icons/vue';
 import { GetProductById } from '~/graphql/queries';
 
 const graphql = useStrapiGraphQL();

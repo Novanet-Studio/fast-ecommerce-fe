@@ -9,7 +9,7 @@
         :error-message="status.user.message"
       >
         <template #left>
-          <ph-user :size="20" weight="light" class="text-gray-400" />
+          <span class="i-ph-bag-light text-[20px] text-gray-400"></span>
         </template>
       </app-input>
       <app-input
@@ -20,22 +20,12 @@
         :error-message="status.password.message"
       >
         <template #left>
-          <ph-lock :size="20" weight="light" class="text-gray-400" />
+          <span class="i-ph-lock-light text-[20px] text-gray-400"></span>
         </template>
         <template #right>
           <div @click="handleIconClick" class="hover:cursor-pointer group">
-            <ph-eye
-              :size="20"
-              weight="light"
-              class="transition text-gray-400 group-hover:text-gray-500"
-              v-if="!showPassword"
-            />
-            <ph-eye-slash
-              :size="20"
-              weight="light"
-              class="transition text-gray-400 group-hover:text-gray-500"
-              v-else
-            />
+            <span class="i-ph-eye-light text-[20px] transition text-gray-400 group-hover:text-gray-500" v-if="!showPassword" />
+            <span class="i-ph-eye-slash-light text-[20px] transition text-gray-400 group-hover:text-gray-500" v-else />
           </div>
         </template>
       </app-input>
@@ -50,7 +40,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhUser, PhLock, PhEye, PhEyeSlash } from '@phosphor-icons/vue';
 import { useForm } from 'slimeform';
 import * as yup from 'yup';
 import { yupFieldRule } from 'slimeform/resolvers';

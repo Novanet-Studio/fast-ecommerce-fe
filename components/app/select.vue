@@ -34,11 +34,7 @@
         <span
           class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"
         >
-          <ph-caret-up-down
-            :size="12"
-            class="h-5 w-5 text-gray-400"
-            weight="light"
-          />
+          <span class="i-ph-caret-down-light text-[12px] h-5 w-5 text-gray-400"></span>
         </span>
       </button>
 
@@ -104,7 +100,7 @@
                 class="absolute inset-y-0 right-0 flex items-center pr-4 hover:text-white"
                 :class="compareOptions(option) ? 'text-white' : 'text-color-1'"
               >
-                <ph-check class="h-5 w-5" />
+                <span class="i-ph-x-light h-5 w-5"></span>
               </span>
             </li>
           </template>
@@ -118,7 +114,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhCheck, PhCaretUpDown } from '@phosphor-icons/vue';
 import { onClickOutside } from '@vueuse/core';
 
 type Options = string[] | number[] | Object[];

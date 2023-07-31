@@ -44,7 +44,7 @@
                   class="text-color-2 ml-4"
                   @click.prevent="handleRemoveItemFromWishlist(item)"
                 >
-                  <ph-x weight="light" />
+                  <span class="i-ph-x-light"></span>
                 </a>
               </td>
             </tr>
@@ -56,7 +56,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhX } from '@phosphor-icons/vue';
 import { GetProductById } from '~/graphql/queries';
 
 definePageMeta({

@@ -1,23 +1,20 @@
 <template>
   <div class="quantity">
     <button class="quantity__btn" @click.prevent="handleIncreaseQuantity">
-      <ph-plus weight="light" />
+      <span class="i-ph-plus-light" />
     </button>
     <input class="quantity__input" v-model="quantity" type="text" disabled />
     <button class="quantity__btn" @click.prevent="handleDescreaseQuantity">
-      <ph-minus weight="light" />
+      <span class="i-ph-minus-light" />
     </button>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { PhPlus, PhMinus } from '@phosphor-icons/vue';
-
-type Props = {
+const props = defineProps<{
   id: string;
-};
+}>();
 
-const props = defineProps<Props>();
 const cart = useCartStore();
 const payload = {
   id: props.id,

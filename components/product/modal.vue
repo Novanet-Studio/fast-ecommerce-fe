@@ -2,7 +2,7 @@
   <app-modal v-model="active">
     <div class="product-modal">
       <a class="product-modal__icon" @click="active = false">
-        <ph-x weight="light" />
+        <span class="i-ph-x-light" />
       </a>
       <slot />
     </div>
@@ -10,8 +10,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhX } from '@phosphor-icons/vue';
-
 const emit = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>();
 const props = defineProps<{ modelValue: boolean }>();
 

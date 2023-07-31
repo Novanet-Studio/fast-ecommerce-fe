@@ -20,7 +20,7 @@
     @mouseover="isOpen = true"
     @mouseleave="isOpen = false"
   >
-    <ph-user class="user-area__icon" weight="light" />
+    <span class="i-ph-user-light user-area__icon" />
     <transition name="slide-fade">
       <div class="user-area__menu-container" v-if="isOpen">
         <ul class="user-area__menu-list">
@@ -49,7 +49,6 @@
 </template>
 
 <script lang="ts" setup>
-import { PhUser } from '@phosphor-icons/vue';
 const auth = useAuthStore();
 const global = useGlobalStore();
 const cart = useCartStore();

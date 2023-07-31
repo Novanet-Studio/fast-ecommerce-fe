@@ -9,7 +9,7 @@
         href="#"
         @click.prevent="handleRemoveProductFromCart(product)"
       >
-        <ph-x weight="light" class="text-color-4" />
+        <span class="i-ph-x-light text-color-4" />
       </a>
       <product-title :id="product.id">
         {{ product.name }}
@@ -23,7 +23,6 @@
 
 <script lang="ts" setup>
 import { injectKeys } from '~/config/constants';
-import { PhX } from '@phosphor-icons/vue';
 
 const cartStore = useCartStore();
 const global = useGlobalStore();
