@@ -11,11 +11,7 @@
         class="flex items-center px-5 py-4"
         :class="hasText(link?.name) ? 'font-bold' : 'font-medium'"
       >
-        <span class="mr-3"
-          ><component
-            :is="getIcon(link.name)"
-            v-bind="{ weight: hasText(link?.name) ? 'fill' : 'light' }"
-        /></span>
+        <span class="mr-3" :class="hasText(link.name) ? getIcon(link.name).replace('light', 'fill') : getIcon(link.name)" />
         {{ link.text }}
       </nuxt-link>
     </li>
@@ -33,13 +29,6 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  PhPower,
-  PhMapPin,
-  PhReceipt,
-  PhBag,
-  PhHeart,
-} from '@phosphor-icons/vue';
 const global = useGlobalStore();
 const auth = useAuthStore();
 const cart = useCartStore();
@@ -56,11 +45,11 @@ const handleLogout = () => {
 };
 
 const getIcon = (icon: string) => {
-  const icons: { [key: string]: any } = {
-    invoices: PhReceipt,
-    address: PhMapPin,
-    'shopping-cart': PhBag,
-    wishlist: PhHeart,
+  const icons: { [key: string]: string } = {
+    invoices: 'i-ph-receipt-light',
+    address: 'i-ph-map-pin-light',
+    'shopping-cart': 'i-ph-bag-light',
+    wishlist: 'i-ph-heart-light',
   };
 
   return icons[icon];

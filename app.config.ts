@@ -1,10 +1,3 @@
-import {
-  PhFacebookLogo,
-  PhInstagramLogo,
-  PhWhatsappLogo,
-  PhEnvelope,
-} from '@phosphor-icons/vue';
-
 export default defineAppConfig({
   header: {
     logo: 'logo.png',
@@ -16,22 +9,22 @@ export default defineAppConfig({
     widgets: [
       {
         link: 'https://www.instagram.com/coracuero/',
-        icon: PhInstagramLogo,
+        icon: 'i-ph-instagram-logo-light',
         text: '@fastecommerce',
       },
       {
         link: 'https://www.facebook.com/people/coracuero',
-        icon: PhFacebookLogo,
+        icon: 'i-ph-facebook-logo-light',
         text: 'fast-ecommerce',
       },
       {
         link: '#',
-        icon: PhWhatsappLogo,
+        icon: 'i-ph-whatsapp-logo-light',
         text: '+58 412-12315654',
       },
       {
         link: '#',
-        icon: PhEnvelope,
+        icon: 'i-ph-envelope-simple-logo-light',
         text: 'fast@ecommerce.com',
       },
     ],
