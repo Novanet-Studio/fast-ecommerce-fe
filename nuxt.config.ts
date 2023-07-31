@@ -6,6 +6,10 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     head: {
+      titleTemplate: (title) => `${title} - TeM`,
+      htmlAttrs: {
+        lang: 'es',
+      },
       script: [
         {
           type: 'module',
