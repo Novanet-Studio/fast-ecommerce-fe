@@ -32,6 +32,7 @@
 </template>
 
 <script lang="ts" setup>
+import { injectKeys } from '~/config/constants';
 import { GetProductById } from '~/graphql/queries';
 
 type Emits = {
@@ -43,7 +44,7 @@ defineEmits<Emits>();
 const { $notify } = useNuxtApp();
 const graphql = useStrapiGraphQL();
 
-const product = inject('product') as Product;
+const product = inject(injectKeys.product) as Product;
 
 const cart = useCartStore();
 const productStore = useProductStore();
