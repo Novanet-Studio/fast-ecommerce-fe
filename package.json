@@ -9,6 +9,7 @@
     "clean": "rimraf node_modules .nuxt"
   },
   "devDependencies": {
+    "@nuxt/devtools": "^0.7.2",
     "@nuxt/image-edge": "1.0.0-rc.1-28180077.d51e794",
     "@nuxtjs/strapi": "^1.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
