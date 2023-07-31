@@ -20,7 +20,7 @@
     @mouseover="isOpen = true"
     @mouseleave="isOpen = false"
   >
-    <span class="i-ph-user-light user-area__icon" />
+    <div class="i-ph-user-light user-area__icon" />
     <transition name="slide-fade">
       <div class="user-area__menu-container" v-if="isOpen">
         <ul class="user-area__menu-list">

@@ -37,7 +37,7 @@
               class="cart-table__link"
               @click.prevent="handleRemoveProductFromCart(product)"
             >
-              <span class="i-ph-x-light"></span>
+              <div class="i-ph-x-light"></div>
             </a>
           </td>
         </tr>

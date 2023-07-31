@@ -7,7 +7,7 @@
       @click.prevent="isOpen = !isOpen"
     >
       <div class="header-actions__link">
-        <span class="i-ph-bag-light header-actions__icon"></span>
+        <div class="i-ph-bag-light header-actions__icon"></div>
         <span class="header-actions__indicator-wrapper">
           <i class="header-actions__indicator">{{ total }}</i>
         </span>

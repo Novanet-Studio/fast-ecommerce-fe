@@ -34,7 +34,7 @@
         <span
           class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"
         >
-          <span class="i-ph-caret-down-light text-[12px] h-5 w-5 text-gray-400"></span>
+          <div class="i-ph-caret-down-light text-[12px] h-5 w-5 text-gray-400"></div>
         </span>
       </button>
 
@@ -100,7 +100,7 @@
                 class="absolute inset-y-0 right-0 flex items-center pr-4 hover:text-white"
                 :class="compareOptions(option) ? 'text-white' : 'text-color-1'"
               >
-                <span class="i-ph-x-light h-5 w-5"></span>
+                <div class="i-ph-x-light h-5 w-5"></div>
               </span>
             </li>
           </template>

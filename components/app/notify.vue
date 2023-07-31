@@ -11,7 +11,7 @@
       <template #body="props">
         <div class="ps-notify" :class="props?.className || ''">
           <button class="ps-notify__close" @click="props.close">
-            <span class="i-ph-x-light"></span>
+            <div class="i-ph-x-light"></div>
           </button>
           <div class="ps-notify__header">
             <span>{{ props.item.title }}</span>

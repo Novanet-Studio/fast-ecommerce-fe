@@ -23,7 +23,7 @@
             class="info-quick-view__actions-btn"
             @click.prevent="handleDescreaseQuantity"
           >
-            <span class="i-ph-minus-light text-xs text-gray-500" />
+            <div class="i-ph-minus-light text-xs text-gray-500" />
           </button>
           <input
             class="info-quick-view__actions-input"
@@ -35,7 +35,7 @@
             class="info-quick-view__actions-btn"
             @click.prevent="handleIncreaseQuantity"
           >
-            <span class="i-ph-plus-light text-xs text-gray-500" />
+            <div class="i-ph-plus-light text-xs text-gray-500" />
           </button>
         </div>
       </figure>

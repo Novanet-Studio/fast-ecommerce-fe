@@ -44,7 +44,7 @@
                   class="text-color-2 ml-4"
                   @click.prevent="handleRemoveItemFromWishlist(item)"
                 >
-                  <span class="i-ph-x-light"></span>
+                  <div class="i-ph-x-light"></div>
                 </a>
               </td>
             </tr>

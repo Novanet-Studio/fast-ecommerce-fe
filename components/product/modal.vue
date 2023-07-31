@@ -2,7 +2,7 @@
   <app-modal v-model="active">
     <div class="product-modal">
       <a class="product-modal__icon" @click="active = false">
-        <span class="i-ph-x-light" />
+        <div class="i-ph-x-light" />
       </a>
       <slot />
     </div>

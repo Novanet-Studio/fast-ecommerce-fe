@@ -8,7 +8,7 @@
         <resume-information />
         <div class="b-link-wrapper">
           <nuxt-link to="/checkout" class="flex items-center">
-            <span class="i-ph-arrow-left-light mr-2" />
+            <div class="i-ph-arrow-left-light mr-2" />
             Regresar
           </nuxt-link>
           <nuxt-link to="/payment" class="ps-btn">

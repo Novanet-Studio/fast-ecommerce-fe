@@ -6,7 +6,7 @@
         title="Add to cart"
         @click.prevent="handleAddToCart"
       >
-        <span class="i-ph-bag-light"></span>
+        <div class="i-ph-bag-light" />
       </button>
     </li>
 
@@ -16,7 +16,7 @@
         title="Quick View"
         @click.prevent="$emit('quickView', true)"
       >
-        <span class="i-ph-eye-light"></span>
+        <div class="i-ph-eye-light" />
       </button>
     </li>
     <li class="product-actions__item">
@@ -25,7 +25,7 @@
         title="Add to wishlist"
         @click.prevent="handleAddItemToWishlist"
       >
-        <span class="i-ph-heart-light"></span>
+        <div class="i-ph-heart-light" />
       </button>
     </li>
   </ul>

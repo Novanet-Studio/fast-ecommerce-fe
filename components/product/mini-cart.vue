@@ -9,7 +9,7 @@
         href="#"
         @click.prevent="handleRemoveProductFromCart(product)"
       >
-        <span class="i-ph-x-light text-color-4" />
+        <div class="i-ph-x-light text-color-4" />
       </a>
       <product-title :id="product.id">
         {{ product.name }}

@@ -10,7 +10,7 @@
           <p v-else>Carrito vacio</p>
           <div class="shopping-cart__link-wrapper">
             <nuxt-link to="#" class="shopping-cart__link">
-              <span class="i-ph-arrow-left-light mr-2"></span>
+              <div class="i-ph-arrow-left-light mr-2" />
               Regresar
             </nuxt-link>
           </div>

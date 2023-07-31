@@ -1,11 +1,11 @@
 <template>
   <div class="quantity">
     <button class="quantity__btn" @click.prevent="handleIncreaseQuantity">
-      <span class="i-ph-plus-light" />
+      <div class="i-ph-plus-light" />
     </button>
     <input class="quantity__input" v-model="quantity" type="text" disabled />
     <button class="quantity__btn" @click.prevent="handleDescreaseQuantity">
-      <span class="i-ph-minus-light" />
+      <div class="i-ph-minus-light" />
     </button>
   </div>
 </template>

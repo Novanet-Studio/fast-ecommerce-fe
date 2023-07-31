@@ -10,7 +10,7 @@
         <payment-methods />
         <div class="b-link-wrapper">
           <nuxt-link class="flex items-center" to="/shipping">
-            <span class="i-ph-arrow-left-light mr-2"></span>
+            <div class="i-ph-arrow-left-light mr-2" />
             Return to shipping
           </nuxt-link>
         </div>

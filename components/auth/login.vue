@@ -9,7 +9,7 @@
         :error-message="status.user.message"
       >
         <template #left>
-          <span class="i-ph-bag-light text-[20px] text-gray-400"></span>
+          <div class="i-ph-bag-light text-[20px] text-gray-400" />
         </template>
       </app-input>
       <app-input
@@ -20,12 +20,12 @@
         :error-message="status.password.message"
       >
         <template #left>
-          <span class="i-ph-lock-light text-[20px] text-gray-400"></span>
+          <div class="i-ph-lock-light text-[20px] text-gray-400" />
         </template>
         <template #right>
           <div @click="handleIconClick" class="hover:cursor-pointer group">
-            <span class="i-ph-eye-light text-[20px] transition text-gray-400 group-hover:text-gray-500" v-if="!showPassword" />
-            <span class="i-ph-eye-slash-light text-[20px] transition text-gray-400 group-hover:text-gray-500" v-else />
+            <div class="i-ph-eye-light text-[20px] transition text-gray-400 group-hover:text-gray-500" v-if="!showPassword" />
+            <div class="i-ph-eye-slash-light text-[20px] transition text-gray-400 group-hover:text-gray-500" v-else />
           </div>
         </template>
       </app-input>
