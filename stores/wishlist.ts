@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { GetProductById } from '~/graphql/queries';
 
 type WishListItem = {
   id: string;
@@ -15,6 +16,29 @@ export const useWishlistStore = defineStore(
     const items = ref<WishListItem[]>([]);
     const total = ref<number>(0);
     const loading = ref<boolean>(false);
+    const graphql = useStrapiGraphQL();
+    const productStore = useProductStore();
+
+    async function load() {
+      const temp: any[] = [];
+
+      if (!items.value.length) {
+        productStore.wishlistItems = null;
+        return;
+      }
+
+      const itemsId = items.value.map((item) => item.id);
+      const promises = itemsId.map((id: string) =>
+        graphql<ProductRequest>(GetProductById, { id })
+      );
+
+      const response = await Promise.all(promises);
+      mapperData<any[]>(response).forEach((item) => {
+        temp.push(item.products[0]);
+      });
+
+      productStore.wishlistItems = temp;
+    }
 
     function initWishList(params: InitWishListParams): void {
       items.value = params.items;
@@ -46,6 +70,7 @@ export const useWishlistStore = defineStore(
       items,
       total,
       loading,
+      load,
       initWishList,
       addItem,
       removeItem,
