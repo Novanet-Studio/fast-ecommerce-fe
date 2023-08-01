@@ -1,31 +1,44 @@
+<script lang="ts" setup>
+import { PaymentPagoMovil, PaymentPaypal, PaymentTransBofa, PaymentVenmo, PaymentVisa, PaymentZelle } from '.nuxt/components';
+import { Tabs as VueTabs, Tab as VueTab } from 'vue3-tabs-component';
+
+const tabs = [
+  {
+    name: 'Square Up',
+    component: PaymentVisa,
+  },
+  {
+    name: 'Paypal',
+    component: PaymentPaypal,
+  },
+  {
+    name: 'Pago movil',
+    component: PaymentPagoMovil,
+  },
+  {
+    name: 'Trans BoFa',
+    component: PaymentTransBofa,
+  },
+  {
+    name: 'Venmo',
+    component: PaymentVenmo,
+  },
+  {
+    name: 'Zelle',
+    component: PaymentZelle
+  }
+]
+</script>
+
 <template>
   <div class="whitespace-nowrap md:w-full">
-    <Tabs :options="{ useUrlFragmet: false }">
-      <tab name="Square up">
-        <payment-visa />
-      </tab>
-      <tab name="Paypal">
-        <payment-paypal />
-      </tab>
-      <tab name="Pago movil">
-        <payment-pago-movil />
-      </tab>
-      <tab name="Trans BoFa">
-        <payment-trans-bofa />
-      </tab>
-      <tab name="Zelle">
-        <payment-zelle />
-      </tab>
-      <tab name="Venmo">
-        <payment-venmo />
-      </tab>
-    </Tabs>
+    <vue-tabs :options="{ useUrlFragmet: false }">
+      <vue-tab v-for="(tab, i) in tabs" :key="i" :name="tab.name">
+        <component :is="tab.component" />
+      </vue-tab>
+    </vue-tabs>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { Tabs, Tab } from 'vue3-tabs-component';
-</script>
 
 <style scoped>
 :deep(.tabs-component) {
@@ -33,7 +46,7 @@ import { Tabs, Tab } from 'vue3-tabs-component';
 }
 
 :deep(.tabs-component-tabs) {
-  @apply flex overflow-x-scroll w-30rem max-w-30rem md:(w-full max-w-full);
+  @apply flex overflow-x-scroll w-30rem max-w-30rem md: (w-full max-w-full);
 }
 
 :deep(.tabs-component-tab) {
