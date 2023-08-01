@@ -13,30 +13,18 @@
       <tbody>
         <tr class="table__tr" v-for="product in products" :key="product!.id">
           <td class="product-td">
-            <product-shopping-cart
-              image-class="!h-auto !w-18"
-              :id="product!.id"
-              :title="product!.name"
-              :product="product!"
-            />
+            <product-shopping-cart image-class="!h-auto !w-18" :id="product!.id" :title="product!.name"
+              :product="product!" />
           </td>
           <td class="base-td">${{ product!.price }}</td>
           <td class="quantity-td">
             <quantity class="group-hover:bg-white" :id="product!.id" />
           </td>
           <td class="base-td">
-            <total-quantity
-              class="!border-none"
-              :id="product!.id"
-              :price="product!.price"
-            />
+            <total-quantity class="!border-none" :id="product!.id" :price="product!.price" />
           </td>
           <td class="base-td">
-            <a
-              href="#"
-              class="cart-table__link"
-              @click.prevent="handleRemoveProductFromCart(product)"
-            >
+            <a href="#" class="cart-table__link" @click.prevent="handleRemoveProductFromCart(product)">
               <div class="i-ph-x-light"></div>
             </a>
           </td>
@@ -89,22 +77,22 @@ const handleRemoveProductFromCart = (product?: Product) => {
 }
 
 .table__th {
-  @apply text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base;
+  @apply text-sm font-bold text-color-2 px-6 py-4 text-left lg: text-base;
 }
 
 .table__tr {
-  @apply border-b transition duration-300 ease-in-out hover:bg-color-8 group;
+  @apply border-b transition duration-300 ease-in-out hover: bg-color-8 group;
 }
 
 .product-td {
-  @apply px-6 py-4 whitespace-nowrap text-sm font-bold text-color-6 p-2 lg:text-base;
+  @apply px-6 py-4 whitespace-nowrap text-sm font-bold text-color-6 p-2 lg: text-base;
 }
 
 .base-td {
-  @apply text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg:text-base;
+  @apply text-sm text-color-4 font-light px-6 py-4 whitespace-nowrap lg: text-base;
 }
 
 .quantity-td {
-  @apply text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg:text-base;
+  @apply text-sm text-color-2 font-light px-6 py-4 whitespace-nowrap lg: text-base;
 }
 </style>
