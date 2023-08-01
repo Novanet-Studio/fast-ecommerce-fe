@@ -1,58 +1,37 @@
 <template>
-  <section class="wishlist">
-    <div class="wishlist__center">
-      <header class="wishlist__header">
-        <h1 class="wishlist__title">Lista de deseos</h1>
-      </header>
-      <div v-if="!productStore.wishlistItems">
-        <header class="wishlist__center">
-          <h3 class="wishlist__subtitle">
-            No tienes articulos en tu lista de deseos
-          </h3>
-        </header>
-      </div>
-      <table-wrapper v-else>
-        <table class="table">
-          <thead class="">
-            <tr>
-              <th scope="col" class="table-th">Nombre</th>
-              <th scope="col" class="table-th">Precio por unidad</th>
-              <th scope="col" class="table-th">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              class="table-tr"
-              v-for="item in productStore.wishlistItems"
-              :key="item?.id"
-            >
-              <td class="product-td">
-                <product-shopping-cart
-                  image-class="!h-24"
-                  :id="item!.id"
-                  :title="item!.name"
-                  :product="item!"
-                />
-              </td>
-              <td class="price-td">$ {{ item?.price.toFixed(2) }}</td>
-              <td class="actions-td">
-                <app-button class="!w-48" @click="handleAddToCart(item!)">
-                  Añadir al carrito
-                </app-button>
-                <a
-                  href="#"
-                  class="text-color-2 ml-4"
-                  @click.prevent="handleRemoveItemFromWishlist(item)"
-                >
-                  <div class="i-ph-x-light"></div>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </table-wrapper>
-    </div>
-  </section>
+  <wishlist-wrapper>
+    <wishlist-header>Lista de deseos</wishlist-header>
+    <wishlist-header no-articles v-if="!productStore.wishlistItems">
+      No tienes articulos en tu lista de deseos
+    </wishlist-header>
+    <table-wrapper v-else>
+      <table class="table">
+        <thead class="">
+          <tr>
+            <th scope="col" class="table-th">Nombre</th>
+            <th scope="col" class="table-th">Precio por unidad</th>
+            <th scope="col" class="table-th">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-tr" v-for="item in productStore.wishlistItems" :key="item?.id">
+            <td class="product-td">
+              <product-shopping-cart image-class="!h-24" :id="item!.id" :title="item!.name" :product="item!" />
+            </td>
+            <td class="price-td">$ {{ item?.price.toFixed(2) }}</td>
+            <td class="actions-td">
+              <app-button class="!w-48" @click="handleAddToCart(item!)">
+                Añadir al carrito
+              </app-button>
+              <a href="#" class="text-color-2 ml-4" @click.prevent="handleRemoveItemFromWishlist(item)">
+                <div class="i-ph-x-light"></div>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrapper>
+  </wishlist-wrapper>
 </template>
 
 <script lang="ts" setup>
@@ -150,42 +129,22 @@ onMounted(() => {
 }
 
 .table-th {
-  @apply text-sm font-bold text-color-2 px-6 py-4 text-left lg:text-base;
+  @apply text-sm font-bold text-color-2 px-6 py-4 text-left lg: text-base;
 }
 
 .table-tr {
-  @apply border-b transition duration-300 ease-in-out hover:bg-color-8 group;
+  @apply border-b transition duration-300 ease-in-out hover: bg-color-8 group;
 }
 
 .product-td {
-  @apply px-6 py-4 text-sm font-bold text-color-6 p-2 lg:text-base;
+  @apply px-6 py-4 text-sm font-bold text-color-6 p-2 lg: text-base;
 }
 
 .price-td {
-  @apply text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg:text-base;
+  @apply text-sm text-color-6 font-light px-6 py-4 whitespace-nowrap lg: text-base;
 }
 
 .actions-td {
-  @apply text-sm text-color-6 font-light px-6 py-4 lg:text-base lg:flex items-center h-full;
-}
-
-.wishlist {
-  @apply mt-4 max-w-sm sm:(max-w-lg mb-24) md:max-w-2xl lg:(px-7 mt-0 max-w-full);
-}
-
-.wishlist__center {
-  @apply w-full px-3 mx-auto;
-}
-
-.wishlist__header {
-  @apply pb-12 text-left lg:pb-24;
-}
-
-.wishlist__title {
-  @apply text-3xl font-semibold text-color-2 lg:text-5xl;
-}
-
-.wishlist__subtitle {
-  @apply text-xl text-color-2 mb-2 font-bold lg:text-2xl;
+  @apply text-sm text-color-6 font-light px-6 py-4 lg: text-base lg:flex items-center h-full;
 }
 </style>
