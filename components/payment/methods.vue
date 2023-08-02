@@ -1,31 +1,36 @@
 <script lang="ts" setup>
-import { PaymentPagoMovil, PaymentPaypal, PaymentTransBofa, PaymentVenmo, PaymentVisa, PaymentZelle } from '.nuxt/components';
 import { Tabs as VueTabs, Tab as VueTab } from 'vue3-tabs-component';
+import PagoMovil from './pago-movil.vue';
+import Paypal from './paypal.vue';
+import TransBofa from './trans-bofa.vue';
+import Venmo from './venmo.vue';
+import Visa from './visa.vue';
+import Zelle from './zelle.vue';
 
 const tabs = [
   {
     name: 'Square Up',
-    component: PaymentVisa,
+    component: Visa,
   },
   {
     name: 'Paypal',
-    component: PaymentPaypal,
+    component: Paypal,
   },
   {
     name: 'Pago movil',
-    component: PaymentPagoMovil,
+    component: PagoMovil,
   },
   {
     name: 'Trans BoFa',
-    component: PaymentTransBofa,
+    component: TransBofa,
   },
   {
     name: 'Venmo',
-    component: PaymentVenmo,
+    component: Venmo,
   },
   {
     name: 'Zelle',
-    component: PaymentZelle
+    component: Zelle
   }
 ]
 </script>
