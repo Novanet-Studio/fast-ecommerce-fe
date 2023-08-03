@@ -59,7 +59,7 @@ const { isSending, hasError, submit } = usePaymentForm({
         <a href="#" class="text-color-2">nuestros términos y condiciones</a>.
       </p>
       <div class="form__btn-group mt-4">
-        <app-button type="submit" @click="submit" :disabled="hasError">
+        <app-button type="submit" @click="submit" :loading="isSending" :disabled="hasError">
           Enviar
         </app-button>
       </div>

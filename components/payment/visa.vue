@@ -200,8 +200,8 @@ onMounted(async () => {
           By making this purchase you agree to
           <a href="#" class="visa__link">our terms and conditions</a>.
         </p>
-        <app-button :disabled="state.cardButtonDisabled" ref="btnRef">
-          {{ state.isLoading ? '...' : 'Pagar' }}
+        <app-button :loading="state.isLoading" :disabled="state.cardButtonDisabled" ref="btnRef">
+          Pagar
         </app-button>
       </div>
     </form>

@@ -124,10 +124,8 @@ const submit = handleSubmit(async (data, { resetForm }) => {
         icon-left="fa fa-lock" />
       <app-checkbox label="Show passwords" v-model="showPasswords" />
       <div class="auth-form__footer">
-        <!-- TODO: Simplify loader -->
-        <app-button @click="submit">
-          <app-loader v-if="state.isLoading" />
-          <template v-else>Registrar cuenta</template>
+        <app-button @click="submit" :loading="state.isLoading">
+          Registrar cuenta
         </app-button>
       </div>
     </div>
