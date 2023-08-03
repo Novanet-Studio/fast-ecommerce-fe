@@ -2059,6 +2059,15 @@
     unplugin "^1.4.0"
     webpack-sources "^3.2.3"
 
+"@vee-validate/valibot@^4.11.1":
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/@vee-validate/valibot/-/valibot-4.11.1.tgz#3e824d27b5f8e943007eeef88b7bd9d3538d2552"
+  integrity sha512-PTvcXVrlT0t43AR5ivyoBWyg8cZzHQyQGWzYnElxEOSIsV6eeJEde8t8y+4ehoqR+M9rrUihem1IPICfdq5baA==
+  dependencies:
+    type-fest "^4.0.0"
+    valibot "^0.7.0"
+    vee-validate "^4.11.1"
+
 "@vercel/nft@^0.22.6":
   version "0.22.6"
   resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.22.6.tgz#edb30d300bb809c0945ea4c7b87e56f634885541"
@@ -6120,11 +6129,6 @@ prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-property-expr@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
-  integrity sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==
-
 protobufjs@^6.11.3:
   version "6.11.3"
   resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.11.3.tgz#637a527205a35caa4f3e2a9a4a13ddffe0e7af74"
@@ -6631,11 +6635,6 @@ slash@^4.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
   integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
 
-slimeform@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/slimeform/-/slimeform-0.9.1.tgz#da4e362deba86a1e926cb0015b7516f13c89ce2d"
-  integrity sha512-14P7vyo1UN70o5+TlSsteceQ3J4flIUMPm9QLFeR6dFhtu+RYAVXvTFQ2Si2xO3vzeVP14TicXsvX1Sl7MX9EQ==
-
 smart-buffer@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
@@ -6994,11 +6993,6 @@ through@^2.3.8:
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
 
-tiny-case@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/tiny-case/-/tiny-case-1.0.3.tgz#d980d66bc72b5d5a9ca86fb7c9ffdb9c898ddd03"
-  integrity sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==
-
 tiny-invariant@^1.1.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.3.1.tgz#8560808c916ef02ecfd55e66090df23a4b7aa642"
@@ -7035,11 +7029,6 @@ toidentifier@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.1.tgz#3be34321a88a820ed1bd80dfaa33e479fbb8dd35"
   integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
-
-toposort@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
-  integrity sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==
 
 totalist@^3.0.0:
   version "3.0.1"
@@ -7093,10 +7082,15 @@ type-fest@^0.8.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
-type-fest@^2.11.2, type-fest@^2.13.0, type-fest@^2.19.0:
+type-fest@^2.11.2, type-fest@^2.13.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
+
+type-fest@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.1.0.tgz#7e214aa81b843478396f832164ae8f058be95f9e"
+  integrity sha512-VJGJVepayd8OWavP+rgXt4i3bfLk+tSomTV7r4mca2XD/oTCWnkJlNkpXavkxdmtU2aKdAmFGeHvoQutOVHCZg==
 
 ufo@^1.1.1, ufo@^1.1.2, ufo@^1.2.0:
   version "1.2.0"
@@ -7326,6 +7320,16 @@ utrie@^1.0.2:
   dependencies:
     base64-arraybuffer "^1.0.2"
 
+valibot@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/valibot/-/valibot-0.7.0.tgz#73f418d7a140f4469794686b09ee752879a4613e"
+  integrity sha512-QNxqDtYuVUILZtWnLsfCEg4IXrhnIuwGIJlF7tmI8+gWgkB0ujzrXrl607rGmjwbxAhBevQ2RpNxmCO+isNYJg==
+
+valibot@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/valibot/-/valibot-0.8.0.tgz#927a065ee1d01513e52f0bce9a8b6a62df018219"
+  integrity sha512-wQHXVkVFj6Z0R3297icGCp3UX8S66onuIg03ihJ8aVgMn8pMJvYSfmrKb+aIg7w/Aw08togrklaMSqDP2vKtIA==
+
 validate-npm-package-license@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/validate-npm-package-license/-/validate-npm-package-license-3.0.4.tgz#fc91f6b9c7ba15c857f4cb2c5defeec39d4f410a"
@@ -7340,6 +7344,14 @@ validate-npm-package-name@^5.0.0:
   integrity sha512-YuKoXDAhBYxY7SfOKxHBDoSyENFeW5VvIIQp2TGQuit8gpK6MnWaQelBKxso72DoxTZfZdcP3W90LqpSkgPzLQ==
   dependencies:
     builtins "^5.0.0"
+
+vee-validate@^4.11.1:
+  version "4.11.1"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.11.1.tgz#82fb210fb23660eaa3710b594e3de0b5017e997d"
+  integrity sha512-NGL2qrhoXAng+pZvu9dgQRhCuNBKeXcusdUloN3jnXUxbmLUCJV2kgleS5Jr7yF2iTWvDlDQd5m+Qp6cP1wSgw==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    type-fest "^4.0.0"
 
 vite-node@^0.33.0:
   version "0.33.0"
@@ -7718,16 +7730,6 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
-
-yup@^1.0.2:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/yup/-/yup-1.2.0.tgz#9e51af0c63bdfc9be0fdc6c10aa0710899d8aff6"
-  integrity sha512-PPqYKSAXjpRCgLgLKVGPA33v5c/WgEx3wi6NFjIiegz90zSwyMpvTFp/uGcVnnbx6to28pgnzp/q8ih3QRjLMQ==
-  dependencies:
-    property-expr "^2.0.5"
-    tiny-case "^1.0.3"
-    toposort "^2.0.2"
-    type-fest "^2.19.0"
 
 zhead@^2.0.10:
   version "2.0.10"

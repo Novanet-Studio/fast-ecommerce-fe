@@ -17,6 +17,7 @@ interface UserExtra {
 }
 
 type User = import('@nuxtjs/strapi/dist/runtime/types').StrapiUser & UserExtra;
+type PaymentMethod = 'pago_movil' | 'trans_bofa' | 'zelle' | 'venmo';
 
 enum AddressType {
   Billing = 'billing',

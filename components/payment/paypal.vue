@@ -1,7 +1,3 @@
-<template>
-  <div ref="paypalRef" id="paypal-container"></div>
-</template>
-
 <script lang="ts" setup>
 import { loadScript, type PayPalNamespace } from '@paypal/paypal-js';
 
@@ -115,3 +111,7 @@ onMounted(async () => {
   await loadPaypal();
 });
 </script>
+
+<template>
+  <div ref="paypalRef" id="paypal-container"></div>
+</template>

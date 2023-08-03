@@ -1,24 +1,3 @@
-<template>
-  <div>
-    <form id="payment-form">
-      <div class="animate-pulse my-8" v-if="isLoadingCard">
-        <div class="w-full h-12 bg-gray-200 rounded-md"></div>
-      </div>
-      <div id="card-container"></div>
-      <div class="visa__terms-wrapper">
-        <p class="visa__text">
-          By making this purchase you agree to
-          <a href="#" class="visa__link">our terms and conditions</a>.
-        </p>
-        <app-button :disabled="state.cardButtonDisabled" ref="btnRef">
-          {{ state.isLoading ? '...' : 'Pagar' }}
-        </app-button>
-      </div>
-    </form>
-    <div id="payment-status-container"></div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { GetAddressByIdAndType } from '~/graphql/queries';
 import type { Payment } from 'square';
@@ -208,6 +187,27 @@ onMounted(async () => {
   await loadSquareCard();
 });
 </script>
+
+<template>
+  <div>
+    <form id="payment-form">
+      <div class="animate-pulse my-8" v-if="isLoadingCard">
+        <div class="w-full h-12 bg-gray-200 rounded-md"></div>
+      </div>
+      <div id="card-container"></div>
+      <div class="visa__terms-wrapper">
+        <p class="visa__text">
+          By making this purchase you agree to
+          <a href="#" class="visa__link">our terms and conditions</a>.
+        </p>
+        <app-button :disabled="state.cardButtonDisabled" ref="btnRef">
+          {{ state.isLoading ? '...' : 'Pagar' }}
+        </app-button>
+      </div>
+    </form>
+    <div id="payment-status-container"></div>
+  </div>
+</template>
 
 <style scoped>
 .visa__terms-wrapper {

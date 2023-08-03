@@ -1,73 +1,17 @@
-<template>
-  <form class="address-form">
-    <header class="address-form__header">
-      <h3 class="address-form__title">
-        {{ title }}
-      </h3>
-    </header>
-    <div>
-      <div class="address-form__group">
-        <label class="address-form__label"
-          >País<sup class="address-form__required">*</sup></label
-        >
-        <app-select
-          v-model="form.country"
-          label="name"
-          value-key="code"
-          :options="countries"
-          placeholder="Selecciona una opcion"
-          :error="status.country.isError"
-          :error-message="status.country.message"
-        />
-      </div>
-      <div class="address-form__group">
-        <label class="address-form__label" for="streetAddress"
-          >Dirección<sup class="address-form__required">*</sup>
-        </label>
-        <app-input
-          v-model="form.streetAddress"
-          placeholder="Av Fco Miranda, calle solar"
-          :is-error="status.streetAddress.isError"
-          :error-message="status.streetAddress.message"
-        />
-      </div>
-      <div class="address-form__group">
-        <label class="address-form__label" for="state"
-          >Estado<sup class="address-form__required">*</sup>
-        </label>
-        <app-input
-          v-model="form.state"
-          placeholder="Miranda"
-          :is-error="status.state.isError"
-          :error-message="status.state.message"
-        />
-      </div>
-      <div class="address-form__group">
-        <label class="address-form__label"
-          >Código postal<sup class="address-form__required">*</sup>
-        </label>
-        <app-input
-          v-model="form.postcode"
-          placeholder="1073"
-          :is-error="status.postcode.isError"
-          :error-message="status.postcode.message"
-        />
-      </div>
-      <div class="address-form__group-btn">
-        <app-button type="submit" @click="submit">Guardar</app-button>
-      </div>
-    </div>
-  </form>
-</template>
-
 <script lang="ts" setup>
-import { useForm } from 'slimeform';
-import * as yup from 'yup';
-import { yupFieldRule } from 'slimeform/resolvers';
+import { useForm } from 'vee-validate';
+import { object, string, minLength, nonNullable, any } from 'valibot';
+import { toTypedSchema } from '@vee-validate/valibot';
 import countries from '~/data/countries.json';
 
-const props = defineProps<{ type: AddressType }>();
+type Form = {
+  country: string;
+  streetAddress: string;
+  state: string;
+  postcode: string;
+}
 
+const props = defineProps<{ type: AddressType }>();
 const auth = useAuthStore();
 const checkout = useCheckoutStore();
 
@@ -86,22 +30,20 @@ const title = computed(() =>
     : 'Dirección de envío'
 );
 
-const { form, status, submitter, verify } = useForm({
-  form: () => ({
-    country: '',
-    streetAddress: '',
-    state: '',
-    postcode: '',
-  }),
-  rule: {
-    country: yupFieldRule(yup.string().required('El campo es obligatorio')),
-    streetAddress: yupFieldRule(
-      yup.string().required('El campo es obligatorio')
-    ),
-    state: yupFieldRule(yup.string().required('El campo es obligatorio')),
-    postcode: yupFieldRule(yup.string().required('El campo es obligatorio')),
-  },
+const schema = toTypedSchema(
+  object({
+    country: nonNullable(any()),
+    streetAddress: string([minLength(1, 'Este campo es requerido')]),
+    state: string([minLength(1, 'Este campo es requerido')]),
+    postcode: string([minLength(1, 'Este campo es requerido')]),
+  })
+)
+
+const { handleSubmit, defineComponentBinds, setValues, errors } = useForm<Form>({
+  validationSchema: schema,
 });
+
+const country = defineComponentBinds('country');
 
 const sendAddress = async (data: Record<string, string>) => {
   if (haveLastAddress.value) {
@@ -112,14 +54,14 @@ const sendAddress = async (data: Record<string, string>) => {
   checkout.createAddress(data);
 };
 
-const { submit } = submitter(() => {
-  if (!verify() || type.value === AddressType.None) return;
+const submit = handleSubmit((data) => {
+  if (type.value === AddressType.None) return;
 
   const info = {
-    address: form.streetAddress,
-    country: form.country,
-    city: form.state,
-    zipCode: form.postcode,
+    address: data.streetAddress,
+    country: data.country,
+    city: data.state,
+    zipCode: data.postcode,
   };
 
   const body = {
@@ -132,23 +74,61 @@ const { submit } = submitter(() => {
 });
 
 const getLastAddress = async () => {
-  const id = +auth.user.id;
+  const id = Number(auth.user.id);
   const address = await checkout.getAddress({ userId: id, type: type.value });
 
   if (!address) return;
 
   haveLastAddress.value = true;
   existentId.value = address.id;
-  form.country = address.attributes.address.country;
-  form.state = address.attributes.address.city;
-  form.streetAddress = address.attributes.address.address;
-  form.postcode = address.attributes.address.zipCode;
+
+  setValues({
+    country: address.attributes.address.country,
+    state: address.attributes.address.city,
+    streetAddress: address.attributes.address.address,
+    postcode: address.attributes.address.zipCode,
+  });
 };
 
 onMounted(() => {
   getLastAddress();
 });
 </script>
+
+<template>
+  <form class="address-form">
+    <header class="address-form__header">
+      <h3 class="address-form__title">
+        {{ title }}
+      </h3>
+    </header>
+    <div>
+      <div class="address-form__group">
+        <label class="address-form__label">País<sup class="address-form__required">*</sup></label>
+        <app-select v-bind="country" label="name" value-key="code" :options="countries"
+          placeholder="Selecciona una opcion" :error="!!errors.country" :error-message="errors.country" />
+      </div>
+      <div class="address-form__group">
+        <label class="address-form__label" for="streetAddress">Dirección<sup class="address-form__required">*</sup>
+        </label>
+        <app-input name="streetAddress" placeholder="Av Fco Miranda, calle solar" />
+      </div>
+      <div class="address-form__group">
+        <label class="address-form__label" for="state">Estado<sup class="address-form__required">*</sup>
+        </label>
+        <app-input name="state" placeholder="Miranda" />
+      </div>
+      <div class="address-form__group">
+        <label class="address-form__label">Código postal<sup class="address-form__required">*</sup>
+        </label>
+        <app-input name="postcode" placeholder="1073" />
+      </div>
+      <div class="address-form__group-btn">
+        <app-button type="submit" @click="submit">Guardar</app-button>
+      </div>
+    </div>
+  </form>
+</template>
 
 <style scoped>
 .address-form {
@@ -176,6 +156,6 @@ onMounted(() => {
 }
 
 .address-form__group-btn {
-  @apply mb-10 md:w-[25%];
+  @apply mb-10 md: w-[25%];
 }
 </style>

@@ -17,7 +17,6 @@ interface Options {
   pageSize: number;
 }
 
-type PaymentMethod = 'pago_movil' | 'trans_bofa' | 'zelle' | 'venmo';
 type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
 
 const DELAY_REDIRECT = 500;
