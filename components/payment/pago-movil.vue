@@ -17,86 +17,46 @@
         </figure>
       </div>
       <div>
-        <strong
-          >No disponemos de este metodo actualmente, por favor, seleccione
-          otro.</strong
-        >
+        <strong>No disponemos de este metodo actualmente, por favor, seleccione
+          otro.</strong>
       </div>
     </template>
     <form @submit.prevent="submit">
       <div class="form__group">
-        <label class="form__label"
-          >Nombre del titular de cuenta<sup class="form__required"
-            >*</sup
-          ></label
-        >
-        <app-input
-          v-model="formData.name"
-          placeholder="john"
-          :error="status.name.isError"
-          :error-message="status.name.message"
-        />
+        <label class="form__label">Nombre del titular de cuenta<sup class="form__required">*</sup></label>
+        <app-input v-model="formData.name" placeholder="john" :error="status.name.isError"
+          :error-message="status.name.message" />
       </div>
       <div class="form__group">
-        <label class="form__label"
-          >Apellido del titular de cuenta<sup class="form__required"
-            >*</sup
-          ></label
-        >
-        <app-input
-          v-model="formData.lastName"
-          placeholder="doe"
-          :error="status.lastName.isError"
-          :error-message="status.lastName.message"
-        />
+        <label class="form__label">Apellido del titular de cuenta<sup class="form__required">*</sup></label>
+        <app-input v-model="formData.lastName" placeholder="doe" :error="status.lastName.isError"
+          :error-message="status.lastName.message" />
       </div>
       <div class="form__group">
-        <label class="form__label"
-          >Fecha<sup class="form__required">*</sup></label
-        >
-        <app-input
-          v-model="formData.date"
-          type="date"
-          :error="status.date.isError"
-          :error-message="status.date.message"
-        />
+        <label class="form__label">Fecha<sup class="form__required">*</sup></label>
+        <app-input v-model="formData.date" type="date" :error="status.date.isError"
+          :error-message="status.date.message" />
       </div>
       <div class="form__group">
-        <label class="form__label"
-          >Monto en Bs<sup class="form__required">*</sup></label
-        >
+        <label class="form__label">Monto en Bs<sup class="form__required">*</sup></label>
         <p>
-          <b
-            >La tasa del día BCV es de {{ bcvUsd }} BsD. El monto del pago debe
-            ser de {{ amountRate }}</b
-          >
+          <b>La tasa del día BCV es de {{ bcvUsd }} BsD. El monto del pago debe
+            ser de {{ amountRate }}</b>
         </p>
-        <app-input
-          v-model="formData.amountPayed"
-          :error="status.amountPayed.isError"
-          :error-message="status.amountPayed.message"
-        />
+        <app-input v-model="formData.amountPayed" :error="status.amountPayed.isError"
+          :error-message="status.amountPayed.message" />
       </div>
       <div class="form__group">
-        <label class="form__label"
-          >Numero de confirmacion<sup class="form__required">*</sup></label
-        >
-        <app-input
-          v-model="formData.confirmation"
-          :error="status.confirmation.isError"
-          :error-message="status.confirmation.message"
-        />
+        <label class="form__label">Numero de confirmacion<sup class="form__required">*</sup></label>
+        <app-input v-model="formData.confirmation" :error="status.confirmation.isError"
+          :error-message="status.confirmation.message" />
       </div>
       <p>
         Al realizar esta compra usted acepta
         <a href="#" class="text-color-2">nuestros términos y condiciones</a>.
       </p>
       <div class="form__btn-group mt-4">
-        <app-button
-          type="submit"
-          @click="submit"
-          :disabled="isError || !verify()"
-        >
+        <app-button type="submit" @click="submit" :disabled="isError || !verify()">
           Enviar
         </app-button>
       </div>
@@ -113,12 +73,9 @@ const { $notify } = useNuxtApp();
 const { amountRate, bcvUsd } = await useGetBcvUsd();
 
 const cart = useCartStore();
-const product = useProductStore();
 const invoice = useInvoiceStore();
 
 const sending = ref<boolean>(false);
-const productsCart = ref<Product[]>([]);
-const productsMail = ref<Product[]>([]);
 
 const {
   form: formData,
@@ -197,23 +154,5 @@ const { submit } = submitter(async () => {
   } finally {
     sending.value = false;
   }
-});
-
-const getProducts = async () => {
-  const itemsId = cart.cartItems.map((item) => item.id);
-  const hasCartProducts = product.cartProducts?.length;
-
-  if (!itemsId.length || !cart.cartItems.length) return;
-
-  if (!hasCartProducts) {
-    // fill from server
-  }
-
-  productsMail.value = product.cartProducts as Product[];
-  productsCart.value = product.cartProducts as Product[];
-};
-
-onMounted(() => {
-  getProducts();
 });
 </script>

@@ -25,8 +25,6 @@ import type { Payment } from 'square';
 
 interface State {
   card: Square.Card | null;
-  productMail: Product[];
-  productsCart: Product[];
 }
 
 interface CheckBillingResponse {
@@ -44,7 +42,6 @@ const { SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID } = useRuntimeConfig().public;
 const graphql = useStrapiGraphQL();
 const auth = useAuthStore();
 const cart = useCartStore();
-const product = useProductStore();
 const checkout = useCheckoutStore();
 const invoice = useInvoiceStore();
 
@@ -53,10 +50,6 @@ const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 const state = reactive<State & Record<any, any>>({
   card: null,
   isLoading: false,
-  summary: '',
-  productMail: [],
-  productHtml: null,
-  productsCart: [],
   cardButtonDisabled: false,
 });
 
@@ -191,20 +184,6 @@ const makePayment = async (tokenResult: Square.TokenResult) => {
   }
 };
 
-const getProducts = async () => {
-  const itemsId = cart.cartItems.map((item: any) => item.id);
-  const hasCartProducts = product.cartProducts?.length;
-
-  if (!itemsId.length || !cart.cartItems.length) return;
-
-  if (!hasCartProducts) {
-    // TODO!: fill from server
-  }
-
-  state.productMail = product.cartProducts as Product[];
-  state.productsCart = product.cartProducts as Product[];
-};
-
 const loadSquareCard = async () => {
   try {
     isLoadingCard.value = true;
@@ -226,7 +205,6 @@ const loadSquareCard = async () => {
 };
 
 onMounted(async () => {
-  await getProducts();
   await loadSquareCard();
 });
 </script>

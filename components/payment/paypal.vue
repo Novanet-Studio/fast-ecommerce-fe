@@ -9,45 +9,24 @@ const { $notify } = useNuxtApp();
 const { PAYPAL_CLIENT_ID } = useRuntimeConfig().public;
 
 const cart = useCartStore();
-const product = useProductStore();
 const checkout = useCheckoutStore();
 const invoice = useInvoiceStore();
 const paypalRef = ref();
-const productsMail = ref<Product[]>();
-
-const getProducts = async () => {
-  const itemsId = cart.cartItems.map((item) => item.id);
-  const hasCartProducts = product.cartProducts?.length;
-
-  if (!itemsId.length || !cart.cartItems.length) return;
-
-  if (hasCartProducts) {
-    // TODO! fetch products from server
-    // const productPromises = itemsId.map((id: string) =>
-    //   graphql<ProductsResponse>(GetProductById, { id })
-    // );
-    // const response = await Promise.all(productPromises);
-    // let products: Product[] = [];
-    // response.forEach((res) => {
-    //   products = res.data.products.data;
-    // });
-    // productsMail.value = products;
-  }
-
-  productsMail.value = product.cartProducts as Product[];
-};
 
 const loadPaypal = async () => {
   try {
     const $paypal = (await loadScript({
-      'client-id': PAYPAL_CLIENT_ID,
+      // 'client-id': PAYPAL_CLIENT_ID,
+      // 'data-namespace': '$paypal',
+      // 'disable-funding': 'credit,card',
+      clientId: PAYPAL_CLIENT_ID,
       currency: 'USD',
-      'data-namespace': '$paypal',
-      'disable-funding': 'credit,card',
+      dataNamespace: '$paypal',
+      disableFunding: 'credit,card',
     })) as PayPalNamespace;
 
-    await $paypal
-      .Buttons({
+    if ($paypal.Buttons) {
+      await $paypal.Buttons({
         createOrder: (_, actions) =>
           actions.order.create({
             purchase_units: [
@@ -124,7 +103,9 @@ const loadPaypal = async () => {
             text: `Hubo un error, no se puede procesar el pago en estos momentos!`,
           }),
       })
-      .render(paypalRef.value);
+        .render(paypalRef.value);
+    }
+
   } catch (error) {
     console.log('An error occurred when trying render button: ', error);
   }
@@ -132,6 +113,5 @@ const loadPaypal = async () => {
 
 onMounted(async () => {
   await loadPaypal();
-  await getProducts();
 });
 </script>
