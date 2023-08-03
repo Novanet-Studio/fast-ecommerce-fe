@@ -1,12 +1,7 @@
 <template>
-  <button
-    :type="type"
-    :class="classes"
-    @click.prevent="$emit('click')"
-    :disabled="disabled"
-    ref="$ref"
-  >
-    <slot />
+  <button :type="type" :class="classes" @click.prevent="$emit('click')" :disabled="disabled" ref="$ref">
+    <app-loader v-if="loading" />
+    <slot v-else />
   </button>
 </template>
 
@@ -16,6 +11,7 @@ type Props = {
   class?: string;
   disabled?: boolean;
   outline?: boolean;
+  loading?: boolean;
 };
 
 type Emits = {
@@ -45,10 +41,10 @@ defineExpose({
 
 <style>
 .btn {
-  @apply w-full text-center text-color-2 font-bold py-4 inline-block text-sm border-transparent rounded-md bg-color-1 transition ease cursor-pointer hover:(bg-opacity-80) active:( bg-opacity-80) disabled:(opacity-70 text-gray cursor-not-allowed);
+  @apply w-full text-center text-color-2 font-bold py-4 inline-block text-sm border-transparent rounded-md bg-color-1 transition ease cursor-pointer hover: (bg-opacity-80) active:(bg-opacity-80) disabled:(opacity-70 text-gray cursor-not-allowed);
 }
 
 .btn--outline {
-  @apply flex justify-center border !bg-transparent rounded-md border-color-2 text-color-2 hover:(!bg-color-2 !border-transparent !text-white);
+  @apply flex justify-center border !bg-transparent rounded-md border-color-2 text-color-2 hover: ( !bg-color-2 !border-transparent !text-white);
 }
 </style>

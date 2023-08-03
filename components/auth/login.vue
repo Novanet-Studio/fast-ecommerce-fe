@@ -93,9 +93,8 @@ const submit = handleSubmit(async (data, { resetForm }) => {
         </template>
       </app-input>
       <div class="auth-form__footer">
-        <app-button @click="submit" :disabled="state.isDisabled">
-          <app-loader v-if="state.isLoading" />
-          <template v-else>Entrar</template>
+        <app-button @click="submit" :loading="state.isLoading" :disabled="state.isDisabled">
+          Entrar
         </app-button>
       </div>
     </div>
