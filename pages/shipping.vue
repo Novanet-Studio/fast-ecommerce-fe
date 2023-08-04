@@ -1,3 +1,9 @@
+<script setup>
+definePageMeta({
+  middleware: 'authentication',
+});
+</script>
+
 <template>
   <section class="block mt-32">
     <header class="b-header">
@@ -24,9 +30,3 @@
     </div>
   </section>
 </template>
-
-<script lang="ts" setup>
-definePageMeta({
-  middleware: 'authentication',
-});
-</script>

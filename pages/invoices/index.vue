@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+definePageMeta({
+  layout: 'account',
+  middleware: 'authentication',
+});
+</script>
+
 <template>
   <section class="invoices">
     <header class="invoices__header">
@@ -9,16 +16,9 @@
   </section>
 </template>
 
-<script lang="ts" setup>
-definePageMeta({
-  layout: 'account',
-  middleware: 'authentication',
-});
-</script>
-
 <style scoped>
 .invoices {
-  @apply lg:ml-8 lg:w-full;
+  @apply lg: ml-8 lg:w-full;
 }
 
 .invoices__header {

@@ -1,19 +1,3 @@
-<template>
-  <section>
-    <ul class="auth__links">
-      <li class="auth__link" :class="[isLogin && 'auth__link--active']">
-        <nuxt-link to="/auth/login">Iniciar Sesión</nuxt-link>
-      </li>
-      <li class="auth__link" :class="[!isLogin && 'auth__link--active']">
-        <nuxt-link to="/auth/register">Registrarse</nuxt-link>
-      </li>
-    </ul>
-    <div class="auth__content">
-      <component :is="isLogin ? LoginContent : RegisterContent" />
-    </div>
-  </section>
-</template>
-
 <script lang="ts" setup>
 import LoginContent from '~/components/auth/login.vue';
 import RegisterContent from '~/components/auth/register.vue';
@@ -35,13 +19,30 @@ onMounted(() => {
 });
 </script>
 
+
+<template>
+  <section>
+    <ul class="auth__links">
+      <li class="auth__link" :class="[isLogin && 'auth__link--active']">
+        <nuxt-link to="/auth/login">Iniciar Sesión</nuxt-link>
+      </li>
+      <li class="auth__link" :class="[!isLogin && 'auth__link--active']">
+        <nuxt-link to="/auth/register">Registrarse</nuxt-link>
+      </li>
+    </ul>
+    <div class="auth__content">
+      <component :is="isLogin ? LoginContent : RegisterContent" />
+    </div>
+  </section>
+</template>
+
 <style scoped>
 .auth__links {
   @apply p-4 flex justify-center;
 }
 
 .auth__link {
-  @apply text-base font-bold text-dark-50 first:mr-8 md:text-2xl;
+  @apply text-base font-bold text-dark-50 first: mr-8 md:text-2xl;
 }
 
 .auth__link--active {

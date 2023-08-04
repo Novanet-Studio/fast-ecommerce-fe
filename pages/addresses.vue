@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+definePageMeta({
+  layout: 'account',
+  middleware: 'authentication',
+});
+
+const checkout = useCheckoutStore();
+const { hasBilling, hasShipping } = checkout.checkAddressType();
+</script>
+
 <template>
   <div class="wrapper">
     <div class="address">
@@ -59,36 +69,28 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-definePageMeta({
-  layout: 'account',
-  middleware: 'authentication',
-});
-
-const checkout = useCheckoutStore();
-const { hasBilling, hasShipping } = checkout.checkAddressType();
-</script>
-
 <style scoped>
 .wrapper {
-  @apply w-full lg:(ml-8);
+  @apply w-full lg: (ml-8);
 }
+
 .address {
-  @apply flex flex-col gap-10 p-5 bg-white lg:(flex-row gap-5);
+  @apply flex flex-col gap-10 p-5 bg-white lg: (flex-row gap-5);
 }
 
 .address__content {
-  @apply max-w-full flex-[0_0_100%] lg:(max-w-[50%] flex-[0_0_50%]);
+  @apply max-w-full flex-[0_0_100%] lg: (max-w-[50%] flex-[0_0_50%]);
 }
 
 .address__figcaption {
   @apply mb-8 pb-3 text-xl font-semibold text-color-2 border-b-[1px] border-b-primary-alt;
 }
+
 .address__text {
   @apply mb-4 text-color-2 text-sm;
 }
 
 .address__link {
-  @apply text-base text-color-6 transition ease hover:(text-opacity-70);
+  @apply text-base text-color-6 transition ease hover: (text-opacity-70);
 }
 </style>

@@ -1,3 +1,9 @@
+<script setup>
+definePageMeta({
+  layout: false,
+});
+</script>
+
 <template>
   <section class="section">
     <div class="wrapper">
@@ -12,12 +18,6 @@
     </div>
   </section>
 </template>
-
-<script setup>
-definePageMeta({
-  layout: false,
-});
-</script>
 
 <style scoped>
 .section {

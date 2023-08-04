@@ -1,11 +1,3 @@
-<template>
-  <div class="wrapper">
-    <transition name="page">
-      <product-detail v-if="product" />
-    </transition>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { injectKeys } from '~/config/constants';
 import { GetProductById } from '~/graphql/queries';
@@ -51,8 +43,16 @@ onMounted(() => {
 });
 </script>
 
+<template>
+  <div class="wrapper">
+    <transition name="page">
+      <product-detail v-if="product" />
+    </transition>
+  </div>
+</template>
+
 <style scoped>
 .wrapper {
-  @apply flex justify-center w-full min-h-full md:justify-start lg:(mt-12);
+  @apply flex justify-center w-full min-h-full md: justify-start lg:(mt-12);
 }
 </style>
