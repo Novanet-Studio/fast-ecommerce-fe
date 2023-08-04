@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@iconify-json/ph": "^1.1.5",
-    "@nuxt/devtools": "^0.7.2",
+    "@nuxt/devtools": "^0.7.4",
     "@nuxt/image-edge": "1.0.0-rc.1-28180077.d51e794",
     "@nuxtjs/strapi": "^1.9.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
@@ -36,7 +36,7 @@
     "gitart-vue-dialog": "^3.1.0",
     "nuxt-swiper": "^1.2.0",
     "square": "^29.0.0",
-    "valibot": "^0.8.0",
+    "valibot": "^0.9.0",
     "vee-validate": "^4.11.1",
     "vue3-tabs-component": "^1.3.4"
   }
