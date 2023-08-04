@@ -11,7 +11,13 @@ const appConfig = useAppConfig();
         </div>
       </div>
       <div class="banner__right">
-        <nuxt-img v-for="(image, index) in appConfig.home.promotions" :src="image" alt="" class="h-full" :key="index" />
+        <nuxt-img
+          v-for="(image, index) in appConfig.home.promotions"
+          :src="image"
+          alt=""
+          class="h-full"
+          :key="index"
+        />
       </div>
     </div>
   </div>
@@ -34,7 +40,7 @@ const appConfig = useAppConfig();
 :deep(.swiper-button-next),
 :deep(.swiper-button-prev) {
   --swiper-navigation-sides-offset: 0;
-  @apply p-8 transition hover: (bg-color-1);
+  @apply p-8 transition hover:(bg-color-1);
 }
 
 :deep(.swiper-button-next:hover),
@@ -47,7 +53,7 @@ const appConfig = useAppConfig();
 }
 
 .banner__wrapper {
-  @apply flex flex-col flex-nowrap lg: flex-row;
+  @apply flex flex-col flex-nowrap lg:flex-row;
 }
 
 .banner__left {

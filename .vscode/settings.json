@@ -12,8 +12,11 @@
   "css.lint.unknownAtRules": "ignore",
   "editor.quickSuggestions": {
     "strings": true
-  },
-  "[vue]": {
-    "editor.defaultFormatter": "Vue.volar"
   }
+  // "[vue]": {
+  //   "editor.defaultFormatter": "Vue.volar"
+  // },
+  // "files.associations": {
+  //   "*.css": "tailwindcss"
+  // }
 }
