@@ -1,36 +1,3 @@
-<template>
-  <ul class="product-actions">
-    <li class="product-actions__item">
-      <button
-        class="product-actions__link"
-        title="Add to cart"
-        @click.prevent="handleAddToCart"
-      >
-        <div class="i-ph-bag-light" />
-      </button>
-    </li>
-
-    <li class="product-actions__item">
-      <button
-        class="product-actions__link"
-        title="Quick View"
-        @click.prevent="$emit('quickView', true)"
-      >
-        <div class="i-ph-eye-light" />
-      </button>
-    </li>
-    <li class="product-actions__item">
-      <button
-        class="product-actions__link"
-        title="Add to wishlist"
-        @click.prevent="handleAddItemToWishlist"
-      >
-        <div class="i-ph-heart-light" />
-      </button>
-    </li>
-  </ul>
-</template>
-
 <script lang="ts" setup>
 import { injectKeys } from '~/config/constants';
 import { GetProductById } from '~/graphql/queries';
@@ -94,6 +61,27 @@ const handleAddItemToWishlist = () => {
 };
 </script>
 
+<template>
+  <ul class="product-actions">
+    <li class="product-actions__item">
+      <button class="product-actions__link" title="Add to cart" @click.prevent="handleAddToCart">
+        <div class="i-ph-bag-light" />
+      </button>
+    </li>
+
+    <li class="product-actions__item">
+      <button class="product-actions__link" title="Quick View" @click.prevent="$emit('quickView', true)">
+        <div class="i-ph-eye-light" />
+      </button>
+    </li>
+    <li class="product-actions__item">
+      <button class="product-actions__link" title="Add to wishlist" @click.prevent="handleAddItemToWishlist">
+        <div class="i-ph-heart-light" />
+      </button>
+    </li>
+  </ul>
+</template>
+
 <style scoped>
 .product-actions {
   @apply absolute bottom-0 left-2/4 flex flex-nowrap justify-center items-center w-full py-[10px] bg-white transition duration-500 ease-in-out transform -translate-x-2/4 translate-y-100;
@@ -104,6 +92,6 @@ const handleAddItemToWishlist = () => {
 }
 
 .product-actions__link {
-  @apply flex justify-center items-center w-9 h-9 rounded-full transition ease hover:(bg-color-1 text-white);
+  @apply flex justify-center items-center w-9 h-9 rounded-full transition ease hover: (bg-color-1 text-white);
 }
 </style>

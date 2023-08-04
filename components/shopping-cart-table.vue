@@ -1,3 +1,37 @@
+<script lang="ts" setup>
+import { GetProductById } from '~/graphql/queries';
+
+const graphql = useStrapiGraphQL();
+const cart = useCartStore();
+const productStore = useProductStore();
+const products = productStore.cartProducts;
+
+const loadCartProducts = async () => {
+  const itemsId = cart.cartItems.map((item) => item.id);
+
+  if (!cart.cartItems.length) {
+    productStore.cartProducts = null;
+    return;
+  }
+
+  const productPromises = itemsId.map((id: string) =>
+    graphql<ProductRequest>(GetProductById, { id })
+  );
+
+  const [response] = await Promise.all(productPromises);
+
+  productStore.cartProducts = mapperData(response.data.products.data);
+};
+
+const handleRemoveProductFromCart = (product?: Product) => {
+  const cartItem = cart.cartItems.find((item) => item.id === product!.id);
+
+  cart.removeProductFromCart(cartItem as any);
+  // loadCartProducts();
+};
+</script>
+
+
 <template>
   <table-wrapper>
     <table class="table">
@@ -33,39 +67,6 @@
     </table>
   </table-wrapper>
 </template>
-
-<script lang="ts" setup>
-import { GetProductById } from '~/graphql/queries';
-
-const graphql = useStrapiGraphQL();
-const cart = useCartStore();
-const productStore = useProductStore();
-const products = productStore.cartProducts;
-
-const loadCartProducts = async () => {
-  const itemsId = cart.cartItems.map((item) => item.id);
-
-  if (!cart.cartItems.length) {
-    productStore.cartProducts = null;
-    return;
-  }
-
-  const productPromises = itemsId.map((id: string) =>
-    graphql<ProductRequest>(GetProductById, { id })
-  );
-
-  const [response] = await Promise.all(productPromises);
-
-  productStore.cartProducts = mapperData(response.data.products.data);
-};
-
-const handleRemoveProductFromCart = (product?: Product) => {
-  const cartItem = cart.cartItems.find((item) => item.id === product!.id);
-
-  cart.removeProductFromCart(cartItem as any);
-  // loadCartProducts();
-};
-</script>
 
 <style scoped>
 .table {

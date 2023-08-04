@@ -1,27 +1,3 @@
-<template>
-  <div class="landing" v-if="products?.length">
-    <div class="landing__wrapper">
-      <div class="landing__header">
-        <h3 class="landing__title">
-          {{ category.name }}
-        </h3>
-      </div>
-      <div class="landing__content">
-        <app-slider
-          :items="products"
-          :slides-per-view="5"
-          :space-between="0"
-          v-if="products.length"
-        >
-          <template #default="{ product }">
-            <product-default :product="product" />
-          </template>
-        </app-slider>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 type Props = {
   category: Category;
@@ -37,6 +13,25 @@ onMounted(async () => {
   products.value = result;
 });
 </script>
+
+<template>
+  <div class="landing" v-if="products?.length">
+    <div class="landing__wrapper">
+      <div class="landing__header">
+        <h3 class="landing__title">
+          {{ category.name }}
+        </h3>
+      </div>
+      <div class="landing__content">
+        <app-slider :items="products" :slides-per-view="5" :space-between="0" v-if="products.length">
+          <template #default="{ product }">
+            <product-default :product="product" />
+          </template>
+        </app-slider>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .landing {
@@ -56,6 +51,6 @@ onMounted(async () => {
 }
 
 .landing__slide {
-  @apply !w-[167px] mr-2 md:(!w-180px mr-10px) lg:(!w-[260px] mr-0);
+  @apply !w-[167px] mr-2 md: ( !w-180px mr-10px) lg:( !w-[260px] mr-0);
 }
 </style>

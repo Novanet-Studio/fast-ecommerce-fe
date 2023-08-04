@@ -1,16 +1,3 @@
-<template>
-  <div class="input-group flex items-center gap-2 text-sm text-gray-500">
-    <input
-      id="check"
-      type="checkbox"
-      class="p-1"
-      v-model="value"
-      @change="onChange"
-    />
-    <label for="check">{{ label }}</label>
-  </div>
-</template>
-
 <script lang="ts" setup>
 type Props = {
   modelValue: boolean;
@@ -30,3 +17,11 @@ const value = computed({
   set: (val: boolean) => emits('update:modelValue', val),
 });
 </script>
+
+<template>
+  <div class="input-group flex items-center gap-2 text-sm text-gray-500">
+    <input id="check" type="checkbox" class="p-1" v-model="value" @change="onChange" />
+    <label for="check">{{ label }}</label>
+  </div>
+</template>
+

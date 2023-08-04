@@ -1,111 +1,3 @@
-<template>
-  <!-- component -->
-  <div
-    class="flex flex-col whitespace-nowrap w-22rem max-w-22rem md:(w-full max-w-full)"
-  >
-    <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
-      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="overflow-hidden relative">
-          <div
-            class="absolute flex w-full justify-center h-full items-center filter-drop-shadow z-10"
-            v-if="isLoading"
-          >
-            <loading class="!bg-color-2" />
-          </div>
-          <table
-            class="min-w-full border border-collapse"
-            :class="[isLoading && 'filter-blur-[1px]']"
-            v-if="hasInvoices && data?.length"
-          >
-            <thead class="border-b">
-              <tr>
-                <th
-                  scope="col"
-                  class="text-sm font-bold border-r text-gray-900 px-6 py-4 text-left"
-                >
-                  Nº
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-bold border-r text-gray-900 px-6 py-4 text-left"
-                >
-                  Factura
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-bold border-r text-gray-900 px-6 py-4 text-left"
-                >
-                  Fecha
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-bold border-r text-gray-900 px-6 py-4 text-left"
-                >
-                  Monto
-                </th>
-                <th
-                  scope="col"
-                  class="text-sm font-bold text-gray-900 px-6 py-4 text-left"
-                >
-                  Status
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                v-for="item in data"
-                :key="item.id"
-                @click="goToInvoice(item.id_invoice_user.toString(), item)"
-              >
-                <td
-                  class="px-6 py-4 border-r whitespace-nowrap text-sm font-bold text-gray-900"
-                >
-                  {{ item.id_invoice_user }}
-                </td>
-                <td
-                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r"
-                >
-                  {{ item.payment_id }}
-                </td>
-                <td
-                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r"
-                >
-                  {{ item.date }}
-                </td>
-                <td
-                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r"
-                >
-                  ${{ item.amount }}
-                </td>
-                <td
-                  class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r"
-                >
-                  <span
-                    class="p-2 rounded-md text-xs"
-                    :class="item.paid ? 'bg-green-300' : 'bg-orange-300'"
-                    >{{ item.status }}</span
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="flex w-full justify-center pt-12">
-    <app-pagination
-      :current-page="page"
-      :per-page="perPage"
-      :total="total"
-      @change="changePage"
-      :disabled="isLoading"
-      v-if="total"
-    />
-  </div>
-</template>
-
 <script lang="ts" setup>
 import type {
   CallbackParams,
@@ -168,6 +60,68 @@ async function pagination(
   }
 }
 </script>
+
+<template>
+  <!-- component -->
+  <div class="flex flex-col whitespace-nowrap w-22rem max-w-22rem md:(w-full max-w-full)">
+    <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden relative">
+          <div class="absolute flex w-full justify-center h-full items-center filter-drop-shadow z-10" v-if="isLoading">
+            <loading class="!bg-color-2" />
+          </div>
+          <table class="min-w-full border border-collapse" :class="[isLoading && 'filter-blur-[1px]']"
+            v-if="hasInvoices && data?.length">
+            <thead class="border-b">
+              <tr>
+                <th scope="col" class="text-sm font-bold border-r text-gray-900 px-6 py-4 text-left">
+                  Nº
+                </th>
+                <th scope="col" class="text-sm font-bold border-r text-gray-900 px-6 py-4 text-left">
+                  Factura
+                </th>
+                <th scope="col" class="text-sm font-bold border-r text-gray-900 px-6 py-4 text-left">
+                  Fecha
+                </th>
+                <th scope="col" class="text-sm font-bold border-r text-gray-900 px-6 py-4 text-left">
+                  Monto
+                </th>
+                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-4 text-left">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100" v-for="item in data"
+                :key="item.id" @click="goToInvoice(item.id_invoice_user.toString(), item)">
+                <td class="px-6 py-4 border-r whitespace-nowrap text-sm font-bold text-gray-900">
+                  {{ item.id_invoice_user }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
+                  {{ item.payment_id }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
+                  {{ item.date }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
+                  ${{ item.amount }}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border-r">
+                  <span class="p-2 rounded-md text-xs" :class="item.paid ? 'bg-green-300' : 'bg-orange-300'">{{
+                    item.status }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex w-full justify-center pt-12">
+    <app-pagination :current-page="page" :per-page="perPage" :total="total" @change="changePage" :disabled="isLoading"
+      v-if="total" />
+  </div>
+</template>
 
 <style scoped>
 .status-color {

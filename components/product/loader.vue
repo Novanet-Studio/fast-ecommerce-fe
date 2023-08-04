@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+withDefaults(defineProps<{ items?: number }>(), {
+  items: 2,
+});
+</script>
+
 <template>
   <div class="skeleton">
     <div class="skeleton__header"></div>
@@ -10,12 +16,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-withDefaults(defineProps<{ items?: number }>(), {
-  items: 2,
-});
-</script>
 
 <style scoped>
 .skeleton {

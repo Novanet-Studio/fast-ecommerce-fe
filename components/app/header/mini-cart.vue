@@ -1,11 +1,18 @@
+<script lang="ts" setup>
+const cartStore = useCartStore();
+const productStore = useProductStore();
+
+const isLoadingCart = ref(false);
+const total = computed(() => cartStore.total);
+const amount = computed(() => cartStore.amount);
+const cartProducts = computed(() => productStore.cartProducts);
+
+const isOpen = ref(false);
+</script>
+
 <template>
   <div class="relative">
-    <div
-      class="cursor-pointer"
-      @mouseover="isOpen = true"
-      @mouseleave="isOpen = false"
-      @click.prevent="isOpen = !isOpen"
-    >
+    <div class="cursor-pointer" @mouseover="isOpen = true" @mouseleave="isOpen = false" @click.prevent="isOpen = !isOpen">
       <div class="header-actions__link">
         <div class="i-ph-bag-light header-actions__icon"></div>
         <span class="header-actions__indicator-wrapper">
@@ -54,18 +61,6 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-const cartStore = useCartStore();
-const productStore = useProductStore();
-
-const isLoadingCart = ref(false);
-const total = computed(() => cartStore.total);
-const amount = computed(() => cartStore.amount);
-const cartProducts = computed(() => productStore.cartProducts);
-
-const isOpen = ref(false);
-</script>
-
 <style scoped>
 .mini-cart {
   @apply absolute min-w-[300px] right-0 -left-[178px] z-30 pt-[10px] transition ease;
@@ -78,6 +73,7 @@ const isOpen = ref(false);
 .mini-cart__footer {
   @apply p-[10px_20px_20px] border-t-0 bg-white;
 }
+
 .mini-cart__footer-title {
   @apply block mb-5 text-lg font-semibold flex justify-between;
 }

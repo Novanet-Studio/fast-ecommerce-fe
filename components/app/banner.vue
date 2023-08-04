@@ -1,3 +1,7 @@
+<script setup>
+const appConfig = useAppConfig();
+</script>
+
 <template>
   <div class="banner">
     <div class="banner__wrapper">
@@ -7,21 +11,11 @@
         </div>
       </div>
       <div class="banner__right">
-        <nuxt-img
-          v-for="(image, index) in appConfig.home.promotions"
-          :src="image"
-          alt=""
-          class="h-full"
-          :key="index"
-        />
+        <nuxt-img v-for="(image, index) in appConfig.home.promotions" :src="image" alt="" class="h-full" :key="index" />
       </div>
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-const appConfig = useAppConfig();
-</script>
 
 <style scoped>
 /* Set color for swiper arrows */
@@ -40,7 +34,7 @@ const appConfig = useAppConfig();
 :deep(.swiper-button-next),
 :deep(.swiper-button-prev) {
   --swiper-navigation-sides-offset: 0;
-  @apply p-8 transition hover:(bg-color-1);
+  @apply p-8 transition hover: (bg-color-1);
 }
 
 :deep(.swiper-button-next:hover),
@@ -53,11 +47,11 @@ const appConfig = useAppConfig();
 }
 
 .banner__wrapper {
-  @apply flex flex-col flex-nowrap lg:flex-row;
+  @apply flex flex-col flex-nowrap lg: flex-row;
 }
 
 .banner__left {
-  @apply w-[340px] min-h-[200px] h-full mb-4 md:w-full lg:(max-w-[calc(100%-390px)] w-full);
+  @apply w-[340px] min-h-[200px] h-full mb-4 md: w-full lg:(max-w-[calc(100%-390px)] w-full);
 }
 
 .banner__slider {
@@ -65,10 +59,10 @@ const appConfig = useAppConfig();
 }
 
 .banner__slider-image {
-  @apply block w-full h-full bg-center bg-cover md:h-xl lg:(w-full min-h-xl h-80);
+  @apply block w-full h-full bg-center bg-cover md: h-xl lg:(w-full min-h-xl h-80);
 }
 
 .banner__right {
-  @apply w-full flex justify-between gap-4 text-white lg:(max-w-[390px] ml-8 flex-col gap-8);
+  @apply w-full flex justify-between gap-4 text-white lg: (max-w-[390px] ml-8 flex-col gap-8);
 }
 </style>

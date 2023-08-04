@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+import { injectKeys } from '~/config/constants';
+const product = inject(injectKeys.productDetail) as Ref<Product>;
+</script>
+
+
 <template>
   <div class="w-full">
     <h1 class="text-3xl mb-2 border-b border-color-7 pb-4">
@@ -7,8 +13,3 @@
     <product-detail-description :description="product.description" />
   </div>
 </template>
-
-<script lang="ts" setup>
-import { injectKeys } from '~/config/constants';
-const product = inject(injectKeys.productDetail) as Ref<Product>;
-</script>

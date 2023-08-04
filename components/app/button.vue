@@ -1,10 +1,3 @@
-<template>
-  <button :type="type" :class="classes" @click.prevent="$emit('click')" :disabled="disabled" ref="$ref">
-    <app-loader v-if="loading" />
-    <slot v-else />
-  </button>
-</template>
-
 <script lang="ts" setup>
 type Props = {
   type?: 'submit' | 'button';
@@ -38,6 +31,14 @@ defineExpose({
   $ref,
 });
 </script>
+
+
+<template>
+  <button :type="type" :class="classes" @click.prevent="$emit('click')" :disabled="disabled" ref="$ref">
+    <app-loader v-if="loading" />
+    <slot v-else />
+  </button>
+</template>
 
 <style>
 .btn {

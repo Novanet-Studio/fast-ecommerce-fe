@@ -1,16 +1,3 @@
-<template>
-  <div class="shopping-cart-table">
-    <div class="shopping-cart-table__thumbnail">
-      <product-thumbnail-image :class="imageClass" />
-    </div>
-    <div class="shopping-cart-table__title">
-      <product-title :id="id">
-        {{ title }}
-      </product-title>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { injectKeys } from '~/config/constants';
 
@@ -23,6 +10,19 @@ const props = defineProps<{
 
 provide(injectKeys.product, props.product);
 </script>
+
+<template>
+  <div class="shopping-cart-table">
+    <div class="shopping-cart-table__thumbnail">
+      <product-thumbnail-image :class="imageClass" />
+    </div>
+    <div class="shopping-cart-table__title">
+      <product-title :id="id">
+        {{ title }}
+      </product-title>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .shopping-cart-table {

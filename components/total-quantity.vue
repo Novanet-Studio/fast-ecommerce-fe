@@ -1,7 +1,3 @@
-<template>
-  <td class="total-quantity">${{ totalQuantity }}</td>
-</template>
-
 <script lang="ts" setup>
 type Props = {
   id: string;
@@ -25,3 +21,7 @@ const totalQuantity = computed(() =>
   ((quantity.value as number) * props.price).toFixed(2)
 );
 </script>
+
+<template>
+  <td class="total-quantity">${{ totalQuantity }}</td>
+</template>

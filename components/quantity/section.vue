@@ -1,7 +1,3 @@
-<template>
-  <div>{{ quantity }} x ${{ price }}</div>
-</template>
-
 <script lang="ts" setup>
 type Props = {
   id: string;
@@ -21,3 +17,8 @@ const quantity = computed(() => {
   return cartItem.quantity;
 });
 </script>
+
+
+<template>
+  <div>{{ quantity }} x ${{ price }}</div>
+</template>

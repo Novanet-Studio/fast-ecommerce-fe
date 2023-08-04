@@ -1,3 +1,24 @@
+<script setup>
+const auth = useAuthStore();
+const global = useGlobalStore();
+const cart = useCartStore();
+const product = useProductStore();
+const router = useRouter();
+
+const isOpen = ref(false);
+
+// FIXME!: Logout no works
+const handleLogout = () => {
+  auth.$reset();
+  cart.$reset();
+  product.$reset();
+  router.push({
+    path: '/',
+    force: true,
+  });
+};
+</script>
+
 <template>
   <div v-if="!auth.authenticated" class="user-area">
     <div class="user-area__icon-wrapper">
@@ -31,26 +52,6 @@
     </transition>
   </div>
 </template>
-
-<script lang="ts" setup>
-const auth = useAuthStore();
-const global = useGlobalStore();
-const cart = useCartStore();
-const product = useProductStore();
-const router = useRouter();
-
-const isOpen = ref(false);
-
-const handleLogout = () => {
-  auth.$reset();
-  cart.$reset();
-  product.$reset();
-  router.push({
-    path: '/',
-    force: true,
-  });
-};
-</script>
 
 <style scoped>
 .user-area {

@@ -1,26 +1,3 @@
-<template>
-  <div class="product-mini-cart">
-    <div class="product-mini-cart__image-wrapper">
-      <product-thumbnail-image />
-    </div>
-    <div class="product-mini-cart__body">
-      <a
-        class="product-mini-cart__icon-wrapper"
-        href="#"
-        @click.prevent="handleRemoveProductFromCart(product)"
-      >
-        <div class="i-ph-x-light text-color-4" />
-      </a>
-      <product-title :id="product.id">
-        {{ product.name }}
-      </product-title>
-      <small v-if="quantity !== null">
-        {{ quantity }} x {{ currency }} {{ product.price }}
-      </small>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { injectKeys } from '~/config/constants';
 
@@ -48,6 +25,25 @@ const handleRemoveProductFromCart = (product: any) => {
   cartStore.removeProductFromCart(cartItem as CartItem);
 };
 </script>
+
+<template>
+  <div class="product-mini-cart">
+    <div class="product-mini-cart__image-wrapper">
+      <product-thumbnail-image />
+    </div>
+    <div class="product-mini-cart__body">
+      <a class="product-mini-cart__icon-wrapper" href="#" @click.prevent="handleRemoveProductFromCart(product)">
+        <div class="i-ph-x-light text-color-4" />
+      </a>
+      <product-title :id="product.id">
+        {{ product.name }}
+      </product-title>
+      <small v-if="quantity !== null">
+        {{ quantity }} x {{ currency }} {{ product.price }}
+      </small>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .product-mini-cart {

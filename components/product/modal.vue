@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+const emit = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>();
+const props = defineProps<{ modelValue: boolean }>();
+
+const active = computed({
+  get: () => props.modelValue,
+  set: (val) => emit('update:modelValue', val),
+});
+</script>
+
 <template>
   <app-modal v-model="active">
     <div class="product-modal">
@@ -9,19 +19,9 @@
   </app-modal>
 </template>
 
-<script lang="ts" setup>
-const emit = defineEmits<{ (e: 'update:modelValue', value: boolean): void }>();
-const props = defineProps<{ modelValue: boolean }>();
-
-const active = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val),
-});
-</script>
-
 <style scoped>
 .product-modal {
-  @apply p-4 relative lg:p-6;
+  @apply p-4 relative lg: p-6;
 }
 
 .product-modal__icon {

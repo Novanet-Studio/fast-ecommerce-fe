@@ -1,3 +1,19 @@
+<script lang="ts" setup>
+const invoiceStore = useInvoiceStore();
+const pdfSection = ref<HTMLElement | undefined>(undefined);
+const isLoading = ref(false);
+
+onMounted(async () => {
+  try {
+    isLoading.value = false;
+    await invoiceStore.loadInvoiceProducts();
+  } catch (e) {
+  } finally {
+    isLoading.value = false;
+  }
+});
+</script>
+
 <template>
   <div class="ps-section__content">
     <div class="ps-section--account-setting">
@@ -19,10 +35,7 @@
                   <strong class="text-sm">
                     {{ invoiceStore.invoice?.fullName }}
                   </strong>
-                  <p
-                    class="text-sm"
-                    v-if="invoiceStore.invoice?.shippingAddress"
-                  >
+                  <p class="text-sm" v-if="invoiceStore.invoice?.shippingAddress">
                     Dirección:
                     {{ invoiceStore.invoice.shippingAddress.addressLine1 }},
                     <!-- {{ invoiceStore.invoice.attributes.shippingAddress.addressLine1 }}, -->
@@ -56,10 +69,7 @@
                 <figcaption class="border-b pb-2 mb-2 font-bold text-color-2">
                   Pago
                 </figcaption>
-                <div
-                  class="ps-block__content"
-                  v-if="invoiceStore.invoice?.cardKind !== 'no aplica'"
-                >
+                <div class="ps-block__content" v-if="invoiceStore.invoice?.cardKind !== 'no aplica'">
                   <p class="text-sm">
                     Pago: {{ invoiceStore.invoice?.cardKind }},
                     {{ invoiceStore.invoice?.cardType }},
@@ -93,71 +103,43 @@
                   <table class="min-w-full" v-else>
                     <thead class="bg-gray-100 border-b">
                       <tr>
-                        <th
-                          scope="col"
-                          class="text-sm font-bold text-color-2 px-6 py-4 text-left"
-                        >
+                        <th scope="col" class="text-sm font-bold text-color-2 px-6 py-4 text-left">
                           Productos
                         </th>
-                        <th
-                          scope="col"
-                          class="text-sm font-bold text-color-2 px-6 py-4 text-left"
-                        >
+                        <th scope="col" class="text-sm font-bold text-color-2 px-6 py-4 text-left">
                           Precio
                         </th>
-                        <th
-                          scope="col"
-                          class="text-sm font-bold text-color-2 px-6 py-4 text-left"
-                        >
+                        <th scope="col" class="text-sm font-bold text-color-2 px-6 py-4 text-left">
                           Cantidad
                         </th>
-                        <th
-                          scope="col"
-                          class="text-sm font-bold text-color-2 px-6 py-4 text-left"
-                        >
+                        <th scope="col" class="text-sm font-bold text-color-2 px-6 py-4 text-left">
                           Monto
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr
-                        class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                        v-for="(product, index) in invoiceStore.products"
-                      >
-                        <td
-                          class="px-6 py-4 whitespace-nowrap text-xs font-bold text-gray-900"
-                        >
+                      <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+                        v-for="(product, index) in invoiceStore.products">
+                        <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-gray-900">
                           {{ product.name }}
                         </td>
-                        <td
-                          class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
-                        >
+                        <td class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                           {{ product.price }}
                         </td>
-                        <td
-                          class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
-                        >
+                        <td class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                           {{ invoiceStore.invoice?.products[index].quantity }}
                         </td>
-                        <td
-                          class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
-                        >
+                        <td class="text-xs text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
                           ${{ product.price }}
                         </td>
                       </tr>
-                      <tr
-                        class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
-                      >
-                        <td
-                          class="px-6 py-4 whitespace-nowrap text-xs font-bold text-gray-900"
-                        >
+                      <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                        <td class="px-6 py-4 whitespace-nowrap text-xs font-bold text-gray-900">
                           MONTO TOTAL
                         </td>
                         <td></td>
                         <td></td>
-                        <td
-                          class="text-xs text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right"
-                        >
+                        <td class="text-xs text-gray-900 font-bold px-6 py-4 whitespace-nowrap text-right">
                           ${{ invoiceStore.invoice?.amount }}
                         </td>
                       </tr>
@@ -173,41 +155,22 @@
         <nuxt-link to="/invoices">
           <a class="btn px-5">regresar</a>
         </nuxt-link>
-        <button
-          @click="
-            exportToPDF(
-              `factura-${invoiceStore.invoice?.id_invoice_user}`,
-              pdfSection,
-              { format: 'a4', unit: 'px' },
-              {
-                margin: 10,
-                image: { type: 'jpeg', quality: 8 },
-                width: 600,
-                windowWidth: 780,
-              }
-            )
-          "
-          class="btn !w-32 text-color-2"
-        >
+        <button @click="
+          exportToPDF(
+            `factura-${invoiceStore.invoice?.id_invoice_user}`,
+            pdfSection,
+            { format: 'a4', unit: 'px' },
+            {
+              margin: 10,
+              image: { type: 'jpeg', quality: 8 },
+              width: 600,
+              windowWidth: 780,
+            }
+          )
+          " class="btn !w-32 text-color-2">
           Generar PDF
         </button>
       </div>
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-const invoiceStore = useInvoiceStore();
-const pdfSection = ref<HTMLElement | undefined>(undefined);
-const isLoading = ref(false);
-
-onMounted(async () => {
-  try {
-    isLoading.value = false;
-    await invoiceStore.loadInvoiceProducts();
-  } catch (e) {
-  } finally {
-    isLoading.value = false;
-  }
-});
-</script>

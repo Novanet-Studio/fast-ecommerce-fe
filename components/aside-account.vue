@@ -1,3 +1,7 @@
+<script setup>
+const auth = useAuthStore();
+</script>
+
 <template>
   <aside class="aside">
     <div class="aside__header-wrapper">
@@ -10,10 +14,6 @@
     </div>
   </aside>
 </template>
-
-<script lang="ts" setup>
-const auth = useAuthStore();
-</script>
 
 <style scoped>
 .aside {

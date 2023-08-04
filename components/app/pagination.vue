@@ -1,47 +1,3 @@
-<template>
-  <div class="paginator-container">
-    <a
-      @click.prevent="setPage(activePage > 1 ? activePage - 1 : 1)"
-      class="paginator-item paginator-item-prev"
-      :class="{ disabled: activePage === 1 || disabled }"
-    >
-      <slot name="prev-button">&lsaquo;</slot>
-    </a>
-
-    <div class="paginator-items">
-      <a
-        v-for="p in pages"
-        :key="p.id"
-        class="paginator-item"
-        :class="{
-          active: activePage === p.n,
-          space: p.n === space,
-          disabled,
-        }"
-        @click.prevent="setPage(p.n)"
-      >
-        {{ p.n }}
-      </a>
-    </div>
-
-    <a
-      @click.prevent="
-        setPage(
-          activePage < pages[pages.length - 1].n
-            ? activePage + 1
-            : pages[pages.length - 1].n
-        )
-      "
-      class="paginator-item paginator-item-next"
-      :class="{
-        disabled: activePage === pages[pages.length - 1].n || disabled,
-      }"
-    >
-      <slot name="next-button">&rsaquo;</slot>
-    </a>
-  </div>
-</template>
-
 <script lang="ts" setup>
 interface Props {
   currentPage: number;
@@ -107,6 +63,37 @@ watch(activePage, (newVal, oldVal) => {
 });
 </script>
 
+<template>
+  <div class="paginator-container">
+    <a @click.prevent="setPage(activePage > 1 ? activePage - 1 : 1)" class="paginator-item paginator-item-prev"
+      :class="{ disabled: activePage === 1 || disabled }">
+      <slot name="prev-button">&lsaquo;</slot>
+    </a>
+
+    <div class="paginator-items">
+      <a v-for="p in pages" :key="p.id" class="paginator-item" :class="{
+        active: activePage === p.n,
+        space: p.n === space,
+        disabled,
+      }" @click.prevent="setPage(p.n)">
+        {{ p.n }}
+      </a>
+    </div>
+
+    <a @click.prevent="
+      setPage(
+        activePage < pages[pages.length - 1].n
+          ? activePage + 1
+          : pages[pages.length - 1].n
+      )
+      " class="paginator-item paginator-item-next" :class="{
+    disabled: activePage === pages[pages.length - 1].n || disabled,
+  }">
+      <slot name="next-button">&rsaquo;</slot>
+    </a>
+  </div>
+</template>
+
 <style>
 :root {
   --primary-color: #ceb085;
@@ -115,15 +102,18 @@ watch(activePage, (newVal, oldVal) => {
   --pg-item-border-radius: 50%;
   --pg-item-distance: 5px;
 }
+
 .paginator-container {
   display: flex;
   align-items: center;
   gap: var(--pg-item-distance);
 }
+
 .paginator-items {
   display: flex;
   gap: var(--pg-item-distance);
 }
+
 .paginator-item {
   display: inline-flex;
   align-items: center;
@@ -132,17 +122,21 @@ watch(activePage, (newVal, oldVal) => {
   height: var(--pg-item-height);
   border-radius: var(--pg-item-border-radius);
 }
+
 .paginator-item.active {
   background: var(--primary-color);
   color: #fff;
 }
+
 .paginator-item:not(.active, .space):active {
   color: var(--primary-color);
 }
+
 .paginator-item:not(.disabled, .space) {
   cursor: pointer;
   opacity: 1;
 }
+
 .paginator-item.disabled {
   opacity: 0.3;
 }

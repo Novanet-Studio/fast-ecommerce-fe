@@ -1,3 +1,16 @@
+<script lang="ts" setup>
+type Props = {
+  shipping?: boolean;
+};
+
+const cart = useCartStore();
+const product = useProductStore();
+
+withDefaults(defineProps<Props>(), {
+  shipping: false,
+});
+</script>
+
 <template>
   <div v-if="cart.cartItems?.length">
     <h3 class="order-summary__title" v-if="!shipping">Tu Orden</h3>
@@ -10,10 +23,7 @@
       </figure>
       <figure class="order-summary__figure">
         <template v-for="(item, index) in product.cartProducts" :key="index">
-          <nuxt-link
-            :to="`/product/${item!.id}`"
-            class="order-summary__link flex-1"
-          >
+          <nuxt-link :to="`/product/${item!.id}`" class="order-summary__link flex-1">
             {{ item!.name }}
           </nuxt-link>
           <p class="order-summary__price">
@@ -32,18 +42,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-type Props = {
-  shipping?: boolean;
-};
-const cart = useCartStore();
-const product = useProductStore();
-
-withDefaults(defineProps<Props>(), {
-  shipping: false,
-});
-</script>
 
 <style scoped>
 .order-summary__title {
