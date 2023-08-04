@@ -101,6 +101,13 @@ export const useCartStore = defineStore(
       amount.value = 0;
     }
 
+    function $reset() {
+      total.value = 0;
+      amount.value = 0;
+      cartItems.value = [];
+      loading.value = false;
+    }
+
     return {
       total,
       amount,
@@ -112,6 +119,7 @@ export const useCartStore = defineStore(
       increaseCartItemQuantity,
       decreaseCartItemQuantity,
       clear,
+      $reset,
     };
   },
   {

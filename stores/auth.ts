@@ -92,6 +92,12 @@ export const useAuthStore = defineStore(
       return customerId(data);
     }
 
+    function $reset() {
+      token.value = '';
+      authenticated.value = false;
+      Object.assign(user, { id: 0, customerId: '' });
+    }
+
     return {
       token,
       user,
@@ -99,6 +105,7 @@ export const useAuthStore = defineStore(
       login,
       register,
       createCustomer,
+      $reset,
     };
   },
   { persist: true }

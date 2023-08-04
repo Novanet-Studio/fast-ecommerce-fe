@@ -39,6 +39,14 @@ export const useProductStore = defineStore(
       loading.value = false;
     }
 
+    function $reset() {
+      product.value = null;
+      products.value = [];
+      cartProducts.value = [];
+      wishlistItems.value = [];
+      loading.value = false;
+    }
+
     return {
       product,
       products,
@@ -48,6 +56,7 @@ export const useProductStore = defineStore(
       getByCategory,
       addCartProducts,
       clear,
+      $reset,
     };
   },
   {

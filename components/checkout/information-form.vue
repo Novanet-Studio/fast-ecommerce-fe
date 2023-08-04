@@ -79,7 +79,6 @@ const fillFormFromStorage = () => {
   });
 };
 
-// TODO! Check this database request
 const fillFormFromStrapiShippingData = async () => {
   try {
     const body = {

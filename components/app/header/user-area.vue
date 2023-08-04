@@ -7,7 +7,6 @@ const router = useRouter();
 
 const isOpen = ref(false);
 
-// FIXME!: Logout no works
 const handleLogout = () => {
   auth.$reset();
   cart.$reset();
