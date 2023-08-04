@@ -59,8 +59,7 @@ onMounted(() => {
               <figcaption class="shopping-cart__figcaption">
                 Cupon de descuento
               </figcaption>
-              <!-- TODO!: solve this error -->
-              <app-input v-model="discount" />
+              <input type="text" class="border-none outline-none bg-transparent" v-model="discount">
               <app-button class="shopping-cart__btn" outline>
                 Aplicar
               </app-button>
