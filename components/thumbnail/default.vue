@@ -1,3 +1,12 @@
+<script lang="ts" setup>
+import { injectKeys } from '~/config/constants';
+
+const product = inject(injectKeys.productDetail) as Ref<Product>;
+const thumbsSwiper = ref(null);
+
+const setThumbsSwiper = (swiper: any) => (thumbsSwiper.value = swiper);
+</script>
+
 <template>
   <client-only>
     <div data-vertical="true">
@@ -5,13 +14,9 @@
         <div class="ps-wrapper max-w-3xl">
           <!-- Gallery-->
           <div class="ps-product__gallery">
-            <swiper
-              class="main-swiper"
-              :space-between="10"
-              :navigation="true"
+            <swiper class="main-swiper" :space-between="10" :navigation="true"
               :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination, SwiperThumbs, SwiperFreeMode]"
-              :thumbs="{ swiper: thumbsSwiper }"
-            >
+              :thumbs="{ swiper: thumbsSwiper }">
               <swiper-slide v-for="image in product.images" :key="image.id">
                 <img :src="image.url" :alt="image.alternativeText" />
               </swiper-slide>
@@ -21,36 +26,17 @@
       </figure>
       <!-- Thumbnail -->
       <div class="ps-product__variants max-w-48">
-        <swiper
-          class="swiper-thumbs"
-          @swiper="setThumbsSwiper"
-          :space-between="10"
-          :slides-per-view="4"
-          free-mode
+        <swiper class="swiper-thumbs" @swiper="setThumbsSwiper" :space-between="10" :slides-per-view="4" free-mode
           watch-slides-progress
-          :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination, SwiperThumbs, SwiperFreeMode]"
-        >
+          :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination, SwiperThumbs, SwiperFreeMode]">
           <swiper-slide v-for="image in product.images" :key="image.id">
-            <img
-              class="object-contain"
-              :src="image.url"
-              :alt="image.alternativeText"
-            />
+            <img class="object-contain" :src="image.url" :alt="image.alternativeText" />
           </swiper-slide>
         </swiper>
       </div>
     </div>
   </client-only>
 </template>
-
-<script lang="ts" setup>
-const product = inject('product-detail') as Ref<Product>;
-const thumbsSwiper = ref(null);
-
-const setThumbsSwiper = (swiper: any) => {
-  thumbsSwiper.value = swiper;
-};
-</script>
 
 <style scoped>
 .swiper {
