@@ -33,7 +33,7 @@ const type = computed(() => {
 
 <style scoped>
 .edit-address {
-  @apply w-full lg: ml-8;
+  @apply w-full lg:ml-8;
 }
 
 .edit-address__wrapper {

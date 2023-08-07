@@ -2,15 +2,21 @@
 const appConfig = useAppConfig();
 </script>
 
-
 <template>
   <div class="widgets">
     <aside class="widgets__wrapper">
       <h3 class="widgets__title">Contáctanos</h3>
       <ul class="widgets__list">
-        <li v-for="(item, index) in appConfig.footer.widgets" :key="index" class="widgets__item">
+        <li
+          v-for="(item, index) in appConfig.footer.widgets"
+          :key="index"
+          class="widgets__item"
+        >
           <a class="widgets__link" :href="item.link">
-            <component :is="item.icon" v-bind="{ class: 'lg:text-3xl text-color-2' }" />
+            <component
+              :is="item.icon"
+              v-bind="{ class: 'lg:text-3xl text-color-2' }"
+            />
           </a>
           {{ item.text }}
         </li>
@@ -21,7 +27,7 @@ const appConfig = useAppConfig();
 
 <style scoped>
 .widgets {
-  @apply pb-7 lg: (mx-4 mx-auto);
+  @apply pb-7 lg:(mx-4 mx-auto);
 }
 
 .widgets__wrapper {
@@ -37,7 +43,7 @@ const appConfig = useAppConfig();
 }
 
 .widgets__item {
-  @apply relative inline-flex items-center mr-[20px] gap-1 md: mr-2;
+  @apply relative inline-flex items-center mr-[20px] gap-1 md:mr-2;
 }
 
 .widgets__link {

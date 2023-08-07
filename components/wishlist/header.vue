@@ -4,16 +4,16 @@ const props = defineProps({
     type: Boolean,
     required: false,
     default: false,
-  }
-})
+  },
+});
 
-const element = props.noArticles ? 'h3' : 'h1'
+const element = props.noArticles ? 'h3' : 'h1';
 const classes = computed(() => {
   return {
     header: props.noArticles && 'wishlist__center',
-    heading: props.noArticles ? 'wishlist__subtitle' : 'wishlist__title'
-  }
-})
+    heading: props.noArticles ? 'wishlist__subtitle' : 'wishlist__title',
+  };
+});
 </script>
 
 <template>
@@ -30,14 +30,14 @@ const classes = computed(() => {
 }
 
 .wishlist__header {
-  @apply pb-12 text-left lg: pb-24;
+  @apply pb-12 text-left lg:pb-24;
 }
 
 .wishlist__title {
-  @apply text-3xl font-semibold text-color-2 lg: text-5xl;
+  @apply text-3xl font-semibold text-color-2 lg:text-5xl;
 }
 
 .wishlist__subtitle {
-  @apply text-xl text-color-2 mb-2 font-bold lg: text-2xl;
+  @apply text-xl text-color-2 mb-2 font-bold lg:text-2xl;
 }
 </style>

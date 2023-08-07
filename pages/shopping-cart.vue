@@ -59,7 +59,11 @@ onMounted(() => {
               <figcaption class="shopping-cart__figcaption">
                 Cupon de descuento
               </figcaption>
-              <input type="text" class="border-none outline-none bg-transparent" v-model="discount">
+              <input
+                type="text"
+                class="border-none outline-none bg-transparent"
+                v-model="discount"
+              />
               <app-button class="shopping-cart__btn" outline>
                 Aplicar
               </app-button>
@@ -75,7 +79,11 @@ onMounted(() => {
               </div>
               <div>
                 <ul class="cart-product">
-                  <li class="cart-product__item" v-for="item in product.cartProducts" :key="item!.id">
+                  <li
+                    class="cart-product__item"
+                    v-for="item in product.cartProducts"
+                    :key="item!.id"
+                  >
                     <span class="cart-product__wrapper">
                       <nuxt-link :to="`/product/${item!.id}`">
                         {{ item!.name }}
@@ -117,19 +125,19 @@ onMounted(() => {
 }
 
 .shopping-cart__wrapper {
-  @apply mt-8 max-w-sm md: max-w-2xl lg:(px-4 mt-0 max-w-full);
+  @apply mt-8 max-w-sm md:max-w-2xl lg:(px-4 mt-0 max-w-full);
 }
 
 .shopping-cart__container {
-  @apply w-full px-3 mx-auto lg: max-w-[1230px];
+  @apply w-full px-3 mx-auto lg:max-w-[1230px];
 }
 
 .shopping-cart__header {
-  @apply pb-12 text-center lg: pb-[6.25rem];
+  @apply pb-12 text-center lg:pb-[6.25rem];
 }
 
 .shopping-cart__title {
-  @apply text-3xl font-semibold text-color-2 lg: text-5xl;
+  @apply text-3xl font-semibold text-color-2 lg:text-5xl;
 }
 
 .shopping-cart__link-wrapper {
@@ -137,15 +145,15 @@ onMounted(() => {
 }
 
 .shopping-cart__link {
-  @apply inline-flex items-center px-[45px] py-[15px] text-base rounded-sm bg-color-1 transition ease hover: bg-opacity-90 active:bg-opacity-90 cursor-pointer;
+  @apply inline-flex items-center px-[45px] py-[15px] text-base rounded-sm bg-color-1 transition ease hover:bg-opacity-90 active:bg-opacity-90 cursor-pointer;
 }
 
 .shopping-cart__footer {
-  @apply grid lg: grid-cols-3;
+  @apply grid lg:grid-cols-3;
 }
 
 .shopping-cart__left {
-  @apply mb-8 lg: mb-0;
+  @apply mb-8 lg:mb-0;
 }
 
 .shopping-cart__figcaption {
@@ -169,7 +177,7 @@ onMounted(() => {
 }
 
 .shopping-cart__btn {
-  @apply !bg-transparent border border-color-2 mt-4 text-color-2 hover: ( !bg-yellow-400 text-white);
+  @apply !bg-transparent border border-color-2 mt-4 text-color-2 hover:( !bg-yellow-400 text-white);
 }
 
 .cart-product__item {

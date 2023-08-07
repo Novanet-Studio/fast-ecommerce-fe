@@ -18,7 +18,7 @@ definePageMeta({
 
 <style scoped>
 .invoices {
-  @apply lg: ml-8 lg:w-full;
+  @apply lg:(ml-8 w-full);
 }
 
 .invoices__header {

@@ -64,18 +64,30 @@ const handleAddItemToWishlist = () => {
 <template>
   <ul class="product-actions">
     <li class="product-actions__item">
-      <button class="product-actions__link" title="Add to cart" @click.prevent="handleAddToCart">
+      <button
+        class="product-actions__link"
+        title="Add to cart"
+        @click.prevent="handleAddToCart"
+      >
         <div class="i-ph-bag-light" />
       </button>
     </li>
 
     <li class="product-actions__item">
-      <button class="product-actions__link" title="Quick View" @click.prevent="$emit('quickView', true)">
+      <button
+        class="product-actions__link"
+        title="Quick View"
+        @click.prevent="$emit('quickView', true)"
+      >
         <div class="i-ph-eye-light" />
       </button>
     </li>
     <li class="product-actions__item">
-      <button class="product-actions__link" title="Add to wishlist" @click.prevent="handleAddItemToWishlist">
+      <button
+        class="product-actions__link"
+        title="Add to wishlist"
+        @click.prevent="handleAddItemToWishlist"
+      >
         <div class="i-ph-heart-light" />
       </button>
     </li>
@@ -92,6 +104,6 @@ const handleAddItemToWishlist = () => {
 }
 
 .product-actions__link {
-  @apply flex justify-center items-center w-9 h-9 rounded-full transition ease hover: (bg-color-1 text-white);
+  @apply flex justify-center items-center w-9 h-9 rounded-full transition ease hover:(bg-color-1 text-white);
 }
 </style>

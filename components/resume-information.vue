@@ -32,19 +32,19 @@ const checkout = useCheckoutStore();
 }
 
 .resume__content {
-  @apply mb-0 flex justify-between md: (items-center);
+  @apply mb-0 flex justify-between md:(items-center);
 }
 
 .resume__wrapper {
-  @apply md: (w-full flex flex-row);
+  @apply md:(w-full flex flex-row);
 }
 
 .resume__item-title {
-  @apply flex-basis-[100%] text-sm max-w-40 md: (flex-0 max-w-18);
+  @apply flex-basis-[100%] text-sm max-w-40 md:(flex-0 max-w-18);
 }
 
 .resume__contact {
-  @apply mt-0 mb-0 flex-basis-[100%] text-sm md: flex-1;
+  @apply mt-0 mb-0 flex-basis-[100%] text-sm md:flex-1;
 }
 
 .resume__address {

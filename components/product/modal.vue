@@ -21,7 +21,7 @@ const active = computed({
 
 <style scoped>
 .product-modal {
-  @apply p-4 relative lg: p-6;
+  @apply p-4 relative lg:p-6;
 }
 
 .product-modal__icon {

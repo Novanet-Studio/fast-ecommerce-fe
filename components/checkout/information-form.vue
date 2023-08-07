@@ -15,7 +15,7 @@ type Form = {
   city: string;
   zipCode: string;
   phone: string;
-}
+};
 
 const router = useRouter();
 const graphql = useStrapiGraphQL();
@@ -26,7 +26,10 @@ const schema = toTypedSchema(
   object({
     name: string([minLength(1, 'Este campo es requerido')]),
     lastName: string([minLength(1, 'Este campo es requerido')]),
-    email: string([minLength(1, 'Este campo es requerido'), email('Formato de correo no valido')]),
+    email: string([
+      minLength(1, 'Este campo es requerido'),
+      email('Formato de correo no valido'),
+    ]),
     address: string([minLength(1, 'Este campo es requerido')]),
     country: any(),
     home: string([minLength(1, 'Este campo es requerido')]),
@@ -34,13 +37,15 @@ const schema = toTypedSchema(
     zipCode: string([minLength(1, 'Este campo es requerido')]),
     phone: string([minLength(1, 'Este campo es requerido')]),
   })
-)
+);
 
-const { setValues, handleSubmit, defineComponentBinds, errors } = useForm<Form>({
-  validationSchema: schema,
-});
+const { setValues, handleSubmit, defineComponentBinds, errors } = useForm<Form>(
+  {
+    validationSchema: schema,
+  }
+);
 
-const country = defineComponentBinds('country')
+const country = defineComponentBinds('country');
 
 const submit = handleSubmit(async (data) => {
   checkout.shippingInfo(data);
@@ -98,7 +103,6 @@ const fillFormFromStrapiShippingData = async () => {
     setValues({
       ...response,
     });
-
   } catch (err) {
     console.log(err);
   }
@@ -115,7 +119,9 @@ onMounted(() => {
     <h3 class="title">Información de contacto</h3>
     <form>
       <div class="form__group">
-        <label class="form__label">Email<sup class="form__required">*</sup></label>
+        <label class="form__label"
+          >Email<sup class="form__required">*</sup></label
+        >
         <app-input name="email" placeholder="correo@mail.com" />
       </div>
 
@@ -138,7 +144,10 @@ onMounted(() => {
 
       <div class="form__group">
         <label class="form__label">Dirección</label>
-        <app-input name="address" placeholder="Av. Principal con calle Secundaria" />
+        <app-input
+          name="address"
+          placeholder="Av. Principal con calle Secundaria"
+        />
       </div>
       <div class="form__group">
         <label class="form__label">Apartamento</label>
@@ -147,8 +156,15 @@ onMounted(() => {
 
       <div class="form__group">
         <label class="form__label">Pais</label>
-        <app-select v-bind="country" label="name" value-key="code" :options="countries"
-          placeholder="Selecciona una opcion" :error="!!errors.country" :error-message="errors.country" />
+        <app-select
+          v-bind="country"
+          label="name"
+          value-key="code"
+          :options="countries"
+          placeholder="Selecciona una opcion"
+          :error="!!errors.country"
+          :error-message="errors.country"
+        />
       </div>
 
       <div class="form__grid">
@@ -167,7 +183,10 @@ onMounted(() => {
       </div>
 
       <div class="form__group">
-        <app-checkbox label="Guardar informacion" v-model="checkout.saveInformation" />
+        <app-checkbox
+          label="Guardar informacion"
+          v-model="checkout.saveInformation"
+        />
       </div>
 
       <div class="form__btn-group">
@@ -183,26 +202,26 @@ onMounted(() => {
 }
 
 .form__title {
-  @apply font-semibold mb-8 text-color-2 text-2xl md: mb-3;
+  @apply font-semibold mb-8 text-color-2 text-2xl md:mb-3;
 }
 
 .form__group-alt {
-  @apply mb-4 lg: mb-6;
+  @apply mb-4 lg:mb-6;
 }
 
 .form__container {
-  @apply flex flex-col justify-between md: flex-row;
+  @apply flex flex-col justify-between md:flex-row;
 }
 
 .form__grid {
-  @apply grid grid-cols-1 gap-4 md: grid-cols-2;
+  @apply grid grid-cols-1 gap-4 md:grid-cols-2;
 }
 
 .form__left {
-  @apply flex-[0_0_100%] gap-4 md: flex-[0_0_calc(50%-1rem)];
+  @apply flex-[0_0_100%] gap-4 md:flex-[0_0_calc(50%-1rem)];
 }
 
 .form__right {
-  @apply flex-[0_0_100%] md: flex-[0_0_calc(50%-1rem)];
+  @apply flex-[0_0_100%] md:flex-[0_0_calc(50%-1rem)];
 }
 </style>

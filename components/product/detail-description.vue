@@ -14,7 +14,7 @@ defineProps<{ description: string }>();
 
 <style scoped>
 .detail-description {
-  @apply text-sm mb-5 border-b border-color-7 pb-2 lg: text-base;
+  @apply text-sm mb-5 border-b border-color-7 pb-2 lg:text-base;
 }
 
 .detail-description__item {

@@ -9,7 +9,7 @@ type Form = {
   streetAddress: string;
   state: string;
   postcode: string;
-}
+};
 
 const props = defineProps<{ type: AddressType }>();
 const auth = useAuthStore();
@@ -37,11 +37,13 @@ const schema = toTypedSchema(
     state: string([minLength(1, 'Este campo es requerido')]),
     postcode: string([minLength(1, 'Este campo es requerido')]),
   })
-)
+);
 
-const { handleSubmit, defineComponentBinds, setValues, errors } = useForm<Form>({
-  validationSchema: schema,
-});
+const { handleSubmit, defineComponentBinds, setValues, errors } = useForm<Form>(
+  {
+    validationSchema: schema,
+  }
+);
 
 const country = defineComponentBinds('country');
 
@@ -104,22 +106,37 @@ onMounted(() => {
     </header>
     <div>
       <div class="address-form__group">
-        <label class="address-form__label">País<sup class="address-form__required">*</sup></label>
-        <app-select v-bind="country" label="name" value-key="code" :options="countries"
-          placeholder="Selecciona una opcion" :error="!!errors.country" :error-message="errors.country" />
+        <label class="address-form__label"
+          >País<sup class="address-form__required">*</sup></label
+        >
+        <app-select
+          v-bind="country"
+          label="name"
+          value-key="code"
+          :options="countries"
+          placeholder="Selecciona una opcion"
+          :error="!!errors.country"
+          :error-message="errors.country"
+        />
       </div>
       <div class="address-form__group">
-        <label class="address-form__label" for="streetAddress">Dirección<sup class="address-form__required">*</sup>
+        <label class="address-form__label" for="streetAddress"
+          >Dirección<sup class="address-form__required">*</sup>
         </label>
-        <app-input name="streetAddress" placeholder="Av Fco Miranda, calle solar" />
+        <app-input
+          name="streetAddress"
+          placeholder="Av Fco Miranda, calle solar"
+        />
       </div>
       <div class="address-form__group">
-        <label class="address-form__label" for="state">Estado<sup class="address-form__required">*</sup>
+        <label class="address-form__label" for="state"
+          >Estado<sup class="address-form__required">*</sup>
         </label>
         <app-input name="state" placeholder="Miranda" />
       </div>
       <div class="address-form__group">
-        <label class="address-form__label">Código postal<sup class="address-form__required">*</sup>
+        <label class="address-form__label"
+          >Código postal<sup class="address-form__required">*</sup>
         </label>
         <app-input name="postcode" placeholder="1073" />
       </div>
@@ -156,6 +173,6 @@ onMounted(() => {
 }
 
 .address-form__group-btn {
-  @apply mb-10 md: w-[25%];
+  @apply mb-10 md:w-[25%];
 }
 </style>

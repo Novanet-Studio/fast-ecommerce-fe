@@ -57,7 +57,7 @@ const appConfig = useAppConfig();
 }
 
 .banner__left {
-  @apply w-[340px] min-h-[200px] h-full mb-4 md: w-full lg:(max-w-[calc(100%-390px)] w-full);
+  @apply w-[340px] min-h-[200px] h-full mb-4 md:w-full lg:(max-w-[calc(100%-390px)] w-full);
 }
 
 .banner__slider {
@@ -65,10 +65,10 @@ const appConfig = useAppConfig();
 }
 
 .banner__slider-image {
-  @apply block w-full h-full bg-center bg-cover md: h-xl lg:(w-full min-h-xl h-80);
+  @apply block w-full h-full bg-center bg-cover md:h-xl lg:(w-full min-h-xl h-80);
 }
 
 .banner__right {
-  @apply w-full flex justify-between gap-4 text-white lg: (max-w-[390px] ml-8 flex-col gap-8);
+  @apply w-full flex justify-between gap-4 text-white lg:(max-w-[390px] ml-8 flex-col gap-8);
 }
 </style>

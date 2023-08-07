@@ -35,14 +35,14 @@ const handleQuickView = (open: boolean) => (state.quickView = open);
 
 <style scoped>
 .product {
-  @apply h-full box-border lg: p-[20px_20px_0] max-w-[168px] relative block box-border border border-transparent transition ease hover:(border border-gray-300) lg:max-w-[250px];
+  @apply h-full box-border max-w-[168px] relative block box-border border border-transparent transition ease hover:(border border-gray-300) lg:(max-w-[250px] p-[20px_20px_0]);
 }
 
 .product__thumbnail {
   @apply relative overflow-hidden;
 }
 
-.product__thumbnail:hover>ul {
+.product__thumbnail:hover > ul {
   transform: translate(-50%, 0);
 }
 </style>

@@ -30,9 +30,9 @@ const tabs = [
   },
   {
     name: 'Zelle',
-    component: Zelle
-  }
-]
+    component: Zelle,
+  },
+];
 </script>
 
 <template>
@@ -51,7 +51,7 @@ const tabs = [
 }
 
 :deep(.tabs-component-tabs) {
-  @apply flex overflow-x-scroll w-30rem max-w-30rem md: (w-full max-w-full);
+  @apply flex overflow-x-scroll w-30rem max-w-30rem md:(w-full max-w-full);
 }
 
 :deep(.tabs-component-tab) {

@@ -71,15 +71,15 @@ const { hasBilling, hasShipping } = checkout.checkAddressType();
 
 <style scoped>
 .wrapper {
-  @apply w-full lg: (ml-8);
+  @apply w-full lg:(ml-8);
 }
 
 .address {
-  @apply flex flex-col gap-10 p-5 bg-white lg: (flex-row gap-5);
+  @apply flex flex-col gap-10 p-5 bg-white lg:(flex-row gap-5);
 }
 
 .address__content {
-  @apply max-w-full flex-[0_0_100%] lg: (max-w-[50%] flex-[0_0_50%]);
+  @apply max-w-full flex-[0_0_100%] lg:(max-w-[50%] flex-[0_0_50%]);
 }
 
 .address__figcaption {
@@ -91,6 +91,6 @@ const { hasBilling, hasShipping } = checkout.checkAddressType();
 }
 
 .address__link {
-  @apply text-base text-color-6 transition ease hover: (text-opacity-70);
+  @apply text-base text-color-6 transition ease hover:(text-opacity-70);
 }
 </style>

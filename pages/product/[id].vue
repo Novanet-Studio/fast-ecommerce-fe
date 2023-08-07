@@ -53,6 +53,6 @@ onMounted(() => {
 
 <style scoped>
 .wrapper {
-  @apply flex justify-center w-full min-h-full md: justify-start lg:(mt-12);
+  @apply flex justify-center w-full min-h-full md:justify-start lg:(mt-12);
 }
 </style>
