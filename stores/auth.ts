@@ -12,6 +12,10 @@ export const useAuthStore = defineStore(
     const { setToken } = useStrapiAuth();
     const graphql = useStrapiGraphQL();
 
+    const cart = useCartStore();
+    const product = useProductStore();
+    const router = useRouter();
+
     const token = ref('');
     const user = reactive<User>({
       id: 0,
@@ -92,6 +96,16 @@ export const useAuthStore = defineStore(
       return customerId(data);
     }
 
+    function logout() {
+      $reset();
+      cart.$reset();
+      product.$reset();
+      router.push({
+        path: '/',
+        force: true,
+      });
+    }
+
     function $reset() {
       token.value = '';
       authenticated.value = false;
@@ -106,6 +120,7 @@ export const useAuthStore = defineStore(
       register,
       createCustomer,
       $reset,
+      logout,
     };
   },
   { persist: true }
