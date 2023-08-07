@@ -1,3 +1,4 @@
+import config from '~/config/config.json';
 import { defineStore } from 'pinia';
 import { GetProductById } from '~/graphql/queries';
 
@@ -11,7 +12,7 @@ interface InitWishListParams {
 }
 
 export const useWishlistStore = defineStore(
-  'ecommerce-wishlist',
+  config.store.wishlist,
   () => {
     const items = ref<WishListItem[]>([]);
     const total = ref<number>(0);

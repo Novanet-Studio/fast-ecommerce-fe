@@ -1,3 +1,4 @@
+import config from '~/config/config.json';
 import { CreateAddress, UpdateAddress } from '~/graphql/mutations';
 import { GetAddressByIdAndType } from '~/graphql/queries';
 
@@ -28,7 +29,7 @@ const defaultState = {
 };
 
 export const useCheckoutStore = defineStore(
-  'ecommerce-checkout',
+  config.store.checkout,
   () => {
     const info = reactive(defaultState);
     const fullName = computed(() => `${info.name} ${info.lastName}`);

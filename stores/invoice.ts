@@ -1,8 +1,10 @@
+import config from '~/config/config.json';
 import { CreateInvoice } from '~/graphql/mutations';
 import { GetProductById, GetInvoicesByUserId } from '~/graphql/queries';
-import type { OrderResponseBody } from '@paypal/paypal-js';
 import { PaymentReportError, SendInvoiceEmailError } from '~/errors';
-import { Payment } from 'square';
+
+import type { OrderResponseBody } from '@paypal/paypal-js';
+import type { Payment } from 'square';
 
 const PAGE_LIMIT = 10;
 const DEFAULT_PAGE = 1;
@@ -22,7 +24,7 @@ type SendEmailFn = (data: any) => Promise<{ message: string; status: number }>;
 const DELAY_REDIRECT = 500;
 
 export const useInvoiceStore = defineStore(
-  'ecommerce-invoice',
+  config.store.invoice,
   () => {
     const invoice = ref<any>();
     const invoices = ref<Invoice[]>([]);

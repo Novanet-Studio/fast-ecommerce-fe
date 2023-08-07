@@ -1,7 +1,8 @@
+import config from '~/config/config.json';
 import { GetProductById } from '~/graphql/queries';
 
 export const useCartStore = defineStore(
-  'ecommerce-cart',
+  config.store.cart,
   () => {
     const total = ref(0);
     const amount = ref(0);

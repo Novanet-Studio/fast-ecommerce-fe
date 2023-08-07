@@ -1,3 +1,4 @@
+import config from '~/config/config.json';
 import { LoginQuery, RegisterQuery } from '~/graphql/mutations';
 import type { StrapiUser } from '@nuxtjs/strapi/dist/runtime/types';
 
@@ -6,7 +7,7 @@ type User = StrapiUser & {
 };
 
 export const useAuthStore = defineStore(
-  'ecommerce-auth',
+  config.store.auth,
   () => {
     const { $notify, $httpsCallable } = useNuxtApp();
     const { setToken } = useStrapiAuth();

@@ -1,0 +1,11 @@
+{
+  "store": {
+    "auth": "ecommerce-auth",
+    "cart": "ecommerce-cart",
+    "checkout": "ecommerce-checkout",
+    "global": "ecommerce-global",
+    "invoice": "ecommerce-invoice",
+    "product": "ecommerce-product",
+    "wishlist": "ecommerce-wishlist"
+  }
+}

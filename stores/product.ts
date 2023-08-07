@@ -1,7 +1,8 @@
+import config from '~/config/config.json';
 import { GetProductsByCategoryId } from '~/graphql/queries';
 
 export const useProductStore = defineStore(
-  'ecommerce-product',
+  config.store.product,
   () => {
     const product = ref<Product | null>(null);
     const products = ref<Product[] | null>([]);
