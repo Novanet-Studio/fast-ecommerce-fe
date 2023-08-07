@@ -1,5 +1,13 @@
 <script setup>
 const appConfig = useAppConfig();
+const widgets = appConfig.footer.widgets;
+
+const icons = {
+  instagram: 'i-ph-instagram-logo-light',
+  facebook: 'i-ph-facebook-logo-light',
+  whatsapp: 'i-ph-whatsapp-logo-light',
+  email: 'i-ph-envelope-light',
+};
 </script>
 
 <template>
@@ -7,16 +15,9 @@ const appConfig = useAppConfig();
     <aside class="widgets__wrapper">
       <h3 class="widgets__title">Contáctanos</h3>
       <ul class="widgets__list">
-        <li
-          v-for="(item, index) in appConfig.footer.widgets"
-          :key="index"
-          class="widgets__item"
-        >
+        <li v-for="(item, index) in widgets" :key="index" class="widgets__item">
           <a class="widgets__link" :href="item.link">
-            <component
-              :is="item.icon"
-              v-bind="{ class: 'lg:text-3xl text-color-2' }"
-            />
+            <div :class="icons[item.icon]" class="lg:text-3xl text-color-2" />
           </a>
           {{ item.text }}
         </li>

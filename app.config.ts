@@ -9,22 +9,22 @@ export default defineAppConfig({
     widgets: [
       {
         link: 'https://www.instagram.com/coracuero/',
-        icon: 'i-ph-instagram-logo-light',
+        icon: 'instagram',
         text: '@fastecommerce',
       },
       {
         link: 'https://www.facebook.com/people/coracuero',
-        icon: 'i-ph-facebook-logo-light',
+        icon: 'facebook',
         text: 'fast-ecommerce',
       },
       {
         link: '#',
-        icon: 'i-ph-whatsapp-logo-light',
+        icon: 'whatsapp',
         text: '+58 412-12315654',
       },
       {
         link: '#',
-        icon: 'i-ph-envelope-simple-logo-light',
+        icon: 'email',
         text: 'fast@ecommerce.com',
       },
     ],
