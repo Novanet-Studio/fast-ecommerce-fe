@@ -32,6 +32,16 @@ if (theme.fonts.font_family.secondary) {
   fontSecondaryType = theme.fonts.font_family.secondary_type;
 }
 
+const getColor = (item: string): string => {
+  const mapped: Record<number, string> & { [key: string]: string } = {};
+
+  Object.entries(theme.colors.default.theme_color).forEach(([key, val]) => {
+    mapped[key.replace('color_', '')] = val;
+  });
+
+  return mapped[item];
+};
+
 export default defineConfig({
   presets: [presetUno(), presetAttributify(), presetIcons()],
   transformers: [transformerDirectives(), transformerVariantGroup()],
@@ -55,14 +65,10 @@ export default defineConfig({
       '2xl': '1366px',
     },
   },
+  rules: [
+    [/^border-color-(\d)$/, ([, d]) => ({ 'border-color': getColor(d) })],
+  ],
   shortcuts: {
-    'border-color-1': 'border-[#feeed7]',
-    'border-color-2': 'border-[#e36d65]',
-    'border-color-3': 'border-[#f4f4f4]',
-    'border-color-4': 'border-[#282932]',
-    'border-color-5': 'border-[#161824]',
-    'border-color-6': 'border-[#0c6dce]',
-    'border-color-7': 'border-[#c0c0c0]',
     'header-actions__link': 'flex relative transition ease',
     'header-actions__icon': 'text-4xl text-[2.45rem]',
     'header-actions__indicator-wrapper':
