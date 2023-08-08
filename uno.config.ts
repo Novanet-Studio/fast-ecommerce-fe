@@ -2,6 +2,7 @@ import {
   defineConfig,
   presetUno,
   presetAttributify,
+  presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss';
@@ -25,6 +26,7 @@ if (theme.fonts.font_family.primary) {
     .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, '');
   fontPrimaryType = theme.fonts.font_family.primary_type;
 }
+
 if (theme.fonts.font_family.secondary) {
   fontSecondary = theme.fonts.font_family.secondary
     .replace(/\+/g, ' ')
@@ -43,7 +45,24 @@ const getColor = (item: string): string => {
 };
 
 export default defineConfig({
-  presets: [presetUno(), presetAttributify(), presetIcons()],
+  presets: [
+    presetUno(),
+    presetAttributify(),
+    presetIcons(),
+    presetWebFonts({
+      fonts: {
+        sans: 'Roboto',
+        primary: [
+          fontPrimary as string,
+          { name: fontPrimaryType as string, provider: 'none' },
+        ],
+        secondary: [
+          fontSecondary as string,
+          { name: fontSecondaryType as string, provider: 'none' },
+        ],
+      },
+    }),
+  ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
   theme: {
     colors: {
