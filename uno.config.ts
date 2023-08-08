@@ -66,6 +66,9 @@ export default defineConfig({
   transformers: [transformerDirectives(), transformerVariantGroup()],
   theme: {
     colors: {
+      text: theme.colors.default.text_color.default,
+      light: theme.colors.default.text_color.light,
+      dark: theme.colors.default.text_color.dark,
       color: {
         1: theme.colors.default.theme_color.color_1,
         2: theme.colors.default.theme_color.color_2,
