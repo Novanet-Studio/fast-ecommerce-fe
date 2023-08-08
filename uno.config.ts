@@ -6,6 +6,31 @@ import {
   transformerVariantGroup,
 } from 'unocss';
 import presetIcons from '@unocss/preset-icons';
+import * as theme from './config/theme.json';
+
+let fontPrimary, fontPrimaryType, fontSecondary, fontSecondaryType;
+let fontBase = Number(theme.fonts.font_size.base.replace('px', ''));
+let fontScale = Number(theme.fonts.font_size.scale);
+
+let h6 = fontBase / fontBase;
+let h5 = h6 * fontScale;
+let h4 = h5 * fontScale;
+let h3 = h4 * fontScale;
+let h2 = h3 * fontScale;
+let h1 = h2 * fontScale;
+
+if (theme.fonts.font_family.primary) {
+  fontPrimary = theme.fonts.font_family.primary
+    .replace(/\+/g, ' ')
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, '');
+  fontPrimaryType = theme.fonts.font_family.primary_type;
+}
+if (theme.fonts.font_family.secondary) {
+  fontSecondary = theme.fonts.font_family.secondary
+    .replace(/\+/g, ' ')
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, '');
+  fontSecondaryType = theme.fonts.font_family.secondary_type;
+}
 
 export default defineConfig({
   presets: [presetUno(), presetAttributify(), presetIcons()],
@@ -13,13 +38,13 @@ export default defineConfig({
   theme: {
     colors: {
       color: {
-        1: '#feeed7',
-        2: '#e36d65',
-        3: '#f4f4f4',
-        4: '#282932',
-        5: '#161824',
-        6: '#0c6dce',
-        7: '#c0c0c0',
+        1: theme.colors.default.theme_color.color_1,
+        2: theme.colors.default.theme_color.color_2,
+        3: theme.colors.default.theme_color.color_3,
+        4: theme.colors.default.theme_color.color_4,
+        5: theme.colors.default.theme_color.color_5,
+        6: theme.colors.default.theme_color.color_6,
+        7: theme.colors.default.theme_color.color_7,
       },
     },
     breakpoints: {
@@ -63,4 +88,37 @@ export default defineConfig({
     'b-subtitle': 'text-lg text-color-2 mt-0 mb-6 font-bold md:mb-3',
     'b-link-wrapper': 'flex justify-between items-center',
   },
+  preflights: [
+    {
+      getCSS: () => `
+        html {
+          font-size: ${fontBase}px;
+        }
+
+        h1 {
+          font-size: ${h1}rem;
+        }
+
+        h2 {
+          font-size: ${h2}rem;
+        }
+
+        h3 {
+          font-size: ${h3}rem;
+        }
+
+        h4 {
+          font-size: ${h4}rem;
+        }
+
+        h5 {
+          font-size: ${h5}rem;
+        }
+
+        h6 {
+          font-size: ${h6}rem;
+        }
+      `,
+    },
+  ],
 });
