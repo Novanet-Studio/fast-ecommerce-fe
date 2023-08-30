@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import mapper from 'smapper';
 import { GetProductById } from '~/graphql/queries';
 
 definePageMeta({
@@ -28,7 +29,7 @@ const loadCartProducts = async () => {
 
   const [response] = await Promise.all(productPromises);
 
-  product.cartProducts = mapperData(response.data.products.data) as Product[];
+  product.cartProducts = mapper(response.data.products.data) as Product[];
 };
 
 onMounted(() => {

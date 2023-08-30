@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import mapper from 'smapper';
 import { GetProductById } from '~/graphql/queries';
 
 const { $notify } = useNuxtApp();
@@ -27,7 +28,7 @@ async function handleAddToCart(product: Product) {
 
   const temp: Product[] = [];
 
-  mapperData<any[]>(itemsResult).forEach((item) => {
+  mapper<any[]>(itemsResult).forEach((item) => {
     temp.push(item.products[0]);
   });
 

@@ -1,3 +1,4 @@
+import mapper from 'smapper';
 import config from '~/config/config.json';
 import { CreateInvoice } from '~/graphql/mutations';
 import { GetProductById, GetInvoicesByUserId } from '~/graphql/queries';
@@ -66,7 +67,7 @@ export const useInvoiceStore = defineStore(
         };
       }
 
-      const mapped = mapperData<Invoice[]>(response.data.invoices.data);
+      const mapped = mapper<Invoice[]>(response.data.invoices.data);
 
       invoices.value = mapped;
 
@@ -93,7 +94,7 @@ export const useInvoiceStore = defineStore(
         );
 
         const response = await Promise.all(productPromises);
-        const result = mapperData<any[]>(response);
+        const result = mapper<any[]>(response);
 
         result.forEach((product) => {
           temp.push(product.products[0]);

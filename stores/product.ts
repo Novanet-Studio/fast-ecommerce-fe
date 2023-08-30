@@ -1,3 +1,4 @@
+import mapper from 'smapper';
 import config from '~/config/config.json';
 import { GetProductsByCategoryId } from '~/graphql/queries';
 
@@ -20,7 +21,7 @@ export const useProductStore = defineStore(
           id: categoryId,
         });
 
-        return mapperData<Product[]>(data.products.data);
+        return mapper<Product[]>(data.products.data);
       } catch (error) {
         return null;
       } finally {

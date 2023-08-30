@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import mapper from 'smapper';
 import { injectKeys } from '~/config/constants';
 import { GetProductById } from '~/graphql/queries';
 
@@ -33,7 +34,7 @@ const handleAddToCart = async () => {
 
   const itemsResult = await Promise.all(itemsList);
 
-  mapperData<any[]>(itemsResult).forEach((item) => {
+  mapper<any[]>(itemsResult).forEach((item) => {
     temp.push(item.products[0]);
   });
 

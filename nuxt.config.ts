@@ -58,11 +58,6 @@ export default defineNuxtConfig({
     },
   },
 
-  lodash: {
-    prefix: '$',
-    upperAfterPrefix: false,
-  },
-
   pwa: {
     meta: {
       title: 'Tienda en mano',

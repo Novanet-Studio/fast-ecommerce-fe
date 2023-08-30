@@ -1,3 +1,4 @@
+import mapper from 'smapper';
 import config from '~/config/config.json';
 import { GetProductById } from '~/graphql/queries';
 
@@ -28,7 +29,7 @@ export const useCartStore = defineStore(
       );
 
       const [response] = await Promise.all(productPromises);
-      const result = mapperData<Product[]>(response.data.products.data);
+      const result = mapper<Product[]>(response.data.products.data);
       productStore.cartProducts = result;
       loading.value = false;
     }

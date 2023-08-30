@@ -22,7 +22,6 @@
     "@vueuse/nuxt": "^10.3.0",
     "graphql": "^16.7.1",
     "nuxt": "^3.6.5",
-    "nuxt-lodash": "^2.5.0",
     "rimraf": "^5.0.1"
   },
   "dependencies": {
@@ -36,6 +35,7 @@
     "firebase": "^10.1.0",
     "gitart-vue-dialog": "^3.1.0",
     "nuxt-swiper": "^1.2.0",
+    "smapper": "^0.0.9",
     "square": "^30.0.0",
     "valibot": "^0.11.1",
     "vee-validate": "^4.11.1",

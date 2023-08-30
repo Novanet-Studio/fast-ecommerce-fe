@@ -1355,7 +1355,7 @@
   optionalDependencies:
     ipx "^1.2.0"
 
-"@nuxt/kit@3.6.5", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.2.3", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.6.0", "@nuxt/kit@^3.6.3", "@nuxt/kit@^3.6.5":
+"@nuxt/kit@3.6.5", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.2.3", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.6.3", "@nuxt/kit@^3.6.5":
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.6.5.tgz#208777acdc2a09109fbe4209aad736874eb9a3f5"
   integrity sha512-uBI5I2Zx6sk+vRHU+nBmifwxg/nyXCGZ1g5hUKrUfgv1ZfiKB8JkN5T9iRoduDOaqbwM6XSnEl1ja73iloDcrw==
@@ -1774,18 +1774,6 @@
   integrity sha512-HC8G7c1WmaF2ekqpnFq626xd3Zz0uvaqFmBJNRZCGEZCXkvSdJoNFn/8Ygbd9fKNQj8UzLdCETaI0UWPAjK7IA==
   dependencies:
     "@types/node" "*"
-
-"@types/lodash-es@^4.17.7":
-  version "4.17.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash-es/-/lodash-es-4.17.8.tgz#cfffd0969507830c22da18dbb20d2ca126fdaa8b"
-  integrity sha512-euY3XQcZmIzSy7YH5+Unb3b2X12Wtk54YWINBvvGQ5SmMvwb11JQskGsfkH/5HXK77Kr8GF0wkVDIxzAisWtog==
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash@*":
-  version "4.14.196"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.196.tgz#a7c3d6fc52d8d71328b764e28e080b4169ec7a95"
-  integrity sha512-22y3o88f4a94mKljsZcanlNWPzO0uBsBdzLAngf2tp533LzZcQzb6+eZPJ+vCTt+bqF2XnvT9gejTLsAcJAJyQ==
 
 "@types/long@^4.0.1":
   version "4.0.2"
@@ -4801,11 +4789,6 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash-es@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
-  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
-
 lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
@@ -5522,15 +5505,6 @@ nuxi@3.6.5:
   integrity sha512-4XEXYz71UiWWiKC1/cJCzqRSUEImYRmjcvKpSsBKMU58ALYVSx5KIoas5SwLO8tEKO5BS4DAe4u7MYix7hfuHQ==
   optionalDependencies:
     fsevents "~2.3.2"
-
-nuxt-lodash@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/nuxt-lodash/-/nuxt-lodash-2.5.0.tgz#362e922ca65e84c74f0bbe2ae49ed1aaa1106fb7"
-  integrity sha512-nd7YrKzJH7kqMEwyAlwk0T8Fi/G1heAaWJENFm6SUIwYgR6AOigp/ryLya+JBEP+ZmGrJbIHq+mhWNdvKsLK7g==
-  dependencies:
-    "@nuxt/kit" "^3.6.0"
-    "@types/lodash-es" "^4.17.7"
-    lodash-es "^4.17.21"
 
 nuxt-swiper@^1.2.0:
   version "1.2.0"
@@ -6698,6 +6672,13 @@ slash@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
   integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
+
+smapper@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/smapper/-/smapper-0.0.9.tgz#9d11ce31d2a783f17bbd60ac4124dcd8a0094c41"
+  integrity sha512-2yJdSKzpwYnaSo3soTItF46FpuR7WGifakDj2oL531+gCsxyIz/PixcAsYjGJrIkD0qX9wDex09xyvgqmzTGSA==
+  dependencies:
+    lodash "^4.17.21"
 
 smart-buffer@^4.2.0:
   version "4.2.0"

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import mapper from 'smapper';
 import { GetProductById } from '~/graphql/queries';
 
 const graphql = useStrapiGraphQL();
@@ -20,7 +21,7 @@ const loadCartProducts = async () => {
 
   const [response] = await Promise.all(productPromises);
 
-  productStore.cartProducts = mapperData(response.data.products.data);
+  productStore.cartProducts = mapper(response.data.products.data);
 };
 
 const handleRemoveProductFromCart = (product?: Product) => {
