@@ -37,7 +37,7 @@ export const useInvoiceStore = defineStore(
       return invoices.value.map(invoiceMapper);
     });
 
-    const { $httpsCallable, $notify } = useNuxtApp();
+    const { $notify } = useNuxtApp();
 
     const router = useRouter();
     const graphql = useStrapiGraphQL();
@@ -45,16 +45,6 @@ export const useInvoiceStore = defineStore(
     const checkout = useCheckoutStore();
     const productsCart = useProductStore();
     const cart = useCartStore();
-
-    const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
-
-    const sendReceiptEmail = httpsCallable<string, SendEmailFn>(
-      'sendReceiptEmail'
-    );
-
-    const sendMerchantEmail = httpsCallable<string, SendEmailFn>(
-      'sendMerchantEmail'
-    );
 
     async function fetchInvoices(
       userId: string,
@@ -390,8 +380,14 @@ export const useInvoiceStore = defineStore(
         });
 
         await Promise.all([
-          sendReceiptEmail(receipt),
-          sendMerchantEmail(merchant),
+          useFetch('/api/send-receipt-email', {
+            method: 'post',
+            body: receipt,
+          }),
+          useFetch('/api/send-merchant-email', {
+            method: 'post',
+            body: merchant,
+          }),
         ]);
 
         $notify({
@@ -433,8 +429,14 @@ export const useInvoiceStore = defineStore(
         });
 
         await Promise.all([
-          sendReceiptEmail(receipt),
-          sendMerchantEmail(merchant),
+          useFetch('/api/send-receipt-email', {
+            method: 'post',
+            body: receipt,
+          }),
+          useFetch('/api/send-merchant-email', {
+            method: 'post',
+            body: merchant,
+          }),
         ]);
 
         $notify({
@@ -477,8 +479,14 @@ export const useInvoiceStore = defineStore(
         });
 
         await Promise.all([
-          sendReceiptEmail(receipt),
-          sendMerchantEmail(merchant),
+          useFetch('/api/send-receipt-email', {
+            method: 'post',
+            body: receipt,
+          }),
+          useFetch('/api/send-merchant-email', {
+            method: 'post',
+            body: merchant,
+          }),
         ]);
 
         $notify({

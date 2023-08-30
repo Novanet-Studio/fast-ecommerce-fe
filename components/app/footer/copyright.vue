@@ -19,7 +19,7 @@ const appConfig = useAppConfig();
     <p class="copyright__author">
       <span class="copyright__author-text">Tienda realizada por:</span>
       <a href="https://novanet.studio/">
-        <img src="/img/novanet-logo.svg" alt="Novanet logo" />
+        <img src="/img/novanet-logo.png" alt="Novanet logo" />
       </a>
     </p>
   </div>

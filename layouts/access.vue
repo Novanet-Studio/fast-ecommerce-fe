@@ -5,7 +5,7 @@
         <nuxt-link class="access__link" to="/">
           <img
             class="filter filter-drop-shadow"
-            src="/img/logo.png"
+            src="/img/novanet-logo.png"
             alt="Project logo"
           />
         </nuxt-link>

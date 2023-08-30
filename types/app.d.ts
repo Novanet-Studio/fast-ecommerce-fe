@@ -25,13 +25,6 @@ enum AddressType {
   None = '',
 }
 
-enum HttpsCallable {
-  CreateCustomer = 'createCustomer',
-  Payment = 'payment',
-}
-
-type HttpsCallableHelper = <T, U>(data: T) => U;
-
 interface Pagination {
   total: number;
   pageCount: number;

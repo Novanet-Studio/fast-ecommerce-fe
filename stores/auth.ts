@@ -9,7 +9,7 @@ type User = StrapiUser & {
 export const useAuthStore = defineStore(
   config.store.auth,
   () => {
-    const { $notify, $httpsCallable } = useNuxtApp();
+    const { $notify } = useNuxtApp();
     const { setToken } = useStrapiAuth();
     const graphql = useStrapiGraphQL();
 
@@ -83,10 +83,6 @@ export const useAuthStore = defineStore(
     }
 
     async function createCustomer(user: string, email: string) {
-      const httpsCallable = $httpsCallable as HttpsCallableHelper;
-      const customerId = httpsCallable<HttpsCallable.CreateCustomer, any>(
-        HttpsCallable.CreateCustomer
-      );
       const idempotencyKey = crypto.randomUUID();
       const data = {
         idempotencyKey,
@@ -94,7 +90,12 @@ export const useAuthStore = defineStore(
         emailAddress: email,
       };
 
-      return customerId(data);
+      const { data: result } = await useFetch('/api/create-customer', {
+        method: 'post',
+        body: data,
+      });
+
+      return result;
     }
 
     function logout() {

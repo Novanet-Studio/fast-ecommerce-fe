@@ -13,9 +13,7 @@ interface CheckBillingResponse {
   country: string;
 }
 
-type GeneratePayment = (data: any) => Promise<{ data: Payment }>;
-
-const { $notify, $httpsCallable } = useNuxtApp();
+const { $notify } = useNuxtApp();
 const { SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID } = useRuntimeConfig().public;
 
 const graphql = useStrapiGraphQL();
@@ -23,8 +21,6 @@ const auth = useAuthStore();
 const cart = useCartStore();
 const checkout = useCheckoutStore();
 const invoice = useInvoiceStore();
-
-const httpsCallable = $httpsCallable as <T, U>(data: T) => U;
 
 const state = reactive<State & Record<any, any>>({
   card: null,
@@ -73,8 +69,10 @@ const checkBilling = async (): Promise<CheckBillingResponse> => {
 };
 
 const createPayment = async (paymentBody: any) => {
-  const generatePayment = httpsCallable<string, GeneratePayment>('payment');
-  const { data } = await generatePayment(paymentBody);
+  const { data } = await useFetch('/api/payment', {
+    method: 'post',
+    body: paymentBody,
+  });
 
   if (data.status !== 'COMPLETED') {
     $notify({
