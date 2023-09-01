@@ -100,6 +100,13 @@ export default defineNuxtConfig({
     },
   },
 
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag: string) =>
+        ['swiper-container', 'swiper-slide'].includes(tag),
+    },
+  },
+
   vite: {
     plugins: [gql()],
   },
