@@ -7,7 +7,7 @@ type Form = {
   user: string;
   password: string;
   rememberMe: boolean;
-}
+};
 
 const REDIRECT_DELAY = 500;
 
@@ -26,7 +26,7 @@ const schema = toTypedSchema(
     user: string([minLength(1, 'Este campo es requerido')]),
     password: string([minLength(1, 'Este campo es requerido')]),
   })
-)
+);
 
 const { handleSubmit } = useForm<Form>({
   validationSchema: schema,
@@ -38,19 +38,17 @@ const resetState = () => {
 };
 
 const submit = handleSubmit(async (data, { resetForm }) => {
-
-  console.log(data)
   try {
     state.isLoading = true;
     state.isDisabled = true;
 
-    const success = await auth.login(data.user, data.password)
+    const success = await auth.login(data.user, data.password);
 
     if (!success) {
       $notify({
         group: 'all',
         title: 'Error',
-        text: 'Un error ha occurrido, intente ingresar de nuevo'
+        text: 'Un error ha occurrido, intente ingresar de nuevo',
       });
       return;
     }
@@ -68,7 +66,7 @@ const submit = handleSubmit(async (data, { resetForm }) => {
     resetState();
     resetForm();
   }
-})
+});
 </script>
 
 <template>
@@ -80,20 +78,36 @@ const submit = handleSubmit(async (data, { resetForm }) => {
           <div class="i-ph-bag-light text-[20px] text-gray-400" />
         </template>
       </app-input>
-      <app-input name="password" placeholder="Ingrese su contraseña" :type="showPassword ? 'text' : 'password'">
+      <app-input
+        name="password"
+        placeholder="Ingrese su contraseña"
+        :type="showPassword ? 'text' : 'password'"
+      >
         <template #left>
           <div class="i-ph-lock-light text-[20px] text-gray-400" />
         </template>
         <template #right>
-          <div @click="showPassword = !showPassword" class="hover:cursor-pointer group">
-            <div class="i-ph-eye-light text-[20px] transition text-gray-400 group-hover:text-gray-500"
-              v-if="!showPassword" />
-            <div class="i-ph-eye-slash-light text-[20px] transition text-gray-400 group-hover:text-gray-500" v-else />
+          <div
+            @click="showPassword = !showPassword"
+            class="hover:cursor-pointer group"
+          >
+            <div
+              class="i-ph-eye-light text-[20px] transition text-gray-400 group-hover:text-gray-500"
+              v-if="!showPassword"
+            />
+            <div
+              class="i-ph-eye-slash-light text-[20px] transition text-gray-400 group-hover:text-gray-500"
+              v-else
+            />
           </div>
         </template>
       </app-input>
       <div class="auth-form__footer">
-        <app-button @click="submit" :loading="state.isLoading" :disabled="state.isDisabled">
+        <app-button
+          @click="submit"
+          :loading="state.isLoading"
+          :disabled="state.isDisabled"
+        >
           Entrar
         </app-button>
       </div>
