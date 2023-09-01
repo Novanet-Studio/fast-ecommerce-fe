@@ -8,8 +8,6 @@ import {
   email,
   regex,
   nonNullable,
-  ValiError,
-  type ValidateInfo,
 } from 'valibot';
 import { toTypedSchema } from '@vee-validate/valibot';
 
@@ -40,26 +38,6 @@ const showPasswords = ref(false);
 const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/gm;
 
-const confirmPasswordValidation = (input: string, info: ValidateInfo) => {
-  if (info?.path?.length) {
-    const data = info.path[0].input as { password: string };
-
-    if (data.password !== input) {
-      throw new ValiError([
-        {
-          validation: 'custom',
-          origin: 'value',
-          message: 'Contraseñas no coinciden',
-          input,
-          ...info,
-        },
-      ]);
-    }
-  }
-
-  return input;
-};
-
 const schema = toTypedSchema(
   object({
     email: string([
@@ -80,10 +58,7 @@ const schema = toTypedSchema(
         'Debe ser igual o mayor a 8 carácteres, una letra mayúscula, una minúscula, un número y un carácter especial'
       ),
     ]),
-    confirmPassword: string([
-      minLength(1, 'Este campo es requerido'),
-      confirmPasswordValidation,
-    ]),
+    confirmPassword: string([minLength(1, 'Este campo es requerido')]),
   })
 );
 
@@ -92,14 +67,19 @@ const resetState = () => {
   state.isDisabled = false;
 };
 
-const { handleSubmit } = useForm<Form>({
+const { handleSubmit, defineInputBinds, setFieldError } = useForm<Form>({
   validationSchema: schema,
 });
 
-const submit = handleSubmit(async (data, { resetForm }) => {
+const password = defineInputBinds('password');
+const confirmPassword = defineInputBinds('confirmPassword');
+
+const submit = handleSubmit(async (data) => {
   try {
     state.isLoading = true;
     state.isDisabled = true;
+
+    if (data.password !== data.confirmPassword) return;
 
     const response = await auth.createCustomer(data.username, data.email);
 
@@ -132,6 +112,17 @@ const submit = handleSubmit(async (data, { resetForm }) => {
     });
   } finally {
     resetState();
+  }
+});
+
+watchEffect(() => {
+  if (
+    confirmPassword.value.value &&
+    password.value.value &&
+    confirmPassword.value.value?.length >= 8 &&
+    password.value.value !== confirmPassword.value.value
+  ) {
+    setFieldError('confirmPassword', 'Las contraseñas no coinciden');
   }
 });
 </script>

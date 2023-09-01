@@ -7,7 +7,7 @@ const isOpen = ref(false);
 <template>
   <div v-if="!auth.authenticated" class="user-area">
     <div class="user-area__icon-wrapper">
-      <nuxt-link to="/login">
+      <nuxt-link to="/auth/login">
         <div class="i-ph-user-light user-area__icon" />
       </nuxt-link>
     </div>
