@@ -1,17 +1,12 @@
-import { Client, Environment } from 'square';
 import type { CreatePaymentRequest, Payment } from 'square';
 
 interface PaymentResponse extends Payment {
   version: bigint;
 }
 
-const { paymentsApi } = new Client({
-  environment: Environment.Sandbox,
-  accessToken:
-    'EAAAEJyncqd3OPpoDxFbqfbNjmfeDnM_8OZmPxgUfk-ifWbwexuPqMaAUACyfdbs',
-});
-
 export default defineEventHandler(async (event) => {
+  const { square } = useRuntimeConfig();
+
   try {
     const data = (await readBody(event)) as CreatePaymentRequest;
     const body = {
@@ -39,8 +34,20 @@ export default defineEventHandler(async (event) => {
       note: data.note,
     };
 
-    const response = await paymentsApi.createPayment(body);
-    const parsedResponse = JSON.stringify(response.result, (_, value) =>
+    const response = await $fetch<any>(
+      'https://connect.squareupsandbox.com/v2/payments',
+      {
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json',
+          'Square-Version': '2023-08-16',
+          Authorization: `Bearer ${square.accessToken}`,
+        },
+      }
+    );
+
+    const parsedResponse = JSON.stringify(response, (_, value) =>
       typeof value === 'bigint' ? value.toString() : value
     );
     const { payment } = JSON.parse(parsedResponse);
