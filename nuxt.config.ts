@@ -49,6 +49,9 @@ export default defineNuxtConfig({
       senderEmail: process.env.SENDGRID_SENDER_MAIL,
       receiverEmail: process.env.SENDGRID_RECEIVER_MAIL,
     },
+    square: {
+      accessToken: process.env.SQUARE_ACCESS_TOKEN,
+    },
     public: {
       square: {
         applicationId: process.env.SQUARE_APPLICATION_ID,
@@ -57,7 +60,6 @@ export default defineNuxtConfig({
       paypal: {
         clientId: process.env.PAYPAL_CLIENT_ID,
       },
-      // SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
     },
   },
 
