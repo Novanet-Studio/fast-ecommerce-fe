@@ -69,12 +69,12 @@ const checkBilling = async (): Promise<CheckBillingResponse> => {
 };
 
 const createPayment = async (paymentBody: any) => {
-  const { data } = await useFetch('/api/payment', {
+  const { data } = await useFetch<any>('/api/payment', {
     method: 'post',
     body: paymentBody,
   });
 
-  if (data.status !== 'COMPLETED') {
+  if (data.value.status !== 'COMPLETED') {
     $notify({
       group: 'all',
       title: 'Error',
@@ -91,7 +91,7 @@ const createPayment = async (paymentBody: any) => {
   });
 
   const invoiceItems = cart.cartItems;
-  const response = await invoice.createVisaInvoice(data, invoiceItems);
+  const response = await invoice.createVisaInvoice(data.value, invoiceItems);
 
   if (!response?.data?.createInvoice?.data?.id) {
     $notify({
@@ -109,7 +109,7 @@ const createPayment = async (paymentBody: any) => {
     text: 'Su recibo fué creado, puede revisarlo en sus ordenes',
   });
 
-  await invoice.sendVisaEmail(invoiceItems, data);
+  await invoice.sendVisaEmail(invoiceItems, data.value);
 };
 
 const makePayment = async (tokenResult: Square.TokenResult) => {
