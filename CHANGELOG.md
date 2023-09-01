@@ -1,5 +1,60 @@
 # Changelog
 
+## [2.12.0](https://github.com/Novanet-Studio/fast-ecommerce-fe/compare/v2.11.0...v2.12.0) (2023-09-01)
+
+
+### Features
+
+* add nuxt server apis ([5ad2aa5](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/5ad2aa534649dba359cdca638c0f9261d43b603c))
+* enable nuxt/devtools ([9307796](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/9307796802b76990c8dfe1f463eb638101934cbe))
+* improve best error handler, creating a custom errors to handle specific cases ([d8d37ec](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/d8d37ec1cc60e6e79a2a099380221779da2c2cfc))
+* **invoice/store:** move sendEmail fn, and refactor ([b9d4a5b](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/b9d4a5bffada517e479661d1bc336c2d5ecc4596))
+* migrate from firebase to api server ([5ad2aa5](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/5ad2aa534649dba359cdca638c0f9261d43b603c))
+* migrate to vee-validate and valibot ([419d939](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/419d939c8a054dd507559a2c70a0832fdc527725))
+* register swiper custom elements ([bbb0aab](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/bbb0aab5fcaa6224ee53e42b90bc3c155a12e189))
+* **unocss:** add text, light and dark color ([8379a80](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/8379a80715eb176bfba4991ed028cefbc457ec9a))
+* **unocss:** add web fonts preset ([da192f4](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/da192f45121059d5b42b5d4d0155ef9201697cdf))
+* use nuxt server endpoints ([5ad2aa5](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/5ad2aa534649dba359cdca638c0f9261d43b603c))
+* use smapper to transform strapi response ([624b838](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/624b8382c3602198ad5f578c76297b3cf04d9f29))
+
+
+### Bug Fixes
+
+* **accountLinks:** icons on sidebar actions ([2dbee15](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/2dbee1525fa7cc5ea05fa5809b09798506fe5196))
+* **actions:** bad product injection ([16574c8](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/16574c8485cde2ccc6b7e270ae5f1411d3996797))
+* app-select binding ([419d939](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/419d939c8a054dd507559a2c70a0832fdc527725))
+* **auth:** persist login, notify component in access layout ([3889ea6](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/3889ea6301b196db00ef3001e5e81c982d600848))
+* banner unocss styles ([3cf589a](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/3cf589a1721db92400f82fd0e9f39b043683357d))
+* build issues ([5ad2aa5](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/5ad2aa534649dba359cdca638c0f9261d43b603c))
+* close btn animation ([7020469](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/7020469e355754a18a4b22676f3471315f6ab98d))
+* **create-customer-api:** use native fetch instance of SDK ([0156b8e](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/0156b8e050fb3f263fe74185ea0a88a7fa81b8d6))
+* **custom-select:** no take default value ([c30f5c9](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/c30f5c9b900dd8e1b4f7e4bce83a9c159d27382b))
+* get-invoices-by-user-id query ([2dced40](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/2dced40a1b62678d49ed03211181550cf6bca673))
+* get-products-by-category query, replacing `image` by `images` ([a273f7e](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/a273f7e55ba7574fa4ebaf58fde0c8819718d1d4))
+* input in venmo and zelle ([8909774](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/89097749652b8f8e5f2ee25deaf39ff1f37b1c7c))
+* invalid date in create invoice ([73d1f3a](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/73d1f3a6d89d40b28fb2540582ba6b5db49c8e4b))
+* logo path ([9a24b1d](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/9a24b1d93078563ab843e860c90f8e46166a99e4))
+* methods import ([095beda](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/095beda41deafc0440f93f0e95d49a0f5b4318da))
+* no add product to cart issue ([7bde7a2](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/7bde7a24bfcf62e380df2d685e15645b636b479e))
+* no app logout ([1007584](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/100758469cb0d5fd03120947c564175cb1dbbb9e))
+* no render footer icons ([69ee40d](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/69ee40d67e476291884fd88c5fc7cb2d4d82b33a))
+* no replace inject keys using defined constant ([e6be47c](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/e6be47c1b8bdc201146509781596fa94bab6a901))
+* **npm:** set correct version ([9794a5b](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/9794a5b51f0f9ca9015ac83153b96a62ee6aac5b))
+* pago-movil report ([7018553](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/701855370c8c52a246dd21e46f06d8ab235d24fd))
+* pass user as string to attach it to invoice ([0541e37](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/0541e37a84ed6b1e5c8026ce02bef4f21b958ad5))
+* payment info data ([6167532](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/616753268a093fcaf05a1e0933f0a6ccbaf5e856))
+* payment inputs no show errors ([d60a8fd](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/d60a8fda0b90924f849135c8dee3f687d02fe5fa))
+* **payment-api:** use native fetch instance of SDK ([e8965f6](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/e8965f6aaf00bd3598b01c57e23d5a8ad53c88fd))
+* paypal payment process ([69fa31e](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/69fa31ef5bc36ad07506dc1ab3a13dd4d0ecddd4))
+* product query, replacing `image` by `images` ([66ab546](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/66ab5467c86390245b8a56deaa33124c37bb48c8))
+* **register:** no access to .value on data response ([c97f421](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/c97f421142a84a9828ad614b214f238dc297ed30))
+* **register:** no show passwords errors ([341b2dd](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/341b2ddafb388c01ffa5d563bd184d30f8b2bd56))
+* **shopping-cart:** discount input ([4fed081](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/4fed08131caa8511f79893696378723e17559545))
+* **style:** bad spaces between modifiers and values ([cea5faf](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/cea5faf84760d08880a422c0b0266e53cc3b2e00))
+* use icons instance of [@phosphor-icons](https://github.com/phosphor-icons) ([e056ed2](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/e056ed26c479ca676c82f9ae4c59636028c7517f))
+* **user-area:** remove older phosphor icon ([e53039b](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/e53039bd08be857b9a911736646614a0dddb6f7c))
+* **visa:** use data response from fetch composable correctly ([a07bae9](https://github.com/Novanet-Studio/fast-ecommerce-fe/commit/a07bae9c536e8adca6409f7d755c25bf15566424))
+
 ## [2.11.0](https://github.com/Novanet-Studio/fast-ecommerce-fe/compare/v2.10.0...v2.11.0) (2023-04-20)
 
 
