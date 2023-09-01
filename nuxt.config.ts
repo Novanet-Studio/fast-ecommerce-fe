@@ -58,7 +58,6 @@ export default defineNuxtConfig({
         clientId: process.env.PAYPAL_CLIENT_ID,
       },
       // SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
-      PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     },
   },
 
