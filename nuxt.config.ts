@@ -31,7 +31,6 @@ export default defineNuxtConfig({
     '@kevinmarrec/nuxt-pwa',
     '@nuxt/image-edge',
     '@sidebase/nuxt-pdf',
-    'nuxt-lodash',
   ],
 
   css: ['@unocss/reset/tailwind.css'],
@@ -51,8 +50,13 @@ export default defineNuxtConfig({
       receiverEmail: process.env.SENDGRID_RECEIVER_MAIL,
     },
     public: {
-      SQUARE_APPLICATION_ID: process.env.SQUARE_APPLICATION_ID,
-      SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID,
+      square: {
+        applicationId: process.env.SQUARE_APPLICATION_ID,
+        locationId: process.env.SQUARE_LOCATION_ID,
+      },
+      paypal: {
+        clientId: process.env.PAYPAL_CLIENT_ID,
+      },
       // SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
       PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
     },

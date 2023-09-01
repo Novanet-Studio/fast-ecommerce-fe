@@ -14,7 +14,7 @@ interface CheckBillingResponse {
 }
 
 const { $notify } = useNuxtApp();
-const { SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID } = useRuntimeConfig().public;
+const { square } = useRuntimeConfig().public;
 
 const graphql = useStrapiGraphQL();
 const auth = useAuthStore();
@@ -130,7 +130,7 @@ const makePayment = async (tokenResult: Square.TokenResult) => {
 
     const payment = {
       idempotencyKey,
-      locationId: SQUARE_LOCATION_ID,
+      locationId: square.locationId,
       sourceId: tokenResult.token,
       customerId: auth.user?.customerId ?? '',
       amountMoney: {
@@ -164,7 +164,7 @@ const makePayment = async (tokenResult: Square.TokenResult) => {
 const loadSquareCard = async () => {
   try {
     isLoadingCard.value = true;
-    const payments = Square.payments(SQUARE_APPLICATION_ID, SQUARE_LOCATION_ID);
+    const payments = Square.payments(square.applicationId, square.locationId);
 
     const card = await payments.card();
     await card.attach('#card-container');
@@ -198,7 +198,11 @@ onMounted(async () => {
           By making this purchase you agree to
           <a href="#" class="visa__link">our terms and conditions</a>.
         </p>
-        <app-button :loading="state.isLoading" :disabled="state.cardButtonDisabled" ref="btnRef">
+        <app-button
+          :loading="state.isLoading"
+          :disabled="state.cardButtonDisabled"
+          ref="btnRef"
+        >
           Pagar
         </app-button>
       </div>
