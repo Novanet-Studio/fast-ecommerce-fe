@@ -1,12 +1,15 @@
+<script lang="ts" setup>
+import { register } from 'swiper/element/bundle';
+
+register();
+useAppAuth();
+</script>
+
 <template>
   <nuxt-layout>
     <nuxt-page />
   </nuxt-layout>
 </template>
-
-<script lang="ts" setup>
-useAppAuth();
-</script>
 
 <style>
 .page-enter-active,

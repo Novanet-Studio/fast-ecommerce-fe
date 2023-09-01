@@ -1,5 +1,15 @@
 <script lang="ts" setup>
+import {
+  FreeMode,
+  Navigation,
+  Mousewheel,
+  Thumbs,
+  Autoplay,
+  Pagination,
+} from 'swiper/modules';
 import { injectKeys } from '~/config/constants';
+import 'swiper/element/css/navigation';
+import 'swiper/element/css/thumbs';
 
 const product = inject(injectKeys.productDetail) as Ref<Product>;
 const thumbsSwiper = ref(null);
@@ -14,25 +24,53 @@ const setThumbsSwiper = (swiper: any) => (thumbsSwiper.value = swiper);
         <div class="ps-wrapper max-w-3xl">
           <!-- Gallery-->
           <div class="ps-product__gallery">
-            <swiper class="main-swiper" :space-between="10" :navigation="true"
-              :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination, SwiperThumbs, SwiperFreeMode]"
-              :thumbs="{ swiper: thumbsSwiper }">
+            <swiper-container
+              class="main-swiper"
+              navigation
+              autoplay
+              pagination
+              free-mode
+              :space-between="10"
+              :modules="[
+                Autoplay,
+                Navigation,
+                Pagination,
+                Thumbs,
+                FreeMode,
+                Mousewheel,
+              ]"
+              thumbs-swiper=".swiper-thumbs"
+            >
               <swiper-slide v-for="image in product.images" :key="image.id">
                 <img :src="image.url" :alt="image.alternativeText" />
               </swiper-slide>
-            </swiper>
+            </swiper-container>
           </div>
         </div>
       </figure>
       <!-- Thumbnail -->
       <div class="ps-product__variants max-w-48">
-        <swiper class="swiper-thumbs" @swiper="setThumbsSwiper" :space-between="10" :slides-per-view="4" free-mode
+        <swiper-container
+          class="swiper-thumbs"
+          @swiper="setThumbsSwiper"
+          :space-between="10"
+          :slides-per-view="4"
+          free-mode
           watch-slides-progress
-          :modules="[SwiperAutoplay, SwiperNavigation, SwiperPagination, SwiperThumbs, SwiperFreeMode]">
+          autoplay
+          navigation
+          pagination
+          thumbs
+          :modules="[Autoplay, Navigation, Pagination, Thumbs, FreeMode]"
+        >
           <swiper-slide v-for="image in product.images" :key="image.id">
-            <img class="object-contain" :src="image.url" :alt="image.alternativeText" />
+            <img
+              class="object-contain"
+              :src="image.url"
+              :alt="image.alternativeText"
+            />
           </swiper-slide>
-        </swiper>
+        </swiper-container>
       </div>
     </div>
   </client-only>

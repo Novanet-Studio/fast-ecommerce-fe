@@ -1355,7 +1355,7 @@
   optionalDependencies:
     ipx "^1.2.0"
 
-"@nuxt/kit@3.6.5", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.2.3", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.6.3", "@nuxt/kit@^3.6.5":
+"@nuxt/kit@3.6.5", "@nuxt/kit@^3.0.0", "@nuxt/kit@^3.2.3", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.6.5":
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.6.5.tgz#208777acdc2a09109fbe4209aad736874eb9a3f5"
   integrity sha512-uBI5I2Zx6sk+vRHU+nBmifwxg/nyXCGZ1g5hUKrUfgv1ZfiKB8JkN5T9iRoduDOaqbwM6XSnEl1ja73iloDcrw==
@@ -5506,14 +5506,6 @@ nuxi@3.6.5:
   optionalDependencies:
     fsevents "~2.3.2"
 
-nuxt-swiper@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/nuxt-swiper/-/nuxt-swiper-1.2.0.tgz#5d6b4c25e3c9e667748a93432586a5f2bb1ba8a0"
-  integrity sha512-09j/2GzFo7/4fMFOpwODcBP6VeO4+7ux2T7EjZV9l1HNcsBDwXpmjYI/stKU9xENoKmNSlru0IknU6dx1UDtdg==
-  dependencies:
-    "@nuxt/kit" "^3.6.3"
-    swiper "^10.0.4"
-
 nuxt@^3.6.5:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.6.5.tgz#8c919dbf4bb16c67af2bb1d2c50427469a17321a"
@@ -6937,10 +6929,10 @@ svgo@^3.0.2:
     csso "^5.0.5"
     picocolors "^1.0.0"
 
-swiper@^10.0.4:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-10.1.0.tgz#02536bcf34ba0c37cf837c5193005a8e87aa43c8"
-  integrity sha512-E+wh+hcSbwlRfXuwBTclcOOikOjNdSF0a2Sdg3J4cIWtHO64A7SaLRfezfrJ67CW3GEc15AduYU2YKlElsjqsQ==
+swiper@10.2.0:
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-10.2.0.tgz#e7369ff56f4e10069f2244a4436f732b8925deb0"
+  integrity sha512-nktQsOtBInJjr3f5DicxC8eHYGcLXDVIGPSon0QoXRaO6NjKnATCbQ8SZsD3dN1Ph1RH4EhVPwSYCcuDRFWHGQ==
 
 tapable@^1.0.0:
   version "1.1.3"

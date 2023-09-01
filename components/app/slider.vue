@@ -1,10 +1,20 @@
 <script lang="ts" setup>
+import { Navigation } from 'swiper/modules';
+import 'swiper/element/css/navigation';
+
 interface Props {
   items: string[] | Product[];
-  modules?: string[];
+  slidesPerView?: number;
+  spaceBetween?: number;
+  centeredSlides?: boolean;
+  breakpoints?: Record<number, Record<string, unknown>>;
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  slidesPerView: 1,
+  spaceBetween: 1,
+  centeredSlides: false,
+});
 
 const renderImages = ref(false);
 const images = ref<string[]>([]);
@@ -25,22 +35,44 @@ watchEffect(() => {
 </script>
 
 <template>
-  <swiper :slides-per-view="1" :space-between="1" loop navigation :modules="[SwiperNavigation]">
+  <swiper-container
+    :slides-per-view="slidesPerView"
+    :space-between="spaceBetween"
+    :centered-slides="centeredSlides"
+    :breakpoints="breakpoints"
+    loop
+    navigation="true"
+    :modules="[Navigation]"
+  >
     <template v-if="renderImages">
       <swiper-slide v-for="(image, index) in images" :key="index">
-        <nuxt-img class="slider__image" :src="image" alt="Products of the brand" />
+        <nuxt-img class="w-full" :src="image" alt="Products of the brand" />
       </swiper-slide>
     </template>
     <template v-else>
-      <swiper-slide v-for="item in products" :key="item.id" class="landing__slide">
+      <swiper-slide
+        v-for="item in products"
+        :key="item.id"
+        class="landing__slide"
+      >
         <slot :product="item" />
       </swiper-slide>
     </template>
-  </swiper>
+  </swiper-container>
 </template>
 
 <style scoped>
-.slider__image {
-  @apply w-full;
+:global(:root) {
+  --swiper-navigation-color: #161824;
+}
+
+:root {
+  --swiper-navigation-color: #161824;
+  --swiper-pagination-color: #161824;
+}
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  --swiper-navigation-size: 1.5rem;
 }
 </style>

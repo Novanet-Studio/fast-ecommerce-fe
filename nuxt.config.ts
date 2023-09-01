@@ -22,7 +22,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    'nuxt-swiper',
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
@@ -97,6 +96,13 @@ export default defineNuxtConfig({
       xl: 1280,
       xxl: 1536,
       '2xl': 1536,
+    },
+  },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag: string) =>
+        ['swiper-container', 'swiper-slide'].includes(tag),
     },
   },
 
