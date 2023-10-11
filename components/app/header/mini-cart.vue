@@ -12,7 +12,12 @@ const isOpen = ref(false);
 
 <template>
   <div class="relative">
-    <div class="cursor-pointer" @mouseover="isOpen = true" @mouseleave="isOpen = false" @click.prevent="isOpen = !isOpen">
+    <div
+      class="cursor-pointer"
+      @mouseover="isOpen = true"
+      @mouseleave="isOpen = false"
+      @click.prevent="isOpen = !isOpen"
+    >
       <div class="header-actions__link">
         <div class="i-ph-bag-light header-actions__icon"></div>
         <span class="header-actions__indicator-wrapper">

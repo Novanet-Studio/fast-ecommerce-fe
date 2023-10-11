@@ -1,8 +1,13 @@
 <script lang="ts" setup>
+import mapper from 'smapper';
 import { injectKeys } from '~/config/constants';
+import { GetProductById } from '~/graphql/queries';
 
 const { $notify } = useNuxtApp();
+const graphql = useStrapiGraphQL();
+
 const cart = useCartStore();
+const productStore = useProductStore();
 const wishlist = useWishlistStore();
 const router = useRouter();
 const quantity = ref<number>(1);
@@ -14,9 +19,23 @@ const handleDescreaseQuantity = () =>
   quantity.value > 1 ? quantity.value-- : quantity;
 
 const addItemToCart = async (payload: CartItem) => {
+  const temp: Product[] = [];
+
   cart.addProductToCart(payload);
 
   if (!cart.cartItems.length) return;
+
+  const itemsList = cart.cartItems.map((item) =>
+    graphql<ProductRequest>(GetProductById, { id: item.id })
+  );
+
+  const itemsResult = await Promise.all(itemsList);
+
+  mapper<any[]>(itemsResult).forEach((item) => {
+    temp.push(item.products[0]);
+  });
+
+  productStore.addCartProducts(temp);
 
   $notify({
     group: 'all',
