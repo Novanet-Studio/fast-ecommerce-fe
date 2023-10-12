@@ -2,6 +2,7 @@ import gql from '@rollup/plugin-graphql';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  extends: ['../../tem-base'],
   devtools: { enabled: true },
   ssr: false,
   app: {
@@ -43,11 +44,11 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    sengrid: {
-      apiKey: process.env.SENDGRID_API_KEY,
-      senderEmail: process.env.SENDGRID_SENDER_MAIL,
-      receiverEmail: process.env.SENDGRID_RECEIVER_MAIL,
-    },
+    // sengrid: {
+    //   apiKey: process.env.SENDGRID_API_KEY,
+    //   senderEmail: process.env.SENDGRID_SENDER_MAIL,
+    //   receiverEmail: process.env.SENDGRID_RECEIVER_MAIL,
+    // },
     square: {
       accessToken: process.env.SQUARE_ACCESS_TOKEN,
     },

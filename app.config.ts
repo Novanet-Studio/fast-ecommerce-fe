@@ -36,4 +36,10 @@ export default defineAppConfig({
   about: {
     slider: ['/img/home/3.jpg', '/img/home/2.jpg'],
   },
+  email: {
+    receipt: {
+      subject: 'Factura de compra por %nameCustomer% - Order ID: %orderId%',
+      text: 'Factura de compra',
+    },
+  },
 });
